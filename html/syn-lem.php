@@ -1,19 +1,14 @@
 <?php
 	$lang = array(
-		'target' => 'grc',
-		'source' => 'grc'
+		'target' => 'la',
+		'source' => 'la'
 	);
 	$selected = array(
-		'target' => 'apollonius.argonautica.part.1',
-		'source' => 'homer.iliad'
+		'target' => 'vergil.georgics.part.1',
+		'source' => 'catullus.carmina'
 	);
-	$features = array(
-		'word' => 'exact word',
-		'stem' => 'lemma',
-		'syn'  => 'lemma + synonyms',
-		'3gr'  => 'character 3-gram'
-	);
-	$selected_feature = 'stem';
+
+	$selected_feature = 'syn_lem';
 ?>
 
 <?php include "first.php"; ?>
@@ -22,7 +17,7 @@
 </div>
 <div id="main">
 	
-	<h1>Greek Search</h1>
+	<h1>Lemma + Synonym Search</h1>
 	
 	<p>
 		For explanations of advanced features, see the 

@@ -58,6 +58,7 @@ our %feature_dep = (
 	
 	'trans1' => 'stem',
 	'trans2' => 'stem',
+	'syn_lem' => 'stem',
 	'syn'    => 'stem'
 );
 
