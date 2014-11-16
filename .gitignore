@@ -5,6 +5,7 @@ tesserae.conf
 html/defs.php
 html/help_scripts.php
 xsl/defs.xsl
+pod2htm*
 
 # compiled python modules
 *.pyc
