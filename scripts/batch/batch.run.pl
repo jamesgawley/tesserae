@@ -217,7 +217,7 @@ GetOptions(
 	'plugin=s@'  => \$cl_opt{plugin},
 	'parallel=i' => \$cl_opt{parallel},
 	'parent=s'   => \$cl_opt{dir_parent},
-	'no_dup'     => \$cl_opt{no_dup},
+	'no_dup:1'   => \$cl_opt{no_dup},
 	'manage'     => \$manage
 );
 
@@ -283,7 +283,7 @@ my $cleanup = defined($param{cleanup}) ? $param{cleanup} : 1;
 
 my @run = @{combi(\%param)};
 
-if ($param{no_dup}) { @run = @{remove_dups(\@run)} }
+if ($param{no_dup}) { @run = @{remove_dups(\@run, $param{no_dup}[0])} }
 
 #
 # try to load Parallel::ForkManager
@@ -1189,25 +1189,38 @@ sub init_session {
 
 sub remove_dups {
 
-	my $ref = shift;
+	my ($ref, $dup_level) = @_;
 	
 	my @combi = @$ref;
 
 	my @keep;
 	my %seen;
 
+	print STDERR "Removing duplicate runs, dup_level=$dup_level\n";
+
 	for my $run (@combi) {
 	
 		my %tessopt = (@$run);
 		
-		next if $tessopt{'--source'} eq $tessopt{'--target'};
-
 		my ($a, $b) = sort(@tessopt{qw/--source --target/});
 		next if $seen{$a}{$b};
+						
+		# if dup_level set to 2, don't test part texts
+		# against other parts of the same text
+		
+		my ($test_a, $test_b) = ($a, $b);
+		
+		if ($dup_level == 2) {
+			$test_a =~ s/\.part\..*//;
+			$test_b =~ s/\.part\..*//;
+		}
+		
+		next if $test_a eq $test_b;
+
+		push @keep, $run;
 		
 		$seen{$a}{$b} = 1;
 		
-		push @keep, $run;
 	}
 	
 	return \@keep;

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-=head1 NAME 
+=head1 NAME
 
 read_bin.pl - Sort and format the results of a Tesserae search.
 
@@ -30,7 +30,7 @@ Reverse the sort order.  For sorting by score this is probably a good idea; othe
 
 For paged results, I<page_size> gives the number of results per page. The default is 100.  If you say B<all> here instead of a number, you'll get all the results on one page.
 
-=item B<--page> I<page_no> 
+=item B<--page> I<page_no>
 
 For paged results, I<page_no> gives the page to display.  The default is 1.
 
@@ -104,37 +104,37 @@ my $lib;
 BEGIN {
 
 	# look for configuration file
-	
+
 	$lib = $Bin;
-	
+
 	my $oldlib = $lib;
-	
+
 	my $pointer;
-			
+
 	while (1) {
 
 		$pointer = catfile($lib, '.tesserae.conf');
-	
+
 		if (-r $pointer) {
-		
+
 			open (FH, $pointer) or die "can't open $pointer: $!";
-			
+
 			$lib = <FH>;
-			
+
 			chomp $lib;
-			
+
 			last;
 		}
-									
+
 		$lib = abs_path(catdir($lib, '..'));
-		
+
 		if (-d $lib and $lib ne $oldlib) {
-		
-			$oldlib = $lib;			
-			
+
+			$oldlib = $lib;
+
 			next;
 		}
-		
+
 		die "can't find .tesserae.conf!\n";
 	}
 
@@ -203,6 +203,10 @@ my $session;
 
 my $export = 'html';
 
+# number of decimal places to report in scores
+
+my $dec = 0;
+
 # help flag
 
 my $help;
@@ -211,13 +215,14 @@ my $help;
 # command-line arguments
 #
 
-GetOptions( 
+GetOptions(
 	'sort=s'    => \$sort,
 	'reverse'   => \$rev,
 	'page=i'    => \$page,
 	'batch=i'   => \$batch,
 	'session=s' => \$session,
 	'export=s'  => \$export,
+	'decimal=i' => \$dec,
 	'quiet'     => \$quiet,
 	'help'      => \$help );
 
@@ -235,7 +240,7 @@ if ($help) {
 #
 
 unless ($no_cgi) {
-	
+
 	my $query = new CGI || die "$!";
 
 	$session = $query->param('session')    || die "no session specified from web interface";
@@ -246,13 +251,13 @@ unless ($no_cgi) {
 	$export     = $query->param('export')  || $export;
 
 	my %h = ('-charset'=>'utf-8', '-type'=>'text/html');
-	
+
 	if ($export eq "xml") { $h{'-type'} = "text/xml"; $h{'-attachment'} = "tesresults-$session.xml" }
 	if ($export eq "csv") { $h{'-type'} = "text/csv"; $h{'-attachment'} = "tesresults-$session.csv" }
 	if ($export eq "tab") { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.txt" }
-	
+
 	print header(%h);
-	
+
 	$quiet = 1;
 }
 
@@ -263,7 +268,7 @@ if (defined $session) {
 	$file = catdir($fs{tmp}, "tesresults-" . $session);
 }
 else {
-	
+
 	$file = shift @ARGV;
 }
 
@@ -291,12 +296,12 @@ my $source = $meta{SOURCE};
 
 my $target = $meta{TARGET};
 
-# unit means the level at which results are returned: 
+# unit means the level at which results are returned:
 # - choice right now is 'phrase' or 'line'
 
 my $unit = $meta{UNIT};
 
-# feature means the feature set compared: 
+# feature means the feature set compared:
 # - choice is 'word' or 'stem'
 
 my $feature = $meta{FEATURE};
@@ -361,7 +366,7 @@ my %abbr = %{retrieve($file_abbr)};
 # read source text
 
 unless ($quiet) {
-	
+
 	print STDERR "reading source data\n";
 }
 
@@ -391,18 +396,18 @@ my %index_target   = %{ retrieve( "$path_target.index_$feature" ) };
 
 if ($export eq "html") {
 
-	print_html($page, $batch);	
+	print_html($page, $batch);
 }
 elsif ($export eq "csv") {
-	
+
 	print_delim(",");
 }
 elsif ($export eq "tab") {
-	
+
 	print_delim("\t");
 }
 elsif  ($export eq "xml") {
-	
+
 	print_xml();
 }
 
@@ -412,90 +417,90 @@ elsif  ($export eq "xml") {
 #
 
 sub nav_page {
-		
+
 	my $html = "<p>$total_matches results";
-	
+
 	my $pages = ceil($total_matches/$batch);
-	
+
 	#
 	# if there's only one page, don't bother
 	#
-	
+
 	if ($pages > 1) {
-				
+
 		$html .= " in $pages pages.</br>\n";
-	
+
 		#
 		# draw navigation links
-		# 
-	
+		#
+
 		my @left = ();
 		my @right = ();
-	
+
 		my $back_arrow = "";
 		my $forward_arrow = "";
-			
+
 		$html .= "Go to page: ";
-	
+
 		if ($page > 1) {
-		
+
 			$back_arrow .= "<span>";
 			$back_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=1;batch=$batch\"> [first] </a>\n";
 			$back_arrow .= "</span>";
 
 			my $p = $page-1;
 
-			$back_arrow .= "<span>";				
+			$back_arrow .= "<span>";
 			$back_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [previous] </a>\n";
 			$back_arrow .= "</span>";
-		
-		
+
+
 			@left = (($page > 4 ? $page-4 : 1)..$page-1);
 		}
-	
+
 		if ($page < $pages) {
-		
+
 			my $p = $page+1;
-		
+
 			$forward_arrow .= "<span>";
 			$forward_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [next] </a>\n";
 			$forward_arrow .= "</span>";
 
 			$forward_arrow .= "<span>";
-			$forward_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$pages;batch=$batch\"> [last] </a>\n";		       
+			$forward_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$pages;batch=$batch\"> [last] </a>\n";
 			$forward_arrow .= "</span>";
-		
+
 			@right = ($page+1..($page < $pages-4 ? $page+4 : $pages));
 		}
-	
+
 		$html .= $back_arrow;
-	
+
 		for my $p (@left, $page, @right) {
-		
+
 			$html .= "<span>";
-		
-			if ($page == $p) { 
-			
+
+			if ($page == $p) {
+
 				$html .= " $p ";
 			}
 			else {
-			
+
 				$html .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> $p </a>";
-			}	
-			
+			}
+
 			$html .= "</span>";
 		}
-	
+
 		$html .= $forward_arrow;
 		$html .= "\n";
 	}
-			
+
 	return $html;
-	
+
 }
 
 sub re_sort {
-	
+
 	my @sel_rev    = ("", "");
 	my %sel_sort   = (target => "", source => "", score => "");
 	my %sel_export = (html => "", xml => "", csv => "", tab => "");
@@ -507,9 +512,9 @@ sub re_sort {
 	$sel_batch{$batch}   = 'selected="selected"';
 
 	my $html=<<END;
-	
+
 	<form action="$url{cgi}/read_bin.pl" method="post" id="Form1">
-		
+
 		<table>
 			<tr>
 				<td>
@@ -537,7 +542,7 @@ sub re_sort {
 				<option value="tab"  $sel_export{csv}>tab-separated</option>
 				<option value="xml"  $sel_export{xml}>xml</option>
 			</select>.
-			
+
 			</td>
 			<td>
 				<input type="hidden" name="session" value="$session" />
@@ -546,7 +551,7 @@ sub re_sort {
 		</tr>
 		<tr>
 			<td>
-									
+
 			Show
 
 			<select name="batch">
@@ -563,69 +568,69 @@ sub re_sort {
 	</form>
 
 END
-	
+
 	return $html;
-	
+
 }
 
 sub print_html {
-	
-	my $first; 
+
+	my $first;
 	my $last;
-	
+
 	$first = ($page-1) * $batch;
 	$last  = $first + $batch - 1;
-	
+
 	if ($last > $total_matches) { $last = $total_matches }
-	
+
 	my $html = `php -f $fs{html}/results.php`;
-	
+
 	my ($top, $bottom) = split /<!--results-->/, $html;
-	
+
 	$top =~ s/<!--pager-->/&nav_page()/e;
 	$top =~ s/<!--sorter-->/&re_sort()/e;
 	$top =~ s/<!--session-->/$session/;
-	
+
 	print $top;
 
 	for my $i ($first..$last) {
 
 		my $unit_id_target = $rec[$i]{target};
 		my $unit_id_source = $rec[$i]{source};
-						
+
 		# get the score
-		
-		my $score = sprintf("%.0f", $score{$unit_id_target}{$unit_id_source});
+
+		my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
 
 		# a guide to which tokens are marked in each text
-	
+
 		my %marked_target;
 		my %marked_source;
-		
+
 		# collect the keys
-		
+
 		my %seen_keys;
 
-		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) { 
-		
+		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) {
+
 			$marked_target{$_} = 1;
-		
+
 			$seen_keys{join("-", sort keys %{$match_target{$unit_id_target}{$unit_id_source}{$_}})} = 1;
 		}
-		
+
 		for (keys %{$match_source{$unit_id_target}{$unit_id_source}}) {
-		
+
 			$marked_source{$_} = 1;
 
 			$seen_keys{join("-", sort keys %{$match_source{$unit_id_target}{$unit_id_source}{$_}})} = 1;
 		}
-		
+
 		# format the list of all unique shared words
-	
+
 		my $keys = join(", ", keys %seen_keys);
-		
+
 		# utf8 encoded versions of target, source
-		
+
 		my $utarget = decode('utf8', $target);
 		my $usource = decode('utf8', $source);
 
@@ -641,9 +646,9 @@ sub print_html {
 		print "    <td>\n";
 		print "      <table>\n";
 		print "        <tr>\n";
-		
+
 		# target locus
-		
+
 		print "          <td>\n";
 		print "            <a href=\"javascript:;\""
 		    . " onclick=\"window.open(link='$url{cgi}/context.pl?target=$utarget;unit=$unit;id=$unit_id_target', "
@@ -651,29 +656,29 @@ sub print_html {
 		print "$abbr{$target} $unit_target[$unit_id_target]{LOCUS}";
 		print "            </a>\n";
 		print "          </td>\n";
-		
+
 		# target phrase
-		
+
 		print "          <td>\n";
-		
+
 		for my $token_id_target (@{$unit_target[$unit_id_target]{TOKEN_ID}}) {
-		
+
 			if (defined $marked_target{$token_id_target}) { print '<span class="matched">' }
 			print $token_target[$token_id_target]{DISPLAY};
 			if (defined $marked_target{$token_id_target}) { print "</span>" }
 		}
-		
+
 		print "          </td>\n";
-		
+
 		print "        </tr>\n";
 		print "      </table>\n";
 		print "    </td>\n";
 		print "    <td>\n";
 		print "      <table>\n";
 		print "        <tr>\n";
-		
+
 		# source locus
-		
+
 		print "          <td>\n";
 		print "            <a href=\"javascript:;\""
 		    . " onclick=\"window.open(link='$url{cgi}/context.pl?target=$usource;unit=$unit;id=$unit_id_source', "
@@ -681,38 +686,38 @@ sub print_html {
 		print "$abbr{$source} $unit_source[$unit_id_source]{LOCUS}";
 		print "            </a>\n";
 		print "          </td>\n";
-		
+
 		# source phrase
-		
+
 		print "          <td>\n";
-		
+
 		for my $token_id_source (@{$unit_source[$unit_id_source]{TOKEN_ID}}) {
-		
+
 			if (defined $marked_source{$token_id_source}) { print '<span class="matched">' }
 			print $token_source[$token_id_source]{DISPLAY};
 			if (defined $marked_source{$token_id_source}) { print '</span>' }
 		}
-		
+
 		print "          </td>\n";
 
 		print "        </tr>\n";
 		print "      </table>\n";
 		print "    </td>\n";
-		
-		# keywords       
-				
+
+		# keywords
+
 		print "    <td>$keys</td>\n";
 
 		# score
-		
+
 		print "    <td>$score</td>\n";
-		
+
 		print "  </tr>\n";
 	}
 
 	my $stoplist = join(", ", @stoplist);
 	my $filtertoggle = $filter ? 'on' : 'off';
-	
+
 	$bottom =~ s/<!--session_id-->/$session/;
 	$bottom =~ s/<!--source-->/$source/;
 	$bottom =~ s/<!--target-->/$target/;
@@ -725,7 +730,7 @@ sub print_html {
 	$bottom =~ s/<!--dibasis-->/$distance_metric/;
 	$bottom =~ s/<!--cutoff-->/$cutoff/;
 	$bottom =~ s/<!--filter-->/$filtertoggle/;
-		
+
 	print $bottom;
 }
 
@@ -736,10 +741,10 @@ sub print_delim {
 	#
 	# print header with settings info
 	#
-	
+
 	my $stoplist = join(" ", @stoplist);
 	my $filtertoggle = $filter ? 'on' : 'off';
-	
+
 	print <<END;
 # Tesserae V3 results
 #
@@ -758,8 +763,8 @@ sub print_delim {
 
 END
 
-	print join ($delim, 
-	
+	print join ($delim,
+
 		qw(
 			"RESULT"
 			"TARGET_LOC"
@@ -775,96 +780,96 @@ END
 
 		my $unit_id_target = $rec[$i]{target};
 		my $unit_id_source = $rec[$i]{source};
-		
+
 		# get the score
-		
-		my $score = sprintf("%.0f", $score{$unit_id_target}{$unit_id_source});
+
+		my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
 
 		# a guide to which tokens are marked in each text
-	
+
 		my %marked_target;
 		my %marked_source;
-		
+
 		# collect the keys
-		
+
 		my %seen_keys;
 
-		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) { 
-		
+		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) {
+
 			$marked_target{$_} = 1;
-		
+
 			$seen_keys{join("-", sort keys %{$match_target{$unit_id_target}{$unit_id_source}{$_}})} = 1;
 		}
-		
+
 		for (keys %{$match_source{$unit_id_target}{$unit_id_source}}) {
-		
+
 			$marked_source{$_} = 1;
 
 			$seen_keys{join("-", sort keys %{$match_source{$unit_id_target}{$unit_id_source}{$_}})} = 1;
 		}
-		
+
 		# format the list of all unique shared words
-	
+
 		my $keys = join("; ", keys %seen_keys);
-		
+
 		#
 		# print one row of the table
 		#
 
 		my @row;
-		
+
 		# result serial number
-		
+
 		push @row, $i+1;
-		
+
 		# target locus
-		
+
 		push @row, "\"$abbr{$target} $unit_target[$unit_id_target]{LOCUS}\"";
-		
+
 		# target phrase
-		
+
 		my $phrase = "";
-				
+
 		for my $token_id_target (@{$unit_target[$unit_id_target]{TOKEN_ID}}) {
-		
+
 			if ($marked_target{$token_id_target}) { $phrase .= "**" }
-		
+
 			$phrase .= $token_target[$token_id_target]{DISPLAY};
 
 			if ($marked_target{$token_id_target}) { $phrase .= "**" }
 		}
-		
+
 		push @row, "\"$phrase\"";
-				
+
 		# source locus
-		
+
 		push @row, "\"$abbr{$source} $unit_source[$unit_id_source]{LOCUS}\"";
-		
+
 		# source phrase
-		
+
 		$phrase = "";
-		
+
 		for my $token_id_source (@{$unit_source[$unit_id_source]{TOKEN_ID}}) {
-		
+
 			if ($marked_source{$token_id_source}) { $phrase .= "**" }
-		
+
 			$phrase .= $token_source[$token_id_source]{DISPLAY};
-			
+
 			if ($marked_source{$token_id_source}) { $phrase .= "**" }
 		}
-				
+
 		push @row, "\"$phrase\"";
-	
+
 		# keywords
-		
+
 		push @row, "\"$keys\"";
 
 		# score
 
 		push @row, $score;
-		
+
 		# print row
-		
+
 		print join($delim, @row) . "\n";
 	}
 }
@@ -887,7 +892,7 @@ sub print_xml {
 	# add a featureset-specific message
 
 	my %feature_notes = (
-	
+
 		word => "Exact matching only.",
 		stem => "Stem matching enabled.  Forms whose stem is ambiguous will match all possibilities.",
 		syn  => "Stem + synonym matching.  This search is still in development.  Note that stopwords may match on less-common synonyms."
@@ -903,8 +908,8 @@ sub print_xml {
 
 	print <<END;
 <?xml version="1.0" encoding="UTF-8" ?>
-<results 
-	source="$source" target="$target" unit="$unit" feature="$feature" 
+<results
+	source="$source" target="$target" unit="$unit" feature="$feature"
 	sessionID="$session" stop="$stop" stbasis="$stoplist_basis"
 	maxdist="$max_dist" dibasis="$distance_metric" cutoff="$cutoff" version="3">
 	<comments>V3 results. $meta{COMMENT}</comments>
@@ -921,34 +926,34 @@ END
 		# advance the progress bar
 
 		$pr->advance();
-			
+
 		# get the score
-	
-		my $score = sprintf("%.0f", $score{$unit_id_target}{$unit_id_source});
+
+		my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
 
 		# a guide to which tokens are marked in each text
 
 		my %marked_target;
 		my %marked_source;
-	
+
 		# collect the keys
-	
+
 		my %seen_keys;
 
-		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) { 
-	
+		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) {
+
 			$marked_target{$_} = 1;
-	
+
 			$seen_keys{join("-", sort keys %{$match_target{$unit_id_target}{$unit_id_source}{$_}})} = 1;
 		}
-	
+
 		for (keys %{$match_source{$unit_id_target}{$unit_id_source}}) {
-	
+
 			$marked_source{$_} = 1;
 
 			$seen_keys{join("-", sort keys %{$match_source{$unit_id_target}{$unit_id_source}{$_}})} = 1;
 		}
-		
+
 		# format the list of all unique shared words
 
 		my $keys = join(", ", keys %seen_keys);
@@ -966,28 +971,28 @@ END
 		# here we print the unit
 
 		for my $token_id_source (@{$unit_source[$unit_id_source]{TOKEN_ID}}) {
-		
+
 			if (defined $marked_source{$token_id_source}) { print '<span class="matched">' }
 
 			# print the display copy of the token
-		
+
 			print $token_source[$token_id_source]{DISPLAY};
-		
+
 			# close the tag if necessary
-		
+
 			if (defined $marked_source{$token_id_source}) { print '</span>' }
 		}
 
 		print "</phrase>\n";
-	
+
 		# same as above, for the target now
-	
+
 		print "\t\t<phrase text=\"target\" work=\"$abbr{$target}\" "
 				. "unitID=\"$unit_id_target\" "
 				. "line=\"$unit_target[$unit_id_target]{LOCUS}\">";
 
 		for my $token_id_target (@{$unit_target[$unit_id_target]{TOKEN_ID}}) {
-		
+
 			if (defined $marked_target{$token_id_target}) { print '<span class="matched">' }
 			print $token_target[$token_id_target]{DISPLAY};
 			if (defined $marked_target{$token_id_target}) { print "</span>" }
@@ -1000,22 +1005,22 @@ END
 
 	# finish off the xml doc
 
-	print "</results>\n";	
+	print "</results>\n";
 }
 
 sub sort_results {
-	
+
 	my @rec;
 	my @score_;
-		
+
 	for my $unit_id_target (sort {$a <=> $b} keys %score) {
 
 		for my $unit_id_source (sort {$a <=> $b} keys %{$score{$unit_id_target}}) {
-			
+
 			push @rec, {target => $unit_id_target, source => $unit_id_source};
 		}
 	}
-	
+
 	if ($sort eq "source") {
 
 		@rec = sort {$$a{source} <=> $$b{source}} @rec;
@@ -1027,6 +1032,6 @@ sub sort_results {
 	}
 
 	if ($rev) { @rec = reverse @rec };
-	
+
 	return \@rec;
 }
