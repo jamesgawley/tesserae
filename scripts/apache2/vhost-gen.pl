@@ -152,28 +152,28 @@ print <<END;
 		Deny from All
 	</Directory>
 
-	DocumentRoot $fs{html}
+	DocumentRoot $fs{html}/
 	<Directory "$fs{html}">
 		AllowOverride None
 		Order allow,deny
 		Allow from All		
 	</Directory>
 		
-	Alias /css/ $fs{css}
+	Alias /css/ $fs{css}/
 	<Directory "$fs{css}">
 		AllowOverride None
 		Order allow,deny
 		Allow from all		
 	</Directory>
 
-	Alias /images/ $fs{image}
+	Alias /images/ $fs{image}/
 	<Directory "$fs{image}">
 		AllowOverride None
 		Order allow,deny
 		Allow from all		
 	</Directory>
 
-	ScriptAlias /cgi-bin/ $fs{cgi}
+	ScriptAlias /cgi-bin/ $fs{cgi}/
 	<Directory "$fs{cgi}">
 		AllowOverride None
 		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch

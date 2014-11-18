@@ -228,6 +228,10 @@ for (keys %fs) {
 for (keys %url) {
 
 	$url{$_} =~ s/.*ROOT/$url{root}/;
+
+	unless ($url{$_} =~ /^http:\/\//) {
+		$url{$_} = 'http://' . $url{$_};
+	} 
 }
 
 
