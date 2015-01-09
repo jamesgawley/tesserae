@@ -169,8 +169,9 @@ my @perl_scripts = get_perl_scripts($fs{script}, $fs{cgi});
 my $html = <<END;
 <html>
    <head>
+      <meta charset="utf-8">
       <title>Tesserae Code Documentation</title>
-      <link rel="stylesheet" href="$url{css}/help.css" type="text/css" />
+      <link rel="stylesheet" href="$url{css}/doc.css" type="text/css" />
    </head>
    <body>
       <div id="main">
