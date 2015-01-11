@@ -139,6 +139,8 @@ if ($help) {
 	pod2usage(1);
 }
 
+my $doc_html = catfile($fs{doc}, "html");
+
 
 print <<END;
 
@@ -160,7 +162,7 @@ print <<END;
 	</Directory>
    
    Alias /doc/ $fs{doc}/
-   <Directory "$fs{doc}">
+   <Directory "$doc_html">
       AllowOverride None
       Order allow,deny
       Allow from All
