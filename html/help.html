@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Tesserae Code Documentation</title>
+      <link rel="stylesheet" href="/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="/css/doc.css" type="text/css" />
+      <script src="/jquery.js"></script>
+      <script type="text/javascript">
+         function mod_a(a) {
+            var url = a.attr("href")
+         
+            if (url != undefined) { 
+               var docid = url.replace(/.*\/doc\/(\d+)\.html/, "$1")
+               if (url != docid) {
+                  a.click(function(event) {
+                     event.preventDefault()
+                     var docid = $(this).attr("id").substring(4)
+                     doc(docid)
+                  })
+               } else {
+                  a.attr("target", "_blank")
+               }
+            }
+         }
+                         
+         function doc_handler(html, dest) {
+            var l = html.indexOf("<body>")
+            var r = html.indexOf("</body>")
+            html = html.substring(l,r)
+            dest.html(html)
+            
+            var agroup = dest.find("a")
+            
+            $.each(agroup, function(index, value) {
+               mod_a($(value))
+            })
+         }
+         
+         function doc(id) {
+            var url = "/doc/" + id + ".html"
+            $.get(url, {}, function(html) {
+               doc_handler(html, $("#help_content"))
+            })            
+         }
+         
+         $(document).ready(function() {            
+            $.get("/doc/index.html", {}, function(html) {
+               doc_handler(html, $("#help_index"))
+               var id = $("#help_index div.general ul a").attr("id").substring(4)
+               doc(id)
+            })
+            $("#header").load("/header.html")
+            $("#footer").load("/footer.html")
+         })
+      </script>
+   </head>
+   <body>
+      <div id="container">
+         <div id="header">
+            This is the header.
+         </div>
+         <div id="main">
+            <div id="help_index">
+            </div>
+            <div id="help_content">
+            </div>
+         </div>
+         <div id="footer">
+            This is the footer.
+         </div>
+      </div>
+   </body>
+</html>  
