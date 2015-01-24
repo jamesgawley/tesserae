@@ -263,7 +263,7 @@ if ($max_processes) {
 
 # get files to be processed from cmd line args
 
-my @files = map { glob } @ARGV;
+my @files = @ARGV;
 my %file = %{Tesserae::process_file_list(\@files, $lang, {filenames=>1})};
 
 unless (keys %file) {
@@ -342,13 +342,9 @@ for my $name (keys %file) {
 		# Assumption is that a line looks like:
 		# <001>	this is a verse
 
-		$l =~ /^\S*<(.+)>\s+(.+)/;
+		next unless $l =~ /^\s*<(.+)>\s+(.+)/;
 		
 		my ($locus, $verse) = ($1, $2);
-
-		# skip lines with no locus or line
-
-		next unless (defined $locus and defined $verse);
 		
 		# start a new line
 		
