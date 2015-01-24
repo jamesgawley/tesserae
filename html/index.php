@@ -3,11 +3,11 @@
 
 </div>
 
-<script src="<?php echo $url_html . '/tesserae.js' ?>"></script>
+<script src="/tesserae.js"></script>
 
 <div id="main">
 		
-	<form action="<?php echo $url_cgi . '/read_table.pl' ?>" method="post" ID="Form1">
+	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
 
 		<h1>Welcome</h1>
 		

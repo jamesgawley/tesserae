@@ -445,13 +445,13 @@ sub nav_page {
 		if ($page > 1) {
 
 			$back_arrow .= "<span>";
-			$back_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=1;batch=$batch\"> [first] </a>\n";
+			$back_arrow .= "<a href=\"/cgi-bin/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=1;batch=$batch\"> [first] </a>\n";
 			$back_arrow .= "</span>";
 
 			my $p = $page-1;
 
 			$back_arrow .= "<span>";
-			$back_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [previous] </a>\n";
+			$back_arrow .= "<a href=\"/cgi-bin/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [previous] </a>\n";
 			$back_arrow .= "</span>";
 
 
@@ -463,11 +463,11 @@ sub nav_page {
 			my $p = $page+1;
 
 			$forward_arrow .= "<span>";
-			$forward_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [next] </a>\n";
+			$forward_arrow .= "<a href=\"/cgi-bin/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [next] </a>\n";
 			$forward_arrow .= "</span>";
 
 			$forward_arrow .= "<span>";
-			$forward_arrow .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$pages;batch=$batch\"> [last] </a>\n";
+			$forward_arrow .= "<a href=\"/cgi-bin/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$pages;batch=$batch\"> [last] </a>\n";
 			$forward_arrow .= "</span>";
 
 			@right = ($page+1..($page < $pages-4 ? $page+4 : $pages));
@@ -485,7 +485,7 @@ sub nav_page {
 			}
 			else {
 
-				$html .= "<a href=\"$url{cgi}/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> $p </a>";
+				$html .= "<a href=\"/cgi-bin/read_bin.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> $p </a>";
 			}
 
 			$html .= "</span>";
@@ -513,7 +513,7 @@ sub re_sort {
 
 	my $html=<<END;
 
-	<form action="$url{cgi}/read_bin.pl" method="post" id="Form1">
+	<form action="/cgi-bin/read_bin.pl" method="post" id="Form1">
 
 		<table>
 			<tr>
@@ -651,7 +651,7 @@ sub print_html {
 
 		print "          <td>\n";
 		print "            <a href=\"javascript:;\""
-		    . " onclick=\"window.open(link='$url{cgi}/context.pl?target=$utarget;unit=$unit;id=$unit_id_target', "
+		    . " onclick=\"window.open(link='/cgi-bin/context.pl?target=$utarget;unit=$unit;id=$unit_id_target', "
 		    . " 'context', 'width=520,height=240')\">";
 		print "$abbr{$target} $unit_target[$unit_id_target]{LOCUS}";
 		print "            </a>\n";
@@ -681,7 +681,7 @@ sub print_html {
 
 		print "          <td>\n";
 		print "            <a href=\"javascript:;\""
-		    . " onclick=\"window.open(link='$url{cgi}/context.pl?target=$usource;unit=$unit;id=$unit_id_source', "
+		    . " onclick=\"window.open(link='/cgi-bin/context.pl?target=$usource;unit=$unit;id=$unit_id_source', "
 		    . " 'context', 'width=520,height=240')\">";
 		print "$abbr{$source} $unit_source[$unit_id_source]{LOCUS}";
 		print "            </a>\n";

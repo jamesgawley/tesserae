@@ -26,7 +26,7 @@
 		This search is experimental.  Results may not be consistent.
 	</p>	
 
-	<script src="<?php echo $url_html . '/tesserae.js' ?>"></script>
+	<script src="/tesserae.js"></script>
 
 	<?php include "advanced.php"; ?>
 

@@ -580,7 +580,7 @@ sub info {
 
 	my $html = <<END;
 	
-	<form action="$url{cgi}/read_table.pl" method="post" ID="Form1">
+	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
 
 		<h1>Benchmark Recall Test</h1>
 
@@ -691,7 +691,7 @@ sub re_sort {
 	
 	my $html = <<END;
 	
-	<form action="$url{cgi}/check-recall.pl" method="post" id="Form2">
+	<form action="/cgi-bin/check-recall.pl" method="post" id="Form2">
 		
 		<table>
 			<tr>

@@ -9,8 +9,8 @@
 		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
 		<meta name="description" content="Intertext analyzer for Latin texts">
-		<link href="<?php echo $url_css . "/style.css" ?>" rel="stylesheet" type="text/css"/>
-		<link href="<?php echo $url_image . "/favicon.ico" ?>" rel="shortcut icon"/>
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
 		
 		<!--head-->
 

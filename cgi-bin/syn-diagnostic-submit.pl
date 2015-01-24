@@ -335,7 +335,7 @@ sub init_db {
 
 sub print_head {
 	
-	my $redirect = "$url{cgi}/syn-diagnostic.pl?target=$target;query=$query;feature1=$feature[0];feature2=$feature[1];auth=$auth";
+	my $redirect = "/cgi-bin/syn-diagnostic.pl?target=$target;query=$query;feature1=$feature[0];feature2=$feature[1];auth=$auth";
 	
 	print <<END;
 <html lang="en">
@@ -345,8 +345,8 @@ sub print_head {
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
 		<meta name="description" content="Intertext analyzer for Latin texts">
 		<meta http-equiv="Refresh" content="0; url='$redirect'" />
-		<link href="$url{css}/style.css" rel="stylesheet" type="text/css" />
-		<link href="$url{image}/favicon.ico" rel="shortcut icon" />
+		<link href="/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="/images/favicon.ico" rel="shortcut icon" />
 
 		<title>Tesserae</title>
 
@@ -361,7 +361,7 @@ END
 
 sub print_foot {
 
-	my $redirect = "$url{cgi}/syn-diagnostic.pl?target=$target;query=$query;feature1=$feature[0];feature2=$feature[1];auth=$auth";
+	my $redirect = "/cgi-bin/syn-diagnostic.pl?target=$target;query=$query;feature1=$feature[0];feature2=$feature[1];auth=$auth";
 
 	print <<END;
 		</p>

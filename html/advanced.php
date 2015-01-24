@@ -1,4 +1,4 @@
-	<form action="<?php echo $url_cgi . '/read_table.pl' ?>" method="post" ID="Form1">
+	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
 
 		<table class="input">
 			<tr>

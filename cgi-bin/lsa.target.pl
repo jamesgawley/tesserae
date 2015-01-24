@@ -186,7 +186,7 @@ for my $line_id (0..$#line) {
 				
 		if ($token[$token_id]{TYPE} eq 'WORD') {
 				
-			my $link = "$url{cgi}/lsa.pl?";
+			my $link = "/cgi-bin/lsa.pl?";
 
 			$link .= "target=$target;";
 			$link .= "source=$source;";
@@ -230,7 +230,7 @@ my $head_insert = "
 				color: #888;
 			}
 		</style>
-		<script src=\"$url{html}/tesserae.js\"></script>\n";
+		<script src=\"/tesserae.js\"></script>\n";
 
 $frame =~ s/<!--head-->/$head_insert/;
 
@@ -248,10 +248,10 @@ close FH;
 # put together the form
 
 my $nav = <<END_FORM;
-		<form action="$url{cgi}/lsa.pl" method="POST" target="_top">
+		<form action="/cgi-bin/lsa.pl" method="POST" target="_top">
 		<table class="input">
 			<tr>
-				<td><a href="$url{html}/experimental.php" target="_top">Back to Tesserae</a></td>
+				<td><a href="/experimental.php" target="_top">Back to Tesserae</a></td>
 			</tr>
 			<tr>
 				<td>

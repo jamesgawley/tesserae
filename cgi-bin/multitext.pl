@@ -284,14 +284,14 @@ unless ($no_cgi) {
 
 	print header();
 	
-	my $redirect = "$url{cgi}/read_multi.pl?session=$session";
+	my $redirect = "/cgi-bin/read_multi.pl?session=$session";
 	
 	print <<END;
 	
 <html>
 	<head>
 		<title>Multi-text search in progress...</title>
-		<link rel="stylesheet" type="text/css" href="$url{css}/style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 		<meta http-equiv="Refresh" content="0; url='$redirect'">
 	</head>
 	<body>
@@ -442,7 +442,7 @@ print <<END unless ($no_cgi);
 
    	<p>
 			Your results are done!  If you are not redirected automatically, 
-			<a href="$url{cgi}/read_multi.pl?session=$session">Click here</a> to proceed.
+			<a href="/cgi-bin/read_multi.pl?session=$session">Click here</a> to proceed.
 		</p>
 	</div>
 </body>

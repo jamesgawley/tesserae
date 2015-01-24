@@ -233,7 +233,7 @@ my $head_insert = "
 				color: #888;
 			}
 		</style>
-		<script src=\"$url{html}/tesserae.js\"></script>\n";
+		<script src=\"/tesserae.js\"></script>\n";
 
 $frame =~ s/<!--head-->/$head_insert/;
 
@@ -267,10 +267,10 @@ for (my $n = 5; $n <= 50; $n += 5) {
 # put together the form
 
 my $nav = "
-		<form action=\"$url{cgi}/lsa.pl\" method=\"POST\" target=\"_top\">
+		<form action=\"/cgi-bin/lsa.pl\" method=\"POST\" target=\"_top\">
 		<table class=\"input\">
 			<tr>
-				<td><a href=\"$url{html}/experimental.php\" target=\"_top\">Back to Tesserae</a></td>
+				<td><a href=\"/experimental.php\" target=\"_top\">Back to Tesserae</a></td>
 			</tr>
 			<tr>
 				<td>

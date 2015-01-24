@@ -323,7 +323,7 @@ sub print_header {
 		print <<END_HEAD;
 <html>
 	<head>
-		<link href="$url{css}/style.css" rel="stylesheet" type="text/css" />
+		<link href="/css/style.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 			tr {
 				padding: 4px 3px;
@@ -347,7 +347,7 @@ sub print_header {
 	</head>
 	<body>
 	<div class="back">
-		<a style="color:grey;" href="$url{html}/experimental.php" target="_top">Back to Tesserae</a>
+		<a style="color:grey;" href="/experimental.php" target="_top">Back to Tesserae</a>
 	</div>
 	<div>
 END_HEAD
@@ -400,7 +400,7 @@ sub export_lex {
 			
 			print "<td>$freq</td>";
 			print "<td>";
-			print "<a$flag href=\"$url{cgi}/syn-diagnostic-lookup.pl?query=$token\" target=\"right\">";
+			print "<a$flag href=\"/cgi-bin/syn-diagnostic-lookup.pl?query=$token\" target=\"right\">";
 			print $token;
 			print '</a>';
 			print '</td>';
@@ -459,7 +459,7 @@ sub select_list {
 	
 	my $html=<<END;
 	
-	<form action="$url{cgi}/syn-diagnostic-index.pl" target="left" method="post" id="Form1">
+	<form action="/cgi-bin/syn-diagnostic-index.pl" target="left" method="post" id="Form1">
 
 		<select name="target">
 			<option value="*">Full Corpus</option>

@@ -8,11 +8,11 @@
 
 		</div>
 
-<script src="<?php echo $url_html . '/tesserae.js' ?>"></script>
+<script src="/tesserae.js"></script>
 		
 		<div id="main">
 			
-			<form action="<?php echo $url_cgi . '/3gr.init.pl' ?>" method="post" ID="Form1">
+			<form action="/cgi-bin/3gr.init.pl" method="post" ID="Form1">
 
 				<h1>3-Gram Visualizer</h1>
 				

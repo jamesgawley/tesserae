@@ -154,16 +154,16 @@ print <<END;
 		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
 		<meta name="description" content="Intertext analyzer for Latin texts">
-		<link href="$url{css}/style.css" rel="stylesheet" type="text/css"/>
-		<link href="$url{image}/favicon.ico" rel="shortcut icon"/>
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
 
 		<title>Tesserae</title>
 
 	</head>
 
 	<frameset cols="50%,50%">
-		<frame name="left"  src="$url{cgi}/lsa.target.pl?$params">
-		<frame name="right" src="$url{cgi}/lsa.source.pl?$params">
+		<frame name="left"  src="/cgi-bin/lsa.target.pl?$params">
+		<frame name="right" src="/cgi-bin/lsa.source.pl?$params">
 	</frameset>
 </html>
 

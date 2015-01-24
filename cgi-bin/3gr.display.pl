@@ -220,16 +220,16 @@ sub print_top {
 		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
 		<meta name="description" content="Intertext analyzer for Latin texts">
-		<link href="$url{css}/style.css" rel="stylesheet" type="text/css"/>
-		<link href="$url{image}/favicon.ico" rel="shortcut icon"/>
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
 
 		<title>Tesserae</title>
 
 	</head>
 
 	<frameset cols="50%,50%">
-		<frame name="left"  src="$url{cgi}/3gr.display.pl?mode=left;$assign">
-		<frame name="right" src="$url{cgi}/3gr.display.pl?mode=right;$assign">
+		<frame name="left"  src="/cgi-bin/3gr.display.pl?mode=left;$assign">
+		<frame name="right" src="/cgi-bin/3gr.display.pl?mode=right;$assign">
 	</frameset>
 </html>
 
@@ -300,12 +300,12 @@ sub print_left {
 
 	my $nav = "
 			<p>
-				<a href=\"$url{html}/experimental.php\" target=\"_top\">Back to Tesserae</a>.
+				<a href=\"/experimental.php\" target=\"_top\">Back to Tesserae</a>.
 			</p>
 			
 			<h2>Options:<h2>
 			
-			<form action=$url{cgi}/3gr.display.pl target=\"_top\" method=POST>
+			<form action="/cgi-bin/3gr.display.pl" target=\"_top\" method=POST>
 				<table>
 					<tr><td>red  </td><td>$menu_r</td><td></td></tr>
 					<tr><td>green</td><td>$menu_g</td><td><input type=\"submit\" value=\"Change\"></td></tr>
@@ -333,7 +333,7 @@ sub print_left {
 
 		my $rgb = sprintf("%02x%02x%02x", @rgb);
 		
-		my $link = "$url{cgi}/3gr.display.pl?mode=right;$assign#$line_id";
+		my $link = "/cgi-bin/3gr.display.pl?mode=right;$assign#$line_id";
 		
 		$blocks .= "<a href=\"$link\" target=\"right\"><span style=\"background-color:\#$rgb\"></span></a>";
 	}

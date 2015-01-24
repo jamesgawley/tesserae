@@ -25,11 +25,11 @@
 	
 	<p>
 		NB. English search is untested; some texts have not yet been proofread thoroughly.
-		<a href="<?php echo $url_html . '/help_advanced.php' ?>">Instructions</a> page.
+		<a href="/help.html">Instructions</a> page.
 	</p>
 	
 
-	<script src="<?php echo $url_html . '/tesserae.js' ?>"></script>
+	<script src="/tesserae.js"></script>
 
 	<?php include "advanced.php"; ?>
 

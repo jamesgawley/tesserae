@@ -230,16 +230,16 @@ print <<END;
 		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
 		<meta name="description" content="Intertext analyzer for Latin texts">
-		<link href="$url{css}/style.css" rel="stylesheet" type="text/css"/>
-		<link href="$url{image}/favicon.ico" rel="shortcut icon"/>
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
 
 		<title>Tesserae</title>
 
 	</head>
 
 	<frameset cols="40%,60%">
-		<frame name="left" src="$url{cgi}/syn-diagnostic-index.pl">
-		<frame name="right" src="$url{cgi}/syn-diagnostic-lookup.pl">
+		<frame name="left" src="/cgi-bin/syn-diagnostic-index.pl">
+		<frame name="right" src="/cgi-bin/syn-diagnostic-lookup.pl">
 	</frameset>
 </html>
 

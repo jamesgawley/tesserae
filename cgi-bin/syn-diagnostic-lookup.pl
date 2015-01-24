@@ -369,7 +369,7 @@ sub html_header {
 		
 		my $freq = sprintf("%.5f", $freq{$query});
 	
-		$form_head = "<form action=\"$url{cgi}/syn-diagnostic-submit.pl\" method=\"POST\" target=\"_top\">\n"		
+		$form_head = "<form action=\"/cgi-bin/syn-diagnostic-submit.pl\" method=\"POST\" target=\"_top\">\n"		
 	              . "<input type=\"hidden\" name=\"auth\"     value=\"$auth\"       />\n"
 					  . "<input type=\"hidden\" name=\"query\"    value=\"$query\"      />\n"
 					  . "<input type=\"hidden\" name=\"feature1\" value=\"$feature[0]\" />\n"
@@ -381,7 +381,7 @@ sub html_header {
 <html>
 	<head>
 		<title>Query Results</title>
-		<link href="$url{css}/style.css" rel="stylesheet" type="text/css" />
+		<link href="/css/style.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 			div.query {
 				position: relative;

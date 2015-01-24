@@ -294,7 +294,7 @@ sub html_redirect {
 
 	my $session = shift;
 
-	my $redirect = "$url{cgi}/batch.status.pl?session=$session";
+	my $redirect = "/cgi-bin/batch.status.pl?session=$session";
 	
 	my $html = <<END_HTML;
 <!DOCTYPE html
@@ -305,7 +305,7 @@ sub html_redirect {
 		<title>Tesserae Batch Run Summary</title>
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin" />
 		<!-- <meta http-equiv="Refresh" content="15: url='$redirect'"> -->
-		<link rel="stylesheet" type="text/css" href="$url{css}/style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 		</style>
 	</head>
 	<body>
