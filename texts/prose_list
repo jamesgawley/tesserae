@@ -3,14 +3,13 @@ ammianus\.
 anonymous\.laudes_domini
 apuleius\.
 augustine\.
-ausonius\.commemoratio_professorum_burdigalensium
-ausonius\.de_bissula
-ausonius\.de_xii_caesaribus
 ausonius\.gratiarum_actio
 bede\.
-boethius\.
+boethius\.de_fide_catholica
+boethius\.liber_de_persona
+boethius\.quomodo
+boethius\.utrum_pater
 caesar\.
-caesar_augustus\.
 cicero\.
 celsus\.
 columella\.
@@ -36,7 +35,7 @@ servius_honoratus\.
 suetonius\.
 tacitus\.
 tertullian\.
-valerius_maximus\.
+valerius_
 vitruvius\.
 # greek
 achilles_tatius\.
@@ -47,7 +46,6 @@ andocides\.
 antiphon\.
 apollodorus\.
 appian\.
-aretaeus\.
 aristotle\.
 athenaeus\.
 barnabas\.
@@ -79,9 +77,7 @@ philostratus_the_athenian\.
 philostratus_the_lemnian\.
 plato\.
 plutarch\.
-polybius\.
 pseudo_plutarch\.
 strabo\.
-theophrastus\.
 thucydides\.
-xenophon\.
+
