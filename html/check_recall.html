@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="description" content="Intertext analyzer for Latin texts">
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
+		
+		<!--head_insert-->
+
+		<title>Tesserae</title>
+      <script src="/jquery.js"></script>
+      <script src="/tesserae.js"></script>
+      <script type="text/javascript">         
+         $(document).ready(function() {            
+            $("#nav_main").load("/nav_main.html")
+            $("#nav_sub").load("/nav_search.html")
+            $("#footer").load("/footer.html")
+         })      
+      </script>
+		<style type="text/css">
+			table.input th {
+				font-size: 1.2em;
+				vertical-align: top; 
+				width: 200px;
+				overflow: hidden;
+			}
+			table.input td {
+				overflow: hidden;
+			}
+		</style>
+   </head>
+   <body>
+      <div id="container">
+         <div id="header">
+   			<div id="header_image">
+   				<a href="/">
+                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+               </a>
+   			</div>
+   			<div id="nav_main">
+   			</div>
+   			<div id="nav_sub">
+   			</div>
+         </div>
+			<div id="main">
+					<!--info-->
+			</div>
+			<div>
+				<b>Total results returned by Tesserae:</b>
+				<!--all-results-->
+				<br>
+				<table class="output">
+					<thead>
+						<tr>
+							<td>type</td>
+							<td>tesserae returned</td>
+							<td>benchmark has</td>
+							<td>recall rate</td>
+							<td>mean score</td>
+						</tr>
+					</thead>
+					<tbody>
+						<!--recall-stats-->
+					</tbody>
+				</table>
+			</div>
+
+			<div id="results_sort">
+				<!--sort-->
+			</div>
+
+			<table class="output" id="resultsTable">
+				<thead>
+					<tr>
+						<th>Target Loc</th>
+						<th>Target Phrase</th>
+						<th>Source Loc</th>
+						<th>Source Phrase</th>
+						<th>Parallel Type</th>
+						<th>Tess Score</th>
+						<th>Commentators</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--parallels-->
+				</tbody>
+			</table>
+   		<div id="footer">
+			</div>
+		</div>
+	</body>
+</html>
+
+         

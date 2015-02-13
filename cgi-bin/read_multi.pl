@@ -227,6 +227,8 @@ unless ($no_cgi) {
 	if ($export eq "csv") { $h{'-type'} = "text/csv"; $h{'-attachment'} = "tesresults-$session.csv" }
 	if ($export eq "tab") { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.txt" }
 	
+   $quiet = 1;
+   
 	print header(%h);
 }
 
@@ -608,7 +610,16 @@ sub print_html {
 	
 	if ($last > $total_matches) { $last = $total_matches }
 	
-	my $html = `php -f $fs{html}/results.multi.php`;
+	my $html;
+	{
+		my $file_html = catfile($fs{html}, "results.multi.html");
+		open (my $fh, "<:utf8", $file_html) or die "Can't open $file_html: $!";
+
+		while (<$fh>) {
+			$html .= $_;
+		}
+		close($fh);
+	}
 	
 	my ($top, $bottom) = split /<!--results-->/, $html;
 	

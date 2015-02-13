@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="description" content="Intertext analyzer for Latin texts">
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
+		
+		<!--head_insert-->
+
+		<title>Tesserae</title>
+      <script src="/jquery.js"></script>
+      <script src="/tesserae.js"></script>
+      <script type="text/javascript">
+   		var lang = {
+   			"target": "la",
+   			"source": "la"
+   		}
+   		var selected = {
+   			"target": "lucan.bellum_civile.part.1",
+   			"source": "vergil.aeneid.part.1"
+   		}
+   
+         var sentinel = 0
+         function checkSentinel() {
+            sentinel += 1
+            if (sentinel == 2) {
+               populate_author(lang["target"], "target")
+               populate_author(lang["source"], "source")
+               set_defaults(lang, selected)
+               q(0)         
+            }
+         }
+         
+         function loadTextList(lang) {
+            var elem = $("<select />")
+            elem.attr("id", lang + "_texts")
+            elem.load("/textlist." + lang + ".r.html", {}, function() {
+               $("#textlists").append(elem)
+               checkSentinel()
+            })
+         }
+         
+         function q(phraseid) {
+            var para = {
+               target: $("#sel_part_target").val(),
+               source: $("#sel_part_source").val(),
+               topics: $("#sel_topics").val(),
+               unit_id: phraseid
+            }
+            
+            $("#right_text").load("/cgi-bin/lsa.source.pl", para)
+            $("#left_text").load("/cgi-bin/lsa.target.pl", para, function(){
+               $("#left_text a").click(function(event){
+                  event.preventDefault()
+                  var id = this.href.substring(this.href.lastIndexOf("/")+1)
+                  q(id)
+               }) 
+            })
+         }
+         
+         
+         $(document).ready(function() {                      
+            loadTextList(lang["source"])
+            if (lang["source"] != lang["target"]) {
+               loadTextList(lang["target"])
+            } else {
+               checkSentinel()
+            }
+            $("#sel_auth_source").change(function() {
+               populate_work(lang["source"], "source")
+            })
+            $("#sel_work_source").change(function() {
+               populate_part(lang["source"], "source")
+            })
+            $("#sel_auth_target").change(function() {
+               populate_work(lang["target"], "target")
+            })
+            $("#sel_work_target").change(function() {
+               populate_part(lang["target"], "target")
+            })
+            $("#btn_go").click(function() {
+               q(0)
+            })
+         })
+         
+      </script>
+      <style type="text/css">
+      #nav_mini {
+         position: fixed;
+         top: 0px;
+         height: 15px;
+         left: 0px;
+         right: 0px;
+         background: #e1e6c6;
+         border-top: 1px solid black;
+         border-bottom: 1px solid black;
+      }
+      #text_select {
+         position: fixed;
+         top: 16px;
+         height: 95px;
+         left: 0px;
+         right: 0px;
+         padding-top: 5px;
+         padding-left: 10px;
+         padding-right: 10px;
+         border-bottom: 1px solid black;
+      }
+      #text_select table {
+         position: absolute;
+         width: 100%;
+      }
+      
+      #twopanel {
+         position: fixed;
+         top: 116px;
+         bottom: 0px;
+         left: 0px;
+         right: 0px;
+      }
+      #left {
+         position: absolute;
+         left: 0px;
+         right: 50%;
+         top: 0px;
+         bottom: 0px;
+         padding: 15px;
+         overflow-x: hidden;
+         overflow-y: scroll;
+      }
+      
+      #right {
+         position: absolute;
+         left: 50%;
+         right: 0px;
+         top: 0px;
+         bottom: 0px;
+         padding: 15px;
+         overflow-x: hidden;
+         overflow-y: scroll;
+         border-left: 1px solid black;
+		}
+      .text a {
+			text-decoration: none;
+		}
+		.text a:hover {
+		   color: #888;
+		}
+      
+      #left .mark {
+         color: red;
+      }
+      
+      </style>
+   </head>
+   <body>
+      <div id="container">
+         <div id="nav_mini">
+            <a href="/experimental.html">Back to Tesserae</a>
+         </div>
+         <div id="text_select">
+            <table>
+               <tr>
+                  <th>Target:</th>
+                  <td>
+         				<select id="sel_auth_target" />
+                  </td>
+      				<th>Source:</th>
+      				<td>
+      					<select id="sel_auth_source" />
+      				</td>
+      			</tr>
+               <tr>
+                  <td></td>
+                  <td>
+         				<select id="sel_work_target" />
+                  </td>
+                  <td></td>
+                  <td>
+      					<select id="sel_work_source" />
+                  </td>
+               </tr>
+               <tr>
+                  <td></td>
+                  <td>
+         				<select id="sel_part_target" name="target" />
+                  </td>
+                  <td></td>
+                  <td>
+                     <select id="sel_part_source" name="source" />
+                  </td>
+               </tr>
+               <tr>
+      				<th>Number of Topics:</th>
+      				<td>
+      					<input id="sel_topics" type="number" name="topics" min="5" max="200" value="15" />
+                     (between 5 and 200)
+      				</td>
+                  <td></td>
+                  <td>
+                     <input type="button" value="Change" id="btn_go" />
+                  </td>
+               </tr>
+      		</table>
+         </div>
+         <div id="twopanel">
+            <div id="left">
+               <div id="left_text" class="text">
+               </div>
+            </div>
+            <div id="right">
+               <div id="right_text" class="text">
+               </div>
+            </div>
+      		<div id="textlists" style="visibility:hidden">
+            </div>
+         </div>
+      </div> <!-- closes container -->
+   </body>
+</html>
+
+         

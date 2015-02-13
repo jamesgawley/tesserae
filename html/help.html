@@ -12,6 +12,8 @@
          
             if (url != undefined) { 
                var docid = url.replace(/.*\/doc\/(\d+)\.html/, "$1")
+               
+               console.log("mod_a: url=" + url + "; docid=" + docid)   
                if (url != docid) {
                   a.click(function(event) {
                      event.preventDefault()
@@ -23,34 +25,48 @@
                }
             }
          }
-                         
-         function doc_handler(html, dest) {
-            var l = html.indexOf("<body>")
-            var r = html.indexOf("</body>")
-            html = html.substring(l,r)
-            dest.html(html)
+                  
+         function doc_handler(url, dest, callback) {
+            $.get(url, {}, function(html) {
+               var l = html.indexOf("<body>")
+               var r = html.indexOf("</body>")
+               if (l>-1 & r>-1) {
+                  html = html.substring(l,r)
+               }
+               dest.html(html)
+               var agroup = dest.find("a")
             
-            var agroup = dest.find("a")
-            
-            $.each(agroup, function(index, value) {
-               mod_a($(value))
+               $.each(agroup, function(index, value) {
+                  mod_a($(value))
+               })            
+
+               if (typeof(callback) == "function") {
+                  callback()  
+               }
             })
          }
          
          function doc(id) {
             var url = "/doc/" + id + ".html"
-            $.get(url, {}, function(html) {
-               doc_handler(html, $("#help_content"))
+            
+            doc_handler(url, $("#help_content"), function() {
+               $("#main .nav_selected").removeClass("nav_selected")
+               $("#nav_sub .nav_selected").removeClass("nav_selected")
+               $("#doc_" + id).addClass("nav_selected")               
             })            
          }
          
-         $(document).ready(function() {            
-            $.get("/doc/index.html", {}, function(html) {
-               doc_handler(html, $("#help_index"))
-               var id = $("#help_index div.general ul a").attr("id").substring(4)
+         $(document).ready(function() {                     
+            $("#nav_main").load("/nav_main.html", function(){
+               $("#nav_main_help").addClass("nav_selected")
+            })
+            doc_handler("/doc/index.html", $("#help_index"))   
+            doc_handler("/doc/nav_help.html", $("#nav_sub"), function(){
+               var id = $("#nav_sub a")[0].id
+               id = id.substring(4)
                doc(id)
             })
-            $("#header").load("/header.html")
+            
             $("#footer").load("/footer.html")
          })
       </script>
@@ -58,16 +74,23 @@
    <body>
       <div id="container">
          <div id="header">
-            This is the header.
+   			<div id="header_image">
+   				<a href="/">
+                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+               </a>
+   			</div>
+   			<div id="nav_main">
+   			</div>
+   			<div id="nav_sub">
+   			</div>
          </div>
          <div id="main">
-            <div id="help_index">
+            <div id="help_index" class="sophia">
             </div>
             <div id="help_content">
             </div>
          </div>
          <div id="footer">
-            This is the footer.
          </div>
       </div>
    </body>

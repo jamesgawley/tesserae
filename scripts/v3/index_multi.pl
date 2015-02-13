@@ -189,6 +189,10 @@ my $lang = 'la';
 my $use_lingua_stem = 0;
 my $stemmer;
 
+# don't overwrite existing indices
+
+my $continue = 0;
+
 # don't print progress info to STDERR
 
 my $quiet = 0;
@@ -204,6 +208,7 @@ my %omit;
 GetOptions(
 	'lang=s'          => \$lang,
 	'parallel=i'      => \$max_processes,
+   'continue'        => \$continue,
 	'quiet'           => \$quiet,
 	'use-lingua-stem' => \$use_lingua_stem,
 	'help'            => \$help);
@@ -252,7 +257,6 @@ if ($max_processes) {
 # get the list of texts to index
 
 my @corpus = @{Tesserae::get_textlist($lang, -no_part => 1)};
-@corpus = grep { ! /vulgate/ } @corpus;
 
 # the giant index
 
@@ -276,10 +280,32 @@ for my $text (@corpus) {
 		$prmanager->start and next;
 	}
 
-	for my $unit (qw/phrase line/) {
-	
-		print STDERR "unit: $unit\ntext: $text\n";
+   # in continue mode, first see whether file has already been
+   # indexed; if so, pass on to the next.
+   
+   if ($continue) {
+      my $pass = 0;
+      
+      my $base = catfile($fs{data}, 'v3', $lang, $text, $text . ".multi");
+      if (-s $base . "_phrase_word" && -s $base . "_phrase_stem") {
+         if (Tesserae::check_prose_list($text)) {
+            $pass = 1;
+         } elsif (-s $base . "_line_word" && -s $base . "_line_stem") {
+            $pass = 1;
+         }
+      }
+      if ($pass) {
+         print STDERR "continue: skipping $text\n";
+         
+         $prmanager->finish if $max_processes;
+         next;
+      }
+   }
 
+	for my $unit (qw/phrase line/) {
+	   
+		print STDERR "unit: $unit\ntext: $text\n";
+      
 		# if the work is prose, don't bother indexing lines
 
 		if ($unit eq 'line' and Tesserae::check_prose_list($text)) {

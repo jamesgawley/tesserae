@@ -274,13 +274,13 @@ sub print_left {
 	# load the template
 	#
 
-	my $file_php = catfile($fs{html}, 'frame.fullscreen.php');
-	my $template = `php -f $file_php`;
+	my $file_template = catfile($fs{html}, 'frame.fullscreen.html');
+   my $template = load_template($file_template);
 
 	# add special style 
 	
-	my $style = "
-		<style type=\"text/css\">
+	my $style =<<END_STYLE; 
+		<style type="text/css">
 			div.colour_blocks {
 
 				color:white;
@@ -292,26 +292,30 @@ sub print_left {
 				padding-left:10px;
 				height:15px;
 			}
-		</style>\n";
-	
+		</style>
+
+END_STYLE
+
 	$template =~ s/<!--head-->/$style/;
 
 	# navigation
 
-	my $nav = "
+	my $nav =<<END_NAV; 
 			<p>
-				<a href=\"/experimental.php\" target=\"_top\">Back to Tesserae</a>.
+				<a href="/experimental.html" target="_top">Back to Tesserae</a>.
 			</p>
 			
 			<h2>Options:<h2>
 			
-			<form action="/cgi-bin/3gr.display.pl" target=\"_top\" method=POST>
+			<form action="/cgi-bin/3gr.display.pl" target="_top" method=POST>
 				<table>
 					<tr><td>red  </td><td>$menu_r</td><td></td></tr>
-					<tr><td>green</td><td>$menu_g</td><td><input type=\"submit\" value=\"Change\"></td></tr>
+					<tr><td>green</td><td>$menu_g</td><td><input type="submit" value="Change"></td></tr>
 					<tr><td>blue </td><td>$menu_b</td><td></td></tr>
 				</table>
-			</form>";
+			</form>
+
+END_NAV
 
 	#
 	# the visualization
@@ -465,8 +469,8 @@ sub print_right {
 	# load the template
 	#
 
-	my $file_php = catfile($fs{html}, 'frame.fullscreen.php');
-	my $template = `php -f $file_php`;
+	my $file_html = catfile($fs{html}, 'frame.fullscreen.html');
+	my $template = load_template($file_html);
 		
 	# title
 	
@@ -479,4 +483,18 @@ sub print_right {
 	$template =~ s/<!--content-->/$table/;
 	
 	print $template;
+}
+
+sub load_template {
+   my $file = shift;
+   
+   my $html = "";
+   
+   open (my $fh, "<:utf8", $file) or die "Can't read $file: $!";
+   while (my $line = <$fh>) {
+      $html .= $line;
+   }
+   close ($fh);
+   
+   return $html;
 }

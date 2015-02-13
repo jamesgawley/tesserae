@@ -130,8 +130,8 @@ while (my $lang = shift @ARGV) {
                    
 	my $base = catfile($fs{html}, "textlist.$lang");
 	
-	dropdown("$base.l.php", \@full);
-	dropdown("$base.r.php", \@full, \%part);
+	dropdown("$base.l.html", \@full);
+	dropdown("$base.r.html", \@full, \%part);
 }
 
 #

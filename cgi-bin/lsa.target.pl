@@ -150,21 +150,27 @@ my $lang = Tesserae::lang($target);
 # source and target data
 #
 
-if ($no_cgi) {
-
-	print STDERR "loading $target\n" unless ($quiet);
-}
+print STDERR "loading $target\n" unless ($quiet);
 
 my $file = catfile($fs{data}, 'v3', $lang, $target, $target);
 
 my @token = @{retrieve("$file.token")};
-my @line  = @{retrieve("$file.line") };	
+my @line  = @{retrieve("$file.line") };
+my @bounds = @{retrieve(catfile($fs{data}, 'lsa', $lang, $target, 'bounds.small'))};
+	
+# validate selected id
+
+if ($unit_id > $#bounds) {
+   $unit_id = $#bounds;
+} elsif ($unit_id < 0) {
+   $unit_id = 0;
+}
 
 #
 # highlighted phrase
 #
 
-my ($lbound, $rbound) = getBounds($unit_id);
+my ($lbound, $rbound) = @{$bounds[$unit_id]};
 
 #
 # display the full text
@@ -186,22 +192,16 @@ for my $line_id (0..$#line) {
 				
 		if ($token[$token_id]{TYPE} eq 'WORD') {
 				
-			my $link = "/cgi-bin/lsa.pl?";
-
-			$link .= "target=$target;";
-			$link .= "source=$source;";
-			$link .= "unit_id=$token[$token_id]{PHRASE_ID};";
-			$link .= "topics=$topics;";
-			$link .= "threshold=$threshold";
+			my $unit_id = $token[$token_id]{PHRASE_ID};
 			
 			my $marked = "";
 			
 			if ($token_id >= $lbound && $token_id <= $rbound) {
 			
-				$marked = "style=\"color:red\"";
+				$marked = "class=\"mark\"";
 			}
 			
-			$table .= "<a href=\"$link\" $marked target=\"_top\">";
+			$table .= "<a href=\"$unit_id\"$marked>";
 		}
 		
 		$table .= $token[$token_id]{DISPLAY};
@@ -215,111 +215,7 @@ for my $line_id (0..$#line) {
 
 $table .= "</table>\n";
 
-# load the template
-
-my $frame = `php -f $fs{html}/frame.fullscreen.php`;
-
-# add some stuff into the head
-
-my $head_insert = "
-		<style style=\"text/css\">
-			a {
-				text-decoration: none;
-			}
-			a:hover {
-				color: #888;
-			}
-		</style>
-		<script src=\"/tesserae.js\"></script>\n";
-
-$frame =~ s/<!--head-->/$head_insert/;
-
-#
-# create navigation
-#
-
-# read drop down list
-
-open (FH, "<:utf8", catfile($fs{html}, "textlist.$lang.r.php"));
-my $menu;
-while (<FH>) { $menu .= "$_" }
-close FH;
-
-# put together the form
-
-my $nav = <<END_FORM;
-		<form action="/cgi-bin/lsa.pl" method="POST" target="_top">
-		<table class="input">
-			<tr>
-				<td><a href="/experimental.php" target="_top">Back to Tesserae</a></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="hidden" name="source" value="$source" />
-				</td>
-			</tr>
-			<tr>
-				<th>Target:</th>
-				<td>
-					<select name="target_auth" onchange="populate_work('$lang', 'target')">
-					</select><br />
-					<select name="target_work" onchange="populate_part('$lang', 'target')">
-					</select><br />
-					<select name="target">
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th></th>
-				<td>
-					<input type="submit" value="Change" ID="btnSubmit" NAME="btnSubmit" />
-				</td>
-			</tr>
-		</table>
-		</form>
-		<div style="visibility:hidden;">
-			<select id="la_texts">
-				$menu
-			</select>
-		</div>
-		
-		<script language="javascript">
-			populate_author('$lang', 'target');
-			set_defaults({'target':'$lang'}, {'target':'$target'});
-		</script>
-
-END_FORM
-
-$frame =~ s/<!--navigation-->/$nav/;
-
-# insert the table into the template
-
-my $title = <<END;
-	<h2>$target</h2>
-	<p>
-		Click to select a phrase (plus surrounding context).  <br />
-		Matches in $source will be highlighted at right.
-	</p>
-END
-
-$frame =~ s/<!--title-->/$title/;
-
-$frame =~ s/<!--content-->/$table/;
-
 # send to browser
 
-print $frame;
-
-#
-# subroutines
-#
-
-sub getBounds {
-	
-	my $phrase_id = shift;
-	
-	my @bounds = @{retrieve(catfile($fs{data}, 'lsa', $lang, $target, 'bounds.small'))};
-
-	return @{$bounds[$phrase_id]};
-}
+print $table;
 

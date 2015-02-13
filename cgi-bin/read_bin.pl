@@ -566,7 +566,6 @@ sub re_sort {
 		</tr>
 	</table>
 	</form>
-
 END
 
 	return $html;
@@ -583,13 +582,22 @@ sub print_html {
 
 	if ($last > $total_matches) { $last = $total_matches }
 
-	my $html = `php -f $fs{html}/results.php`;
+	my $html;
+	{
+		my $file_html = catfile($fs{html}, "results.html");
+		open (my $fh, "<:utf8", $file_html) or die "Can't open $file_html: $!";
+
+		while (<$fh>) {
+			$html .= $_;
+		}
+		close($fh);
+	}
 
 	my ($top, $bottom) = split /<!--results-->/, $html;
 
 	$top =~ s/<!--pager-->/&nav_page()/e;
 	$top =~ s/<!--sorter-->/&re_sort()/e;
-	$top =~ s/<!--session-->/$session/;
+	$top =~ s/<!--session-->/$session/g;
 
 	print $top;
 
@@ -718,7 +726,7 @@ sub print_html {
 	my $stoplist = join(", ", @stoplist);
 	my $filtertoggle = $filter ? 'on' : 'off';
 
-	$bottom =~ s/<!--session_id-->/$session/;
+	$bottom =~ s/<!--session-->/$session/g;
 	$bottom =~ s/<!--source-->/$source/;
 	$bottom =~ s/<!--target-->/$target/;
 	$bottom =~ s/<!--unit-->/$unit/;
