@@ -226,26 +226,6 @@ for my $file_in (@perl_scripts, @pod_standalone) {
    close $fh;
 }
 
-# create html index
-{
-   my $html = html_index_template();
-   
-   my $scripts_index = toc2html(build_toc(\@perl_scripts, 
-      {base=>$fs{root}}));
-   my $general_index = toc2html(build_toc(\@pod_standalone, 
-      {flat=>1}), {pretty=>1});
-   
-   $html =~ s/<!--general-->/$general_index/;
-   $html =~ s/<!--scripts-->/$scripts_index/;
-   
-   my $file_out = catfile($fs{doc}, "html", "index.html");
-
-   open (my $fh, ">:utf8", $file_out) or die "Can't write $file_out: $!";
-   print $fh $html;
-   close $fh;
-}
-
-
 #
 # subroutines
 #
@@ -282,7 +262,6 @@ sub match_files {
    
    return @match;
 }
-
 
 sub build_toc {
    # build a table of contents organized by path
@@ -341,7 +320,6 @@ sub build_toc {
    
    return \%toc;
 }
-
 
 
 sub toc2html {

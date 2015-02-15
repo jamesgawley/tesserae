@@ -249,7 +249,7 @@ for my $lang (@inst_lang) {
 			Tesserae::escape_path(catfile($fs{script}, 'v3', 'add_col_stem.pl')),
 			"--feat $feature",
 			Tesserae::escape_path(catfile($fs{text}, $lang, '*'))
-			));		
+		));
 	}
 }
 
@@ -266,7 +266,7 @@ print STDERR "done\n\n";
 		Tesserae::escape_path(catfile($fs{script}, 'v3', 'corpus-stats.pl')),
 		(map {"--feat $_"} @inst_feature),
 		@inst_lang
-		));
+	));
 	
 	print STDERR "done\n\n";
 }
@@ -280,7 +280,7 @@ print STDERR "done\n\n";
 		$Tesserae::perl_path,
 		Tesserae::escape_path(catfile($fs{script}, 'textlist.pl')),
 		@inst_lang
-		));
+	));
 }
 
 #

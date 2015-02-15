@@ -61,7 +61,7 @@
             })
             doc_handler("/doc/index.html", $("#help_index"))   
             doc_handler("/doc/nav_help.html", $("#nav_sub"), function(){
-               var id = $("#nav_sub a")[0].id
+               var id = $("#nav_sub a").get(0).id
                id = id.substring(4)
                doc(id)
             })

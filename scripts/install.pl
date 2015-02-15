@@ -191,7 +191,6 @@ my $file_script = catfile($fs{script}, 'doc_gen.pl');
 $file_script = Tesserae::escape_path($file_script);
 `$Tesserae::perl_path $file_script`;
 
-
 #
 # subroutines
 #
@@ -212,4 +211,3 @@ sub write_pointer {
 	
 	close FH;
 }
-
