@@ -381,7 +381,7 @@ unless ($no_cgi) {
 
 	print header();
 
-	my $stylesheet = "$url{css}/style.css";
+	my $stylesheet = "/css/style.css";
 
 	print <<END;
 
@@ -481,10 +481,10 @@ else {
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin.pl?session=$session",
-		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
-		fulltext => "$url{cgi}/fulltext.pl?session=$session",
-		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
+		default  => "/cgi-bin/read_bin.pl?session=$session",
+		recall   => "/cgi-bin/check-recall.pl?session=$session;cache=$recall_cache",
+		fulltext => "/cgi-bin/fulltext.pl?session=$session",
+		multi    => "/cgi-bin/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
 	);
 
 	

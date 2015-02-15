@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="description" content="Intertext analyzer for Latin texts">
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
+		
+		<!--head_insert-->
+
+		<title>Tesserae</title>
+      <script src="/jquery.js"></script>
+      <script src="/tesserae.js"></script>
+      <script type="text/javascript">
+   		var lang = {
+   			"target": "la"
+   		}
+   		var selected = {
+   			"target": "vergil.georgics.part.1"
+   		}
+
+         function loadTextList(dest) {
+            var elem = $("<select />")
+            elem.attr("id", lang[dest] + "_texts")
+            elem.load("/textlist." + lang[dest] + ".r.html", {}, function() {
+               $("#textlists").append(elem)
+               populate_author(lang[dest], dest)
+               set_defaults(lang, selected);
+            })
+         }
+                  
+         $(document).ready(function() {            
+            $("#nav_main").load("/nav_main.html", {}, function(){
+               $("#nav_main_search").addClass("nav_selected")
+            })
+            $("#nav_sub").load("/nav_search.html", {}, function(){
+               $("#nav_search_other").addClass("nav_selected")
+            })
+            $("#footer").load("/footer.html")
+            
+            loadTextList("target")
+            
+            $("#sel_auth_target").change(function() {
+               populate_work(lang["target"], "target")
+            })
+            $("#sel_work_target").change(function() {
+               populate_part(lang["target"], "target")
+            })
+         })
+         
+      </script>
+   </head>
+   <body>
+      <div id="container">
+         <div id="header">
+   			<div id="header_image">
+   				<a href="/">
+                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+               </a>
+   			</div>
+   			<div id="nav_main">
+   			</div>
+   			<div id="nav_sub">
+   			</div>
+         </div>
+         <div id="main">
+
+				<h1>3-Gram Visualizer</h1>
+				
+				<p>
+					View a color-coded representation of 3-gram concentrations in a text.
+				</p>
+	
+			<form action="/cgi-bin/3gr.init.pl" method="post" ID="Form1">
+
+      		<table class="input">
+      			<tr>
+      				<th>Target:</th>
+      				<td>
+      					<select id="sel_auth_target">
+      					</select><br />
+      					<select id="sel_work_target">
+      					</select><br />
+      					<select id="sel_part_target" name="target">
+      					</select>
+      				</td>
+      			</tr>
+      		</table>
+
+				<table class="input">
+					<tr>
+						<th>N-grams to calculate:</th>
+						<td>
+							<select name="top">
+								<option value="10" selected="selected">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="40">40</option>
+								<option value="50">50</option>
+								<option value="100">100</option>
+								<option value="150">150</option>
+								<option value="200">200</option>
+							</select>							
+						</td>
+					</tr>
+				</table>
+				
+				<div style="text-align:center; padding:20px;">
+					<input type="submit" name="submit" value="Calculate" />
+				</div>
+            </form>
+      		<div id="textlists" style="visibility:hidden">
+            </div>
+         </div>
+   		<div id="footer">
+			</div>
+		</div> <!-- closes container -->
+	</body>
+</html>
+
+         

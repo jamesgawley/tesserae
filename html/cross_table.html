@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="description" content="Intertext analyzer for Latin texts">
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
+		
+		<!--head_insert-->
+
+		<title>Tesserae</title>
+      <script src="/jquery.js"></script>
+      <script src="/tesserae.js"></script>
+      <script type="text/javascript">
+   		var lang = {
+   			"target": "la",
+   			"source": "grc"
+   		}
+   		var selected = {
+   			"target": "vergil.aeneid.part.1",
+   			"source": "homer.iliad"
+   		}
+         var feature = {
+            "trans1": "parallel texts method",
+            "trans2": "dictionary method"
+         }
+         var isAdvanced = false
+   
+         var sentinel = 0
+         function checkSentinel() {
+            sentinel += 1
+            if (sentinel == 2) {
+               populate_author(lang["target"], "target")
+               populate_author(lang["source"], "source")
+               set_defaults(lang, selected)
+            }
+         }
+         
+         function loadTextList(lang) {
+            var elem = $("<select />")
+            elem.attr("id", lang + "_texts")
+            elem.load("/textlist." + lang + ".r.html", {}, function() {
+               $("#textlists").append(elem)
+               checkSentinel()
+            })
+         }
+         
+         $(document).ready(function() {
+            $("#nav_main").load("/nav_main.html", {}, function(){
+               $("#nav_main_search").addClass("nav_selected")
+            })
+            $("#nav_sub").load("/nav_search.html", {}, function(){
+               $("#nav_search_cross").addClass("nav_selected")
+            })
+            $("#footer").load("/footer.html")
+            
+            loadTextList(lang["source"])
+            if (lang["source"] != lang["target"]) {
+               loadTextList(lang["target"])
+            } else {
+               checkSentinel()
+            }
+
+            for (var k in feature) {
+              $("#sel_feature").append($("<option />").val(k).text(feature[k])) 
+            }
+
+            $("#switch_advanced").click(function(){
+               toggleAdvanced(isAdvanced)
+               isAdvanced = ! isAdvanced
+            })
+            $("#sel_auth_source").change(function() {
+               populate_work(lang["source"], "source")
+            })
+            $("#sel_work_source").change(function() {
+               populate_part(lang["source"], "source")
+            })
+            $("#sel_auth_target").change(function() {
+               populate_work(lang["target"], "target")
+            })
+            $("#sel_work_target").change(function() {
+               populate_part(lang["target"], "target")
+            })
+         })
+      </script>
+   </head>
+   <body>
+      <div id="container">
+         <div id="header">
+   			<div id="header_image">
+   				<a href="/">
+                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+               </a>
+   			</div>
+   			<div id="nav_main">
+   			</div>
+   			<div id="nav_sub">
+   			</div>
+         </div>
+         <div id="main">
+
+         	<h1>Greek-Latin Search</h1>
+	
+         	<p>
+         		This search is experimental.  Results may not be consistent.
+         	</p>	
+   
+         	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
+
+         		<table class="input">
+         			<tr>
+         				<th>Source:</th>
+         				<td>
+         					<select id="sel_auth_source">
+         					</select><br />
+         					<select id="sel_work_source">
+         					</select><br />
+         					<select id="sel_part_source" name="source">
+         					</select>
+         				</td>
+         			</tr>
+         			<tr>
+         				<th>Target:</th>
+         				<td>
+         					<select id="sel_auth_target">
+         					</select><br />
+         					<select id="sel_work_target">
+         					</select><br />
+         					<select id="sel_part_target" name="target">
+         					</select>
+         				</td>
+         			</tr>
+         		</table>
+
+         		<div id="switch_advanced">
+         			<p id="moremsg">show advanced</p>
+         		</div>
+         		<div class="advanced" style="display:none;">
+         			<table class="input">
+         				<tr>
+         					<th>Unit:</th>
+         					<td>
+         						<select name="unit">
+         							<option value="line">line</option>
+         							<option value="phrase">phrase</option>
+         						</select>
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Feature:</th>
+         					<td>
+         						<select id="sel_feature" name="feature">
+         						</select>
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Number of stop words:</th>
+         					<td>
+         						<select name="stopwords">
+         							<option value="0">0</option>
+         							<option value="10" selected="selected">10</option>
+         							<option value="20">20</option>
+         							<option value="30">30</option>
+         							<option value="40">40</option>
+         							<option value="50">50</option>
+         							<option value="100">100</option>
+         							<option value="150">150</option>
+         							<option value="200">200</option>
+         						</select>							
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Stoplist basis:</th>
+         					<td>
+         						<select name="stbasis">
+         							<option value="corpus">corpus</option>
+         							<option value="target">target</option>
+         							<option value="source">source</option>
+         							<option value="both" selected="selected">target + source</option>
+         						</select>
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Score basis:</th>
+         					<td>
+         						<select name="score">
+         							<option value="word">word</option>
+         							<option value="stem">stem</option>
+         							<option value="feature">feature</option>								
+         						</select>
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Maximum distance:</th>
+         					<td>
+         						<select name="dist">
+         							<option value="999">no max</option>
+         							<option value="5">5 words</option>
+         							<option value="10" selected="selected">10 words</option>
+         							<option value="20">20 words</option>
+         							<option value="30">30 words</option>
+         							<option value="40">40 words</option>
+         							<option value="50">50 words</option>
+         						</select>							
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Distance metric:</th>
+         					<td>
+         						<select name="dibasis">
+         							<option value="span">span</option>
+         							<option value="freq" selected="selected">frequency</option>
+         						</select>
+         					</td>
+         				</tr>
+         				<tr>
+         					<th>Drop scores below:</td>
+         					<td>
+         						<select name="cutoff">
+         							<option value="0">no cutoff</option>
+         							<option value="3">3</option>
+         							<option value="4">4</option>
+         							<option value="5">5</option>
+         							<option value="6">6</option>
+         							<option value="7" selected="selected">7</option>
+         							<option value="8">8</option>
+         							<option value="9">9</option>
+         						</select>
+         					</td>
+         				</tr>
+         			</table>
+         		</div>
+         		<div style="text-align:center; padding:20px;">
+         			<input type="submit" value="Compare Texts" ID="btnSubmit" NAME="btnSubmit" />
+         		</div>
+            </form>
+      		<div id="textlists" style="visibility:hidden">
+            </div>
+         </div>
+   		<div id="footer">
+			</div>
+		</div> <!-- closes container -->
+	</body>
+</html>
+
+         

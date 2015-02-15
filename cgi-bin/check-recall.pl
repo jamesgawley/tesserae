@@ -431,7 +431,7 @@ sub html_table {
 	
 	if ($rev) { @order = reverse @order }
 	
-	my $frame = `php -f $fs{html}/check_recall.php`;
+	my $frame = load_template(catfile($fs{html}, "check_recall.html"));
 	
 	my $table_data ="";
 	
@@ -534,7 +534,7 @@ sub html_table {
 
 sub html_no_table {
 				
-	my $frame = `php -f $fs{html}/check_recall.php`;
+	my $frame = load_template(catfile($fs{html}, "check_recall.html"));
 	
 	$frame =~ s/<!--info-->/&info/e; 
 
@@ -555,7 +555,7 @@ sub info {
 	$sel_stbasis{($meta{STBASIS}||'corpus')} = 'selected="selected"';
 	$sel_dibasis{($meta{DIBASIS}||'freq')}   = 'selected="selected"';
 
-	my $scbasis = $meta{SCORE};
+	my $scbasis = $meta{SCBASIS};
 	if ($scbasis !~ /word|stem/ and $scbasis eq $meta{FEATURE}) { $scbasis = 'feature' }
 	$sel_scbasis{$scbasis} = 'selected="selected"';
 
@@ -580,7 +580,7 @@ sub info {
 
 	my $html = <<END;
 	
-	<form action="$url{cgi}/read_table.pl" method="post" ID="Form1">
+	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
 
 		<h1>Benchmark Recall Test</h1>
 
@@ -647,11 +647,7 @@ sub info {
 				<td>
 					<select name="dibasis">
 						<option value="span"        $sel_dibasis{span}>span</option>
-						<option value="span_target" $sel_dibasis{span_target}>span-target</option>
-						<option value="span_source" $sel_dibasis{span_source}>span-source</option>
 						<option value="freq"        $sel_dibasis{freq}>frequency</option>
-						<option value="freq_target" $sel_dibasis{freq_target}>freq-target</option>
-						<option value="freq_source" $sel_dibasis{freq_source}>freq-source</option>
 					</select>
 				</td>
 			</tr>
@@ -691,7 +687,7 @@ sub re_sort {
 	
 	my $html = <<END;
 	
-	<form action="$url{cgi}/check-recall.pl" method="post" id="Form2">
+	<form action="/cgi-bin/check-recall.pl" method="post" id="Form2">
 		
 		<table>
 			<tr>
@@ -1194,4 +1190,17 @@ sub minitess {
 	$results{seen_keys}     = [keys %seen_keys];
 	
 	return \%results;
+}
+
+sub load_template {
+   my $file = shift;
+   my $html;
+   
+   open (my $fh, "<:utf8", $file) or die "Can't read $file: $!";
+   while (my $line = <$fh>){
+      $html .= $line;
+   }
+   close ($fh);
+   
+   return $html;
 }

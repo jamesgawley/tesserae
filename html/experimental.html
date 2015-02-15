@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="description" content="Intertext analyzer for Latin texts">
+		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="/images/favicon.ico" rel="shortcut icon"/>
+		
+		<!--head_insert-->
+
+		<title>Tesserae</title>
+      <script src="/jquery.js"></script>
+      <script src="/tesserae.js"></script>
+      <script type="text/javascript">         
+         $(document).ready(function() {            
+            $("#nav_main").load("/nav_main.html", {}, function(){
+               $("#nav_main_search").addClass("nav_selected")
+            })
+            $("#nav_sub").load("/nav_search.html", {}, function(){
+               $("#nav_search_other").addClass("nav_selected")
+            })
+            $("#footer").load("/footer.html")
+         })      
+      </script>
+   </head>
+   <body>
+      <div id="container">
+         <div id="header">
+   			<div id="header_image">
+   				<a href="/">
+                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+               </a>
+   			</div>
+   			<div id="nav_main">
+   			</div>
+   			<div id="nav_sub">
+   			</div>
+         </div>
+         <div id="main">
+				<h1>Other Search Tools</h1>
+
+				<p>
+					Here you can try out some searches we're still testing.  We would appreciate any feedback you have.  Caution: results may not be very stable.
+				</p>
+
+				<h2>
+               Multi-text search:
+               <a href="/la_multi.html">Latin</a>
+               <a href="/grc_multi.html">Greek</a>					
+            </h2>
+            
+				<p>
+					Cross-references discovered parallels against the rest of the corpus.
+				</p>
+         					
+				<h2><a href="/lsi.html">LSI Search Tool</a></h2>
+				
+				<p>
+					Search for thematic similarities even where phrases have no words in common.
+				</p>
+
+				<h2><a href="/3gr.html">Tri-gram Visualizer</a></h2>
+				
+				<p>
+					Customizable, color-coded visualization of 3-gram concentrations.
+				</p>
+				<div class="sophia">
+   				<h2><a href="/batch.html">Batch Search</a></h2>
+
+   				<p>
+   					Schedule large series of searches with multiple parameters.
+   				</p>
+            </div>
+            <div class="sophia">
+   				<h2><a href="/cgi-bin/check-recall.pl">Lucan-Vergil Benchmark Test</a></h2>
+
+   				<p>
+   					Allows you to perform a search of Lucan's Pharsalia Book 1 against Vergil's Aeneid,
+   					and compares the results against our 3000-parallel benchmark set.
+   				</p>
+            </div>
+         </div>
+   		<div id="footer">
+			</div>
+		</div> <!-- closes container -->
+	</body>
+</html>
+
+         

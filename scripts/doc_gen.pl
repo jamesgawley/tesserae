@@ -197,6 +197,35 @@ for my $file_in (@perl_scripts, @pod_standalone) {
    close ($fh);
 }
 
+# create html index page (script documentation)
+{
+   
+   my $scripts_index = toc2html(build_toc(\@perl_scripts, 
+      {base=>$fs{root}}));
+   
+   my $html = html_index_template($scripts_index);
+
+   my $file_out = catfile($fs{doc}, "html", "index.html");
+
+   open (my $fh, ">:utf8", $file_out) or die "Can't write $file_out: $!";
+   print $fh $html;
+   close $fh;      
+}      
+ 
+# create help nav menu (general topics)
+{
+   my $general_index = toc2html(build_toc(\@pod_standalone, 
+      {flat=>1}), {pretty=>1});
+   
+   my $html = html_nav_template($general_index);
+
+   my $file_out = catfile($fs{doc}, "html", "nav_help.html");
+
+   open (my $fh, ">:utf8", $file_out) or die "Can't write $file_out: $!";
+   print $fh $html;
+   close $fh;
+}
+
 # create html index
 {
    my $html = html_index_template();
@@ -215,7 +244,6 @@ for my $file_in (@perl_scripts, @pod_standalone) {
    print $fh $html;
    close $fh;
 }
-
 
 
 #
@@ -334,9 +362,10 @@ sub toc2html {
 
       my $display = $key;
       if ($opt{pretty}) {
-         $display =~ s/\.pod^//;
+         $display =~ s/\.pod$//;
          $display =~ s/^\d+\.//;
          $display =~ s/_/ /g;
+         $display =~ s/\b([a-z])/uc($1)/eg;
       }
       
       my $li;
@@ -417,6 +446,8 @@ sub transform_html {
 sub html_index_template {
    # generate html index file
    
+   my $index = shift;
+   
    my $html = <<END_HTML;
 <!DOCTYPE html>
 <html>
@@ -431,18 +462,24 @@ sub html_index_template {
       </style>
    </head>
    <body>
-   <div class="general">
-      <h1>Help Topics</h1>
-      <!--general-->
-   </div>
    <div class="scripts">
       <h1>Code Documentation</h1>
-      <!--scripts-->
+      $index
    </div>
    </body>
 </html>
 
 END_HTML
 
+   return $html;
+}
+
+sub html_nav_template {
+   # nav help menu
+   
+   my $index = shift;
+   
+   my $html = "<ul>\n$index\n</ul>\n";
+   
    return $html;
 }
