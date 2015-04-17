@@ -99,12 +99,6 @@ phrase. The default option is B<freq>, which uses the distance between the
 two words with the lowest frequencies (in their own text only), adding the
 frequency-based distances of the target and source units together.
 
-=item --cutoff I<N>
-
-Each match found by Tesserae is given a score. Setting a cutoff will cause
-any match with a score less than this to be dropped from the results.
-Default is 0 (presumably equivalent to no cutoff).
-
 =item --binary I<name>
 
 This is the name to be given to the session. Tesserae will create a new
@@ -306,10 +300,6 @@ my $max_dist = 999;
 
 my $distance_metric = "freq";
 
-# filter results below a certain score
-
-my $cutoff = 0;
-
 # filter multi-results if passing off to multitext.pl
 
 my $multi_cutoff = 0;                  
@@ -349,7 +339,6 @@ GetOptions(
 			'binary=s'     => \$file_results,
 			'distance=i'   => \$max_dist,
 			'dibasis=s'    => \$distance_metric,
-			'cutoff=f'     => \$cutoff,
 			'score=s'      => \$score_basis,
 			'benchmark'    => \$bench,
 			'no-cgi'       => \$no_cgi,
@@ -460,7 +449,6 @@ else {
 	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
 	$max_dist        = $query->param('dist')         || $max_dist;
 	$distance_metric = $query->param('dibasis')      || $distance_metric;
-	$cutoff          = $query->param('cutoff')       || $cutoff;
 	$score_basis     = $query->param('score')        || $score_basis;
 	$frontend        = $query->param('frontend')     || $frontend;
 	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
@@ -538,7 +526,6 @@ unless ($quiet) {
 	print STDERR "stoplist basis=$stoplist_basis\n";
 	print STDERR "max_dist=$max_dist\n";
 	print STDERR "distance basis=$distance_metric\n";
-	print STDERR "score cutoff=$cutoff\n";
 	print STDERR "score basis=$score_basis\n";
 }
 
@@ -784,14 +771,7 @@ for my $unit_id_target (keys %match_target) {
 		# score
 		
 		my $score = score_default($match_target{$unit_id_target}{$unit_id_source}, $match_source{$unit_id_target}{$unit_id_source}, $distance);
-								
-		if ( $score < $cutoff) {
-
-			delete $match_target{$unit_id_target}{$unit_id_source};
-			delete $match_source{$unit_id_target}{$unit_id_source};
-			next;			
-		}
-		
+				
 		# save calculated score, matched words, etc.
 		
 		$match_score{$unit_id_target}{$unit_id_source} = $score;
@@ -827,7 +807,6 @@ my %match_meta = (
 	DIST      => $max_dist,
 	DIBASIS   => $distance_metric,
 	SESSION   => $session,
-	CUTOFF    => $cutoff,
 	SCBASIS   => $score_basis,
 	COMMENT   => $feature_notes{$feature},
 	VERSION   => $Tesserae::VERSION,

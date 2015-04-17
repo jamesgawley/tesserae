@@ -203,6 +203,10 @@ my $session;
 
 my $export = 'html';
 
+# score cutoff
+
+my $cutoff = 8;
+
 # number of decimal places to report in scores
 
 my $dec = 0;
@@ -219,9 +223,10 @@ GetOptions(
 	'sort=s'    => \$sort,
 	'reverse'   => \$rev,
 	'page=i'    => \$page,
-	'batch=i'   => \$batch,
+	'batch=s'   => \$batch,
 	'session=s' => \$session,
 	'export=s'  => \$export,
+   'cutoff=f'  => \$cutoff,
 	'decimal=i' => \$dec,
 	'quiet'     => \$quiet,
 	'help'      => \$help );
@@ -243,7 +248,9 @@ unless ($no_cgi) {
 
 	my $query = new CGI || die "$!";
 
-	$session = $query->param('session')    || die "no session specified from web interface";
+	$session    = $query->param('session') || die "no session specified from web interface";
+   $dec        = $query->param('decimal') || $dec;
+   $cutoff     = $query->param('cutoff')  || $cutoff;
 	$sort       = $query->param('sort')    || $sort;
 	$rev        = $query->param('rev')     if defined ($query->param("rev"));
 	$page       = $query->param('page')    || $page;
@@ -324,10 +331,6 @@ my $max_dist = $meta{DIST};
 
 my $distance_metric = $meta{DIBASIS};
 
-# low-score cutoff
-
-my $cutoff = $meta{CUTOFF};
-
 # score team filter state
 
 my $filter = $meta{FILTER};
@@ -347,6 +350,8 @@ my $comments = $meta{COMMENT};
 # sort the results
 
 my @rec = @{sort_results()};
+
+$total_matches = scalar(@rec);
 
 if ($batch eq 'all') {
 
@@ -417,7 +422,6 @@ elsif  ($export eq "xml") {
 #
 
 sub nav_page {
-
 	my $html = "<p>$total_matches results";
 
 	my $pages = ceil($total_matches/$batch);
@@ -580,7 +584,7 @@ sub print_html {
 	$first = ($page-1) * $batch;
 	$last  = $first + $batch - 1;
 
-	if ($last > $total_matches) { $last = $total_matches }
+	if ($last > $total_matches) { $last = $#rec }
 
 	my $html;
 	{
@@ -605,10 +609,6 @@ sub print_html {
 
 		my $unit_id_target = $rec[$i]{target};
 		my $unit_id_source = $rec[$i]{source};
-
-		# get the score
-
-		my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
 
 		# a guide to which tokens are marked in each text
 
@@ -718,7 +718,7 @@ sub print_html {
 
 		# score
 
-		print "    <td>$score</td>\n";
+		print "    <td>$score{$unit_id_target}{$unit_id_source}</td>\n";
 
 		print "  </tr>\n";
 	}
@@ -737,7 +737,6 @@ sub print_html {
 	$bottom =~ s/<!--maxdist-->/$max_dist/;
 	$bottom =~ s/<!--dibasis-->/$distance_metric/;
 	$bottom =~ s/<!--cutoff-->/$cutoff/;
-	$bottom =~ s/<!--filter-->/$filtertoggle/;
 
 	print $bottom;
 }
@@ -788,10 +787,6 @@ END
 
 		my $unit_id_target = $rec[$i]{target};
 		my $unit_id_source = $rec[$i]{source};
-
-		# get the score
-
-		my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
 
 		# a guide to which tokens are marked in each text
 
@@ -874,7 +869,7 @@ END
 
 		# score
 
-		push @row, $score;
+		push @row, $score{$unit_id_target}{$unit_id_source};
 
 		# print row
 
@@ -935,10 +930,6 @@ END
 
 		$pr->advance();
 
-		# get the score
-
-		my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
-
 		# a guide to which tokens are marked in each text
 
 		my %marked_target;
@@ -970,7 +961,7 @@ END
 		# now write the xml record for this match
 		#
 
-		print "\t<tessdata keypair=\"$keys\" score=\"$score\">\n";
+		print "\t<tessdata keypair=\"$keys\" score=\"$score{$unit_id_target}{$unit_id_source}\">\n";
 
 		print "\t\t<phrase text=\"source\" work=\"$abbr{$source}\" "
 				. "unitID=\"$unit_id_source\" "
@@ -1019,13 +1010,15 @@ END
 sub sort_results {
 
 	my @rec;
-	my @score_;
 
 	for my $unit_id_target (sort {$a <=> $b} keys %score) {
 
 		for my $unit_id_source (sort {$a <=> $b} keys %{$score{$unit_id_target}}) {
 
-			push @rec, {target => $unit_id_target, source => $unit_id_source};
+         $score{$unit_id_target}{$unit_id_source} = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
+         if ($score{$unit_id_target}{$unit_id_source} >= $cutoff) {
+            push @rec, {target => $unit_id_target, source => $unit_id_source};
+         }
 		}
 	}
 
