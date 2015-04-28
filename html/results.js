@@ -80,7 +80,7 @@ function loadTessResults() {
       tbody.find("tr").remove()
       tbody.html("<tr><td colspan='7' style='text-align:center'>loading...</td></tr>")
 
-      $.getJSON("/cgi-bin/read_bin.pl", params, loadTessResultsCallback)
+      $.getJSON("/cgi-bin/read-bin.pl", params, loadTessResultsCallback)
    } else {
       $("#btn_download").click()
    }

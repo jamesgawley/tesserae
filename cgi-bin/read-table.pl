@@ -231,7 +231,6 @@ use Pod::Usage;
 
 # load additional modules necessary for this script
 
-use CGI qw/:standard/;
 use Storable qw(nstore retrieve);
 use File::Path qw(mkpath rmtree);
 use Encode;
@@ -279,14 +278,7 @@ my $file_results = "tesresults";
 
 # session id
 
-my $session = "NA";
-
-# is the program being run from the web or
-# from the command line?
-
-my $query = CGI->new() || die "$!";
-
-my $no_cgi = defined($query->request_method()) ? 0 : 1;
+my $session;
 
 # print debugging messages to stderr?
 
@@ -316,6 +308,9 @@ my $recall_cache = 'rec';
 
 my $help;
 
+# run from the web?
+my $cgi = 0;
+
 # print benchmark times?
 
 my $bench = 0;
@@ -329,79 +324,46 @@ my $score_basis;
 my $part_target = 0;
 my $part_source = 0;
 
-if ($no_cgi) {
+GetOptions( 
+	'source=s'     => \$source,
+	'target=s'     => \$target,
+	'unit=s'       => \$unit,
+	'feature=s'    => \$feature,
+	'stopwords=i'  => \$stopwords, 
+	'stbasis=s'    => \$stoplist_basis,
+	'binary=s'     => \$file_results,
+	'session=s'    => \$session,
+	'distance=i'   => \$max_dist,
+	'dibasis=s'    => \$distance_metric,
+	'score=s'      => \$score_basis,
+   'cgi'          => \$cgi,
+	'quiet'        => \$quiet,
+	'help'         => \$help,
+	'part-target=i' => \$part_target,
+	'part-source=i' => \$part_source
+);
 
-	GetOptions( 
-		'source=s'     => \$source,
-		'target=s'     => \$target,
-		'unit=s'       => \$unit,
-		'feature=s'    => \$feature,
-		'stopwords=i'  => \$stopwords, 
-		'stbasis=s'    => \$stoplist_basis,
-		'binary=s'     => \$file_results,
-		'session=s'    => \$session,
-		'distance=i'   => \$max_dist,
-		'dibasis=s'    => \$distance_metric,
-		'score=s'      => \$score_basis,
-		'no-cgi'       => \$no_cgi,
-		'quiet'        => \$quiet,
-		'help'         => \$help,
-		'part-target=i' => \$part_target,
-		'part-source=i' => \$part_source
-	);
+# print usage info if help flag set
 
-	# print usage info if help flag set
-
-	if ($help) {
-
-		pod2usage(-verbose => 2);
-	}
-
-	# make sure both source and target are specified
-
-	unless (defined ($source and $target)) {
-
-		pod2usage( -verbose => 1);
-	}
-} else {
-	print header(-type => "application/json");
-
-	$source = $query->param('source');
-	$target = $query->param('target');
-	$unit = $query->param('unit') || $unit;
-	$feature = $query->param('feature') || $feature;
-	if (defined $query->param('stopwords')) {
-		$stopwords = $query->param('stopwords');
-	}
-	$stoplist_basis = $query->param('stbasis') || $stoplist_basis;
-	$max_dist = $query->param('dist') || $max_dist;
-	$distance_metric = $query->param('dibasis') || $distance_metric;
-	$score_basis = $query->param('score') || $score_basis;
-	$part_target = $query->param('part_target') || $part_target;
-	$part_source = $query->param('part_source') || $part_source;
-	$session = $query->param("session");
-		
-	unless (defined $source) {
-	
-		die "read_table.pl called from web interface with no source";
-	}
-	unless (defined $target) {
-	
-		die "read_table.pl called from web interface with no target";
-	}
-	unless (defined $session) {
-
-	   die "read_table.pl called from web interface with no session";
-	}
-
-	$quiet = 1 unless $query->param("debug");
+if ($help) {
+	pod2usage(-verbose => 2) unless $cgi;
 }
 
+# make sure both source and target are specified
+
+unless (defined ($source and $target)) {
+	pod2usage( -verbose => 1) unless $cgi;
+}
+
+# if run by the daemon, turn off output
+if ($cgi) {
+   $quiet = 1;
+   $bench = 0;
+}
 
 # default score basis set by Tesserae.pm
 
 unless (defined $score_basis)  { 
-	
 	$score_basis = $Tesserae::feature_score{$feature} || 'word';
 }
 
@@ -414,13 +376,10 @@ my %abbr = %{ retrieve($file_abbr) };
 
 if (defined $session) {
 	$file_results = catfile($fs{tmp}, "tesresults-$session");
-   unless (-d $file_results) {
-   	die "Invalid session: $file_results";
-   }
-} else {
-   unless (-d $file_results) {
-	   mkpath($file_results);
-   }
+}
+
+unless (-d $file_results) {
+   mkpath($file_results);
 }
 rmtree($file_results, {keep_root => 1});
 
@@ -447,7 +406,7 @@ if ($score_basis =~ /^feat/) {
 # print all params for debugging
 
 unless ($quiet) {
-
+   print STDERR "session=$session\n";
 	print STDERR "target=$target\n";
 	print STDERR "source=$source\n";
 	print STDERR "lang(target)=" . Tesserae::lang($target) . ";\n";
@@ -544,12 +503,12 @@ unless ($quiet) {
 # draw a progress bar
 my $pr;
 
-if ($no_cgi) {
-	$pr = ProgressBar->new(scalar(keys %index_source), $quiet);
-}
-else {
+if ($cgi) {
 	$pr = AJAXProgress->new(scalar(keys %index_source), $file_results);
 	$pr->message("Comparing $source and $target");
+}
+else {
+	$pr = ProgressBar->new(scalar(keys %index_source), $quiet);
 }
 
 # start with each key in the source
@@ -584,7 +543,7 @@ for my $key (keys %index_source) {
 	}
 }
 
-print "search>>" . (time-$t1) . "\n" if $no_cgi and $bench;
+print "search>>" . (time-$t1) . "\n" if $bench;
 
 #
 #
@@ -600,16 +559,13 @@ my $total_matches = 0;
 
 # draw a progress bar
 
-if ($no_cgi) {
-
-	print STDERR "calculating scores\n" unless $quiet;
-
-	$pr = ProgressBar->new(scalar(keys %match_target), $quiet);
-}
-else {
-
+if ($cgi) {
 	$pr = AJAXProgress->new(scalar(keys %match_target), $file_results);
 	$pr->message("Calculating scores...");
+}
+else {
+	print STDERR "calculating scores\n" unless $quiet;
+	$pr = ProgressBar->new(scalar(keys %match_target), $quiet);
 }
 
 #
@@ -717,7 +673,7 @@ for my $unit_id_target (keys %match_target) {
 	}
 }
 
-print "score>>" . (time-$t1) . "\n" if $no_cgi and $bench;
+print "score>>" . (time-$t1) . "\n" if $bench;
 
 #
 # write binary results
@@ -750,23 +706,17 @@ my %match_meta = (
 );
 
 
-if ($no_cgi) {
-	
-	print STDERR "writing $file_results\n" unless $quiet;
-}
-else {
-
-	print "<p>Writing session data.</p>";
-}
+print STDERR "writing $file_results..." unless $quiet;
 	
 nstore \%match_target, catfile($file_results, "match.target");
 nstore \%match_source, catfile($file_results, "match.source");
 nstore \%match_score,  catfile($file_results, "match.score" );
 nstore \%match_meta,   catfile($file_results, "match.meta"  );
 
+print STDERR "done\n" unless $quiet;
 
-print "store>>" . (time-$t1) . "\n" if $no_cgi and $bench;
-print "total>>" . (time-$t0)  . "\n" if $no_cgi and $bench;
+print "store>>" . (time-$t1) . "\n" if $bench;
+print "total>>" . (time-$t0)  . "\n" if $bench;
 
 #
 # subroutines

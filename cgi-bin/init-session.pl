@@ -119,8 +119,7 @@ use Pod::Usage;
 use CGI qw/:standard/;
 use File::Path qw(mkpath rmtree);
 use JSON;
-
-binmode STDERR, 'utf8';
+use Beanstalk::Client;
 
 #
 # set some parameters
@@ -194,7 +193,7 @@ my $bench = 0;
 
 # what frequency table to use in scoring
 
-my $score_basis;
+my $score_basis = "word";
 
 # only consider a subset of units
 
@@ -262,47 +261,45 @@ if ($no_cgi) {
 	$quiet = 1 unless $query->param("debug");
 }
 
-#
-# determine the session ID
-# 
+# submit job to beanstalk tube
 
-# open the temp directory
-# and get the list of existing session files
+my $session = submit_job({
+   "source" => $source,
+	"target" => $target,
+	"unit" => $unit,
+	"feature" => $feature,
+	"stop" => $stopwords, 
+	"stbasis" => $stoplist_basis,
+	"dist" => $max_dist,
+	"dibasis" => $distance_metric,
+	"score" => $score_basis,
+	"part-target" => $part_target,
+	"part-source" => $part_source
+});
 
-opendir(my $dh, $fs{tmp}) || die "can't opendir $fs{tmp}: $!";
-
-my @tes_sessions = grep { /^tesresults-[0-9a-f]{8}/ && -d catfile($fs{tmp}, $_) } readdir($dh);
-
-closedir $dh;
-
-# sort them and get the id of the last one
-
-@tes_sessions = sort(@tes_sessions);
-
-my $session = $tes_sessions[-1];
-
-# then add one to it;
-# if we can't determine the last session id,
-# then start at 0
-
-if (defined($session)) {
-	$session =~ s/^.+results-//;
-} else {
-	$session = "0"
-}
-
-# put the id into hex notation to save space and make it look confusing
-
-$session = sprintf("%08x", hex($session)+1);
-
-# open the new session file for output
-
-my $file_results = catfile($fs{tmp}, "tesresults-$session");
-mkpath($file_results);
-	
 if ($no_cgi) {
 	print "$session\n";
 } else {
 	print encode_json({session => $session});
 }
 
+#
+# subroutines
+#
+
+sub submit_job {
+   my $ref = shift;
+   
+   my $client = Beanstalk::Client->new({
+      server => "localhost",
+      default_tube => "tesserae"
+   });
+   
+   my $data = encode_json($ref);
+   
+   my $job = $client->put({data=>$data});
+   
+   # return the session id
+
+   return sprintf("%08x", hex($job->id));
+}
