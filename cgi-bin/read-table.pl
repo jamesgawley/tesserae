@@ -324,137 +324,63 @@ my $bench = 0;
 
 my $score_basis;
 
-# which script should mediate the display of results
+# only consider a subset of units
 
-my $frontend = 'default';
-my %redirect;
-
-GetOptions( 
-			'source=s'     => \$source,
-			'target=s'     => \$target,
-			'unit=s'       => \$unit,
-			'feature=s'    => \$feature,
-			'stopwords=i'  => \$stopwords, 
-			'stbasis=s'    => \$stoplist_basis,
-			'binary=s'     => \$file_results,
-			'distance=i'   => \$max_dist,
-			'dibasis=s'    => \$distance_metric,
-			'score=s'      => \$score_basis,
-			'benchmark'    => \$bench,
-			'no-cgi'       => \$no_cgi,
-			'quiet'        => \$quiet,
-			'help'         => \$help);
-
-#
-# print usage info if help flag set
-#
-
-if ($help) {
-
-	pod2usage(-verbose => 2);
-}
-
-# default score basis set by Tesserae.pm
-
-unless (defined $score_basis)  { 
-	
-	$score_basis = $Tesserae::feature_score{$feature} || 'word';
-}
-
-# html header
-#
-# put this stuff early on so the web browser doesn't
-# give up
-
-unless ($no_cgi) {
-
-	print header();
-
-	my $stylesheet = "/css/style.css";
-
-	print <<END;
-
-<html>
-<head>
-	<title>Tesserae results</title>
-	<link rel="stylesheet" type="text/css" href="$stylesheet" />
-END
-
-	#
-	# determine the session ID
-	# 
-
-	# open the temp directory
-	# and get the list of existing session files
-
-	opendir(my $dh, $fs{tmp}) || die "can't opendir $fs{tmp}: $!";
-
-	my @tes_sessions = grep { /^tesresults-[0-9a-f]{8}/ && -d catfile($fs{tmp}, $_) } readdir($dh);
-
-	closedir $dh;
-
-	# sort them and get the id of the last one
-
-	@tes_sessions = sort(@tes_sessions);
-
-	$session = $tes_sessions[-1];
-
-	# then add one to it;
-	# if we can't determine the last session id,
-	# then start at 0
-
-	if (defined($session)) {
-
-	   $session =~ s/^.+results-//;
-	}
-	else {
-
-	   $session = "0"
-	}
-
-	# put the id into hex notation to save space and make it look confusing
-
-	$session = sprintf("%08x", hex($session)+1);
-
-	# open the new session file for output
-
-	$file_results = catfile($fs{tmp}, "tesresults-$session");
-}
-
-
-#
-# abbreviations of canonical citation refs
-#
-
-my $file_abbr = catfile($fs{data}, 'common', 'abbr');
-my %abbr = %{ retrieve($file_abbr) };
-
-# if web input doesn't seem to be there, 
-# then check command line arguments
+my $part_target = 0;
+my $part_source = 0;
 
 if ($no_cgi) {
+
+	GetOptions( 
+		'source=s'     => \$source,
+		'target=s'     => \$target,
+		'unit=s'       => \$unit,
+		'feature=s'    => \$feature,
+		'stopwords=i'  => \$stopwords, 
+		'stbasis=s'    => \$stoplist_basis,
+		'binary=s'     => \$file_results,
+		'session=s'    => \$session,
+		'distance=i'   => \$max_dist,
+		'dibasis=s'    => \$distance_metric,
+		'score=s'      => \$score_basis,
+		'no-cgi'       => \$no_cgi,
+		'quiet'        => \$quiet,
+		'help'         => \$help,
+		'part-target=i' => \$part_target,
+		'part-source=i' => \$part_source
+	);
+
+	# print usage info if help flag set
+
+	if ($help) {
+
+		pod2usage(-verbose => 2);
+	}
+
+	# make sure both source and target are specified
 
 	unless (defined ($source and $target)) {
 
 		pod2usage( -verbose => 1);
 	}
-}
-else {
+} else {
+	print header(-type => "application/json");
 
-	$source          = $query->param('source');
-	$target          = $query->param('target');
-	$unit            = $query->param('unit')         || $unit;
-	$feature         = $query->param('feature')      || $feature;
-	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
-	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
-	$max_dist        = $query->param('dist')         || $max_dist;
-	$distance_metric = $query->param('dibasis')      || $distance_metric;
-	$score_basis     = $query->param('score')        || $score_basis;
-	$frontend        = $query->param('frontend')     || $frontend;
-	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
-	@include         = $query->param('include');
-	$recall_cache    = $query->param('recall_cache') || $recall_cache;
-	
+	$source = $query->param('source');
+	$target = $query->param('target');
+	$unit = $query->param('unit') || $unit;
+	$feature = $query->param('feature') || $feature;
+	if (defined $query->param('stopwords')) {
+		$stopwords = $query->param('stopwords');
+	}
+	$stoplist_basis = $query->param('stbasis') || $stoplist_basis;
+	$max_dist = $query->param('dist') || $max_dist;
+	$distance_metric = $query->param('dibasis') || $distance_metric;
+	$score_basis = $query->param('score') || $score_basis;
+	$part_target = $query->param('part_target') || $part_target;
+	$part_source = $query->param('part_source') || $part_source;
+	$session = $query->param("session");
+		
 	unless (defined $source) {
 	
 		die "read_table.pl called from web interface with no source";
@@ -463,46 +389,52 @@ else {
 	
 		die "read_table.pl called from web interface with no target";
 	}
-		
-	$quiet = 1;
-	
-	# how to redirect browser to results
+	unless (defined $session) {
 
-	%redirect = ( 
-		default  => "/cgi-bin/read_bin.pl?session=$session",
-		recall   => "/cgi-bin/check-recall.pl?session=$session;cache=$recall_cache",
-		fulltext => "/cgi-bin/fulltext.pl?session=$session",
-		multi    => "/cgi-bin/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
-	);
+	   die "read_table.pl called from web interface with no session";
+	}
 
-	
-	print <<END;
-	<meta http-equiv="Refresh" content="0; url='$redirect{$frontend}'">
-	</head>
-	<body>
-		<div class="waiting">
-		<p>
-			Searching...
-		</p>
-END
-
+	$quiet = 1 unless $query->param("debug");
 }
+
+
+# default score basis set by Tesserae.pm
+
+unless (defined $score_basis)  { 
+	
+	$score_basis = $Tesserae::feature_score{$feature} || 'word';
+}
+
+# abbreviations of canonical citation refs
+
+my $file_abbr = catfile($fs{data}, 'common', 'abbr');
+my %abbr = %{ retrieve($file_abbr) };
+
+# validate and clean session directory
+
+if (defined $session) {
+	$file_results = catfile($fs{tmp}, "tesresults-$session");
+   unless (-d $file_results) {
+   	die "Invalid session: $file_results";
+   }
+} else {
+   unless (-d $file_results) {
+	   mkpath($file_results);
+   }
+}
+rmtree($file_results, {keep_root => 1});
+
 
 #
 # force unit=phrase if either work is prose
 #
-# Note: This is a hack!  Fix later!!
+# TODO: This is a hack!  Fix later!!
 
 if (Tesserae::check_prose_list($target) or Tesserae::check_prose_list($source)) {
 
 	$unit = 'phrase';
 }
 
-# assume unicode text names are utf8,
-# whether input via cmd line or cgi
-
-# $target = decode('utf8', $target);
-# $source = decode('utf8', $source);
 
 # if user selected 'feature' as score basis,
 # set it to whatever the feature is
@@ -534,24 +466,24 @@ unless ($quiet) {
 # calculate feature frequencies
 #
 
-# token frequencies from the target text
-
 my $file_freq_target = select_file_freq($target) . ".freq_score_" . $score_basis;
-my %freq_target = %{Tesserae::stoplist_hash($file_freq_target)};
-
-# token frequencies from the source text
-
 my $file_freq_source = select_file_freq($source) . ".freq_score_" . $score_basis;
+
+my %freq_target = %{Tesserae::stoplist_hash($file_freq_target)};
 my %freq_source = %{Tesserae::stoplist_hash($file_freq_source)};
 
-#
 # basis for stoplist is feature frequency from one or both texts
-#
 
 my @stoplist = @{load_stoplist($stoplist_basis, $stopwords)};
 
-unless ($quiet) { print STDERR "stoplist: " . join(",", @stoplist) . "\n"}
+unless ($quiet) { 
+   print STDERR "stoplist: " . join(",", @stoplist) . "\n";
+}
 
+# get part info
+
+my ($mask_source_lower, $mask_source_upper);# = Tesserae::get_mask($source, $part_source);
+my ($mask_target_lower, $mask_target_upper);# = Tesserae::get_mask($target, $part_target);
 
 #
 # read data from table
@@ -569,6 +501,9 @@ my @token_source   = @{ retrieve("$file_source.token") };
 my @unit_source    = @{ retrieve("$file_source.$unit") };
 my %index_source   = %{ retrieve("$file_source.index_$feature")};
 
+unless (defined $mask_source_upper) { $mask_source_upper = $#unit_source }
+unless (defined $mask_source_lower) { $mask_source_lower = 0 }
+
 unless ($quiet) {
 
 	print STDERR "reading target data\n";
@@ -579,6 +514,9 @@ my $file_target = catfile($fs{data}, 'v3', Tesserae::lang($target), $target, $ta
 my @token_target   = @{ retrieve("$file_target.token") };
 my @unit_target    = @{ retrieve("$file_target.$unit") };
 my %index_target   = %{ retrieve("$file_target.index_$feature" ) };
+
+unless (defined $mask_target_upper) { $mask_target_upper = $#unit_target }
+unless (defined $mask_target_lower) { $mask_target_lower = 0 }
 
 #
 #
@@ -604,14 +542,14 @@ unless ($quiet) {
 }
 
 # draw a progress bar
-
 my $pr;
 
 if ($no_cgi) {
 	$pr = ProgressBar->new(scalar(keys %index_source), $quiet);
 }
 else {
-	$pr = HTMLProgress->new(scalar(keys %index_source));
+	$pr = AJAXProgress->new(scalar(keys %index_source), $file_results);
+	$pr->message("Comparing $source and $target");
 }
 
 # start with each key in the source
@@ -670,9 +608,8 @@ if ($no_cgi) {
 }
 else {
 
-	print "<p>Scoring...</p>\n";
-
-	$pr = HTMLProgress->new(scalar(keys %match_target));
+	$pr = AJAXProgress->new(scalar(keys %match_target), $file_results);
+	$pr->message("Calculating scores...");
 }
 
 #
@@ -763,7 +700,7 @@ for my $unit_id_target (keys %match_target) {
 			next;
 		}
 		
-		
+
 		#
 		# calculate the score
 		#
@@ -780,13 +717,6 @@ for my $unit_id_target (keys %match_target) {
 	}
 }
 
-my %feature_notes = (
-	
-	word => "Exact matching only.",
-	stem => "Stem matching enabled.  Forms whose stem is ambiguous will match all possibilities.",
-	syn  => "Stem + synonym matching.  This search is still in development.  Note that stopwords may match on less-common synonyms."
-	);
-
 print "score>>" . (time-$t1) . "\n" if $no_cgi and $bench;
 
 #
@@ -798,7 +728,13 @@ $t1 = time;
 my %match_meta = (
 
 	SOURCE    => $source,
+	PART_S    => $part_source,
 	TARGET    => $target,
+	PART_T    => $part_target,
+	MTU       => $mask_target_upper,
+	MTL       => $mask_target_lower,
+	MSU       => $mask_source_upper,
+	MSL       => $mask_source_lower,   
 	UNIT      => $unit,
 	FEATURE   => $feature,
 	STOP      => $stopwords,
@@ -808,7 +744,7 @@ my %match_meta = (
 	DIBASIS   => $distance_metric,
 	SESSION   => $session,
 	SCBASIS   => $score_basis,
-	COMMENT   => $feature_notes{$feature},
+	COMMENT   => "put something useful here", # TODO
 	VERSION   => $Tesserae::VERSION,
 	TOTAL     => $total_matches
 );
@@ -822,35 +758,14 @@ else {
 
 	print "<p>Writing session data.</p>";
 }
-
-rmtree($file_results);
-mkpath($file_results);
 	
 nstore \%match_target, catfile($file_results, "match.target");
 nstore \%match_source, catfile($file_results, "match.source");
 nstore \%match_score,  catfile($file_results, "match.score" );
 nstore \%match_meta,   catfile($file_results, "match.meta"  );
 
-if (@include) {
-
-	write_multi_list($file_results, \@include);
-}
 
 print "store>>" . (time-$t1) . "\n" if $no_cgi and $bench;
-
-print <<END unless ($no_cgi);
-
-	<p>
-      Your search is done.  If you are not redirected automatically, 
-      <a href="$redirect{$frontend}">click here</a>.
-	</p>
-	</div>
-</body>
-</html>
-
-END
-
-
 print "total>>" . (time-$t0)  . "\n" if $no_cgi and $bench;
 
 #
@@ -1041,32 +956,6 @@ sub load_stoplist {
 	return \@stoplist;
 }
 
-sub exact_match {
-
-	my ($ref_target, $ref_source) = @_[0,1];
-
-	my @target_id = keys %$ref_target;
-	my @source_id = keys %$ref_source;
-	
-	my @ttokens;
-	my @stokens;
-		
-	for (@target_id) {
-	
-		push @ttokens, $token_target[$_]{FORM};
-	}
-	
-	for (@source_id) {
-		push @stokens, $token_source[$_]{FORM};
-	}
-	
-	@ttokens = @{Tesserae::uniq(\@ttokens)};
-	@stokens = @{Tesserae::uniq(\@ttokens)};
-	
-	my @exact_match = @{Tesserae::intersection(\@ttokens, \@stokens)};
-	
-	return scalar(@exact_match);
-}
 
 sub score_default {
 	
@@ -1117,25 +1006,6 @@ sub score_default {
 }
 
 
-# save the list of multi-text searches to session file
-
-sub write_multi_list {
-	
-	my ($session, $incl) = @_;
-	
-	my @include = @$incl;
-	
-	my $file_list = catfile($session, '.multi.list');
-	
-	open (FH, ">:utf8", $file_list) or die "can't write $file_list: $!";
-	
-	for (@include) {
-	
-		print FH $_ . "\n";
-	}
-	
-	close FH;
-}
 
 # choose the frequency file for a text
 
