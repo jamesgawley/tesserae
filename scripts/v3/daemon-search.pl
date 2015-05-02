@@ -167,19 +167,18 @@ sub run_tess_search {
 
    my $command = join(" ",
       catfile($fs{cgi}, "read-table.pl"),
-      map {join(" ", "--$_", $params{$_})} keys %params
+      (map {join(" ", "--$_", $params{$_})} keys %params),
+      "--cgi"
    );
 
-   my $fh;
    eval {
-      open ($fh, ">>:utf8", $logfile)
-   };
-   if ($@) {
-      warn "Can't write to log $logfile: $@"
-   } else {
+      open (my $fh, ">>:utf8", $logfile);
       my $date = localtime;
       print $fh join("\t", $date, $id, $command) . "\n";
       close($fh)
+   };
+   if ($@) {
+      warn "Can't write to log $logfile: $@";
    }
    
    system($command);

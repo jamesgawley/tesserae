@@ -153,9 +153,9 @@ my $quiet = 0;
 my $mode  = 'default';
 my @py_lib;
 
-#  assume tess root is parent of dir containing this script
+#  assume tess root is grandparent of dir containing this script
 
-my $fs_base = abs_path(catdir($Bin, '..'));
+my $fs_base = abs_path(catdir($Bin, '..', '..'));
 
 # locations as in the git repo
 
@@ -432,7 +432,7 @@ sub check_urls {
 
 sub write_config {
 
-	my $file = catfile($Bin, 'tesserae.conf');
+	my $file = catfile($fs{script}, 'tesserae.conf');
 	
 	open (FH, ">:utf8", $file) or die "can't write $file: $!";
 	

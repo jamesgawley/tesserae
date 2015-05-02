@@ -98,13 +98,13 @@ BEGIN {
 	
 	$lib = $Bin;
 	
-	unless (-e catfile($lib, 'tesserae.conf')) {
+	unless (-e catfile($lib, '..', 'tesserae.conf')) {
 	
 		warn "Can't find tesserae.conf. Try running configure.pl";
 		die;
 	}
 	
-	$lib = catdir($lib, 'TessPerl');
+	$lib = catdir($lib, '..', 'TessPerl');
 }
 
 # load Tesserae-specific modules
@@ -120,7 +120,7 @@ use Pod::Usage;
 
 # load additional modules necessary for this script
 
-# use File::Copy::Recursive qw/dircopy/;
+use File::Copy::Recursive qw/dircopy/;
 
 # initialize some variables
 
@@ -130,7 +130,7 @@ my $quiet = 0;
 
 # locations as in the git repo
 
-my $fs_base = abs_path(catdir($Bin, '..'));
+my $fs_base = abs_path(catdir($Bin, '..', '..'));
 
 my %fs_orig = (
 
@@ -187,7 +187,7 @@ write_pointer($fs{script});
 # install documentation
 #
 
-my $file_script = catfile($fs{script}, 'doc_gen.pl');
+my $file_script = catfile($fs{script}, 'install', 'doc_gen.pl');
 $file_script = Tesserae::escape_path($file_script);
 `$Tesserae::perl_path $file_script`;
 

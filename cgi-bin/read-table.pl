@@ -714,6 +714,7 @@ nstore \%match_score,  catfile($file_results, "match.score" );
 nstore \%match_meta,   catfile($file_results, "match.meta"  );
 
 print STDERR "done\n" unless $quiet;
+$pr->set_status("DONE") if $cgi;
 
 print "store>>" . (time-$t1) . "\n" if $bench;
 print "total>>" . (time-$t0)  . "\n" if $bench;

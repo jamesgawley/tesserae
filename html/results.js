@@ -6,8 +6,6 @@ function init() {
    var url = document.URL
    var start = url.indexOf("?session=")
    
-   console.log("start=".concat(start))
-   
    if (start > -1) {
       start = start + 9
       if (url.length >= start+8) {

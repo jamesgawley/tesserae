@@ -139,134 +139,119 @@ sub new {
 	
 	my $session = shift;
 	
-	$self->{COUNT}    = 0;
+	$self->{COUNT} = 0;
 	$self->{PROGRESS} = 0;
-	$self->{FILE}  = File::Spec::Functions::catfile($session, ".progress");
-	$self->{DONE}     = 0;
-	$self->{MESSAGE}  = "Please wait...";
+	$self->{FILE} = File::Spec::Functions::catfile($session, ".progress");
+	$self->{DONE} = 0;
+   $self->{T0} = time;
+	$self->{MESSAGE} = "Please wait...";
+   $self->{STATUS} = "WORKING";
 	
 	bless($self);
 	
-	$self->init();
-
-	if ($terminus <= 0) {
+	if ($terminus > 0) {
+      $self->draw();
+   } else {
 		$self->finish();
 	}
 
-	$self->draw();
-	
 	return $self;
 }
 
-sub init {
-
-	my $self = shift;
-	my $file = $self->{FILE};
-
-	open(my $fh, ">", $file) or die "Can't write $file: $!";
-	print $fh JSON::encode_json({msg=>$self->{MESSAGE}, progress=>"0", updated=>time});
-	close($fh);
-}
-
 sub advance {
+	my ($self, $incr) = @_;
 
-	my $self = shift;
-	
-	my $incr = shift;
-	
-	$self->{COUNT} += ($incr || 1);
-	
-	$self->draw();
+	$self->{COUNT} += ($incr || 1);	
+	$self->check_incr;
 }
 
 sub set {
+	my ($self, $new) = @_;
+	
+   if (defined $new) {
+      $self->{COUNT} = $new;
+      $self->check_incr;
+   }
+}
 
-	my $self = shift;
-	
-	my $new = shift || 0;
-	
-	$self->{COUNT} = $new;
-	
-	$self->draw();
+sub check_incr {
+   my $self = shift;
+   
+   return if $self->{DONE};
+
+   if ($self->{COUNT}/$self->{END} > $self->{PROGRESS} + .005) {
+      $self->draw;
+   } elsif ($self->{COUNT} >= $self->{END}) {
+      $self->finish;
+   }
 }
 
 sub draw {
-
 	my $self = shift;
 
-	return if $self->{DONE};
-		
-	if ($self->{COUNT}/$self->{END} > $self->{PROGRESS} + .005) {
-	
-		$self->{PROGRESS} = $self->{COUNT} / $self->{END};
+	$self->{PROGRESS} = $self->{COUNT} / $self->{END};
 
-		my $file=$self->{FILE};
-		open (my $fh, ">", $file) or die "Can't write $file: $!";	
-		print $fh JSON::encode_json({
-			msg => $self->{MESSAGE},
-			progress => sprintf("%.0f", 100 * $self->{PROGRESS}),
-			updated => time
-		});
-		close ($fh);
-	}
-	
-	if ($self->{COUNT} >= $self->{END}) {
-				
-		$self->finish();
-	}	
+	my $file=$self->{FILE};
+   eval {
+      open (my $fh, ">", $file);
+      print $fh JSON::encode_json({
+         msg => $self->{MESSAGE},
+         progress => sprintf("%.0f", 100 * $self->{PROGRESS}),
+         runtime => time - $self->{T0},
+         status => $self->{STATUS}
+      });
+      close ($fh);
+   };
+   if ($@) {
+      warn "Can't write progress to $file: $@";
+   }
 }
 
 sub finish {
-
 	my $self = shift;
 
-	return if $self->{DONE};
+	$self->{COUNT} = $self->{END};
+   $self->{MESSAGE} = "Finished!";
+   $self->{DONE} = 1;
 
-	$self->{PROGRESS} = $self->{COUNT} / $self->{END};
-	
-	my $file=$self->{FILE};
-	open (my $fh, ">", $file) or die "Can't write $file: $!";	
-	print $fh JSON::encode_json({msg => "Finished!", progress=>"100", updated=>time});	
-	close $fh;
-	
-	$self->{DONE} = 1;
+   $self->draw;
 }
 
 sub progress {
-	
 	my $self = shift;
 	
 	return $self->{PROGRESS};
 }
 
 sub count {
-
 	my $self = shift;
 	
 	return $self->{COUNT};
 }
 
 sub terminus {
-
-	my $self = shift;
+	my ($self, $new) = @_;
 	
-	my $new = shift;
-	
-	if (defined $new) {
-	
+	if (defined $new) {	
 		$self->{END} = $new;
-		
-		$self->draw();
+		$self->check_incr;
 	}
 	
 	return $self->{END};
 }
 
 sub message {
-
 	my ($self, $message) = @_;
 
 	$self->{MESSAGE} = $message;
+   $self->draw;
+}
+
+sub set_status {
+   my ($self, $status) = @_;
+   
+   $self->{STATUS} = $status;
+   $self->draw;
 }
 
 1;

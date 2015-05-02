@@ -1,0 +1,30 @@
+{
+   "la":{
+      "lang":{"target":"la","source":"la"},
+      "selected":{"target":"lucan.bellum_civile","source":"vergil.aeneid"},
+      "feature":{"stem":"lemma","word":"exact word","3gr":"character 3-gram"},
+      "title":"Welcome",
+      "description":"The Tesserae project aims to provide a flexible and robust web interface for exploring intertextual parallels. Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes). For advanced search options, select a language from the menu above."
+   },
+   "grc":{
+      "lang":{"target":"grc","source":"grc"},
+      "selected":{"target":"apollonius.argonautica","source":"homer.iliad"},
+      "feature":{"stem":"lemma","word":"exact word","3gr":"character 3-gram"},
+      "title":"Greek Search",
+      "description":"For help on advanced features, see the <a href=\"/help.html\">instructions</a> page."      
+   },
+   "cross":{
+      "lang":{"target":"la","source":"grc"},
+      "selected":{"target":"apollonius.argonautica","source":"homer.iliad"},
+      "feature":{},
+      "title":"Latin-Greek Search",
+      "description":"Experimental! Results might change as we continue to work on this feature."
+   },
+   "en":{
+      "lang":{"target":"en","source":"en"},
+      "selected":{"target":"wordsworth.prelude","source":"cowper.task"},
+      "feature":{"stem":"lemma","word":"exact word","3gr":"character 3-gram"},
+      "title":"English Search",
+      "description":"NB: English search is untested; some texts have not yet been proofread thoroughly."
+   }
+}
