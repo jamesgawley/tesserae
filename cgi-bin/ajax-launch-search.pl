@@ -2,11 +2,11 @@
 
 =head1 NAME
 
-init_session.pl - reserve a new session for a Tesserae search.
+ajax-launch-search.pl - reserve a new session for a Tesserae search.
 
 =head1 SYNOPSIS
 
-B<init_session.pl> 
+B<ajax-launch-search.pl> 
 
 =head1 DESCRIPTION
 
@@ -34,7 +34,7 @@ The contents of this file are subject to the University at Buffalo Public Licens
 
 Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 
-The Original Code is init_session.pl
+The Original Code is ajax-launch-search.pl
 
 The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
 

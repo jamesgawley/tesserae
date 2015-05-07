@@ -226,7 +226,7 @@ function progress_loop(session, cb_cont, cb_done, cb_fail) {
 }
 
 function launch_search() {
-	$.getJSON("/cgi-bin/init-session.pl", {
+	$.getJSON("/cgi-bin/ajax-launch-search.pl", {
 			source: $("#sel_part_source").val(),
 			target: $("#sel_part_target").val(),
 			unit: $("#sel_unit").val(),

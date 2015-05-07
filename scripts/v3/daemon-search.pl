@@ -121,7 +121,7 @@ use Data::Dumper;
 # initialize some variables
 
 my $help = 0;
-my $logfile = catfile($fs{tmp}, "deamon-search.log");
+my $logfile = catfile($fs{tmp}, "daemon-search.log");
 
 # get user options
 
@@ -166,20 +166,14 @@ sub run_tess_search {
    $params{session} = sprintf("%08x", hex($id));
 
    my $command = join(" ",
-      catfile($fs{cgi}, "read-table.pl"),
+      catfile($fs{script}, "v3", "read-table.pl"),
       (map {join(" ", "--$_", $params{$_})} keys %params),
       "--cgi"
    );
 
-   eval {
-      open (my $fh, ">>:utf8", $logfile);
-      my $date = localtime;
-      print $fh join("\t", $date, $id, $command) . "\n";
-      close($fh)
-   };
-   if ($@) {
-      warn "Can't write to log $logfile: $@";
-   }
+   my $date = localtime;
+   print join("\t", $date, $id, $command) . "\n";
+   close($fh)
    
    system($command);
 }

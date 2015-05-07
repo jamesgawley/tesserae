@@ -57,7 +57,7 @@
          					</select><br />
          					<select id="sel_work_source">
          					</select><br />
-         					<select id="sel_part_source" name="source">
+         					<select id="sel_part_source">
          					</select>
          				</td>
          			</tr>
@@ -68,7 +68,7 @@
          					</select><br />
          					<select id="sel_work_target">
          					</select><br />
-         					<select id="sel_part_target" name="target">
+         					<select id="sel_part_target">
          					</select>
          				</td>
          			</tr>
@@ -82,7 +82,7 @@
          				<tr>
          					<th>Unit:</th>
          					<td>
-         						<select id="sel_unit" name="unit">
+         						<select id="sel_unit">
          							<option value="line">line</option>
          							<option value="phrase">phrase</option>
          						</select>
@@ -91,14 +91,14 @@
          				<tr>
          					<th>Feature:</th>
          					<td>
-         						<select id="sel_feature" name="feature">
+         						<select id="sel_feature">
          						</select>
          					</td>
          				</tr>
          				<tr>
          					<th>Number of stop words:</th>
          					<td>
-         						<select name="stopwords">
+         						<select id="sel_stop">
          							<option value="0">0</option>
          							<option value="10" selected="selected">10</option>
          							<option value="20">20</option>
@@ -114,7 +114,7 @@
          				<tr>
          					<th>Stoplist basis:</th>
          					<td>
-         						<select id="sel_stop" name="stbasis">
+         						<select id="sel_stop">
          							<option value="corpus">corpus</option>
          							<option value="target">target</option>
          							<option value="source">source</option>
@@ -125,7 +125,7 @@
          				<tr>
          					<th>Score basis:</th>
          					<td>
-         						<select id="sel_score" name="score">
+         						<select id="sel_score">
          							<option value="word">word</option>
          							<option value="stem">stem</option>
          							<option value="feature">feature</option>								
@@ -135,7 +135,7 @@
          				<tr>
          					<th>Maximum distance:</th>
          					<td>
-         						<select id="sel_dist" name="dist">
+         						<select id="sel_dist">
          							<option value="999">no max</option>
          							<option value="5">5 words</option>
          							<option value="10" selected="selected">10 words</option>
@@ -149,7 +149,7 @@
          				<tr>
          					<th>Distance metric:</th>
          					<td>
-         						<select id="sel_dibasis" name="dibasis">
+         						<select id="sel_dibasis">
          							<option value="span">span</option>
          							<option value="freq" selected="selected">frequency</option>
          						</select>
