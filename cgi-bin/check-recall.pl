@@ -851,7 +851,7 @@ sub print_delim {
 
 			# get the score
 		
-			my $score = sprintf("%.3f", $score{$unit_id_target}{$unit_id_source});
+			my $score = $score{$unit_id_target}{$unit_id_source};
 
 			# get benchmark data
 
