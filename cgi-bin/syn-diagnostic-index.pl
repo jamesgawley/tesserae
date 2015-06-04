@@ -158,7 +158,7 @@ binmode STDERR, 'utf8';
 # initialize some variables
 
 my $target   = 'homer.iliad';
-my @feature  = qw/trans1 trans2/;
+my @feature  = qw/trans1 trans2 trans2mws IBM/;
 my $auth;
 my $query;
 my $html     = 0;
@@ -205,6 +205,8 @@ else {
 	$query      = $cgi->param('query')    || $session->param('query');
 	$feature[0] = $cgi->param('feature1') || $session->param('feature1') || $feature[0];
 	$feature[1] = $cgi->param('feature2') || $session->param('feature2') || $feature[1];
+	$feature[2] = $cgi->param('feature3') || $session->param('feature3') || $feature[2];
+	$feature[3] = $cgi->param('feature4') || $session->param('feature4') || $feature[3];
  	$auth       = $cgi->param('auth')     || $session->param('auth');
 	$html = 1;
 }
@@ -323,7 +325,7 @@ sub print_header {
 		print <<END_HEAD;
 <html>
 	<head>
-		<link href="/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="$url{css}/style.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 			tr {
 				padding: 4px 3px;
@@ -347,7 +349,7 @@ sub print_header {
 	</head>
 	<body>
 	<div class="back">
-		<a style="color:grey;" href="/experimental.php" target="_top">Back to Tesserae</a>
+		<a style="color:grey;" href="$url{html}/experimental.php" target="_top">Back to Tesserae</a>
 	</div>
 	<div>
 END_HEAD
@@ -381,11 +383,11 @@ sub export_lex {
 	if ($html) {
 		
 		print "<div class=\"index\"><table>\n";
-		print "<tr><th>freq(\%)</th><th>stem</th><th>$feature[0]</th><th>$feature[1]</th></tr>\n";	 
+		print "<tr><th>freq(\%)</th><th>stem</th><th>$feature[0]</th><th>$feature[1]</th><th>$feature[2]</th><th>$feature[3]</th></tr>\n";	 
 	}
 				
-	for my $token (sort {$index{$b} <=> $index{$a}} keys %index) {
-	
+	for my $token (sort keys %index) {
+#	To sort by frequency values reinstate this code:	"for my $token (sort {$index{$b} <=> $index{$a}} keys %index) {" –JG
 		my $template;
 	
 		my $freq = sprintf("%.2f", 100 * $index{$token});
@@ -400,7 +402,7 @@ sub export_lex {
 			
 			print "<td>$freq</td>";
 			print "<td>";
-			print "<a$flag href=\"/cgi-bin/syn-diagnostic-lookup.pl?query=$token\" target=\"right\">";
+			print "<a$flag href=\"$url{cgi}/syn-diagnostic-lookup.pl?query=$token\" target=\"right\">";
 			print $token;
 			print '</a>';
 			print '</td>';
@@ -459,7 +461,7 @@ sub select_list {
 	
 	my $html=<<END;
 	
-	<form action="/cgi-bin/syn-diagnostic-index.pl" target="left" method="post" id="Form1">
+	<form action="$url{cgi}/syn-diagnostic-index.pl" target="left" method="post" id="Form1">
 
 		<select name="target">
 			<option value="*">Full Corpus</option>
@@ -517,10 +519,26 @@ sub init_db {
 				la_1b varchar(22),
 				la_2a varchar(22),
 				la_2b varchar(22),
+				la_3a varchar(22),
+				la_3b varchar(22),				
+				la_4a varchar(22),
+				la_4b varchar(22),				
 				v_1a  int,
 				v_1b  int,
 				v_2a  int,
 				v_2b  int,
+				v_3a  int,
+				v_3b  int,
+				v_4a  int,
+				v_4b  int,
+				w_1a  int,
+				w_1b  int,				
+				w_2a  int,
+				w_2b  int,
+				w_3a  int,
+				w_3b  int,
+				w_4a  int,
+				w_4b  int,
 				auth char(2)
 			);'
 		);

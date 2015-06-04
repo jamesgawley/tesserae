@@ -157,7 +157,7 @@ my $details = details_table();
 # create the three menus for colour assignment
 #
 
-my $form = start_form(-action=>"/cgi-bin/3gr.display.pl")
+my $form = start_form(-action=>"$url_cgi/3gr.display.pl")
 		 . keys_menus()
 		 . submit(-name=>'submit', -value=>'Display')
 		 . end_form();

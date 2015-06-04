@@ -431,7 +431,7 @@ sub html_table {
 	
 	if ($rev) { @order = reverse @order }
 	
-	my $frame = load_template(catfile($fs{html}, "check_recall.html"));
+	my $frame = `php -f $fs{html}/check_recall.php`;
 	
 	my $table_data ="";
 	
@@ -534,7 +534,7 @@ sub html_table {
 
 sub html_no_table {
 				
-	my $frame = load_template(catfile($fs{html}, "check_recall.html"));
+	my $frame = `php -f $fs{html}/check_recall.php`;
 	
 	$frame =~ s/<!--info-->/&info/e; 
 
@@ -545,7 +545,7 @@ sub html_no_table {
 
 sub info {
 		
-	my %sel_feature = (word => "", stem => "", syn=>"", '3gr' => "", trans1 => "", trans2 => "");
+	my %sel_feature = (word => "", stem => "", syn=>"", '3gr' => "", trans1 => "", trans2mws => "");
 	my %sel_stbasis = (corpus => "", target => "", source => "", both => "");
 	my %sel_dibasis = (span => "", span_target => "", span_source => "", 
                       freq => "", freq_target => "", freq_source => "");
@@ -555,7 +555,7 @@ sub info {
 	$sel_stbasis{($meta{STBASIS}||'corpus')} = 'selected="selected"';
 	$sel_dibasis{($meta{DIBASIS}||'freq')}   = 'selected="selected"';
 
-	my $scbasis = $meta{SCBASIS};
+	my $scbasis = $meta{SCORE};
 	if ($scbasis !~ /word|stem/ and $scbasis eq $meta{FEATURE}) { $scbasis = 'feature' }
 	$sel_scbasis{$scbasis} = 'selected="selected"';
 
@@ -569,18 +569,18 @@ sub info {
 	
 	if (Tesserae::lang($name{target}) eq Tesserae::lang($name{source})) {
 	
-		@feature_choices = qw/word stem syn 3gr/;
+		@feature_choices = qw/word stem syn 3gr syn_lem/;
 	}
 	else {
 	
-		@feature_choices = qw/trans1 trans2/;
+		@feature_choices = qw/trans1 trans2mws/;
 	}
 	
 	my $html_feature = join("\n", map { "<option value=\"$_\" $sel_feature{$_}>$_</option>" } @feature_choices);
 
 	my $html = <<END;
 	
-	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
+	<form action="$url{cgi}/read_table.pl" method="post" ID="Form1">
 
 		<h1>Benchmark Recall Test</h1>
 
@@ -647,7 +647,11 @@ sub info {
 				<td>
 					<select name="dibasis">
 						<option value="span"        $sel_dibasis{span}>span</option>
+						<option value="span_target" $sel_dibasis{span_target}>span-target</option>
+						<option value="span_source" $sel_dibasis{span_source}>span-source</option>
 						<option value="freq"        $sel_dibasis{freq}>frequency</option>
+						<option value="freq_target" $sel_dibasis{freq_target}>freq-target</option>
+						<option value="freq_source" $sel_dibasis{freq_source}>freq-source</option>
 					</select>
 				</td>
 			</tr>
@@ -687,7 +691,7 @@ sub re_sort {
 	
 	my $html = <<END;
 	
-	<form action="/cgi-bin/check-recall.pl" method="post" id="Form2">
+	<form action="$url{cgi}/check-recall.pl" method="post" id="Form2">
 		
 		<table>
 			<tr>
@@ -1190,17 +1194,4 @@ sub minitess {
 	$results{seen_keys}     = [keys %seen_keys];
 	
 	return \%results;
-}
-
-sub load_template {
-   my $file = shift;
-   my $html;
-   
-   open (my $fh, "<:utf8", $file) or die "Can't read $file: $!";
-   while (my $line = <$fh>){
-      $html .= $line;
-   }
-   close ($fh);
-   
-   return $html;
 }

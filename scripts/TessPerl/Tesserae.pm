@@ -6,7 +6,6 @@ use Storable qw(nstore retrieve);
 use utf8;
 use Unicode::Normalize;
 use Encode;
-use Config;
 
 require Exporter;
 
@@ -14,7 +13,7 @@ our @ISA = qw(Exporter);
 
 our @EXPORT = qw(%top $apache_user %is_word %non_word $phrase_delimiter %ancillary %fs %url);
 
-our @EXPORT_OK = qw(uniq intersection tcase lcase beta_to_uni alpha stoplist_hash stoplist_array check_prose_list lang escape_path);
+our @EXPORT_OK = qw(uniq intersection tcase lcase beta_to_uni alpha stoplist_hash stoplist_array check_prose_list lang);
 
 our $VERSION = '3.1.0_0';
 
@@ -28,12 +27,6 @@ my ($fs_ref, $url_ref) = read_config(catfile($lib, '..', 'tesserae.conf'));
 
 our %fs  = %$fs_ref;
 our %url = %$url_ref;
-
-# get perl path (copied from example at `perldoc perlvar`)
-our $perl_path = $Config{perlpath};
-if ($^O ne 'VMS') {
-	$perl_path .= $Config{_exe} unless $perl_path =~ m/$Config{_exe}$/i;
-}
 
 # optional modules
 
@@ -133,8 +126,6 @@ sub read_config {
 		chomp $line;
 	
 		$line =~ s/#.*//;
-		$line =~ s/^\s+//;
-		$line =~ s/\s+$//;
 		
 		next unless $line =~ /\S/;
 		
@@ -142,7 +133,7 @@ sub read_config {
 		
 			$section = $1
 		}		
-		elsif ($line =~ /(.*\S)\s*=\s*(\S.*)/) {
+		elsif ($line =~ /(\S+)\s*=\s*(\S+)/) {
 				
 			my ($name, $value) = ($1, $2);
 						
@@ -936,13 +927,5 @@ sub get_base {
 	}
 	
 	return $base;
-}
-
-sub escape_path {
-	
-	my $path = shift;
-	$path =~ s/(\s)/\\$1/g;
-	
-	return $path;
 }
 1;

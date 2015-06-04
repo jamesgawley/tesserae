@@ -6,158 +6,105 @@ read_table.pl - Perform a Tesserae search.
 
 =head1 SYNOPSIS
 
-read_table.pl --target I<target_text> --source I<source_text>
-[OPTIONS]
+B<read_table.pl> B<--target> I<target_text> B<--source> I<source_text> [OPTIONS]
 
 =head1 DESCRIPTION
 
-This script compares two texts in the Tesserae corpus and returns a list of
-"parallels", pairs of textual units which share common features. These
-parallels are organized in a set of hashes which are saved as a binaries
-using Storable. These files, kept together in a directory named for the
-session, can be read and formatted in a user-friendly way with the companion
-script B<read_bin.pl>.
+This script compares two texts in the Tesserae corpus and returns a list of "parallels", pairs of textual units which share common features.  These parallels are organized in a set of hashes which are saved as a binaries using Storable.  These files, kept together in a directory named for the session, can be read and formatted in a user-friendly way with the companion script I<read_bin.pl>.
 
-This script is primarily called as a cgi executable from the web interface.
-Called as a cgi, it creates a new session id for the results and saves them
-to the Tesserae F<tmp/> directory. It then redirects the browser to
-B<read_bin.pl> which mediates viewing the results.
+This script is primarily called as a cgi executable from the web interface.  Called as a cgi, it creates a new session id for the results and saves them to the Tesserae I<tmp/> directory.  It then redirects the browser to I<read_bin.pl> which mediates viewing the results.
 
-It can also be run from the command line. In this case, the results are
-written to a new directory given a user-specified session name (or
-"tesresults" by default).
+It can also be run from the command line.  In this case, the results are written to a new directory given a user-specified session name (or "tesresults" by default).
 
-The names of the source and target texts to be searched must be specified.
-B<Target> means the alluding (more recent) text. B<Source> is the alluded-to
-(earlier) text.
+The names of the source and target texts to be searched must be specified.  B<Target> means the alluding (more recent) text.  B<Source> is the alluded-to (earlier) text.
 
-The name of a text is identical to its filename without the F<.tess>
-extension. For example, our benchmark test is to search for allusions to
-Vergil's Aeneid in Book 1 of Lucan's Bellum Civile. The file containing the
-Aeneid is F<texts/la/vergil.aeneid.tess> and that containing just the first
-book of Pharsalia is
-F<texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess>. Thus, a
-default search, taking Lucan as the alluder and Vergil as the alluded-to, is
-run like this:
+The name of a text is identical to its filename without the C<.tess> extension.  For example, our benchmark test is to search for allusions to Vergil's Aeneid in Book 1 of Lucan's Bellum Civile.  The file containing the Aeneid is I<texts/la/vergil.aeneid.tess> and that containing just the first book of Pharsalia is I<texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess>.  Thus, a default search, taking Lucan as the alluder and Vergil as the alluded-to, is run like this:
 
- % cgi-bin/read_table.pl --source vergil.aeneid \
-                         --target lucan.bellum_civile.part.1
+% cgi-bin/read_table.pl --source vergil.aeneid \	
+                        --target lucan.bellum_civile.part.1
 
-=head1 OPTIONS
+=head1 OPTIONS 
 
 =over
 
-=item --unit <line|phrase>
+=item B<--unit> line|phrase
 
-Specifies the textual units to be compared. Choices currently are
-B<line> (the default) which compares verse lines or B<phrase>, which
-compares grammatical phrases. For now we assume that the punctuation marks
-[.;:?] delimit phrases.
+I<unit> specifies the textual units to be compared.  Choices currently are B<line> (the default) which compares verse lines or B<phrase>, which compares grammatical phrases.  For now we assume that the punctuation marks [.;:?] delimit phrases.
 
-=item --feature <word|stem|syn>
+=item B<--feature> word|stem|syn 
 
-This specifies the features set to match against. B<word> only allows
-matches on forms that are identical. B<stem> (the default), allows matches
-on any inflected form of the same stem. B<syn> matches not only forms of the
-same headword but also other headwords taken to be related in meaning.
-B<stem> and B<syn> only work if the appropriate dictionaries are installed.
+This specifies the features set to match against.  B<word> only allows matches on forms that are identical. B<stem> (the default), allows matches on any inflected form of the same stem. B<syn> matches not only forms of the same headword but also other headwords taken to be related in meaning.  B<stem> and B<syn> only work if the appropriate dictionaries are installed; B<syn> won't work on Greek or English.
 
-=item --stop I<N>
+=item B<--freq_basis> texts|corpus
 
-The number of stop words (stems, etc.) to use. Matches on any of these are
-excluded from results. The stop list is calculated by ordering all the 
-features (see above) in the stoplist basis (see below) by frequency and taking
-the top I<N>. The default is 10.
+This specifies the basis of the frequency metric used by the scoring algorithm.  B<text> (the default), retrieves the frequency of a given stem in the target and source text B<corpus> forces the system to use corpus-wide frequency statistics.
 
-=item --stbasis <corpus|target|source|both>
+=item B<--score> word|stem|feature 
 
-A string indicating the source for the ranked list of features from which the
-stoplist is taken. B<corpus> derives the stoplist from the entire corpus; 
-B<source>, uses only the source; B<target>, only the target; and B<both> (the
-default) uses the source and target but nothing else.
+Also affects which frequency statistics are used by the scoring algorithm.  B<word> uses frequency stats for the appearance of the exact string of characters (in either the corpus or the individual text, as determined by --freqbasis). B<stem> uses stats which are based on the number of times any inflected form of a word appeared in the text (or corpus; see --freqbasis). B<feature> (the default), invokes a lookup table which coordinates feature types with their ideal score bases. NB: it is critical to use this setting when scoring cross-language matches.
 
-=item --dist I<N>
+=item B<--stop> I<stoplist_size>
 
-This sets the maximum distance between matching words. For two units (one in
-the source and one in the target) to be considered a match, each must have
-at least two words common to the other (regardless of the feature on which
-they matched). It's generally true that in good allusions these words are
-close together in both units. Setting the maximum distance to I<N> means
-that matches where the sum of the distances in the two matched phrases
-exceeds I<N> words will be excluded. The default distance is 10. If you don't
-want to limit distance, set I<N> to something bigger than the number of
-tokens in a unit, e.g., 999. Note that adjacent words are considered to
-have a distance of 1, words separated by a single intervening word have a 
-distance of 2, and so on.
+I<stoplist_size> is the number of stop words (stems, etc.) to use.  Matches on any of these are excluded from results.  The stop list is calculated by ordering all the features (see above) in the stoplist basis (see below) by frequency and taking the top I<N>, where I<N>=I<stoplist_size>.  The default is 10.
 
-=item --dibasis <span|freq>
+=item B<--stbasis> corpus|target|source|both
 
-Distance basis is a string indicating the way to calculate the distance
-between matching words in a parallel (matching pair of units). B<span> adds
-together the distance in words between the two farthest-apart words in each
-phrase. The default option is B<freq>, which uses the distance between the
-two words with the lowest frequencies (in their own text only), adding the
-frequency-based distances of the target and source units together.
+Stoplist basis is a string indicating the source for the ranked list of features from which the stoplist is taken.  B<corpus> (the default) derives the stoplist from the entire corpus; B<source>, uses only the source; B<target>, only the target; and B<both> uses the source and target but nothing else.
 
-=item --binary I<name>
+=item B<--dist> I<max_dist>
 
-This is the name to be given to the session. Tesserae will create a new
-directory with this name and save there the Storable binaries containing
-your results. The default is B<tesresults>.
+This sets the maximum distance between matching words.  For two units (one in the source and one in the target) to be considered a match, each must have at least two words common to the other (regardless of the feature on which they matched).  It's generally true that in good allusions these words are close together in both units.  Setting the maximum distance to I<N> means that matches where either unit's matching words are more than I<N> words apart will be excluded. The default distance is 999, which is presumably equivalent to setting no limit. Note that adjacent words are considered to have a distance of 1, words separated by an intervening word have a distance of 2, and so on.
 
-=item --quiet
+=item B<--dibasis> span|span-target|span-source|freq|freq-target|freq-source
+
+Distance basis is a string indicating the way to calculate the distance between matching words in a parallel (matching pair of units).  B<span> adds together the distance in words between the two farthest-apart words in each phrase.  Related to this are B<span-target> which uses the distance between the two farthest-apart words in the target unit only, and B<span-source> which uses the two farthest-apart words in the source unit.  A (probably) better basis is B<freq>, which uses the distance between the two words with the lowest frequencies (in their own text only), adding the frequency-based distances of the target and source units together.  As for B<span>, you can select the frequency-based distance in only one text with B<freq-target> or B<freq-source>.  The default is B<freq>.
+
+=item B<--cutoff> I<score_cutoff>
+
+Each match found by Tesserae is given a score.  Setting a cutoff will cause any match with a score less than this to be dropped from the results.  Default is 0 (presumably equivalent to no cutoff).
+
+=item B<--binary> I<name>
+
+This is the name to be given to the session. Tesserae will create a new directory with this name and save there the Storable binaries containing your results.  The default is I<tesresults>.
+
+=item B<--quiet>
 
 Don't write progress info to STDERR.
 
-=item --help
+=item B<--help>
 
 Print this message and exit.
 
 =back
 
-The values of all these options should be printed to STDERR when you run the
-script from the command-line, and should also be saved with the results.
+The values of all these options should be printed to STDERR when you run the script from the command-line, and should also be saved with the results.
 
 =head1 KNOWN BUGS
 
+Right now the script also prints benchmark information to STDOUT.  This consists of a couple of messages about how many seconds different parts of the script take.  You can't turn it off, but you could always redirect it to /dev/null.
+
+Also, I'm not sure what will happen if you select a feature that hasn't been installed.
+
 =head1 SEE ALSO
 
-B<cgi-bin/read_bin.pl>
+I<cgi-bin/read_table.pl>
 
 =head1 COPYRIGHT
 
-University at Buffalo Public License Version 1.0. The contents of this file
-are subject to the University at Buffalo Public License Version 1.0 (the
-"License"); you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-http://tesserae.caset.buffalo.edu/license.txt.
+University at Buffalo Public License Version 1.0.
+The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
 
-Software distributed under the License is distributed on an "AS IS" basis,
-WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
-the specific language governing rights and limitations under the License.
+Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 
 The Original Code is read_table.pl.
 
-The Initial Developer of the Original Code is Research Foundation of State
-University of New York, on behalf of University at Buffalo.
+The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
 
-Portions created by the Initial Developer are Copyright (C) 2007 Research
-Foundation of State University of New York, on behalf of University at
-Buffalo. All Rights Reserved.
+Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
 
-Contributor(s): Chris Forstall <cforstall@gmail.com>, James Gawley.
+Contributor(s): Neil Coffee, Chris Forstall, James Gawley.
 
-Alternatively, the contents of this file may be used under the terms of
-either the GNU General Public License Version 2 (the "GPL"), or the GNU
-Lesser General Public License Version 2.1 (the "LGPL"), in which case the
-provisions of the GPL or the LGPL are applicable instead of those above. If
-you wish to allow use of your version of this file only under the terms of
-either the GPL or the LGPL, and not to allow others to use your version of
-this file under the terms of the UBPL, indicate your decision by deleting
-the provisions above and replace them with the notice and other provisions
-required by the GPL or the LGPL. If you do not delete the provisions above,
-a recipient may use your version of this file under the terms of any one of
-the UBPL, the GPL or the LGPL.
+Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
 
 =cut
 
@@ -300,6 +247,10 @@ my $max_dist = 999;
 
 my $distance_metric = "freq";
 
+# filter results below a certain score
+
+my $cutoff = 0;
+
 # filter multi-results if passing off to multitext.pl
 
 my $multi_cutoff = 0;                  
@@ -320,9 +271,13 @@ my $help;
 
 my $bench = 0;
 
-# what frequency table to use in scoring
+# what frequency table to use in scoring (distinguishes between word and lemma only)
 
 my $score_basis;
+
+# which data file to use for the frequency metric used in scoring (either the texts or the corpus)
+
+my $freq_basis = 'text';
 
 # which script should mediate the display of results
 
@@ -335,10 +290,12 @@ GetOptions(
 			'unit=s'       => \$unit,
 			'feature=s'    => \$feature,
 			'stopwords=i'  => \$stopwords, 
+			'freq_basis=s'  => \$freq_basis, 			
 			'stbasis=s'    => \$stoplist_basis,
 			'binary=s'     => \$file_results,
 			'distance=i'   => \$max_dist,
 			'dibasis=s'    => \$distance_metric,
+			'cutoff=f'     => \$cutoff,
 			'score=s'      => \$score_basis,
 			'benchmark'    => \$bench,
 			'no-cgi'       => \$no_cgi,
@@ -361,6 +318,8 @@ unless (defined $score_basis)  {
 	$score_basis = $Tesserae::feature_score{$feature} || 'word';
 }
 
+
+
 # html header
 #
 # put this stuff early on so the web browser doesn't
@@ -370,7 +329,7 @@ unless ($no_cgi) {
 
 	print header();
 
-	my $stylesheet = "/css/style.css";
+	my $stylesheet = "$url{css}/style.css";
 
 	print <<END;
 
@@ -449,7 +408,9 @@ else {
 	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
 	$max_dist        = $query->param('dist')         || $max_dist;
 	$distance_metric = $query->param('dibasis')      || $distance_metric;
+	$cutoff          = $query->param('cutoff')       || $cutoff;
 	$score_basis     = $query->param('score')        || $score_basis;
+	$freq_basis     = $query->param('freq_basis')    || $freq_basis;
 	$frontend        = $query->param('frontend')     || $frontend;
 	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
 	@include         = $query->param('include');
@@ -469,10 +430,10 @@ else {
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "/cgi-bin/read_bin.pl?session=$session",
-		recall   => "/cgi-bin/check-recall.pl?session=$session;cache=$recall_cache",
-		fulltext => "/cgi-bin/fulltext.pl?session=$session",
-		multi    => "/cgi-bin/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
+		default  => "$url{cgi}/read_bin.pl?session=$session",
+		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
+		fulltext => "$url{cgi}/fulltext.pl?session=$session",
+		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
 	);
 
 	
@@ -510,7 +471,33 @@ if (Tesserae::check_prose_list($target) or Tesserae::check_prose_list($source)) 
 if ($score_basis =~ /^feat/) {
 
 	$score_basis = $feature;
+	
 }
+
+
+# if the score basis is 'stem' and the frequency basis is 'corpus', then load the dictionaries
+# this is necessary because the corpus-wide frequency stats don't currently include inflected forms.
+
+my %target_dictionary;
+
+my %source_dictionary;
+
+if ($score_basis eq 'stem' and $freq_basis eq 'corpus') {
+
+	# resolve the path to the stem dictionaries
+
+	my $target_dict_file = catfile($fs{data}, 'common', Tesserae::lang($target) . '.stem.cache');
+
+	my $source_dict_file = catfile($fs{data}, 'common', Tesserae::lang($source) . '.stem.cache');	
+
+	# load the storable binaries
+	
+	%target_dictionary = %{retrieve($target_dict_file)};
+
+	%source_dictionary = %{retrieve($source_dict_file)};	
+
+}
+
 
 # print all params for debugging
 
@@ -526,6 +513,8 @@ unless ($quiet) {
 	print STDERR "stoplist basis=$stoplist_basis\n";
 	print STDERR "max_dist=$max_dist\n";
 	print STDERR "distance basis=$distance_metric\n";
+	print STDERR "score cutoff=$cutoff\n";
+	print STDERR "frequency basis=$freq_basis\n";
 	print STDERR "score basis=$score_basis\n";
 }
 
@@ -536,13 +525,45 @@ unless ($quiet) {
 
 # token frequencies from the target text
 
-my $file_freq_target = select_file_freq($target) . ".freq_score_" . $score_basis;
+my $file_freq_target;
+unless ($freq_basis =~ /^corp/) {
+
+	# by default, the frequency of the words or lemmas is drawn from the text in question
+	
+	$file_freq_target = select_file_freq($target) . ".freq_score_" . $score_basis;
+	
+}
+else {
+
+	# if the $freq_basis is set to corpus, the files which provide frequency stats are replaced with the corpus-wide versions.
+
+	$file_freq_target = catfile($fs{data}, 'common', Tesserae::lang($target) . '.' . $score_basis . '.freq');
+
+}
+
 my %freq_target = %{Tesserae::stoplist_hash($file_freq_target)};
 
 # token frequencies from the source text
 
-my $file_freq_source = select_file_freq($source) . ".freq_score_" . $score_basis;
+my $file_freq_source;
+
+unless ($freq_basis =~ /^corp/) {
+
+	$file_freq_source = select_file_freq($source) . ".freq_score_" . $score_basis;
+	
+}
+else {
+
+	# this should allow target and source to use different corpus-frequency hashes based on respective language.
+
+	$file_freq_source = catfile($fs{data}, 'common', Tesserae::lang($source) . '.' . $score_basis . '.freq')
+	
+}
+
 my %freq_source = %{Tesserae::stoplist_hash($file_freq_source)};
+
+#print STDERR "Source frequency file = $file_freq_source. Size = " . scalar(keys %freq_source) . "\n";
+#print STDERR "Target frequency file = $file_freq_target. Size = " . scalar(keys %freq_target) . "\n";
 
 #
 # basis for stoplist is feature frequency from one or both texts
@@ -771,7 +792,14 @@ for my $unit_id_target (keys %match_target) {
 		# score
 		
 		my $score = score_default($match_target{$unit_id_target}{$unit_id_source}, $match_source{$unit_id_target}{$unit_id_source}, $distance);
-				
+								
+		if ( $score < $cutoff) {
+
+			delete $match_target{$unit_id_target}{$unit_id_source};
+			delete $match_source{$unit_id_target}{$unit_id_source};
+			next;			
+		}
+		
 		# save calculated score, matched words, etc.
 		
 		$match_score{$unit_id_target}{$unit_id_source} = $score;
@@ -807,6 +835,7 @@ my %match_meta = (
 	DIST      => $max_dist,
 	DIBASIS   => $distance_metric,
 	SESSION   => $session,
+	CUTOFF    => $cutoff,
 	SCBASIS   => $score_basis,
 	COMMENT   => $feature_notes{$feature},
 	VERSION   => $Tesserae::VERSION,
@@ -886,7 +915,20 @@ sub dist {
 	
 		# sort target token ids by frequency of the forms
 		
-		my @t = sort {$freq_target{$token_target[$a]{FORM}} <=> $freq_target{$token_target[$b]{FORM}}} @target_id; 
+		my @t;
+		
+		unless ($freq_basis eq 'corpus' and $score_basis eq 'stem') {
+	
+			@t = sort {$freq_target{$token_target[$a]{FORM}} <=> $freq_target{$token_target[$b]{FORM}}} @target_id;
+	
+		}
+		else {
+		
+			# if frequency values are supposed to be stem-based and corpus-wide, invoke the stem-averaging subroutine
+		
+			@t = sort {stem_frequency($token_target[$a]{FORM}, 'target') <=> stem_frequency($token_target[$b]{FORM}, 'target')} @target_id;
+			
+		}
 			      
 		# consider the two lowest;
 		# put them in order from left to right
@@ -903,7 +945,18 @@ sub dist {
 			
 		# now do the same in the source phrase
 			
-		my @s = sort {$freq_source{$token_source[$a]{FORM}} <=> $freq_source{$token_source[$b]{FORM}}} @source_id; 
+		my @s;
+		
+		unless ($freq_basis eq 'corpus' and $score_basis eq 'stem') {
+			
+			@s = sort {$freq_source{$token_source[$a]{FORM}} <=> $freq_source{$token_source[$b]{FORM}}} @source_id; 
+
+		} 
+		else {
+
+			@s = sort {stem_frequency($token_source[$a]{FORM}, 'source') <=> stem_frequency($token_source[$b]{FORM}, 'source')} @source_id; 
+			
+		}
 		
 		if ($s[0] > $s[1]) { @s[0,1] = @s[1,0] }
 			
@@ -1071,8 +1124,6 @@ sub exact_match {
 sub score_default {
 	
 	my ($match_t_ref, $match_s_ref, $distance) = @_;
-	
-	if ($distance == 0) { return -1; }
 
 	my %match_target = %$match_t_ref;
 	my %match_source = %$match_s_ref;
@@ -1083,7 +1134,21 @@ sub score_default {
 									
 		# add the frequency score for this term
 		
-		my $freq = 1/$freq_target{$token_target[$token_id_target]{FORM}}; 
+		# if $freq_basis is set to corpus and $score_basis is set to stem
+		# retrieve the stem array and take the average frequency value of all possibilities
+		
+		my $freq;
+		
+		unless ($score_basis eq 'stem' and $freq_basis eq 'corpus') {
+		
+			$freq = 1/$freq_target{$token_target[$token_id_target]{FORM}}; 
+		
+		} 
+		else {
+		
+			$freq = 1/stem_frequency($token_target[$token_id_target]{FORM}, 'target');
+		
+		}
 				
 		# for 3-grams only, consider how many features the word matches on
 				
@@ -1099,8 +1164,18 @@ sub score_default {
 
 		# add the frequency score for this term
 
-		my $freq = 1/$freq_source{$token_source[$token_id_source]{FORM}};
+		my $freq;
 		
+		unless ($score_basis eq 'stem' and $freq_basis eq 'corpus') {
+		
+			$freq = 1/$freq_source{$token_source[$token_id_source]{FORM}};
+		
+		}
+		else {
+		
+			$freq = 1/stem_frequency($token_source[$token_id_source]{FORM}, 'source');
+		
+		}
 		# for 3-grams only, consider how many features the word matches on
 				
 		if ($feature eq '3gr') {
@@ -1164,4 +1239,62 @@ sub select_file_freq {
 	);
 	
 	return $file_freq;
+}
+
+# take an inflected form, and return the average corpus-wide frequency value of the associated stems
+
+sub stem_frequency {
+	
+	my ($form, $text) = @_;
+	
+	# this subroutine is agnostic of language but must be fed the appropriate text (target or source)
+	
+	my $average;
+		
+	if ($text eq 'target') {
+	
+		# load all possible stems
+	
+		my @stems = @{$target_dictionary{$form}};
+	
+		# retrieve corpus-wide frequency values for each stem
+	
+		my $freq_values;
+	
+		for (0..$#stems) {
+		
+			$freq_values += $freq_target{$stems[$_]};
+		
+		}
+	
+		# average the frequencies
+	
+		$average = $freq_values / (scalar @stems);
+		
+	}
+	else {
+	
+		# load all possible stems
+	
+		my @stems = @{$source_dictionary{$form}};
+	
+		# retrieve corpus-wide frequency values for each stem
+	
+		my $freq_values;
+	
+		for (0..$#stems) {
+		
+			$freq_values += $freq_source{$stems[$_]};
+		
+		}
+	
+		# average the frequencies
+	
+		$average = $freq_values / (scalar @stems);
+		
+	}
+	
+	
+	return $average;
+
 }

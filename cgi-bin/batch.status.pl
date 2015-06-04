@@ -316,7 +316,7 @@ sub html_top {
 		<title>Tesserae Batch Results</title>
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin" />
 		<!-- $refresh_link -->
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="$url{css}/style.css" />
 		<style type="text/css">
 			div.container {
 				margin: 10px auto;
@@ -391,7 +391,7 @@ sub html_status {
 							. "one moment while we prepare your results.",
 		FINISHED   => "Your results are ready to download!",
 		CANCELLED  => "This session has been cancelled. Please "
-							. "<a href=\"/batch.php\">start over</a>. ",		
+							. "<a href=\"$url{html}/batch.php\">start over</a>. ",		
 		DNE        => "The session you're looking for can't be found."
 						   . "Please try again."
 	);
@@ -457,7 +457,7 @@ sub html_results {
 	}
 			
 	my $form_txt = <<END;
-		<form action="/cgi-bin/batch.dl.pl" method="get" id="FormDlTxt">
+		<form action="$url{cgi}/batch.dl.pl" method="get" id="FormDlTxt">
 			<input type="hidden" name="session"  value="$session"        />
 			$dl_txt
 			<input type="submit" class ="btn" name="BtnDlTxt" value="Download Plain Text" />
@@ -465,7 +465,7 @@ sub html_results {
 END
 
 	my $form_db = <<END; 
-		<form action="/cgi-bin/batch.dl.pl" method="get" id="FormDlDb">
+		<form action="$url{cgi}/batch.dl.pl" method="get" id="FormDlDb">
 			<input type="hidden" name="session"  value="$session"       />
 			<input type="hidden" name="dl"       value="sqlite.db"      />
 			<input type="submit" class = "btn" name="BtnDlDb" value="Download SQLite DB" />
@@ -482,7 +482,7 @@ sub html_cancel {
 	my $dequeue = defined $status ? 0 : 1;
 	
 	my $html = <<END;
-		<form action="/cgi-bin/batch.kill.pl" method="post" id="FormKill">
+		<form action="$url{cgi}/batch.kill.pl" method="post" id="FormKill">
 			<input type="hidden" name="session" value="$session"  />
 			<input type="hidden" name="dequeue" value="$dequeue" />
 			<input type="submit" class = "btn" name="BtnKill" value="Cancel" />
@@ -497,7 +497,7 @@ sub html_refresh {
 	my $session = shift;
 
 	my $html = <<END;
-		<form action="/cgi-bin/batch.status.pl" method="get" id="FormRefresh">
+		<form action="$url{cgi}/batch.status.pl" method="get" id="FormRefresh">
 			<input type="hidden" name="session" value="$session"    />
 			<input type="submit" class="btn" name="BtnRefresh" value="Refresh" />
 		</form>

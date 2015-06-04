@@ -36,7 +36,7 @@ Return N results for each key; default is 2.
 
 Export scores along with translation candidates.
 
-=item B<--echo>
+item B<--echo>
 
 Echo results to stderr.
 
@@ -160,7 +160,7 @@ my $max_results = 2;
 my $export_scores = 0;
 my $echo = 0;
 
-for my $lang (qw/la grc/) {
+for my $lang qw/la grc/ {
 
 	$file{$lang} = catfile($fs{data}, 'synonymy', "${lang}.nt_parallel.tess");
 }

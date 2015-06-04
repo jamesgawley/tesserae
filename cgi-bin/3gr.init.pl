@@ -137,7 +137,7 @@ my %lang = %{retrieve($file_lang)};
 
 my $cgi = CGI->new() || die "$!";
 my $session;
-my $redirect = "/cgi-bin/3gr.display.pl";
+my $redirect = "$url{cgi}/3gr.display.pl";
 
 my $no_cgi = defined($cgi->request_method()) ? 0 : 1;
 
@@ -152,7 +152,7 @@ unless ($no_cgi) {
 
 	print header(-cookie=>$cookie, -encoding=>"utf8");
 	
-	my $stylesheet = "/css/style.css";
+	my $stylesheet = "$url{css}/style.css";
 
 	print <<END;
 

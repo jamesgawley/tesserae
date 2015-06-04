@@ -1,19 +1,18 @@
 ﻿#!/usr/bin/env perl
 
+
 =head1 NAME
 
 doc_gen.pl - Generate the HTML formatted documentation for Tesserae.
 
 =head1 SYNOPSIS
 
-doc_gen.pl [options]
+doc_gen.pl [options] 
 
 =head1 DESCRIPTION
 
-This script should be run after configure.pl. It seeks out the script folder
-and all expected subdirectories looking for scripts with POD documentation in
-their headers. Then it creates a folder inside tesserae/doc/ where it stores
-HTML versions of these descriptions.
+This script should be run after configure.pl. It seeks out the script folder and all expected subdirectories looking for scripts with POD documentation in their headers. Then it creates a folder inside tesserae/doc/ where it stores HTML versions of these descriptions.
+
 
 =head1 OPTIONS AND ARGUMENTS
 
@@ -31,42 +30,22 @@ Print usage and exit.
 
 =head1 COPYRIGHT
 
-University at Buffalo Public License Version 1.0. The contents of this file
-are subject to the University at Buffalo Public License Version 1.0 (the
-"License"); you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-http://tesserae.caset.buffalo.edu/license.txt.
+University at Buffalo Public License Version 1.0.
+The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
 
-Software distributed under the License is distributed on an "AS IS" basis,
-WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
-the specific language governing rights and limitations under the License.
+Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 
 The Original Code is doc_gen.pl.
 
-The Initial Developer of the Original Code is Research Foundation of State
-University of New York, on behalf of University at Buffalo.
+The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
 
-Portions created by the Initial Developer are Copyright (C) 2007 Research
-Foundation of State University of New York, on behalf of University at
-Buffalo. All Rights Reserved.
+Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
 
 Contributor(s): James Gawley
 
-Alternatively, the contents of this file may be used under the terms of
-either the GNU General Public License Version 2 (the "GPL"), or the GNU
-Lesser General Public License Version 2.1 (the "LGPL"), in which case the
-provisions of the GPL or the LGPL are applicable instead of those above. If
-you wish to allow use of your version of this file only under the terms of
-either the GPL or the LGPL, and not to allow others to use your version of
-this file under the terms of the UBPL, indicate your decision by deleting the
-provisions above and replace them with the notice and other provisions
-required by the GPL or the LGPL. If you do not delete the provisions above, a
-recipient may use your version of this file under the terms of any one of the
-UBPL, the GPL or the LGPL.
+Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
 
 =cut
-
-
 
 use strict;
 use warnings;
@@ -138,20 +117,15 @@ use Pod::Usage;
 
 # load additional modules necessary for this script
 
-use XML::LibXML;
-use Pod::Simple::HTML;
 
 # initialize some variables
 
 my $help = 0;
-my $quiet = 0;
 
 # get user options
 
 GetOptions(
-	'help'  => \$help,
-   'quiet' => \$quiet
-);
+	'help'  => \$help);
 
 #
 # print usage if the user needs help
@@ -164,300 +138,120 @@ if ($help) {
 }
 
 #Initialize filepath variables for the documents and scripts folders.
-my @perl_scripts = match_files(qr/\.pl$/, $fs{script}, $fs{cgi});
-my @pod_standalone = match_files(qr/\.pod$/, catfile($fs{doc}, "pod"));
+my $scripts_folder = catfile($fs{script});
+my $doc_folder = catfile($fs{doc});
+my $phpfile = catfile($fs{html}, 'help_scripts.php');
 
-# Initialize a hash which will translate file paths to unique integer ids
-# used to store help info
-my %id;
+#Make the string which will become the main help page.
+my $php = <<END;
+<?php include "first.php"; ?>
+<?php include "nav_search.php"; ?>
+</div>
+<div id="main">
 
-# build html documentation
+	<h1>Code Documentation</h1>
+	<p>
+	This document is designed to help users of the home-version of Tesserae to install, use, and modify the tool as needed. The project code can be found at <a href="github.com/tesserae/tesserae">github.com/tesserae/tesserae</a>.
+	</p>
+	<h2>Navigating the Folders</h2>
+	<p><b>cgi-bin:</b> This folder contains scripts that are read when finding and displaying search results online. The scripts read the user’s specified target and source text data, identify meaningful instances of intertextuality, and display the results online. These scripts make up the core part of a Tesserae search request. </p>
 
-for my $file_in (@perl_scripts, @pod_standalone) {
+<p><b>css:</b> This folder contains files that set the environment (such as color, font, spacing, etc.) for search results displayed online.</p>
 
-   my $html = generate_html($file_in);
-   unless ($html) {
-      warn "$file_in generated no html documentation";
-      next;
-   }
+<p><b>data</b>: This folder contains permanent data generated in the install process. 
+<ul>
+<li>The batch folder is populated by one of the steps in the batch processing system, which allows multiple features to be run at once. 
+<li>The bench folder contains pre-run data for test sets, Aeneid/Iliad and BC/Aeneid. The common folder contains frequently used files such as Greek and Latin dictionaries, tools for recognizing and storing word stems during a search, abbreviation lists, stop words lists, etc. Many scripts in the Tesserae program access these files regularly. 
+<li>The synonymy folder contains files with Latin and Greek synonym lists from the New Testament comparisons. These files are used by the trans1 and trans2 features. 
+<li>The v3 folder (referring to version three of the Tesserae project) contains the core data files for individual texts. After running the full install process as detailed above, the user should see at least two subfolders here, grc and la. 
+<li> The Greek and Latin folders contain a large number of folders organized by author in the format author.name_of_work. Each work has nine specific data files as follows:
+	<ul><li>author.name_of_work.freq_score_stem – Each stem in the text is stored with a frequency statistic calculated by the number of times that stem appears in that author’s corpus divided by the total number of stems in the author’s corpus.
+	<li>author.name_of_work.freq_score_word - Each exact word in the text is stored with a frequency statistic calculated by the number of times that exact word appears in that author’s corpus divided by the total number of words in the author’s corpus.
+	<li>author.name_of_work.freq_stop_stem – Frequency statistics for stop word stems (ie, common stems that are not considered to make meaningful allusions).
+	<li>author.name_of_work.freq_stop_word - Frequency statistics for exact stop words (ie, common words that are not considered to make meaningful allusions).
+	<li>author.name_of_work.index_stem – An index of each stem and its location in the text.
+	<li>author.name_of_work.index_word – An index of each exact word and its location in the text.
+	<li>author.name_of_work.line  - A hash of the lines in which each stem appears.
+	<li>author.name_of_work.phrase – A hash of the phrases (sentences) in which each stem appears. 
+	<li>author.name_of_work.token – A hash of the locations of each word as it appears with its original markers such as capitalization.  
+</ul></ul></p>
 
-   $id{$file_in} = scalar(keys %id);
+<p><b>doc</b>: This folder contains files with project documentation and user instructions.</p>
 
-   my $file_out = catfile($fs{doc}, "html", $id{$file_in} . ".html");
+<p><b>html</b>: This folder contains files that run the web interface of the Tesserae home page. </p>
 
-   my $fh;
-   unless (open ($fh, ">:utf8", $file_out)) {
-      warn "Can't write $file_out: $!";
-      next;
-   }
-   
-   print STDERR "writing $file_out\n";
-   
-   print $fh $html;
-   close ($fh);
-}
+<p><b>images</b>: This folder contains a collection of frequently used pictures such as logos, web banners, etc. </p>
 
-# create html index page (script documentation)
-{
-   
-   my $scripts_index = toc2html(build_toc(\@perl_scripts, 
-      {base=>$fs{root}}));
-   
-   my $html = html_index_template($scripts_index);
+<p><b>scripts</b>:<ul>
+END
 
-   my $file_out = catfile($fs{doc}, "html", "index.html");
 
-   open (my $fh, ">:utf8", $file_out) or die "Can't write $file_out: $!";
-   print $fh $html;
-   close $fh;      
-}      
- 
-# create help nav menu (general topics)
-{
-   my $general_index = toc2html(build_toc(\@pod_standalone, 
-      {flat=>1}), {pretty=>1});
-   
-   my $html = html_nav_template($general_index);
+#Initialize a hash which will contain the script names and the link addresses
+my %toc;
 
-   my $file_out = catfile($fs{doc}, "html", "nav_help.html");
+#Glob the contents of the scripts folder
+my @file_array = <$scripts_folder/*>;
 
-   open (my $fh, ">:utf8", $file_out) or die "Can't write $file_out: $!";
-   print $fh $html;
-   close $fh;
-}
+foreach my $file (@file_array) {
+	if ($file =~ /\.pl$/) { #Make sure we're working on a PERL Script.
+	
+		my $html_file = $file;
+		$html_file =~ s/(.+)\/(.+)\.pl$/$2\.html/; #Regular expression creates the name of the PERL file
+	
+		#Use the terminal to call pod2html, which is included with PERL 5 distributions.
+		system ("pod2html --infile=$file --outfile=$doc_folder/$html_file --quiet");
+		
+		$toc{"$2.pl"} = "../doc/html/$html_file";
+	
+	}
+	if (-d $file) { #if the file is actually a directory, go through the directory but dump HTML files to the same doc folder.
+	
+		my @dir_contents = <$file/*>;
+	
+		foreach my $dir_file (@dir_contents) {
+	
+			if ($dir_file =~ /\.pl$/) { #Again, make sure we're working on a PERL Script.
+				my $html_file = $dir_file;
+				$html_file =~ s/(.+)\/(.+)\.pl$/$2\.html/;
+				system ("pod2html --infile=$dir_file --outfile=$doc_folder/$html_file --quiet");
 
-#
-# subroutines
-#
-
-sub match_files {
-   # recursively search specified directories for files
-   # matching a regular expression
-
-   my ($re, @dir) = @_;
-   
-   my @match;
-   
-   for my $dir (@dir) {
-      print STDERR "checking $dir\n" unless $quiet;
-      
-      opendir(my $dh, $dir) or die "Can't read $dir: $!";
-      
-      my @files = grep {$_ !~ /^\./} readdir($dh);
-      @files = map {catfile($dir, $_)} @files;
-      
-      for my $file (@files) {
-         if (-d $file) {
-            push @match, match_files($re, $file);
-         }
-         else {
-            if ($file =~ $re) {
-               push @match, $file;
-            }
-         }
-      }
-      
-      closedir($dh);
-   }
-   
-   return @match;
-}
-
-sub build_toc {
-   # build a table of contents organized by path
-
-   my ($file_ref, $opt_ref) = @_; 
-   my @files = @$file_ref;
-   my %opt;
-   if (defined $opt_ref) {
-      %opt = %$opt_ref;
-   }
-
-   my %toc;
-
-   for my $full_path (@files) {
-      # ignore files that didn't generate html documentation
-      
-      next unless defined $id{$full_path};
-      
-      # add file path to table of contents
-      
-      my ($vol, $dir, $file) = File::Spec->splitpath($full_path);
-   
-      if ($opt{flat}) {
-         # in flat mode, just index the file under its name,
-         # ignoring path and .pod extension, if any
-         $toc{$file} = $full_path;
-         
-      } else {
-         # otherwise, store nested directories in order
-   
-         if ($opt{base}) {
-            $dir =~ s/^$opt{base}//;
-         }
-                  
-         my @dir = File::Spec->splitdir($dir);
-                  
-         if ($dir[0] eq "") { 
-            shift @dir;
-         }
-         if ($dir[-1] eq "") {
-            pop @dir;
-         }
-         
-         my $ref = \%toc;
-
-         for my $key (@dir) {
-            unless (exists $ref->{$key}) {
-               $ref->{$key} = {};
-            }
-            $ref = $ref->{$key};
-         }
-
-         $ref->{$file} = $full_path;
-      }
-   }
-   
-   return \%toc;
+				$toc{"$2.pl"} = "../doc/html/$html_file";
+			}
+	
+		}
+	}
 }
 
 
-sub toc2html {
-   # recursive function to turn table of contents into a 
-   # nested <ul> list of links
+#Create the index of documents
 
-   my ($toc_ref, $opt_ref) = @_;
-   
-   my %toc = %$toc_ref;
-   my %opt;
-   if (defined $opt_ref) {
-      %opt=%$opt_ref;
-   }
-      
-   my $ul = "<ul>";
-   
-   for my $key (sort keys %toc) {
+foreach my $script (sort keys %toc) {
+	$php .= "\n<li><a href='$toc{$script}'>$script</a>\n";
 
-      my $display = $key;
-      if ($opt{pretty}) {
-         $display =~ s/\.pod$//;
-         $display =~ s/^\d+\.//;
-         $display =~ s/_/ /g;
-         $display =~ s/\b([a-z])/uc($1)/eg;
-      }
-      
-      my $li;
-      
-      if (ref($toc{$key}) eq "HASH") {
-         # if the entry corresponds to a nested subdirectory, 
-         # call this function again recursively
-         
-         $li .= "<li>$display/</li>";
-         $li .= "<li>";
-         $li .= toc2html($toc{$key});
-         $li .= "</li>";
-         
-      } else {
-         # if the entry corresponds to a help file, add it
-         
-         my $id = $id{$toc{$key}};
-         
-         $li .= "<li>";
-         $li .= "<a id=\"doc_$id\" href=\"$url{doc}/$id.html\">";
-         $li .= $display;
-         $li .= "</a>";
-         $li .= "</li>";         
-      } 
-      
-      $ul .= $li;
-   }
-   
-   $ul .= "</ul>";
-  
-   return $ul;
 }
 
+my $php2 = <<END;
 
-sub generate_html {
-   # use Pod::Simple::HTML to generate web page from pod
-   
-   my $file = shift;
-   
-   $Pod::Simple::HTML::Content_decl = q{<meta charset="UTF-8" >};
-   my $p = Pod::Simple::HTML->new;
-   
-   $p->html_css('/css/doc.css');
-   
-   my $html;
-   $p->output_string(\$html);
-   
-   $p->parse_file($file);
-   
-   return $html;
-}
+</ul></p>
 
+<p><b>texts</b>: This folder contains specially formatted text files that are ready to be run in a search. Each work is a separate .tess file; larger works are also split into separate files for each book. The structure of this folder is parallel to that of the data/v3 folder.</p> 
 
-sub transform_html {
-   # parse default generated html and extract just the body,
-   # repackaged as a <div> element
-   
-   my $html = shift;
-   
-   my $dom = XML::LibXML->load_html(string=>$html);
-   
-   my $div = $dom->createElement("div");
-   # $div->setAttribute("class", "pod");
-     
-   my $body = $dom->findnodes("//body")->get_node(1);
-   for my $child ($body->childNodes()) {
-      # skip comments
-      next if $child->nodeType == 8;
-      
-      # otherwise, clone children
-      $div->appendChild($child->cloneNode(1));
-   }
- 
-   return $div->toString();
-}
+<p><b>tmp</b>: This folder is where temporary output is stored. It behaves like a scratchpad for Tesserae while a search is running. If the user stops a search in the middle of processing, files besides err.log, output.txt, temporary-session.xml, and tmp.csv (these are all template files) must be deleted.</p>
 
+<p><b>xsl</b>: This folder contains files which read .xml files for web display <p/>
 
-sub html_index_template {
-   # generate html index file
-   
-   my $index = shift;
-   
-   my $html = <<END_HTML;
-<!DOCTYPE html>
-<html>
-   <head>
-      <meta charset="UTF-8">
-      <title>Tesserae Documentation</title>
-      <link rel="stylesheet" href="$url{css}/doc.css" type="text/css" />
-      <style type="text/css">
-         div.scripts ul {
-            list-style-type: none;
-         }
-      </style>
-   </head>
-   <body>
-   <div class="scripts">
-      <h1>Code Documentation</h1>
-      $index
-   </div>
-   </body>
-</html>
+				
+</div>
 
-END_HTML
+<?php include "last.php"; ?>
+END
 
-   return $html;
-}
+$php = $php . $php2;
 
-sub html_nav_template {
-   # nav help menu
-   
-   my $index = shift;
-   
-   my $html = "<ul>\n$index\n</ul>\n";
-   
-   return $html;
+open (HELP, ">$phpfile") or die $!;
+print HELP $php;
+
+# this temp file gets created by the pod2html process
+if (-e "pod2htmd.tmp") {
+	unlink "pod2htmd.tmp";
 }
