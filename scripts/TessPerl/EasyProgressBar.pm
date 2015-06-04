@@ -12,24 +12,24 @@ package ProgressBar;
 sub new {
 	my $self = {};
 	
-	shift;
-	
-	my $terminus = shift || die "ProgressBar->new() called with no final value";
-	
-	$self->{END} = $terminus;
-	
-	my $quiet = shift || 0;
-	
-	$self->{COUNT}    = 0;
+	my ($package, $terminus, $quiet) = @_;
+    	
+	$self->{END} = ($terminus || 0);
+	$self->{COUNT} = 0;
 	$self->{PROGRESS} = 0;
-	$self->{DONE}     = 0;
-	$self->{T0}       = time;
-	$self->{QUIET}    = $quiet;
+	$self->{DONE} = 0;
+	$self->{T0} = time;
+	$self->{QUIET} = ($quiet || 0);
 	
 	bless($self);
 	
 	$self->draw();
-		
+	
+    unless ($terminus) {
+        warn "ProgressBar->new() called with no final value" unless $quiet;
+        $self->finish;
+    }
+    
 	return $self;
 }
 
@@ -128,18 +128,14 @@ package HTMLProgress;
 sub new {
 	my $self = {};
 	
-	shift;
-	
-	my $terminus = shift;
+	my ($package, $terminus, $quiet) = @_;
 	
 	$self->{END} = $terminus;
 	
-	my $quiet = shift || 0;
-	
-	$self->{COUNT}    = 0;
+	$self->{COUNT} = 0;
 	$self->{PROGRESS} = 0;
-	$self->{QUIET}    = $quiet;
-	$self->{DONE}     = 0;
+	$self->{QUIET} = ($quiet || 0);
+	$self->{DONE} = 0;
 	
 	bless($self);
 	

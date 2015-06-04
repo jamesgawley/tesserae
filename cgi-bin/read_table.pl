@@ -324,26 +324,38 @@ my $bench = 0;
 
 my $score_basis;
 
+# subset text units to search
+
+my $mask_target_first;
+my $mask_target_last;
+my $mask_source_first;
+my $mask_source_last;
+
 # which script should mediate the display of results
 
 my $frontend = 'default';
 my %redirect;
 
 GetOptions( 
-			'source=s'     => \$source,
-			'target=s'     => \$target,
-			'unit=s'       => \$unit,
-			'feature=s'    => \$feature,
-			'stopwords=i'  => \$stopwords, 
-			'stbasis=s'    => \$stoplist_basis,
-			'binary=s'     => \$file_results,
-			'distance=i'   => \$max_dist,
-			'dibasis=s'    => \$distance_metric,
-			'score=s'      => \$score_basis,
-			'benchmark'    => \$bench,
-			'no-cgi'       => \$no_cgi,
-			'quiet'        => \$quiet,
-			'help'         => \$help);
+	'source=s' => \$source,
+	'target=s' => \$target,
+	'unit=s' => \$unit,
+	'feature=s' => \$feature,
+	'stopwords=i' => \$stopwords, 
+	'stbasis=s' => \$stoplist_basis,
+	'binary=s' => \$file_results,
+	'distance=i' => \$max_dist,
+	'dibasis=s' => \$distance_metric,
+	'score=s' => \$score_basis,
+	'benchmark' => \$bench,
+	'no-cgi' => \$no_cgi,
+    'mask-target-first=i' => \$mask_target_first,
+    'mask-target-last=i' => \$mask_target_last,
+    'mask-source-first=i' => \$mask_source_first,
+    'mask-source-last=i' => \$mask_source_last,                        
+	'quiet' => \$quiet,
+	'help' => \$help
+);
 
 #
 # print usage info if help flag set
@@ -441,19 +453,23 @@ if ($no_cgi) {
 }
 else {
 
-	$source          = $query->param('source');
-	$target          = $query->param('target');
-	$unit            = $query->param('unit')         || $unit;
-	$feature         = $query->param('feature')      || $feature;
-	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
-	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
-	$max_dist        = $query->param('dist')         || $max_dist;
-	$distance_metric = $query->param('dibasis')      || $distance_metric;
-	$score_basis     = $query->param('score')        || $score_basis;
-	$frontend        = $query->param('frontend')     || $frontend;
-	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
-	@include         = $query->param('include');
-	$recall_cache    = $query->param('recall_cache') || $recall_cache;
+	$source = $query->param('source');
+	$target = $query->param('target');
+	$unit = $query->param('unit') || $unit;
+	$feature = $query->param('feature') || $feature;
+	$stopwords = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
+	$stoplist_basis = $query->param('stbasis') || $stoplist_basis;
+	$max_dist = $query->param('dist') || $max_dist;
+	$distance_metric = $query->param('dibasis') || $distance_metric;
+	$score_basis = $query->param('score') || $score_basis;
+	$frontend = $query->param('frontend') || $frontend;
+	$multi_cutoff = $query->param('mcutoff') || $multi_cutoff;
+	@include = $query->param('include');
+	$recall_cache = $query->param('recall_cache') || $recall_cache;
+    $mask_target_first = $query->param('mask_target_first');
+    $mask_target_last = $query->param('mask_target_last');
+    $mask_source_first = $query->param('mask_source_first');
+    $mask_target_first = $query->param('mask_source_last');
 	
 	unless (defined $source) {
 	
@@ -518,8 +534,8 @@ unless ($quiet) {
 
 	print STDERR "target=$target\n";
 	print STDERR "source=$source\n";
-	print STDERR "lang(target)=" . Tesserae::lang($target) . ";\n";
-	print STDERR "lang(source)=" . Tesserae::lang($source) . ";\n";		
+	print STDERR "lang(target)=" . Tesserae::lang($target) . "\n";
+	print STDERR "lang(source)=" . Tesserae::lang($source) . "\n";		
 	print STDERR "feature=$feature\n";
 	print STDERR "unit=$unit\n";
 	print STDERR "stopwords=$stopwords\n";
@@ -581,6 +597,30 @@ my @unit_target    = @{ retrieve("$file_target.$unit") };
 my %index_target   = %{ retrieve("$file_target.index_$feature" ) };
 
 #
+# validate masks
+#
+
+unless (defined $mask_target_first and $mask_target_first > 0) {
+    $mask_target_first = 0;
+}
+unless (defined $mask_target_last and $mask_target_last <= $#token_target) {
+    $mask_target_last = $#token_target;
+}
+unless (defined $mask_source_first and $mask_source_first > 0) {
+    $mask_source_first = 0;
+}
+unless (defined $mask_source_last and $mask_source_last <= $#token_source) {
+    $mask_source_last = $#token_source;
+}
+
+
+print STDERR "mask_target_first=" . ($mask_target_first || "none") . "\n";
+print STDERR "mask_target_last=" . ($mask_target_last || "none") . "\n";
+print STDERR "mask_source_first=" . ($mask_source_first || "none") . "\n";
+print STDERR "mask_source_last=" . ($mask_source_last || "none") . "\n";
+
+
+#
 #
 # this is where we calculated the matches
 #
@@ -632,11 +672,15 @@ for my $key (keys %index_source) {
 
 	# link every occurrence in one text to every one in the other text
 
-	for my $token_id_target ( @{$index_target{$key}} ) {
+	for my $token_id_target ( @{$index_target{$key}} ) {        
+        next if $token_id_target < $mask_target_first;
+        next if $token_id_target > $mask_target_last;
 
 		my $unit_id_target = $token_target[$token_id_target]{uc($unit) . '_ID'};
 		
 		for my $token_id_source ( @{$index_source{$key}} ) {
+            next if $token_id_source < $mask_source_first;
+            next if $token_id_source > $mask_source_last;
 
 			my $unit_id_source = $token_source[$token_id_source]{uc($unit) . '_ID'};
 			
@@ -797,20 +841,24 @@ $t1 = time;
 
 my %match_meta = (
 
-	SOURCE    => $source,
-	TARGET    => $target,
-	UNIT      => $unit,
-	FEATURE   => $feature,
-	STOP      => $stopwords,
-	STOPLIST  => [@stoplist],
-	STBASIS   => $stoplist_basis,
-	DIST      => $max_dist,
-	DIBASIS   => $distance_metric,
-	SESSION   => $session,
-	SCBASIS   => $score_basis,
-	COMMENT   => $feature_notes{$feature},
-	VERSION   => $Tesserae::VERSION,
-	TOTAL     => $total_matches
+	SOURCE => $source,
+    MSF => $mask_source_first,
+    MSL => $mask_source_last,
+	TARGET => $target,
+    MTF => $mask_target_first,
+    MTL => $mask_target_last,
+	UNIT => $unit,
+	FEATURE => $feature,
+	STOP => $stopwords,
+	STOPLIST => [@stoplist],
+	STBASIS => $stoplist_basis,
+	DIST => $max_dist,
+	DIBASIS => $distance_metric,
+	SESSION => $session,
+	SCBASIS => $score_basis,
+	COMMENT => $feature_notes{$feature},
+	VERSION => $Tesserae::VERSION,
+	TOTAL => $total_matches
 );
 
 
