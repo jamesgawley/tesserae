@@ -10,10 +10,10 @@ configure.pl [options]
 
 =head1 DESCRIPTION
 
-This script allows the user to interactively set configuration options for Tesserae,
-in particular, paths to different elements of the local installation.  It then creates
-I<tesserae.conf> in the I<scripts/> directory, as well as pointers to the configuration
-file in I<scripts/> and I<cgi-bin/>.
+This script allows the user to interactively set configuration options for
+Tesserae, in particular, paths to different elements of the local installation.
+It then creates I<tesserae.conf> in the I<scripts/> directory, as well as
+pointers to the configuration file in I<scripts/> and I<cgi-bin/>.
 
 =head1 OPTIONS AND ARGUMENTS
 
@@ -94,20 +94,38 @@ scripts/install.pl
 
 =head1 COPYRIGHT
 
-University at Buffalo Public License Version 1.0.
-The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
+University at Buffalo Public License Version 1.0. The contents of this file are
+subject to the University at Buffalo Public License Version 1.0 (the
+"License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://tesserae.caset.buffalo.edu/license.txt.
 
-Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+the specific language governing rights and limitations under the License.
 
 The Original Code is configure.pl.
 
-The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
+The Initial Developer of the Original Code is Research Foundation of State
+University of New York, on behalf of University at Buffalo.
 
-Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
+Portions created by the Initial Developer are Copyright (C) 2007 Research
+Foundation of State University of New York, on behalf of University at Buffalo.
+All Rights Reserved.
 
 Contributor(s): Chris Forstall, James Gawley
 
-Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
+Alternatively, the contents of this file may be used under the terms of either
+the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General
+Public License Version 2.1 (the "LGPL"), in which case the provisions of the
+GPL or the LGPL are applicable instead of those above. If you wish to allow use
+of your version of this file only under the terms of either the GPL or the
+LGPL, and not to allow others to use your version of this file under the terms
+of the UBPL, indicate your decision by deleting the provisions above and
+replace them with the notice and other provisions required by the GPL or the
+LGPL. If you do not delete the provisions above, a recipient may use your
+version of this file under the terms of any one of the UBPL, the GPL or the
+LGPL.
 
 =cut
 
@@ -142,14 +160,16 @@ my $fs_base = abs_path(catdir($Bin, '..'));
 
 my %fs = (
 
-	root   => $fs_base,
-	cgi    => catfile($fs_base, 'cgi-bin'),
-	data   => catfile($fs_base, 'data'),
-	doc    => catfile($fs_base, 'doc', 'html'),
-	html   => catfile($fs_base, 'html'),
-	script => catfile($fs_base, 'scripts'),
-	text   => catfile($fs_base, 'texts'),
-	tmp    => catfile($fs_base, 'tmp')
+    root   => $fs_base,
+    cgi    => catfile($fs_base, 'cgi-bin'),
+    css    => catfile($fs_base, 'css'),
+    data   => catfile($fs_base, 'data'),
+    doc    => catfile($fs_base, 'doc'),
+    html   => catfile($fs_base, 'html'),
+    image  => catfile($fs_base, 'images'),
+    script => catfile($fs_base, 'scripts'),
+    text   => catfile($fs_base, 'texts'),
+    tmp    => catfile($fs_base, 'tmp')
 );
 
 # default URL is the public Tesserae at UB
@@ -161,7 +181,7 @@ my %url = (
 	root  => $url_base,
 	cgi   => $url_base . '/cgi-bin',
 	css   => $url_base . '/css',
-	doc   => $url_base . '/doc/html',
+	doc   => $url_base . '/doc',
 	html  => $url_base . '',
 	image => $url_base . '/images',
 	text  => $url_base . '/texts'

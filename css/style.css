@@ -10,17 +10,19 @@ body
 
 div#container
 {
+   position: absolute;
 	min-width : 800px;
-	width : 90%;
-	border : 1px solid #000;
-	margin: 0px auto;
+   left: 5%;
+   right: 5%;
+	border: 1px solid #000;
+   margin: 0px auto;
 }
 
 div#header
 {
 	position: relative;
 	background: #e1e6c6;
-	height: 12em;
+	height: 150px;
 }
 
 div#header_image
@@ -70,6 +72,8 @@ div#nav_sub
 	padding: auto;
 	height : 29px;
 	line-height : 29px;
+   border-top: 1px solid black;
+   border-bottom: 1px solid black;
 	background : 	#828F49;
 	text-transform : uppercase;
 	font-family : "times new roman", serif;
@@ -110,6 +114,9 @@ div#nav_sub li a
 	text-decoration: none;
 }
 
+.nav_selected {
+   font-weight: bold;
+}
 
 div#nav_sub2 ul
 {
@@ -130,8 +137,6 @@ div#nav_sub2 li a
 	text-decoration: none;
 }
 
-
-
 div#pager
 {
 	text-align: center;
@@ -149,12 +154,16 @@ div#pager span a
 	font-weight: normal;
 }
 
+div#switch_advanced {
+   padding-top: 15px;
+   text-align: center;
+}
 
 div#footer
 {
 	position: relative;
 	background : #e1e6c6;
-	height: 12em;
+	height: 150px;
 	text-align: left;
 	border-top: 1px solid black;
 }
@@ -214,6 +223,7 @@ div#results_sort table
 
 div#main
 {
+   position: relative;
 	margin: auto;
 	padding: 25px;
 	text-align: justify;
@@ -497,4 +507,9 @@ td.pr_spacer {
 table.fulltext {
 
 	font-size:100%;
+}
+
+.sophia {
+   display: none !important;
+   background: yellow;
 }
