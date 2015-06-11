@@ -161,7 +161,7 @@ function set_defaults(lang, selected) {
 	}	
 }
 
-function toggleAdvanced(isAdv) {
+function toggle_advanced(isAdv) {
 
    var msg = ""
 
@@ -174,4 +174,89 @@ function toggleAdvanced(isAdv) {
    }
 
    $("#msg_advanced").html(msg)
+}
+
+
+function launch_search() {
+
+}
+
+function init_search_page() {
+   var sentinel = 0
+   var l = "la"
+   
+   var url = document.URL
+   var start = url.indexOf("?lang=")
+   
+   if (start > -1) {
+      start = start + 6
+      if (url.length > start) {
+         l = url.substr(start, url.length-start)
+      }
+   }
+
+   function checkSentinel() {
+      sentinel += 1
+      if (sentinel == 2) {
+         populate_author(lang["target"], "target")
+         populate_author(lang["source"], "source")
+         set_defaults(lang, selected);               
+      }
+   }
+   
+   function loadTextList(l) {
+      var elem = $("<select />")
+      elem.attr("id", l + "_texts")
+      elem.load("/textlist." + l + ".r.html", function() {
+         $("#textlists").append(elem)
+         checkSentinel()
+      })
+   }
+   
+   $("#nav_main").load("/nav_main.html", function(){
+      $("#nav_main_search").addClass("nav_selected")
+   })
+   $("#nav_sub").load("/nav_search.html", function(){
+      $("#nav_search_" + l).addClass("nav_selected")
+   })
+
+   $.getJSON("/search-presets.json", function(data) {
+      lang = data[l].lang
+      selected = data[l].selected
+      feature = data[l].feature
+      $("#h1_title").html(data[l].title)
+      $("#div_description").html(data[l].description)
+      
+      loadTextList(lang["source"])
+      if (lang["source"] != lang["target"]) {
+         loadTextList(lang["target"])
+      } else {
+         checkSentinel()
+      }
+      
+      $("#sel_feature").html("")
+      for (var k in feature) {
+        $("#sel_feature").append($("<option />").val(k).text(feature[k])) 
+      }
+      
+      $("#sel_auth_source").change(function() {
+         populate_work(lang["source"], "source")
+      })
+      $("#sel_work_source").change(function() {
+         populate_part(lang["source"], "source")
+      })
+      $("#sel_auth_target").change(function() {
+         populate_work(lang["target"], "target")
+      })
+      $("#sel_work_target").change(function() {
+         populate_part(lang["target"], "target")
+      })
+   })
+   
+   $("#switch_advanced").click(function(){
+      toggle_advanced(isAdvanced)
+      isAdvanced = ! isAdvanced
+   })
+
+   $("#btn_search").click(launch_search)
 }

@@ -656,10 +656,10 @@ sub feat {
 				
 				push @indexable, @indexable_;
 			}
-			else {
-
-				push @indexable, $form;
-			}
+		}
+        
+		if ($#indexable < 0) {
+			push @indexable, $form;
 		}
 	}
 

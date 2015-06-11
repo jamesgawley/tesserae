@@ -216,6 +216,7 @@ for my $lang (@lang) {
             my @indexable = @{Tesserae::feat($lang, $feat, $word)};
             my ($sum, $count);
             for (@indexable) {
+                unless (defined $feature_index{$_}) { print STDERR "no feature count: $_\n";}
                 $sum += $feature_index{$_};
                 $count ++;
             }

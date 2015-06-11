@@ -137,6 +137,10 @@ div#nav_sub2 li a
 	text-decoration: none;
 }
 
+div#switch_advanced {
+    cursor: pointer;
+}
+
 div#pager
 {
 	text-align: center;

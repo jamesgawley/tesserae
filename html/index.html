@@ -13,79 +13,21 @@
 		<title>Tesserae</title>
       <script src="/jquery.js"></script>
       <script src="/tesserae.js"></script>
+      <script src="/jquery.js"></script>
+      <script src="/tesserae.js"></script>
       <script type="text/javascript">
-   		var lang = {
-   			"target": "la",
-   			"source": "la"
-   		}
-   		var selected = {
-   			"target": "vergil.georgics.part.1",
-   			"source": "catullus.carmina"
-   		}
-         var feature = {
-            "stem": "lemma",
-            "word": "exact word",
-            "3gr": "character 3-gram"
-         }
-         var isAdvanced = false
-   
-         var sentinel = 0
-         function checkSentinel() {
-            sentinel += 1
-            if (sentinel == 2) {
-               populate_author(lang["target"], "target")
-               populate_author(lang["source"], "source")
-               set_defaults(lang, selected);               
-            }
-         }
-         
-         function loadTextList(lang) {
-            var elem = $("<select />")
-            elem.attr("id", lang + "_texts")
-            elem.load("/textlist." + lang + ".r.html", {}, function() {
-               $("#textlists").append(elem)
-               checkSentinel()
-            })
-         }
-                  
-         $(document).ready(function() {            
-            $("#nav_main").load("/nav_main.html", {}, function(){
-               $("#nav_main_search").addClass("nav_selected")
-            })
-            $("#nav_sub").load("/nav_search.html", {}, function(){
-               $("#nav_search_la").addClass("nav_selected")
-            })
-            $("#footer").load("/footer.html")
-                                    
-            loadTextList(lang["source"])
-            if (lang["source"] != lang["target"]) {
-               loadTextList(lang["target"])
-            } else {
-               checkSentinel()
-            }
-            
-            for (var k in feature) {
-              $("#sel_feature").append($("<option />").val(k).text(feature[k])) 
-            }
+        var lang = {}
+        var selected = {}
+        var feature = {}
+        var isAdvanced = false
 
-            $("#switch_advanced").click(function(){
-               toggleAdvanced(isAdvanced)
-               isAdvanced = ! isAdvanced
-            })
-            $("#sel_auth_source").change(function() {
-               populate_work(lang["source"], "source")
-            })
-            $("#sel_work_source").change(function() {
-               populate_part(lang["source"], "source")
-            })
-            $("#sel_auth_target").change(function() {
-               populate_work(lang["target"], "target")
-            })
-            $("#sel_work_target").change(function() {
-               populate_part(lang["target"], "target")
-            })
-         })
-         
+        $(document).ready(function() {            
+            $("#nav_main").load("/nav_main.html")
+            $("#nav_sub").load("/nav_search.html")
+            $("#footer").load("/footer.html")
+            
+            init_search_page()
+        })
       </script>
    </head>
    <body>
@@ -145,7 +87,7 @@
          				<tr>
          					<th>Unit:</th>
          					<td>
-         						<select name="unit">
+         						<select id="sel_unit" name="unit">
          							<option value="line">line</option>
          							<option value="phrase">phrase</option>
          						</select>
@@ -161,7 +103,7 @@
          				<tr>
          					<th>Number of stop words:</th>
          					<td>
-         						<select name="stopwords">
+         						<select id="sel_stop" name="stopwords">
          							<option value="0">0</option>
          							<option value="10" selected="selected">10</option>
          							<option value="20">20</option>
@@ -177,7 +119,7 @@
          				<tr>
          					<th>Stoplist basis:</th>
          					<td>
-         						<select name="stbasis">
+         						<select id="sel_stbasis" name="stbasis">
          							<option value="corpus">corpus</option>
          							<option value="target">target</option>
          							<option value="source">source</option>
@@ -188,7 +130,7 @@
          				<tr>
          					<th>Score basis:</th>
          					<td>
-         						<select name="score">
+         						<select id="sel_score" name="score">
          							<option value="word">word</option>
          							<option value="stem">stem</option>
          							<option value="feature">feature</option>								
@@ -198,7 +140,7 @@
                         <tr>
                             <th>Frequency basis:</th>
                             <td>
-                                <select name="freq_basis">
+                                <select id="sel_freq" name="freq_basis">
                                     <option value="text">texts</option>
                                     <option value="corpus">corpus</option>
                                 </select>
@@ -207,7 +149,7 @@
          				<tr>
          					<th>Maximum distance:</th>
          					<td>
-         						<select name="dist">
+         						<select id="sel_dist" name="dist">
          							<option value="999">no max</option>
          							<option value="5">5 words</option>
          							<option value="10" selected="selected">10 words</option>
@@ -221,7 +163,7 @@
          				<tr>
          					<th>Distance metric:</th>
          					<td>
-         						<select name="dibasis">
+         						<select id="sel_dibasis" name="dibasis">
          							<option value="span">span</option>
          							<option value="freq" selected="selected">frequency</option>
          						</select>
@@ -230,7 +172,7 @@
          			</table>
          		</div>
          		<div style="text-align:center; padding:20px;">
-         			<input type="submit" value="Compare Texts" ID="btnSubmit" NAME="btnSubmit" />
+         			<input type="submit" value="Compare Texts" ID="btn_search" NAME="btnSubmit" />
          		</div>
             </form>
       		<div id="textlists" style="visibility:hidden">
