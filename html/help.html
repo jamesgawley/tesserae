@@ -16,9 +16,10 @@
                if (url != docid) {
                   a.click(function(event) {
                      event.preventDefault()
-                     var docid = $(this).attr("id").substring(4)
                      doc(docid)
                   })
+              } else if (a.className=="u") {
+                  a.text("ASDF")
                } else {
                   a.attr("target", "_blank")
                }
@@ -48,10 +49,9 @@
          function doc(id) {
             var url = "/doc/" + id + ".html"
             
-            doc_handler(url, $("#help_content"), function() {
+            doc_handler(url, $("#tabbed_content"), function() {
                $("#main .nav_selected").removeClass("nav_selected")
-               $("#nav_sub .nav_selected").removeClass("nav_selected")
-               $("#doc_" + id).addClass("nav_selected")               
+               $("#doc_" + id).addClass("nav_selected")
             })            
          }
          
@@ -61,7 +61,7 @@
             })
             doc_handler("/doc/index.html", $("#help_index"))   
             doc_handler("/doc/nav_help.html", $("#nav_sub"), function(){
-               var id = $("#nav_sub a").get(0).id
+               var id = $("#nav_sub li").get(0).id
                id = id.substring(4)
                doc(id)
             })
@@ -80,13 +80,13 @@
    			</div>
    			<div id="nav_main">
    			</div>
-   			<div id="nav_sub">
-   			</div>
          </div>
          <div id="main">
             <div id="help_index" class="sophia">
             </div>
-            <div id="help_content">
+            <div id="nav_sub">
+            </div>
+            <div id="tabbed_content">
             </div>
          </div>
          <div id="footer">

@@ -224,8 +224,6 @@ function init_search_page() {
       lang = data[l].lang
       selected = data[l].selected
       feature = data[l].feature
-      $("#h1_title").html(data[l].title)
-      $("#div_description").html(data[l].description)
       
       loadTextList(lang["source"])
       if (lang["source"] != lang["target"]) {
