@@ -834,7 +834,7 @@ sub process_file_list {
 			next;
 		}
 
-		$list_out{$name} = $file_in;
+		$list_out{$name} = Cwd::abs_path($file_in);
 	}
 
     #Remove erroneously added blank file names.
