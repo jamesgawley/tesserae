@@ -300,9 +300,9 @@ my $max_dist = 999;
 
 my $distance_metric = "freq";
 
-# filter multi-results if passing off to multitext.pl
+# minimum score to keep
 
-my $multi_cutoff = 0;                  
+my $cutoff = 0;
 
 # text list to pass on to multitext.pl
 
@@ -310,7 +310,7 @@ my @include;
 
 # cache param to pass on to check-recall.pl
 
-my $recall_cache = 'rec';
+my $recall_bench = 'default';
 
 # help flag
 
@@ -354,6 +354,7 @@ GetOptions(
 	'score=s' => \$score_basis,
 	'benchmark' => \$bench,
 	'no-cgi' => \$no_cgi,
+    'cutoff=i' => \$cutoff,
     'mask-target-first=i' => \$mask_target_first,
     'mask-target-last=i' => \$mask_target_last,
     'mask-source-first=i' => \$mask_source_first,
@@ -469,9 +470,9 @@ else {
 	$score_basis = $query->param('score') || $score_basis;
 	$freq_basis = $query->param('freq_basis') || $freq_basis;    
 	$frontend = $query->param('frontend') || $frontend;
-	$multi_cutoff = $query->param('mcutoff') || $multi_cutoff;
+	$cutoff = $query->param('cutoff') || $cutoff;
 	@include = $query->param('include');
-	$recall_cache = $query->param('recall_cache') || $recall_cache;
+	$recall_bench = $query->param('bench') || $recall_bench;
     $mask_target_first = $query->param('mask_target_first');
     $mask_target_last = $query->param('mask_target_last');
     $mask_source_first = $query->param('mask_source_first');
@@ -492,9 +493,7 @@ else {
 
 	%redirect = ( 
 		default  => "/cgi-bin/read_bin.pl?session=$session",
-		recall   => "/cgi-bin/check-recall.pl?session=$session;cache=$recall_cache",
-		fulltext => "/cgi-bin/fulltext.pl?session=$session",
-		multi    => "/cgi-bin/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
+		recall   => "/cgi-bin/check-recall.pl?session=$session;bench=$recall_bench",
 	);
 
 	
@@ -551,6 +550,7 @@ unless ($quiet) {
 	print STDERR "max_dist=$max_dist\n";
 	print STDERR "distance basis=$distance_metric\n";
 	print STDERR "score basis=$score_basis\n";
+    print STDERR "cutoff=$cutoff\n";
 }
 
 
@@ -629,12 +629,12 @@ unless (defined $mask_source_last and $mask_source_last <= $#token_source) {
     $mask_source_last = $#token_source;
 }
 
-
-print STDERR "mask_target_first=" . $mask_target_first . "\n";
-print STDERR "mask_target_last=" . $mask_target_last . "\n";
-print STDERR "mask_source_first=" . $mask_source_first . "\n";
-print STDERR "mask_source_last=" . $mask_source_last . "\n";
-
+unless ($quiet) {
+    print STDERR "mask_target_first=" . $mask_target_first . "\n";
+    print STDERR "mask_target_last=" . $mask_target_last . "\n";
+    print STDERR "mask_source_first=" . $mask_source_first . "\n";
+    print STDERR "mask_source_last=" . $mask_source_last . "\n";
+}
 
 #
 #
@@ -831,7 +831,11 @@ for my $unit_id_target (keys %match_target) {
 		# score
 		
 		my $score = score_default($match_target{$unit_id_target}{$unit_id_source}, $match_source{$unit_id_target}{$unit_id_source}, $distance);
-				
+		
+        # skip low-scoring results
+        
+        next if $score < $cutoff;
+        
 		# save calculated score, matched words, etc.
 		
 		$match_score{$unit_id_target}{$unit_id_source} = $score;
@@ -873,9 +877,12 @@ my %match_meta = (
 	SESSION => $session,
 	SCBASIS => $score_basis,
     FRBASIS => $freq_basis,
+    CUTOFF => $cutoff,
 	COMMENT => $feature_notes{$feature},
 	VERSION => $Tesserae::VERSION,
-	TOTAL => $total_matches
+	TOTAL => $total_matches,
+    LANG_TARGET => Tesserae::lang($target),
+    LANG_SOURCE => Tesserae::lang($source)
 );
 
 

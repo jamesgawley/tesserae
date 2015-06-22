@@ -191,6 +191,7 @@ print <<END;
 	</Directory>
 
 	ErrorLog \${APACHE_LOG_DIR}/tesserae.error.log
+    EnableSendfile off
 
 	# Possible values include: debug, info, notice, warn, error, crit,
 	# alert, emerg.

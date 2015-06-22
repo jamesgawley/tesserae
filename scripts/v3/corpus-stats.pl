@@ -130,6 +130,7 @@ use Storable qw(nstore retrieve);
 
 my @feature;
 my @lang;
+my $use_lingua_stem = 0;
 my $help = 0;
 my $quiet = 0;
 
@@ -138,7 +139,8 @@ my $quiet = 0;
 GetOptions(
 	'help'      => \$help,
 	'quiet'     => \$quiet,
-	'feature=s' => \@feature
+	'feature=s' => \@feature,
+    'use-lingua-stem' => \$use_lingua_stem
 );
 
 # print usage if the user needs help
@@ -148,7 +150,16 @@ if ($help) {
 }
 
 #
-# allow utfu output to STDERR
+# initialize stemmer
+#
+
+if ($use_lingua_stem) {
+
+	Tesserae::initialize_lingua_stem();
+}
+
+#
+# allow utf8 output to STDERR
 #
 
 binmode STDERR, ':utf8';

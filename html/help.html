@@ -49,8 +49,8 @@
          function doc(id) {
             var url = "/doc/" + id + ".html"
             
-            doc_handler(url, $("#tabbed_content"), function() {
-               $("#main .nav_selected").removeClass("nav_selected")
+            doc_handler(url, $("#content"), function() {
+               $("#nav_sub .nav_selected").removeClass("nav_selected")
                $("#doc_" + id).addClass("nav_selected")
             })            
          }
@@ -75,19 +75,19 @@
          <div id="header">
    			<div id="header_image">
    				<a href="/">
-                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+                  <img src="/images/Tesserae.png" alt="Tesserae">
                </a>
    			</div>
-   			<div id="nav_main">
-   			</div>
+            <div id="navs">
+       			<div id="nav_main">
+       			</div>
+        		<div id="nav_sub">
+        		</div>
+            </div>
          </div>
          <div id="main">
-            <div id="help_index" class="sophia">
-            </div>
-            <div id="nav_sub">
-            </div>
-            <div id="tabbed_content">
-            </div>
+             <div id="content" class="main_content">
+             </div>
          </div>
          <div id="footer">
          </div>

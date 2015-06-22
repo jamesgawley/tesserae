@@ -2,8 +2,7 @@
 
 tesserae.conf
 .tesserae.conf
-html/defs.php
-html/help_scripts.php
+html/bench.json
 xsl/defs.xsl
 pod2htm*
 
@@ -25,6 +24,7 @@ data/common/la.*.cache
 data/common/grc.*.cache
 data/common/la.syn.cache.param
 data/common/*.freq
+data/common/*.freq_score
 data/common/whit.cache
 data/common/lang
 data/common/abbr

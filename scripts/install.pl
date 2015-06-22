@@ -186,12 +186,6 @@ write_pointer($fs{cgi});
 write_pointer($fs{script});
 
 #
-# create var definition files for php
-#
-
-create_php_defs(catfile($fs{html}, 'defs.php'));
-
-#
 # install documentation
 #
 
@@ -226,33 +220,3 @@ sub write_pointer {
 	
 	close FH;
 }
-
-#
-# Create defs.php, 
-#   containing system vars used by php files
-#
-
-sub create_php_defs {
-
-	my $file = shift;
-
-	open (FH, ">:utf8", $file) or die "can't create file $file: $!";
-
-	print STDERR "writing $file\n";
-	
-	print FH <<END;
-		
-<?php \$url_html  = "$url{html}" ?>
-<?php \$url_css   = "$url{css}" ?>
-<?php \$url_cgi   = "$url{cgi}" ?>
-<?php \$url_doc   = "$url{doc}" ?>
-<?php \$url_image = "$url{image}" ?>
-<?php \$url_text  = "$url{text}" ?>
-<?php \$fs_html   = "$fs{html}" ?>
-
-END
-	
-	close FH;
-	return;
-}
-

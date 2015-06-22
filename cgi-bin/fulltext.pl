@@ -93,7 +93,7 @@ print header();
 # cgi input
 #
 
-my $session = $query->param('session')    || die "no session specified from web interface";
+my $session = $query->param('session') || die "no session specified from web interface";
 
 #
 # load template
@@ -110,7 +110,8 @@ my $html;
 	close($fh);
 }
 
-$html =~ s/\/\*session\*\//"$session"/g;
-$html =~ s/<!--session-->/$session/g;
+if (defined $session) {
+    $html =~ s/\/\*session\*\/.*\/\*session\*\//"$session"/g;
+}
 
 print $html;

@@ -387,6 +387,7 @@ sub generate_html {
    my $p = Pod::Simple::HTML->new;
    
    $p->html_css('/css/doc.css');
+   $p->top_anchor("");
    
    my $html;
    $p->output_string(\$html);

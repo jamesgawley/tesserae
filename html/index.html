@@ -13,8 +13,6 @@
 		<title>Tesserae</title>
       <script src="/jquery.js"></script>
       <script src="/tesserae.js"></script>
-      <script src="/jquery.js"></script>
-      <script src="/tesserae.js"></script>
       <script type="text/javascript">
         var lang = {}
         var selected = {}
@@ -38,15 +36,18 @@
                   <img src="/images/Tesserae.png" alt="Tesserae">
                </a>
    			</div>
-   			<div id="nav_main">
-   			</div>
+            <div id="navs">
+       			<div id="nav_main">
+       			</div>
+        		<div id="nav_sub">
+        		</div>
+            </div>
          </div>
          <div id="main">
-    		<div id="nav_sub">
-    		</div>
-            <div id="tabbed_content">
+             <div class="main_content">
+             <h1>Welcome</h1>
             <p>
-               Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes).
+               The Tesserae project aims to provide a flexible and robust web interface for exploring intertextual parallels. Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes).
                For advanced search options, select a language from the menu above.
             </p>	
          	<form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
@@ -166,17 +167,29 @@
          						</select>
          					</td>
          				</tr>
+                        <tr>
+                            <th><label for="sel_cutoff">Score cutoff</label></th>
+                            <td>
+                                <select id="sel_cutoff" name="cutoff">
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8" selected="selected">8</option>
+                                    <option value="9">9</option>    
+                                </select>
+                            </td>
+                        </td>
          			</table>
          		</div>
          		<div style="text-align:center; padding:20px;">
          			<input type="submit" value="Compare Texts" ID="btn_search" NAME="btnSubmit" />
          		</div>
             </form>
-      		<div id="textlists" style="visibility:hidden">
+      	    <div id="textlists" style="visibility:hidden">
             </div>
-            </div>
-         </div>
-   		<div id="footer">
+        </div>
+        </div>
+   		<div id="footer" >
 			</div>
 		</div> <!-- closes container -->
 	</body>

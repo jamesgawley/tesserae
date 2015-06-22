@@ -203,13 +203,9 @@ my $session;
 
 my $export = 'html';
 
-# score cutoff
-
-my $cutoff = 8;
-
 # number of decimal places to report in scores
 
-my $dec = 0;
+my $dec = 2;
 
 # help flag
 
@@ -226,7 +222,6 @@ GetOptions(
 	'batch=s'   => \$batch,
 	'session=s' => \$session,
 	'export=s'  => \$export,
-   'cutoff=f'  => \$cutoff,
 	'decimal=i' => \$dec,
 	'quiet'     => \$quiet,
 	'help'      => \$help );
@@ -250,12 +245,12 @@ unless ($no_cgi) {
 
 	$session    = $query->param('session') || die "no session specified from web interface";
    $dec        = $query->param('decimal') || $dec;
-   $cutoff     = $query->param('cutoff')  || $cutoff;
 	$sort       = $query->param('sort')    || $sort;
-	$rev        = $query->param('rev')     if defined ($query->param("rev"));
-	$page       = $query->param('page')    || $page;
+	$page       = int($query->param('page')) || $page;
 	$batch      = $query->param('batch')   || $batch;
 	$export     = $query->param('export')  || $export;
+
+    $rev = $sort eq "score" ? 1 : 0;
 
 	my %h = ('-charset'=>'utf-8', '-type'=>'text/html');
 
@@ -359,6 +354,8 @@ if ($batch eq 'all') {
 	$page  = 1;
 }
 
+my $cutoff = $meta{CUTOFF};
+
 #
 # load texts
 #
@@ -432,7 +429,7 @@ sub nav_page {
 
 	if ($pages > 1) {
 
-		$html .= " in $pages pages.</br>\n";
+		$html .= " in $pages pages. ";
 
 		#
 		# draw navigation links
@@ -503,83 +500,19 @@ sub nav_page {
 
 }
 
-sub re_sort {
-
-	my @sel_rev    = ("", "");
-	my %sel_sort   = (target => "", source => "", score => "");
-	my %sel_export = (html => "", xml => "", csv => "", tab => "");
-	my %sel_batch  = (50 => '', 100 => '', 200 => '', $total_matches => '');
-
-	$sel_rev[$rev]       = 'selected="selected"';
-	$sel_sort{$sort}     = 'selected="selected"';
-	$sel_export{$export} = 'selected="selected"';
-	$sel_batch{$batch}   = 'selected="selected"';
-
-	my $html=<<END;
-
-	<form action="/cgi-bin/read_bin.pl" method="post" id="Form1">
-
-		<table>
-			<tr>
-				<td>
-
-			Sort
-
-			<select name="rev">
-				<option value="0" $sel_rev[0]>increasing</option>
-				<option value="1" $sel_rev[1]>decreasing</option>
-			</select>
-
-			by
-
-			<select name="sort">
-				<option value="target" $sel_sort{target}>target locus</option>
-				<option value="source" $sel_sort{source}>source locus</option>
-				<option value="score"  $sel_sort{score}>score</option>
-			</select>
-
-			and format as
-
-			<select name="export">
-				<option value="html" $sel_export{html}>html</option>
-				<option value="csv"  $sel_export{csv}>csv</option>
-				<option value="tab"  $sel_export{csv}>tab-separated</option>
-				<option value="xml"  $sel_export{xml}>xml</option>
-			</select>.
-
-			</td>
-			<td>
-				<input type="hidden" name="session" value="$session" />
-				<input type="submit" name="submit" value="Change Display" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-
-			Show
-
-			<select name="batch">
-				<option value="50"  $sel_batch{50}>50</option>
-				<option value="100" $sel_batch{100}>100</option>
-				<option value="200" $sel_batch{200}>200</option>
-				<option value="all" $sel_batch{$total_matches}>all</option>
-			</select>
-
-			results at a time.
-			</td>
-		</tr>
-	</table>
-	</form>
-END
-
-	return $html;
-
-}
-
 sub print_html {
 
 	my $first;
 	my $last;
+
+    my $pages = ceil($total_matches/$batch);
+    if ($page < 1) {
+        $page = 1;
+    } elsif ($page > $pages) {
+        $page = $pages;
+    }
+
+    my $batch_string = $batch == $total_matches ? "all" : $batch;
 
 	$first = ($page-1) * $batch;
 	$last  = $first + $batch - 1;
@@ -596,14 +529,22 @@ sub print_html {
 		}
 		close($fh);
 	}
+    
+	my $stoplist = join(", ", @stoplist);
+
+    for ($html) {
+        if (defined $session) {
+            s/\/\*session\*\/.*\/\*session\*\//"$session"/g;
+        }
+        s/\/\*sort\*\/.*\/\*sort\*\//"$sort"/g;
+    	s/\/\*batch\*\/.*\/\*batch\*\//"$batch_string"/g;
+        s/\/\*npages\*\/.*\/\*npages\*\//"$pages"/g;
+        s/\/\*page\*\/.*\/\*page\*\//"$page"/g;    
+    }
 
 	my ($top, $bottom) = split /<!--results-->/, $html;
-
-	$top =~ s/<!--pager-->/&nav_page()/e;
-	$top =~ s/<!--sorter-->/&re_sort()/e;
-	$top =~ s/<!--session-->/$session/g;
-
-	print $top;
+        
+    print $top;
 
 	for my $i ($first..$last) {
 
@@ -722,21 +663,6 @@ sub print_html {
 
 		print "  </tr>\n";
 	}
-
-	my $stoplist = join(", ", @stoplist);
-	my $filtertoggle = $filter ? 'on' : 'off';
-
-	$bottom =~ s/<!--session-->/$session/g;
-	$bottom =~ s/<!--source-->/$source/;
-	$bottom =~ s/<!--target-->/$target/;
-	$bottom =~ s/<!--unit-->/$unit/;
-	$bottom =~ s/<!--feature-->/$feature/;
-	$bottom =~ s/<!--stoplistsize-->/$stop/;
-	$bottom =~ s/<!--stbasis-->/$stoplist_basis/;
-	$bottom =~ s/<!--stoplist-->/$stoplist/;
-	$bottom =~ s/<!--maxdist-->/$max_dist/;
-	$bottom =~ s/<!--dibasis-->/$distance_metric/;
-	$bottom =~ s/<!--cutoff-->/$cutoff/;
 
 	print $bottom;
 }
@@ -1014,13 +940,10 @@ sub sort_results {
 	for my $unit_id_target (sort {$a <=> $b} keys %score) {
 
 		for my $unit_id_source (sort {$a <=> $b} keys %{$score{$unit_id_target}}) {
-
-         $score{$unit_id_target}{$unit_id_source} = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
-         if ($score{$unit_id_target}{$unit_id_source} >= $cutoff) {
+            $score{$unit_id_target}{$unit_id_source} = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
             push @rec, {target => $unit_id_target, source => $unit_id_source};
-         }
-		}
-	}
+        }
+    }
 
 	if ($sort eq "source") {
 
