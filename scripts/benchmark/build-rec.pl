@@ -556,12 +556,11 @@ sub add_bench {
     eval {
         open (my $fh, "<:utf8", $file_json);
         my $json;
-        {
-            local $/;
-            $json = <$fh>
+        while (my $line = <$fh>) {
+            $json .= $line;
         }
         close ($fh);
-        %index = %{decode_json($json)};
+        %index = %{decode_json($json)} if $json;
     };
     
     $index{$new_bench{bench}} = $new_bench{data};

@@ -54,23 +54,27 @@
                         $("#sel_page").val(page)
 
                         $("#form_sorter_sessionid").val(meta.SESSION)
+                        $("#form_sorter_batch").val(batch)
                         $("#span_nresults").text(meta.TOTAL)
                         $("#span_npages").text(npages)
                         $("#form_pager_sort").val(sort)
                         $("#form_pager_batch").val(batch)
-                        $("#form_pager_cutoff").val(meta.CUTOFF)
                         $("#form_pager_sessionid").val(meta.SESSION)
                         $("#form_alt_export_sort").val(sort)
                         $("#form_alt_export_batch").val(batch)
-                        $("#form_alt_export_cutoff").val(meta.CUTOFF)
                         $("#form_alt_export_sessionid").val(meta.SESSION)
-                        $("#form_alt_full_cutoff").val(meta.CUTOFF)
                         $("#form_alt_full_sessionid").val(meta.SESSION)
                         $("#form_alt_multi_sessionid").val(meta.SESSION)
                         
                         if (meta.FEATURE == "word" | meta.FEATURE == "stem"){
                             $("#alt_multi").show()
                         }
+                        
+                        $("#sel_batch").change(function() {
+                            $("#form_pager_batch").val($("#sel_batch").val())
+                            $("#form_sorter_batch").val($("#sel_batch").val())
+                            $("#form_alt_export_batch").val($("#sel_batch").val())
+                        })
                         
                         $("#btn_first").click(function() {
                             $("#sel_page").val(1)
@@ -191,14 +195,14 @@
                                             <select id="sel_sort" name="sort">
                                                 <option value="target">target locus</option>
                                                 <option value="source">source locus</option>
-                                                <option value="score">score</option>
+                                                <option value="score" selected="selected">score</option>
                                             </select>
                                         </td>
                                         <td>
                                             <label for="sel_batch">Results/page</label>
                                             <select id="sel_batch" name="batch">
                                                 <option value="50">50</option>
-                                  				<option value="100">100</option>
+                                  				<option value="100" selected="selected">100</option>
                                   				<option value="200">200</option>
                                   				<option value="all">all</option>
                                   			</select>
@@ -209,7 +213,7 @@
                                     </tr>
                                 </table>
                                 <input type="hidden" id="form_sorter_sessionid" name="session" />
-                                <input type="hidden" id="form_pager_batch" name="batch" />
+                                <input type="hidden" id="form_sorter_batch" name="batch" />
                             </form>
                         </div>
                         <div id="pager">
@@ -227,17 +231,17 @@
                                         </td>
                                        <td>
                                            <label for="sel_page">Go to page</label>
-                                           <input type="button" id="btn_first" value="<<" />
-                                           <input type="button" id="btn_prev" value="<" />
+                                           <input type="button" id="btn_first" value="&lt;&lt;" />
+                                           <input type="button" id="btn_prev" value="&lt;" />
                                            <input type="text" id="sel_page" name="page" maxLength="5" size="5" />
-                                           <input type="button" id="btn_next" value=">" />
-                                           <input type="button" id="btn_last" value=">>" />
+                                           <input type="button" id="btn_next" value="&gt;" />
+                                           <input type="button" id="btn_last" value="&gt;&gt;" />
                                        </td>
                                       </tr>
                                   </table>
                                   <input type="hidden" id="form_pager_sessionid" name="session" />
                                   <input type="hidden" id="form_pager_sort" name="sort" />
-                                  <input type="hidden" id="form_pager_cutoff" name="cutoff" />
+                                  <input type="hidden" id="form_pager_batch" name="batch" />
                               </form>
                           </div>
                     </div>
@@ -252,14 +256,12 @@
                                 </select>
                                 <input type="hidden" id="form_alt_export_sessionid" name="session" />
                                 <input type="hidden" id="form_alt_export_sort" name="sort" />
-                                <input type="hidden" id="form_alt_export_cutoff" name="cutoff" />
                                 <input type="submit" value="Go" />
                             </form>
                         </div>
                         <div id="alt_full">
                             <form action="/cgi-bin/fulltext.pl" method="get" id="form_alt_full">
                                 <input type="hidden" id="form_alt_full_sessionid" name="session" />
-                                <input type="hidden" id="form_alt_full_cutoff" name="cutoff" />
                                 <input type="submit" value="Full-text view" />
                             </form>
                         </div>

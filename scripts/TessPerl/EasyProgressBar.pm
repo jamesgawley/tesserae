@@ -152,7 +152,7 @@ sub new {
 
 sub init {
 
-	$|++;
+	$| = 1;
 
 	print "<div class=\"pr_container\">\n";
 	print "<table class=\"pr_bar\">\n";
