@@ -149,9 +149,70 @@ sub new {
 	
 	bless($self);
 	
-	if ($terminus > 0) {
-      $self->draw();
-   } else {
+	$self->init();
+	
+	$self->draw();
+	
+	return $self;
+}
+
+sub init {
+
+	$| = 1;
+
+	print "<div class=\"pr_container\">\n";
+	print "<table class=\"pr_bar\">\n";
+	print "<tr>";
+	print "<td class=\"pr_spacer\">0%</td>";
+	print "<td class=\"pr_spacer\"></td>" x 38;
+	print "<td class=\"pr_spacer\">100%</td>";
+	print "</tr>\n";
+	print "<tr>";
+}
+
+sub advance {
+
+	my $self = shift;
+	
+	my $incr = shift;
+	
+	$self->{COUNT} += ($incr || 1);
+	
+	$self->draw();
+}
+
+sub set {
+
+	my $self = shift;
+	
+	my $new = shift || 0;
+	
+	$self->{COUNT} = $new;
+	
+	$self->draw();
+}
+
+sub draw {
+
+	my $self = shift;
+
+	return if $self->{DONE};
+		
+	if ($self->{COUNT}/$self->{END} > $self->{PROGRESS} + .025) {
+	
+		my $oldbars = POSIX::floor($self->{PROGRESS} * 40);
+	
+		$self->{PROGRESS} = $self->{COUNT} / $self->{END};
+	
+		my $bars = POSIX::floor($self->{PROGRESS} * 40);
+									
+		my $add = "<td class=\"pr_unit\">.</td>" x ($bars - $oldbars);
+	
+		print $add;
+	}
+	
+	if ($self->{COUNT} >= $self->{END}) {
+				
 		$self->finish();
 	}
 

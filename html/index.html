@@ -8,166 +8,186 @@
 		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
 		<link href="/images/favicon.ico" rel="shortcut icon"/>
 		
-		<!--head_insert-->
-
 		<title>Tesserae</title>
-      <script src="/jquery.js"></script>
-      <script src="/tesserae.js"></script>
-      <script type="text/javascript">
-   		var lang = {}
-   		var selected = {}
-         var feature = {}
-         var isAdvanced = false
-
-         $(document).ready(function() {            
-            $("#nav_main").load("/nav_main.html")
-            $("#nav_sub").load("/nav_search.html")
-            $("#footer").load("/footer.html")
-                                    
-            init_search_page()
-         })
-      </script>
-   </head>
-   <body>
-      <div id="container">
-         <div id="header">
-   			<div id="header_image">
-   				<a href="/">
-                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
-               </a>
-   			</div>
-   			<div id="nav_main">
-   			</div>
-   			<div id="nav_sub">
-   			</div>
-         </div>
-         <div id="main">
-
-            <h1 id="h1_title">Welcome</h1>
-
-            <div id="div_description">
+        <script src="/jquery.js"></script>
+        <script src="/tesserae.js"></script>
+        <script type="text/javascript">
+            var lang = {}
+            var selected = {}
+            var feature = {}
+            var isAdvanced = false
+        
+            $(document).ready(function() {            
+                $("#nav_main").load("/nav_main.html")
+                $("#nav_sub").load("/nav_search.html")
+                $("#footer").load("/footer.html")
+            
+                init_search_page()
+            })
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <div id="header_image">
+                    <a href="/">
+                        <img src="/images/Tesserae.png" alt="Tesserae">
+                    </a>
+                </div>
+                <div id="navs">
+       			    <div id="nav_main">
+                    </div>
+                    <div id="nav_sub">
+                    </div>
+                </div>
             </div>
-         	<form>
-
-         		<table class="input">
-         			<tr>
-         				<th>Source:</th>
-         				<td>
-         					<select id="sel_auth_source">
-         					</select><br />
-         					<select id="sel_work_source">
-         					</select><br />
-         					<select id="sel_part_source">
-         					</select>
-         				</td>
-         			</tr>
-         			<tr>
-         				<th>Target:</th>
-         				<td>
-         					<select id="sel_auth_target">
-         					</select><br />
-         					<select id="sel_work_target">
-         					</select><br />
-         					<select id="sel_part_target">
-         					</select>
-         				</td>
-         			</tr>
-         		</table>
-
-         		<div id="switch_advanced">
-         			<p id="msg_advanced">show advanced</p>
-         		</div>
-         		<div class="advanced" style="display:none;">
-         			<table class="input">
-         				<tr>
-         					<th>Unit:</th>
-         					<td>
-         						<select id="sel_unit">
-         							<option value="line">line</option>
-         							<option value="phrase">phrase</option>
-         						</select>
-         					</td>
-         				</tr>
-         				<tr>
-         					<th>Feature:</th>
-         					<td>
-         						<select id="sel_feature">
-         						</select>
-         					</td>
-         				</tr>
-         				<tr>
-         					<th>Number of stop words:</th>
-         					<td>
-         						<select id="sel_stop">
-         							<option value="0">0</option>
-         							<option value="10" selected="selected">10</option>
-         							<option value="20">20</option>
-         							<option value="30">30</option>
-         							<option value="40">40</option>
-         							<option value="50">50</option>
-         							<option value="100">100</option>
-         							<option value="150">150</option>
-         							<option value="200">200</option>
-         						</select>							
-         					</td>
-         				</tr>
-         				<tr>
-         					<th>Stoplist basis:</th>
-         					<td>
-         						<select id="sel_stop">
-         							<option value="corpus">corpus</option>
-         							<option value="target">target</option>
-         							<option value="source">source</option>
-         							<option value="both" selected="selected">target + source</option>
-         						</select>
-         					</td>
-         				</tr>
-         				<tr>
-         					<th>Score basis:</th>
-         					<td>
-         						<select id="sel_score">
-         							<option value="word">word</option>
-         							<option value="stem">stem</option>
-         							<option value="feature">feature</option>								
-         						</select>
-         					</td>
-         				</tr>
-         				<tr>
-         					<th>Maximum distance:</th>
-         					<td>
-         						<select id="sel_dist">
-         							<option value="999">no max</option>
-         							<option value="5">5 words</option>
-         							<option value="10" selected="selected">10 words</option>
-         							<option value="20">20 words</option>
-         							<option value="30">30 words</option>
-         							<option value="40">40 words</option>
-         							<option value="50">50 words</option>
-         						</select>							
-         					</td>
-         				</tr>
-         				<tr>
-         					<th>Distance metric:</th>
-         					<td>
-         						<select id="sel_dibasis">
-         							<option value="span">span</option>
-         							<option value="freq" selected="selected">frequency</option>
-         						</select>
-         					</td>
-         				</tr>
-         			</table>
-         		</div>
-         		<div style="text-align:center; padding:20px;">
-         			<input type="button" value="Compare Texts" id="btn_search" />
-         		</div>
-            </form>
-      		<div id="textlists" style="visibility:hidden">
+            <div id="main">
+                <div class="main_content">
+                    <h1>Welcome</h1>
+                    <p>
+                        The Tesserae project aims to provide a flexible and robust web interface for exploring intertextual parallels. Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes).
+                    </p>	
+                    <form action="/cgi-bin/read_table.pl" method="post" ID="Form1">
+                        <table class="input">
+                            <tr>
+                                <th>Source:</th>
+                                <td>
+                                    <select id="sel_auth_source">
+                                    </select><br />
+                                    <select id="sel_work_source">
+                                    </select><br />
+                                    <select id="sel_part_source" name="source">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Target:</th>
+                                <td>
+                                    <select id="sel_auth_target">
+                                    </select><br />
+                                    <select id="sel_work_target">
+                                    </select><br />
+                                    <select id="sel_part_target" name="target">
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="switch_advanced">
+                            <p id="msg_advanced">show advanced</p>
+                        </div>
+                        <div class="advanced" style="display:none;">
+                            <table class="input">
+                                <tr>
+                                    <th>Unit:</th>
+                                    <td>
+                                        <select id="sel_unit" name="unit">
+                                            <option value="line">line</option>
+                                            <option value="phrase">phrase</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Feature:</th>
+                                    <td>
+                                        <select id="sel_feature" name="feature">
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Number of stop words:</th>
+                                    <td>
+                                        <select id="sel_stop" name="stopwords">
+                 							<option value="0">0</option>
+                 							<option value="10" selected="selected">10</option>
+                 							<option value="20">20</option>
+                 							<option value="30">30</option>
+                 							<option value="40">40</option>
+                 							<option value="50">50</option>
+                 							<option value="100">100</option>
+                 							<option value="150">150</option>
+                 							<option value="200">200</option>
+                                        </select>							
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Stoplist basis:</th>
+                                    <td>
+                                        <select id="sel_stbasis" name="stbasis">
+                 							<option value="corpus">corpus</option>
+                 							<option value="target">target</option>
+                 							<option value="source">source</option>
+                 							<option value="both" selected="selected">target + source</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Score basis:</th>
+                                    <td>
+                                        <select id="sel_score" name="score">
+                                            <option value="word">word</option>
+                                            <option value="stem">stem</option>
+                                            <option value="feature">feature</option>								
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Frequency basis:</th>
+                                    <td>
+                                        <select id="sel_freq" name="freq_basis">
+                                            <option value="text">texts</option>
+                                            <option value="corpus">corpus</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Maximum distance:</th>
+                                    <td>
+                                        <select id="sel_dist" name="dist">
+                                            <option value="999">no max</option>
+                                            <option value="5">5 words</option>
+                                            <option value="10" selected="selected">10 words</option>
+                                            <option value="20">20 words</option>
+                                            <option value="30">30 words</option>
+                                            <option value="40">40 words</option>
+                                            <option value="50">50 words</option>
+                                        </select>							
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Distance metric:</th>
+                                    <td>
+                                        <select id="sel_dibasis" name="dibasis">
+                                            <option value="span">span</option>
+                                            <option value="freq" selected="selected">frequency</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="sel_cutoff">Score cutoff</label></th>
+                                    <td>
+                                        <select id="sel_cutoff" name="cutoff">
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8" selected="selected">8</option>
+                                            <option value="9">9</option>    
+                                        </select>
+                                    </td>
+                                </td>
+                            </table>
+                        </div>
+                        <div style="text-align:center; padding:20px;">
+                            <input type="submit" value="Compare Texts" ID="btn_search" NAME="btnSubmit" />
+                        </div>
+                    </form>
+                    <div id="textlists" style="visibility:hidden">
+                    </div>
+                </div>
             </div>
-         </div>
-   		<div id="footer">
-			</div>
-		</div> <!-- closes container -->
-	</body>
+            <div id="footer" >
+            </div>
+        </div> <!-- closes container -->
+    </body>
 </html>
 
          

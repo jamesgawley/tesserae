@@ -1,13 +1,100 @@
 #!/usr/bin/env perl
 
-# check-recall.pl
-#
-# this checks Tesserae output against a benchmark set
-# previously saved as a binary using build-rec.pl
-#
-# its purpose is to tell you what portion of the benchmark
-# allusions are present in your tesserae results.
+=head1 NAME
 
+check-recall.pl - compare search results against a benchmark
+
+=head1 SYNOPSIS
+
+check-recall.pl [options] <--session ID | TESRESULTS>
+
+=head1 DESCRIPTION
+
+Compare the results of a tesserae search with a benchmark of predefined
+allusions. The benchmark set must previously have been installed using
+F<scripts/benchmark/build-rec.pl>. To analyse a session created through
+the web interface, use B<-s> with the session id; to analyse local results
+created by a command line search, give the name of the directory (e.g.
+'tesresults') without any flag.
+
+=head1 OPTIONS AND ARGUMENTS
+
+=over
+
+=item I<TESRESULTS>
+
+The name of a local search session, the output of read_table.pl (i.e. a
+directory containing F<match.source>, F<match.target>, F<match.meta>, and
+F<match.score>).
+
+=item --session I<ID>
+
+The session id for results created through the web interface.
+
+=item --bench I<NAME>
+
+The name of the pre-defined benchmark to use. Should correspond to a file
+F<data/bench/NAME.cache>.
+
+=item --export I<MODE>
+
+The type of results to produce. Choices are
+
+=over
+
+=item summary
+
+A simple table showing tallies of benchmark allusions found, by type. The
+default output.
+
+=item tab
+
+A table of all benchmark results caught, tab-delimited
+
+=item missed
+
+A table of all the results missed, tab-delimited
+
+=item html
+
+An html document showing all benchmark results caught; what you get when you
+run check-recall from the web interface.
+
+=back
+
+
+=item --quiet
+
+Don't print debugging info to stderr.
+
+=item --help
+
+Print usage and exit.
+
+=back
+
+=head1 KNOWN BUGS
+
+=head1 SEE ALSO
+
+=head1 COPYRIGHT
+
+University at Buffalo Public License Version 1.0.
+The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
+
+Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
+
+The Original Code is check-recall.pl.
+
+The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
+
+Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
+
+Contributor(s): Chris Forstall <cforstall@gmail.com>
+
+Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
+
+=cut
 
 use strict;
 use warnings;
@@ -61,9 +148,9 @@ BEGIN {
 		}
 		
 		die "can't find .tesserae.conf!\n";
-	}	
+	}
 	
-	$lib = catdir($lib, 'TessPerl');	
+	$lib = catdir($lib, 'TessPerl');
 }
 
 # load Tesserae-specific modules
@@ -71,6 +158,7 @@ BEGIN {
 use lib $lib;
 use Tesserae;
 use EasyProgressBar;
+use Parallel;
 
 # modules to read cmd-line options and print usage
 
@@ -83,13 +171,12 @@ use CGI qw(:standard);
 
 use Storable;
 use File::Basename;
-use Parallel;
 
 # optional modules
 
-my $stemmer;
+# initialize some variables
 
-my $usage = "usage: perl check-recall [--cache CACHE] TESRESULTS\n";
+my $help = 0;
 
 my $session;
 
@@ -97,15 +184,15 @@ my $process_multi = 0;
 my $use_lingua_stem = 0;
 my $export = 'summary';
 my $sort = 'score';
+my $bench = 'default';
 my $rev = 1;
+my $dec = 2;
 
 my @w = (7);
 my $quiet = 1;
 
 my %file;
 my %name;
-
-$file{cache} = catfile($fs{data}, 'bench', 'rec.cache');
 
 # is the program being run from the web or
 # from the command line?
@@ -114,39 +201,24 @@ my $query = CGI->new() || die "$!";
 
 my $no_cgi = defined($query->request_method()) ? 0 : 1;
 
-#
-# commandline options
-#
+if ($no_cgi) {
+    # commandline options
 
-GetOptions(
-	"cache=s"    => \$file{cache},
-	"session=s"  => \$session,
-	"sort=s"     => \$sort,
-	"reverse"    => \$rev,
-	"multi=i"    => \$process_multi,
-	"export=s"   => \$export
-	);
-
-#
-# CGI options
-#
-
-unless ($no_cgi) {
-		
-	# form data
-		
-	$session      = $query->param('session');
-	$sort         = $query->param('sort')   || $sort;
-	$export       = $query->param('export') || 'html';
-	$rev          = $query->param('rev')    if defined $query->param('rev');
-	
-	my $cache = $query->param('cache');
-	if ($cache) { $file{cache} = catfile($fs{data}, 'bench', $cache . ".cache")};
-	
+    GetOptions(
+    	"bench=s"    => \$bench,
+    	"session=s"  => \$session,
+    	"sort=s"     => \$sort,
+        "multi=i"    => \$process_multi,
+    	"export=s"   => \$export
+    );    
+} else {
+    # CGI options
+	$session = $query->param('session');
+	$sort = $query->param('sort') || $sort;
+	$export = $query->param('export') || 'html';
+	$bench = $query->param('bench') || $bench;
 	$quiet = 1;
-	
-	# header
-	
+    
 	my %h = ('-charset'=>'utf-8', '-type'=>'text/html');
 	
 	if ($export eq "xml") { $h{'-type'} = "text/xml"; $h{'-attachment'} = "tesresults-$session.xml" }
@@ -154,33 +226,29 @@ unless ($no_cgi) {
 	if ($export eq "tab") { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.txt" }
 	if ($export =~ /^miss/) { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.missed.txt" }
 
-	print header(%h);
-} 
+	print header(%h);    
+}
 
-#
-# the file to read
-#
 
+# cache file
+$file{cache} = catfile($fs{data}, 'bench', $bench . ".cache");
+	
+# sort order
+$rev = $sort eq "target" ? 0 : 1;
+
+# session file
 if (defined $session) {
-
 	$file{tess} = catfile($fs{tmp}, "tesresults-" . $session);
 }
 else {
-	
 	$file{tess} = shift @ARGV;
 }
 
 unless (defined $file{tess}) {
-	
 	if ($no_cgi) {
-		
 		pod2usage(2);
 	}
-	else {
-		
-		$session = "NA";
-		$name{source} = ($query->param('source') || 'vergil.aeneid');
-		$name{target} = ($query->param('target') || 'lucan.bellum_civile.part.1');
+	else {		
 		html_no_table();
 	}
 	exit;
@@ -234,9 +302,9 @@ my %abbr = %{ retrieve($file_abbr) };
 # compare 
 #
 
-my @count = (0)x7;
-my @score = (0)x7;
-my @total = (0)x7;
+my @count = (0) x 7;
+my @score = (0) x 7;
+my @total = (0) x 7;
 my @order = ();
 
 # this records benchmark records not found by tesserae
@@ -431,7 +499,7 @@ sub html_table {
 	
 	if ($rev) { @order = reverse @order }
 	
-	my $frame = `php -f $fs{html}/check_recall.php`;
+	my $frame = load_frame(catfile($fs{html}, "check_recall.html"));
 	
 	my $table_data ="";
 	
@@ -487,7 +555,7 @@ sub html_table {
 			$bench[$i]->get('source_loc'),
 			$phrase_source,
 			$bench[$i]->get('type'),
-			$bench[$i]->get('score'),
+			sprintf("%.${dec}f", $bench[$i]->get('score')),
 			(defined $bench[$i]->get('auth') ? join(",", @{$bench[$i]->get('auth')}) : "")
 		);
 	}
@@ -519,12 +587,6 @@ sub html_table {
 		$score
 		);
 	
-	$frame =~ s/<!--info-->/&info/e;
-	
-	$frame =~ s/<!--sort-->/&re_sort/e;
-
-	$frame =~ s/<!--all-results-->/$meta{TOTAL}/;
-	
 	$frame =~ s/<!--recall-stats-->/$recall_stats/;
 	
 	$frame =~ s/<!--parallels-->/$table_data/;
@@ -533,199 +595,12 @@ sub html_table {
 }
 
 sub html_no_table {
-				
-	my $frame = `php -f $fs{html}/check_recall.php`;
-	
-	$frame =~ s/<!--info-->/&info/e; 
+    my $frame;
 
-	$frame =~ s/<!--sort-->/<p><br>Click &quot;Compare texts&quot; to get started<\/p>/;
-	
+    my $frame = load_frame(catfile($fs{html}, "check_recall.html"));
+    
 	print $frame;
 }
-
-sub info {
-		
-	my %sel_feature = (word => "", stem => "", syn=>"", '3gr' => "", trans1 => "", trans2mws => "");
-	my %sel_stbasis = (corpus => "", target => "", source => "", both => "");
-	my %sel_dibasis = (span => "", span_target => "", span_source => "", 
-                      freq => "", freq_target => "", freq_source => "");
-	my %sel_scbasis = (word => "", stem => "", feature=>"");
-
-	$sel_feature{($meta{FEATURE}||'stem')}   = 'selected="selected"';
-	$sel_stbasis{($meta{STBASIS}||'corpus')} = 'selected="selected"';
-	$sel_dibasis{($meta{DIBASIS}||'freq')}   = 'selected="selected"';
-
-	my $scbasis = $meta{SCORE};
-	if ($scbasis !~ /word|stem/ and $scbasis eq $meta{FEATURE}) { $scbasis = 'feature' }
-	$sel_scbasis{$scbasis} = 'selected="selected"';
-
-	my $cutoff = $meta{CUTOFF} || 0;
-	my $stop   = defined $meta{STOP} ? $meta{STOP} : 10;
-	my $dist   = defined $meta{DIST} ? $meta{DIST} : 999;
-	
-	my $cache = fileparse($file{cache}, qw/\.cache/);
-	
-	my @feature_choices;
-	
-	if (Tesserae::lang($name{target}) eq Tesserae::lang($name{source})) {
-	
-		@feature_choices = qw/word stem syn 3gr syn_lem/;
-	}
-	else {
-	
-		@feature_choices = qw/trans1 trans2mws/;
-	}
-	
-	my $html_feature = join("\n", map { "<option value=\"$_\" $sel_feature{$_}>$_</option>" } @feature_choices);
-
-	my $html = <<END;
-	
-	<form action="$url{cgi}/read_table.pl" method="post" ID="Form1">
-
-		<h1>Benchmark Recall Test</h1>
-
-		<table class="input">
-			<tr>
-				<th>Session:</th>
-				<th>$session</th>
-			</tr>
-			<tr>
-				<th>Source:</th>
-				<th>$name{source}</th>
-			</tr>
-			<tr>
-				<th>Target:</th>
-				<th>$name{target}</th>
-			</tr>
-			<tr>
-				<th>Unit:</th>
-				<th>phrase</th>
-			</tr>
-			<tr>
-				<th>Feature:</th>
-				<td>
-					<select name="feature">
-						$html_feature
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>Number of stop words:</th>
-				<td>
-					<input type="text" name="stopwords" value="$stop">
-				</td>
-			</tr>
-			<tr>
-				<th>Stoplist basis:</th>
-				<td>
-					<select name="stbasis">
-						<option value="corpus" $sel_stbasis{corpus}>corpus</option>
-						<option value="target" $sel_stbasis{target}>target</option>
-						<option value="source" $sel_stbasis{source}>source</option>
-						<option value="both"   $sel_stbasis{both}>target + source</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>Score basis:</th>
-				<td>
-					<select name="score">
-						<option value="word"    $sel_scbasis{word}>word</option>
-						<option value="stem"    $sel_scbasis{stem}>stem</option>
-						<option value="feature" $sel_scbasis{feature}>feature</option>								
-					</select>
-				</td>
-			</tr>	
-			<tr>
-				<th>Maximum distance:</th>
-				<td>
-					<input type="text" name="dist" maxlength="3" value="$dist">
-				</td>
-			</tr>
-			<tr>
-				<th>Distance metric:</th>
-				<td>
-					<select name="dibasis">
-						<option value="span"        $sel_dibasis{span}>span</option>
-						<option value="span_target" $sel_dibasis{span_target}>span-target</option>
-						<option value="span_source" $sel_dibasis{span_source}>span-source</option>
-						<option value="freq"        $sel_dibasis{freq}>frequency</option>
-						<option value="freq_target" $sel_dibasis{freq_target}>freq-target</option>
-						<option value="freq_source" $sel_dibasis{freq_source}>freq-source</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>Drop scores below:</th>
-				<td>
-					<input type="text" name="cutoff" maxlen="3" value="$cutoff">
-				</td>
-			</tr>
-		</table>
-		
-		<input type="submit" value="Compare Texts" ID="btnSubmit" NAME="btnSubmit"/>
-		
-		<input type="hidden" name="source"       value="$name{source}" />
-		<input type="hidden" name="target"       value="$name{target}" />
-		<input type="hidden" name="recall_cache" value="$cache"        />
-		<input type="hidden" name="unit"         value="phrase"        />
-		<input type="hidden" name="frontend"     value="recall"        />
-		
-	</form>
-
-END
-
-	return $html;
-	
-}
-
-sub re_sort {
-	
-	my @sel_rev     = ("", "");
-	my %sel_sort    = (target => "", score => "", type=> "");
-	
-	$sel_rev[$rev]         = 'selected="selected"';
-	$sel_sort{$sort}       = 'selected="selected"';
-	
-	my $cache = fileparse($file{cache}, qw/\.cache/);
-	
-	my $html = <<END;
-	
-	<form action="$url{cgi}/check-recall.pl" method="post" id="Form2">
-		
-		<table>
-			<tr>
-				<td>
-
-			Sort results 
-
-			<select name="rev">
-				<option value="0" $sel_rev[0]>increasing</option>
-				<option value="1" $sel_rev[1]>decreasing</option>
-			</select>
-
-			by
-
-			<select name="sort">
-				<option value="target" $sel_sort{target}>target locus</option>
-				<option value="score"  $sel_sort{score}>tess score</option>
-				<option value="type"   $sel_sort{type}>parallel type</option>
-			</select>.
-			
-			</td>
-			<td>
-				<input type="hidden" name="session" value="$session" />
-				<input type="hidden" name="cache"   value="$cache"   />
-				<input type="submit" name="submit"  value="Change Display" />
-			</td>
-		</tr>
-	</table>
-	</form>
-END
-
-	return $html;
-}
-
 
 sub table_row {
 
@@ -851,7 +726,7 @@ sub print_delim {
 
 			# get the score
 		
-			my $score = sprintf("%.3f", $score{$unit_id_target}{$unit_id_source});
+			my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
 
 			# get benchmark data
 
@@ -956,7 +831,7 @@ sub print_delim {
 							
 							my $locus = $multi{$other}{$unit_id_target}{$unit_id_source}{$_}{LOCUS};
 							my $score = $multi{$other}{$unit_id_target}{$unit_id_source}{$_}{SCORE};
-							$score = sprintf("%.0f", $score);
+							$score = sprintf("%.${dec}f", $score);
 							
 							push @loci, "$locus ($score)";
 						}
@@ -1194,4 +1069,26 @@ sub minitess {
 	$results{seen_keys}     = [keys %seen_keys];
 	
 	return \%results;
+}
+
+
+sub load_frame {
+    my ($file) = shift;
+    my $frame;
+    
+    open (my $fh, "<:utf8", $file) or die "Can't read $file: $!";
+    
+    while (my $line = <$fh>) {
+        $frame .= $line;
+    }
+    
+    close ($fh);
+
+    $frame =~ s/\/\*bench\*\/.*\/\*bench\*\//"$bench"/g;
+    $frame =~ s/\/\*sort\*\/.*\/\*sort\*\//"$sort"/g;
+    if (defined $session) {
+        $frame =~ s/\/\*session\*\/.*\/\*session\*\//"$session"/g;        
+    }
+
+    return $frame;
 }

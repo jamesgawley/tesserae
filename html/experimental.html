@@ -16,10 +16,7 @@
       <script type="text/javascript">         
          $(document).ready(function() {            
             $("#nav_main").load("/nav_main.html", function(){
-               $("#nav_main_search").addClass("nav_selected")
-            })
-            $("#nav_sub").load("/nav_search.html", function(){
-               $("#nav_search_other").addClass("nav_selected")
+               $("#nav_main_other").addClass("nav_selected")
             })
             $("#footer").load("/footer.html")
          })      
@@ -30,31 +27,24 @@
          <div id="header">
    			<div id="header_image">
    				<a href="/">
-                  <img src="/images/Tesserae.png" alt="Tesserae" width="300">
+                  <img src="/images/Tesserae.png" alt="Tesserae">
                </a>
    			</div>
-   			<div id="nav_main">
-   			</div>
-   			<div id="nav_sub">
-   			</div>
+            <div id="navs">
+       			<div id="nav_main">
+       			</div>
+        		<div id="nav_sub">
+        		</div>
+            </div>
          </div>
          <div id="main">
+             <div class="main_content">
 				<h1>Other Search Tools</h1>
 
 				<p>
 					Here you can try out some searches we're still testing.  We would appreciate any feedback you have.  Caution: results may not be very stable.
 				</p>
-
-				<h2>
-               Multi-text search:
-               <a href="/la_multi.html">Latin</a>
-               <a href="/grc_multi.html">Greek</a>					
-            </h2>
-            
-				<p>
-					Cross-references discovered parallels against the rest of the corpus.
-				</p>
-         					
+                         					
 				<h2><a href="/lsi.html">LSI Search Tool</a></h2>
 				
 				<p>
@@ -67,22 +57,28 @@
 					Customizable, color-coded visualization of 3-gram concentrations.
 				</p>
 				<div class="sophia">
-   				<h2><a href="/batch.html">Batch Search</a></h2>
+                    <h2><a href="/batch.html">Batch Search</a></h2>
 
-   				<p>
-   					Schedule large series of searches with multiple parameters.
-   				</p>
-            </div>
-            <div class="sophia">
-   				<h2><a href="/cgi-bin/check-recall.pl">Lucan-Vergil Benchmark Test</a></h2>
+                    <p>
+   					    Schedule large series of searches with multiple parameters.
+                    </p>
 
-   				<p>
+                    <h2><a href="/cgi-bin/check-recall.pl">Lucan 1 - Aeneid benchmark Test</a></h2>
+
+   			        <p>
    					Allows you to perform a search of Lucan's Pharsalia Book 1 against Vergil's Aeneid,
    					and compares the results against our 3000-parallel benchmark set.
-   				</p>
+                    </p>
+                
+                    <h2><a href="/cgi-bin/check-recall.pl?bench=knauer">Aeneid 1 - Iliad benchmark</a></h2>
+
+                    <p>
+   					Benchmark test using parallels between Aeneid book 1 and all of the Iliad, drawn from G. N. Knauer's <em>Der Aeneis und Homer</em>.
+                    </p>
             </div>
+        </div>
          </div>
-   		<div id="footer">
+   		<div id="footer" class="fixed">
 			</div>
 		</div> <!-- closes container -->
 	</body>

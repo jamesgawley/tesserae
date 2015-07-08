@@ -15,8 +15,8 @@
    },
    "cross":{
       "lang":{"target":"la","source":"grc"},
-      "selected":{"target":"apollonius.argonautica","source":"homer.iliad"},
-      "feature":{},
+      "selected":{"target":"vergil.aeneid.part.1","source":"homer.iliad"},
+      "feature":{"trans":"dictionary method"},
       "title":"Latin-Greek Search",
       "description":"Experimental! Results might change as we continue to work on this feature."
    },

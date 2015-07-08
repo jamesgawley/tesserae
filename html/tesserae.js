@@ -1,85 +1,84 @@
 function populate_author(lang, dest) {
 
-	var select_full = document.getElementById(lang.concat('_texts'));
-	var select_auth = document.getElementsByName(dest.concat('_auth'))[0];
+	var select_full = $("#" + lang + "_texts").get(0)
+	var select_auth = $("#sel_auth_" + dest).get(0)
 	
-	var authors = {};
+	var authors = {}
 	
 	for (var i=0; i<select_full.length; i++) { 
 	
-		var opt_this = select_full.options[i];
+		var opt_this = select_full.options[i]
 		
-		var seg_value = opt_this.value.split('.');
-		var seg_name = opt_this.text.split(' - ');
+		var seg_value = opt_this.value.split(".")
+		var seg_name = opt_this.text.split(" - ")
 						
-		authors[seg_value[0]] = seg_name[0];			
+		authors[seg_value[0]] = seg_name[0]		
 	}
 	
+   $(select_auth).empty()
+   
 	for (var i in authors) {
 	
-		var opt_new = new Option(authors[i], i);
-		select_auth.add(opt_new);
+		var opt_new = new Option(authors[i], i)
+		select_auth.add(opt_new)
 	}
 	
-	populate_work(lang,dest);
+   populate_work(lang,dest)
 }
 
 function populate_work(lang, dest) {
 
-	var select_full = document.getElementById(lang.concat('_texts'));
-	var select_auth = document.getElementsByName(dest.concat('_auth'))[0];				
-	var select_work = document.getElementsByName(dest.concat('_work'))[0];
+	var select_full = $("#" + lang + "_texts").get(0)
+	var select_auth = $("#sel_auth_" + dest).get(0)
+	var select_work = $("#sel_work_" + dest).get(0)
 	
 	var auth_master = select_auth.options[select_auth.selectedIndex].value
-	var works = {};
+	var works = {}
 	
 	for (var i=0; i<select_full.length; i++) { 
 	
-		var opt_this = select_full.options[i];
+		var opt_this = select_full.options[i]
 		
-		var seg_value = opt_this.value.split('.');
-		var seg_name = opt_this.text.split(' - ');
+		var seg_value = opt_this.value.split(".")
+		var seg_name = opt_this.text.split(" - ")
 		
-		var auth_this = seg_value[0];
-		var work_this = seg_value[1];
+		var auth_this = seg_value[0]
+		var work_this = seg_value[1]
 	
 		if (auth_this == auth_master) {
 			
-			works[work_this] = seg_name[1];			
+			works[work_this] = seg_name[1]
 		}
 	}
-	
-	for (var i=select_work.length-1; i>=0; i -= 1) {
-		
-		select_work.remove(i);
-	}
+			
+	$(select_work).empty()
 	
 	for (var i in works) {
 	
-		var opt_new = new Option(works[i], i);
-		select_work.add(opt_new);
+		var opt_new = new Option(works[i], i)
+		select_work.add(opt_new)
 	}
 			
-	populate_part(lang,dest);
+	populate_part(lang,dest)
 }
 
 function populate_part(lang, dest) {
 	
-	var select_full = document.getElementById(lang.concat('_texts'));
-	var select_auth = document.getElementsByName(dest.concat('_auth'))[0];
-	var select_work = document.getElementsByName(dest.concat('_work'))[0];
-	var select_part = document.getElementsByName(dest)[0];
+	var select_full = $("#" + lang + "_texts").get(0)
+	var select_auth = $("#sel_auth_" + dest).get(0)
+	var select_work = $("#sel_work_" + dest).get(0)
+	var select_part = $("#sel_part_" + dest).get(0)
 	
-	var auth_master = select_auth.options[select_auth.selectedIndex].value;
-	var work_master = select_work.options[select_work.selectedIndex].value;
+	var auth_master = select_auth.options[select_auth.selectedIndex].value
+	var work_master = select_work.options[select_work.selectedIndex].value
 	var parts = {};
 	
 	for (var i=0; i<select_full.length; i++) { 
 	
-		var opt_this = select_full.options[i];
+		var opt_this = select_full.options[i]
 		
-		var seg_value = opt_this.value.split('.');
-		var seg_name = opt_this.text.split(' - ');
+		var seg_value = opt_this.value.split(".");
+		var seg_name = opt_this.text.split(" - ");
 		
 		var auth_this = seg_value[0];
 		var work_this = seg_value[1];
@@ -88,24 +87,21 @@ function populate_part(lang, dest) {
 			
 			if (seg_name.length > 2) {
 				
-				parts[seg_name[2]] = opt_this.value;
+				parts[seg_name[2]] = opt_this.value
 			}
 			else {
 			
-				parts['Full Text'] = opt_this.value;
+				parts["Full Text"] = opt_this.value
 			}
 		}
 	}
 	
-	for (var i=select_part.length-1; i>=0; i -= 1) {
-		
-		select_part.remove(i);
-	}
+	$(select_part).empty()
 	
 	for (var i in parts) {
 	
-		var opt_new = new Option(i, parts[i]);
-		select_part.add(opt_new);
+		var opt_new = new Option(i, parts[i])
+		select_part.add(opt_new)
 	}		
 }
 
@@ -126,13 +122,12 @@ function populate_feature(features, sel_position) {
 
 function set_defaults(lang, selected) {
 		
-	for (prefix in selected) {
-	
-		var select_auth = document.getElementsByName(prefix.concat('_auth'))[0];
-		var select_work = document.getElementsByName(prefix.concat('_work'))[0];
-		var select_part = document.getElementsByName(prefix)[0];
+	for (dest in selected) {      	
+   	var select_auth = $("#sel_auth_" + dest).get(0)
+   	var select_work = $("#sel_work_" + dest).get(0)
+   	var select_part = $("#sel_part_" + dest).get(0)
 		
-		var seg = selected[prefix].split('.');
+		var seg = selected[dest].split('.');
 		var auth = seg[0];
 		var work = seg[1];
 		
@@ -144,7 +139,7 @@ function set_defaults(lang, selected) {
 			}
 		}
 		
-		populate_work(lang[prefix],prefix);
+		populate_work(lang[dest],dest);
 
 		for (var i=0; i < select_work.options.length; i++) {
 		
@@ -154,11 +149,11 @@ function set_defaults(lang, selected) {
 			}
 		}
 		
-		populate_part(lang[prefix],prefix);
+		populate_part(lang[dest],dest);
 
 		for (var i=0; i < select_part.options.length; i++) {
 		
-			if (select_part.options[i].value == selected[prefix]) {
+			if (select_part.options[i].value == selected[dest]) {
 			
 				select_part.selectedIndex = i;
 			}

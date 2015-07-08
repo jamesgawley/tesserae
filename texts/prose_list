@@ -46,6 +46,7 @@ antiphon\.
 apollodorus\.
 appian\.
 aretaeus\.
+aristides\.
 aristotle\.
 athenaeus\.
 barnabas\.
@@ -83,3 +84,7 @@ strabo\.
 theophrastus\.
 thucydides\.
 xenophon\.
+# english
+carrol\.
+swift\.
+world_english_bible\.

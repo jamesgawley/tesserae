@@ -441,181 +441,50 @@ elsif  ($export eq "xml") {
 # subroutines
 #
 
-sub nav_page {
-		
-	my $html = "<p>$total_matches results";
-	
-	my $pages = ceil($total_matches/$batch);
-	
-	#
-	# if there's only one page, don't bother
-	#
-	
-	if ($pages > 1) {
-				
-		$html .= " in $pages pages.</br>\n";
-	
-		#
-		# draw navigation links
-		# 
-	
-		my @left = ();
-		my @right = ();
-	
-		my $back_arrow = "";
-		my $forward_arrow = "";
-			
-		$html .= "Go to page: ";
-	
-		if ($page > 1) {
-		
-			$back_arrow .= "<span>";
-			$back_arrow .= "<a href=\"$url{cgi}/read_multi.pl?session=$session;sort=$sort;rev=$rev;page=1;batch=$batch\"> [first] </a>\n";
-			$back_arrow .= "</span>";
-
-			my $p = $page-1;
-
-			$back_arrow .= "<span>";				
-			$back_arrow .= "<a href=\"$url{cgi}/read_multi.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [previous] </a>\n";
-			$back_arrow .= "</span>";
-		
-		
-			@left = (($page > 4 ? $page-4 : 1)..$page-1);
-		}
-	
-		if ($page < $pages) {
-		
-			my $p = $page+1;
-		
-			$forward_arrow .= "<span>";
-			$forward_arrow .= "<a href=\"$url{cgi}/read_multi.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> [next] </a>\n";
-			$forward_arrow .= "</span>";
-
-			$forward_arrow .= "<span>";
-			$forward_arrow .= "<a href=\"$url{cgi}/read_multi.pl?session=$session;sort=$sort;rev=$rev;page=$pages;batch=$batch\"> [last] </a>\n";		       
-			$forward_arrow .= "</span>";
-		
-			@right = ($page+1..($page < $pages-4 ? $page+4 : $pages));
-		}
-	
-		$html .= $back_arrow;
-	
-		for my $p (@left, $page, @right) {
-		
-			$html .= "<span>";
-		
-			if ($page == $p) { 
-			
-				$html .= " $p ";
-			}
-			else {
-			
-				$html .= "<a href=\"$url{cgi}/read_multi.pl?session=$session;sort=$sort;rev=$rev;page=$p;batch=$batch\"> $p </a>";
-			}	
-			
-			$html .= "</span>";
-		}
-	
-		$html .= $forward_arrow;
-		$html .= "\n";
-	}
-			
-	return $html;
-	
-}
-
-sub re_sort {
-	
-	my @sel_rev    = ("", "");
-	my %sel_sort   = (target => "", source => "", score => "");
-	my %sel_export = (html => "", xml => "", tab=>"", csv => "");
-	my %sel_batch  = (50 => '', 100 => '', 200 => '', $total_matches => '');
-
-	$sel_rev[$rev]       = 'selected="selected"';
-	$sel_sort{$sort}     = 'selected="selected"';
-	$sel_export{$export} = 'selected="selected"';
-	$sel_batch{$batch}   = 'selected="selected"';
-
-	my $html=<<END;
-	
-	<form action="$url{cgi}/read_multi.pl" method="post" id="Form1">
-		
-		<table>
-			<tr>
-				<td>
-
-			Sort
-
-			<select name="rev">
-				<option value="0" $sel_rev[0]>increasing</option>
-				<option value="1" $sel_rev[1]>decreasing</option>
-			</select>
-
-			by
-
-			<select name="sort">
-				<option value="target" $sel_sort{target}>target locus</option>
-				<option value="source" $sel_sort{source}>source locus</option>
-				<option value="score"  $sel_sort{score}>score</option>
-			</select>
-
-			and format as
-
-			<select name="export">
-				<option value="html" $sel_export{html}>html</option>
-				<option value="csv"  $sel_export{csv}>csv</option>
-				<option value="tab"  $sel_export{tab}>tab-separated</option>
-				<option value="xml"  $sel_export{xml}>xml</option>
-			</select>.
-			
-			</td>
-			<td>
-				<input type="hidden" name="session" value="$session" />
-				<input type="submit" name="submit" value="Change Display" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-									
-			Show
-
-			<select name="batch">
-				<option value="50"  $sel_batch{50}>50</option>
-				<option value="100" $sel_batch{100}>100</option>
-				<option value="200" $sel_batch{200}>200</option>
-				<option value="all" $sel_batch{$total_matches}>all</option>
-			</select>
-
-			results at a time.
-			</td>
-		</tr>
-	</table>
-	</form>
-
-END
-	
-	return $html;
-	
-}
-
 sub print_html {
 	
-	my $first; 
+	my $first;
 	my $last;
-	
+
+    my $pages = ceil($total_matches/$batch);
+    if ($page < 1) {
+        $page = 1;
+    } elsif ($page > $pages) {
+        $page = $pages;
+    }
+
+    my $batch_string = $batch == $total_matches ? "all" : $batch;
+
 	$first = ($page-1) * $batch;
 	$last  = $first + $batch - 1;
-	
-	if ($last > $total_matches) { $last = $total_matches }
-	
-	my $html = `php -f $fs{html}/results.multi.php`;
-	
+
+	if ($last > $total_matches) { $last = $#rec }
+
+	my $html;
+	{
+		my $file_html = catfile($fs{html}, "results.multi.html");
+		open (my $fh, "<:utf8", $file_html) or die "Can't open $file_html: $!";
+
+		while (<$fh>) {
+			$html .= $_;
+		}
+		close($fh);
+	}
+    
+	my $stoplist = join(", ", @stoplist);
+
+    for ($html) {
+        if (defined $session) {
+            s/\/\*session\*\/.*\/\*session\*\//"$session"/g;
+        }
+        s/\/\*sort\*\/.*\/\*sort\*\//"$sort"/g;
+    	s/\/\*batch\*\/.*\/\*batch\*\//"$batch_string"/g;
+        s/\/\*npages\*\/.*\/\*npages\*\//"$pages"/g;
+        s/\/\*page\*\/.*\/\*page\*\//"$page"/g;    
+    }
+
 	my ($top, $bottom) = split /<!--results-->/, $html;
-	
-	$top =~ s/<!--pager-->/&nav_page()/e;
-	$top =~ s/<!--sorter-->/&re_sort()/e;
-	$top =~ s/<!--session-->/$session/;
-	
+		
 	print $top;
 	
 	my $pr = ProgressBar->new($last-$first);
@@ -675,7 +544,7 @@ sub print_html {
 		
 		print "          <td>\n";
 		print "            <a href=\"javascript:;\""
-		    . " onclick=\"window.open(link='$url{cgi}/context.pl?target=$target;unit=$unit;id=$unit_id_target', "
+		    . " onclick=\"window.open(link='/cgi-bin/context.pl?target=$target;unit=$unit;id=$unit_id_target', "
 		    . " 'context', 'width=520,height=240')\">";
 		print "$abbr{$target} $unit_target[$unit_id_target]{LOCUS}";
 		print "            </a>\n";
@@ -705,7 +574,7 @@ sub print_html {
 		
 		print "          <td>\n";
 		print "            <a href=\"javascript:;\""
-		    . " onclick=\"window.open(link='$url{cgi}/context.pl?target=$source;unit=$unit;id=$unit_id_source', "
+		    . " onclick=\"window.open(link='/cgi-bin/context.pl?target=$source;unit=$unit;id=$unit_id_source', "
 		    . " 'context', 'width=520,height=240')\">";
 		print "$abbr{$source} $unit_source[$unit_id_source]{LOCUS}";
 		print "            </a>\n";
@@ -1177,7 +1046,7 @@ sub format_multi_html {
 			my $locus_other   = $multi{$other}{$unit_id_target}{$unit_id_source}{$unit_id_other}{LOCUS};
 			my $score_other   = sprintf("%i", $multi{$other}{$unit_id_target}{$unit_id_source}{$unit_id_other}{SCORE});
 
-			my $a = "<a href=\"javascript:;\" onclick=\"window.open(link='$url{cgi}/context.pl?target=$other;unit=$unit;id=$unit_id_other',  'context', 'width=520,height=240')\">$locus_other ($score_other)</a>";
+			my $a = "<a href=\"javascript:;\" onclick=\"window.open(link='/cgi-bin/context.pl?target=$other;unit=$unit;id=$unit_id_other',  'context', 'width=520,height=240')\">$locus_other ($score_other)</a>";
 			
 			push @a, $a;
 		}

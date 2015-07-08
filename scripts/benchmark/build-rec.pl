@@ -6,7 +6,7 @@ build-rec.pl - import benchmark allusions into Tesserae
 
 =head1 SYNOPSIS
 
-build-rec.pl [options]
+build-rec.pl [options] FILE
 
 =head1 DESCRIPTION
 
@@ -25,33 +25,46 @@ text from Tesserae.
 
 =over
 
-=item B<--bench> I<FILE>
+=item I<FILE>
 
-Read the benchmark from FILE. Default is 'data/bench/bench4.txt'.
+The benchmark data to process, in plain text. See I<--delim> below for options.
 
-=item B<--cache> I<FILE>
+=item --bench I<NAME>
 
-The binary file to write. Default is 'data/bench/rec.cache'.
+The name for this benchmark set. This name will be used when calling
+F<check-recall.pl> from the command line or the web. The binary output of
+this script will be saved at F<data/bench/NAME.cache>.
 
-=item B<--target> I<NAME>
+=item --label I<STRING>
+
+A human-readable label for this benchmark set. Defaults to the value for 
+I<--bench> above.
+
+=item --target I<NAME>
 
 The name of the target text. Default is 'lucan.bellum_civile.part.1'.
 
-=item B<--source> I<NAME>
+=item --source I<NAME>
 
 The name of the target text. Default is 'vergil.aeneid'.
 
-=item B<--delim> STRING
+=item --unit I<UNIT>
+
+The text unit on which the benchmark is based---corresponds to the B<--unit>
+option on F<read_table.pl>, and only searches on this unit will be able to be
+compared to the benchmark set. Default is 'phrase'.
+
+=item --delim I<STRING>
 
 The field delimiter in the text file to be read. Default is tab.
 
-=item B<--check> FLOAT
+=item --check I<FLOAT>
 
 A similarity threshold between the user-entered text and Tesserae's best
 guess at the correct phrase, below which Tesserae will automatically 
 check for typos in the locus. Range: 0-1. Default is 0.3.
 
-=item B<--warn> FLOAT
+=item --warn I<FLOAT>
 
 A similarity threshold below which a warning will be printed to the 
 terminal. The best match will still be selected, even if the similarity
@@ -78,13 +91,13 @@ The contents of this file are subject to the University at Buffalo Public Licens
 
 Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 
-The Original Code is name.pl.
+The Original Code is build-rec.pl.
 
 The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
 
 Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
 
-Contributor(s):
+Contributor(s): Chris Forstall <cforstall@gmail.com>
 
 Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
 
@@ -161,9 +174,9 @@ use Pod::Usage;
 
 # load additional modules necessary for this script
 
-use Data::Dumper;
+use JSON;
 use Storable qw(nstore retrieve);
-use utf8;
+use Data::Dumper;
 
 # initialize some variables
 
@@ -173,45 +186,67 @@ my $quiet = 0;
 my $warn  = .18;
 my $check = .3;
 my $dump  = 0;
+my $unit = "phrase";
+my $bench = "default";
+my $lang;
+my $label;
 
 # location of the data
 
 my %name = (
-
 	'target' => 'lucan.bellum_civile.part.1',
 	'source' => 'vergil.aeneid'
 );
 
 my %file = (
-	
-	bench => catfile($fs{data}, 'bench', 'bench4.txt'),
-	cache => catfile($fs{data}, 'bench', 'rec.cache')
+	bench => catfile($fs{data}, 'bench', 'bench4.txt')
 );
 
 
 # get user options
 
 GetOptions(
-	'help'     => \$help,
-	'quiet'    => \$quiet,
-	'delim=s'  => \$delim,
-	'cache=s'  => \$file{cache},
-	'bench=s'  => \$file{bench},
-	'warn=f'   => \$warn,
-	'check=f'  => \$check,
+	'help' => \$help,
+	'quiet' => \$quiet,
+	'delim=s' => \$delim,
+	'bench=s' => \$bench,
+	'warn=f' => \$warn,
+	'check=f' => \$check,
+    'label=s' => \$label,
+    'unit=s' => \$unit,
 	'target=s' => \$name{target},
-	'source=s' => \$name{source},
-	'dump'     => \$dump
+	'source=s' => \$name{source}
 );
 
-#
 # print usage if the user needs help
-#
-# you could also use perldoc name.pl
 	
 if ($help) {
-
 	pod2usage(1);
+}
+
+$file{cache} = catfile($fs{data}, "bench", "$bench.cache");
+$label = $bench unless defined $label;
+
+if (@ARGV) {
+    my $file = shift @ARGV;
+    
+    unless ($file) {
+        print STDERR "No input file specified\n";
+        pod2usage(1);
+    }
+    
+    unless (-e $file) {
+        print STDERR "Can't find input file $file";
+        pod2usage(1) unless -s $file;        
+    }
+
+    $file{bench} = $file;
+}
+
+if (Tesserae::lang($name{source}) eq Tesserae::lang($name{target})) {
+    $lang = Tesserae::lang($name{source});
+} else {
+    $lang = "cross";
 }
 
 binmode STDERR, ":utf8";
@@ -370,6 +405,18 @@ print STDERR "writing " . scalar(@rec) . " records to $file{cache}\n";
 
 nstore \@rec, $file{cache};
 
+# add to index of benchmarks
+add_bench({
+    bench => $bench,
+    data => {
+        label => $label,
+        source => $name{source},
+        target => $name{target},
+        unit => $unit,
+        lang => $lang
+    }
+});
+
 if ($dump) {
 
 	dump_debug(\@rec);
@@ -497,4 +544,28 @@ sub dump_debug {
 		
 		print STDERR join("\t", $r->dump(na=>'NA', lab=>1)) . "\n";
 	}
+}
+
+sub add_bench {
+    my $ref = shift;
+    my %new_bench = %$ref;
+    
+    my $file_json = catfile($fs{html}, "bench.json");
+    my %index;
+    
+    eval {
+        open (my $fh, "<:utf8", $file_json);
+        my $json;
+        while (my $line = <$fh>) {
+            $json .= $line;
+        }
+        close ($fh);
+        %index = %{decode_json($json)} if $json;
+    };
+    
+    $index{$new_bench{bench}} = $new_bench{data};
+    
+    open (my $fh, ">:utf8", $file_json) or die "Can't write $file_json: $!";
+    print $fh encode_json(\%index);
+    close ($fh);
 }

@@ -1,14 +1,89 @@
 #!/usr/bin/env perl
 
-# the line below is designed to be modified by configure.pl
+=head1 NAME
 
-use lib '/Users/chris/Desktop/tesserae/perl';	# PERL_PATH
+3gr.init.pl - start a trigram viewing session
 
-#
-# 3gr.init.pl
-#
-# visualize 3-gram frequencies
-#
+=head1 SYNOPSIS
+
+3gr.init.pl [options] NAME
+
+=head1 DESCRIPTION
+
+Initializes a new trigram viewing session by pre-calculating the concentrations
+of a selected number of trigrams and saving the values to a temporary directory.
+Intented to be called from the web interface.
+
+=head1 OPTIONS AND ARGUMENTS
+
+=over
+
+=item I<NAME>
+
+The text to analyse.
+
+=item --unit I<STRING>
+
+Textual unit to consider. Choices are 'line' or 'phrase'; default is 'line'.
+
+=item --top I<N>
+
+How many trigrams to consider. Takes the N most frequent. Default is 10.
+
+=item --keys I<TRIGRAM>[,I<TRIGRAM>,...]
+
+User-specified trigrams to calculate, separated by commas but not spaces.
+
+=item --memory I<N>
+
+How many subsequent units after one in which a given sound occurs will its 
+effect continue to be felt? Default is 10.
+
+=item --decay I<FLOAT>
+
+Factor controlling how quickly the strength of a sound decreases in the memory
+effect. Default is 0.5.
+
+=item B<--quiet>
+
+Don't print debugging info to stderr.
+
+=item B<--help>
+
+Print usage and exit.
+
+=back
+
+=head1 KNOWN BUGS
+
+The way these scripts work is pretty crazy; this should all be redone without
+CGI::Session, and my opinion, ideally doing most of the calculation on the
+client side in Javascript. You could just request the 3-gram values as raw
+JSON data, and not bother trying to store persistent pre-calculated data on
+the server side.
+
+=head1 SEE ALSO
+
+3gr.display.pl, 3gr.session.pl
+
+=head1 COPYRIGHT
+
+University at Buffalo Public License Version 1.0.
+The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
+
+Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
+
+The Original Code is 3gr.init.pl.
+
+The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
+
+Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
+
+Contributor(s): Chris Forstall <cforstall@gmail.com>
+
+Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
+
+=cut
 
 use strict;
 use warnings;
@@ -62,7 +137,7 @@ BEGIN {
 		}
 		
 		die "can't find .tesserae.conf!\n";
-	}	
+	}
 	
 	$lib = catdir($lib, 'TessPerl');
 }
@@ -79,6 +154,7 @@ use Getopt::Long;
 use Pod::Usage;
 
 # load additional modules necessary for this script
+
 
 use CGI::Session;
 use CGI qw/:standard/;
@@ -115,7 +191,7 @@ my $keys = 0;
 
 # choose top n 3-grams
 
-my $top = 0;
+my $top = 10;
 
 # for progress bars
 
@@ -137,43 +213,12 @@ my %lang = %{retrieve($file_lang)};
 
 my $cgi = CGI->new() || die "$!";
 my $session;
-my $redirect = "$url{cgi}/3gr.display.pl";
 
 my $no_cgi = defined($cgi->request_method()) ? 0 : 1;
 
-# create new cgi session,
-# print html header, if necessary
-
-unless ($no_cgi) {
-
-	$session = CGI::Session->new(undef, $cgi, {Directory => '/tmp'});
-	
-	my $cookie = $cgi->cookie(CGISESSID => $session->id );
-
-	print header(-cookie=>$cookie, -encoding=>"utf8");
-	
-	my $stylesheet = "$url{css}/style.css";
-
-	print <<END;
-
-<html>
-	<head>
-		<title>Tesserae results</title>
-		<link rel="stylesheet" type="text/css" href="$stylesheet" />
-		<meta http-equiv="Refresh" content="0; url='$redirect'">
-	</head>
-	<body>
-		<div class="waiting">
-END
-
-}
-
-#
-# get options from command-line or cgi as appropriate
-#
-
 if ($no_cgi) {
-
+    # get options from command-line 
+    
 	GetOptions( 
 		'unit=s'       => \$unit,
 		'decay=f'      => \$decay,
@@ -183,8 +228,16 @@ if ($no_cgi) {
 		'quiet'        => \$quiet );
 		
 	$target = shift @ARGV;
-}
-else {
+    
+} else {
+    # create new cgi session,
+    # print html header, if necessary
+
+	$session = CGI::Session->new(undef, $cgi, {Directory => '/tmp'});
+	
+	my $cookie = $cgi->cookie(CGISESSID => $session->id );
+
+	print header(-cookie=>$cookie, -encoding=>"utf8");
 
 	$target = $cgi->param('target');
 	$unit   = $cgi->param('unit')     || $unit;
@@ -196,6 +249,18 @@ else {
 	$session->save_param($cgi);
 
 	$quiet  = 1;
+	
+	print <<END;
+
+<html>
+	<head>
+		<title>Tesserae results</title>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<meta http-equiv="Refresh" content="0; url='/cgi-bin/3gr.display.pl'">
+	</head>
+	<body>
+		<div class="waiting">
+END
 
 }
 
@@ -396,7 +461,7 @@ else {
 	
 	print <<END;
 	
-			Your search is done.  If you are not redirected automatically, <a href="$redirect">click here.</a>
+			Your search is done.  If you are not redirected automatically, <a href="/cgi-bin/3gr.display.pl">click here.</a>
 		</div>
 	</body>
 </html>

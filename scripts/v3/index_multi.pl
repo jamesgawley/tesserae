@@ -218,16 +218,13 @@ if ($help) {
 	pod2usage(1);
 }
 
-# check to make sure stemmer module is available
+#
+# initialize stemmer
+#
 
-if ($use_lingua_stem and $override_stemmer) {
+if ($use_lingua_stem) {
 
-	print STDERR 
-		"Lingua::Stem was not installed when you configured Tesserae.  "
-	   . "If you have installed it since then, please re-configure.  "
-	   . "Falling back on stem dictionary method for now.\n";
-	   
-	$use_lingua_stem = 0;
+	Tesserae::initialize_lingua_stem();
 }
 
 #

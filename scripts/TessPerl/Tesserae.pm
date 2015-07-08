@@ -680,10 +680,10 @@ sub feat {
 				
 				push @indexable, @indexable_;
 			}
-			else {
-
-				push @indexable, $form;
-			}
+		}
+        
+		if ($#indexable < 0) {
+			push @indexable, $form;
 		}
 	}
 
@@ -821,7 +821,23 @@ sub process_file_list {
 	
 		next unless ($suffix eq ".xml");
 		
-		$list_out{$name} = $file_in;
+		if ( defined $lang and $lang ne "") {
+			
+			lang($name, $lang);
+		}
+		elsif ( defined lang($name) ) {
+		}
+		elsif (Cwd::abs_path($file_in) =~ m/$fs{text}\/([a-z]{1,4})\//) {
+
+			lang($name, $1);
+		}
+		else {
+
+			warn "Skipping $file_in: can't guess language";
+			next;
+		}
+
+		$list_out{$name} = Cwd::abs_path($file_in);
 	}
 
     #Remove erroneously added blank file names.
