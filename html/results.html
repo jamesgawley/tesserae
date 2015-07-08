@@ -5,28 +5,25 @@
 		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
 		<meta name="description" content="Intertext analyzer for Latin texts">
-		<link href="/css/style.css" rel="stylesheet" type="text/css"/>
-		<link href="/images/favicon.ico" rel="shortcut icon"/>
+		<link href="/css/style.css" rel="stylesheet" type="text/css" />
+      <link href="/css/results.css" rel="stylesheet" type="text/css" />
+		<link href="/images/favicon.ico" rel="shortcut icon" />
 		
 		<!--head_insert-->
 
 		<title>Tesserae</title>
       <script src="/jquery.js"></script>
       <script src="/tesserae.js"></script>
-      <script type="text/javascript">         
+      <script src="/results.js"></script>
+      <script type="text/javascript">
          $(document).ready(function() {            
             $("#nav_main").load("/nav_main.html")
             $("#nav_sub").load("/nav_search.html")
             $("#footer").load("/footer.html")
-         })      
+            
+            init()
+         })
       </script>
-      <style type="text/css">
-         div#alt_view {
-            position: absolute;
-            top: 151px;
-            right: 1px;
-         }
-      </style>
    </head>
    <body>
       <div id="container">
@@ -41,86 +38,129 @@
    			<div id="nav_sub">
    			</div>
          </div>
-			<div id="results_sort">
-				<!--sorter-->
-			</div>
-         <div id="alt_view">
-         	<form action="/cgi-bin/fulltext.pl" method="get">
-         		<input type="hidden" name="session" value="<!--session-->" />
-         		<input type="submit" value="Fulltext view" />
-         	</form>
+         <div id="cpanel">
+            <form id="form_cpanel" action="/cgi-bin/read_bin.pl" method="GET">
+               Sort by:
+               <select id="sel_sort" name="sort">
+                  <option value="score">Score</option>
+                  <option value="target">Target</option>
+                  <option value="source">Source</option>
+               </select>
+               Results per page:
+               <select id="sel_batch" name="batch">
+                  <option value="50">50</option>
+                  <option value="100" selected="selected">100</option>
+                  <option value="200">200</option>
+                  <option value="0">all</option>
+               </select>
+               Score precision:
+               <select id="sel_decimal" name="decimal">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2" selected="selected">2</option>
+               </select>
+               Cutoff:
+               <select id="sel_cutoff" name="cutoff">
+                  <option value="0">no cutoff</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8" selected="selected">8</option>
+                  <option value="9">9</option>
+               </select>
+               Format as:
+               <select id="sel_export" name="export">
+                  <option value="html">html</option>
+                  <option value="tab">tsv</option>
+                  <option value="csv">csv</option>
+                  <option value="json">json</option>
+                  <option value="fulltext">full-text</option>
+               </select>
+               <input id="sel_session" name="session" type="hidden" />
+               <input id="btn_change" type="button" value="Change display" />
+               <input id="btn_download" type="submit" />
          </div>
-		
-			<div id="pager">
-				<!--pager-->
+   		<div id="pager">
+            <div id="pager_msg">
+            </div>
+            <div id="pager_nav">
+               Go to page: 
+               <span id="pager_first">[first]</span>
+               <span id="pager_prev">[prev]</span>
+               <input id="sel_page" type="text" style="width:3em" value="1"/>
+               <span id="pager_next">[next]</span>
+               <span id="pager_last">[last]</span>
+            </div>
 			</div>
-		
          <!-- Table of results -->
-		
-			<table class="output" id="resultsTable">
-				<thead>
-					<tr>
-						<th></th>
-						<th class="phrase">target phrase</th>
-						<th class="phrase">source phrase</th>
-						<th>matched on</th>
-						<th>score</th>
-					</tr>
-				</thead>
-				<tbody>
-	
-					<!--results-->
-	
-				</tbody>
-			</table>
-		
-			<div style="margin:1em;text-align:left;">
-				<a href="#top">Back to top</a>
-			</div>
-            		
-			<div style="margin-left:100px;text-align:left;">
-				<h2>Session Details</h2>
-				<a name="fullinfo"></a>
-				<p>
-					<b>Session ID:</b>
-					<!--session-->
-				</p>
-				<p>
-					<b>Source Text:</b>
-					<!--source-->
-					<br>
-					<b>Target Text:</b>
-					<!--target-->
-					<br>
-					<b>Unit:</b>
-					<!--unit-->
-					<br>
-					<b>Feature:</b>
-					<!--feature-->
-					<br>
-					<b>Stoplist size:</b>
-					<!--stoplistsize-->
-					<br>
-					<b>Stoplist basis:</b>
-					<!--stbasis-->
-					<br>
-					<b>Stop words:</b>
-					<!--stoplist-->
-					<br>
-					<b>Max distance:</b>
-					<!--maxdist-->
-					<br>
-					<b>Distance metric:</b>
-					<!--dibasis-->
-					<br>
-					<b>Score cutoff:</b>
-					<!--cutoff-->
-					<br>
-					<b>Filter:</b>
-					<!--filter-->
-				</p>
+		   <div>
+   			<table class="output" id="results_table">
+   				<thead>
+   					<tr>
+   						<th></th>
+   						<th colspan="2" style="width:40%">target phrase</th>
+   						<th colspan="2" style="width:40%">source phrase</th>
+   						<th style="width:10%">matched on</th>
+   						<th>score</th>
+   					</tr>
+   				</thead>
+   				<tbody>
+   				</tbody>
+   			</table>
          </div>
-   		<div id="footer">
+         <div id="metadata">
+            <table class="session_details">
+   				<tr>
+   					<td>Session ID:</td>
+                  <td class="SESSION"></td>
+               </tr>
+   				<tr>
+   					<td>Source Text:</td>
+   					<td class="SOURCE"></td>
+               </tr>
+               <tr>
+   					<td>Target Text:</td>
+   					<td class="TARGET"></td>
+               </tr>
+   				<tr>
+   					<td>Unit:</td>
+   					<td class="UNIT"></td>
+               </tr>
+               <tr>
+   					<td>Feature:</td>
+                  <td class="FEATURE"></td>
+               </tr>
+   				<tr>
+   					<td>Stoplist size:</td>
+                  <td class="STOP"></td>
+               </tr>
+               <tr>
+   					<td>Stoplist basis:</td>
+                  <td class="STBASIS"></td>
+               </tr>
+               <tr>
+   					<td>Stop words:</td>
+   					<td class="STOPLIST"></td>
+               </tr>
+               <tr>
+   					<td>Max distance:</td>
+                  <td class="DIST"></td>
+               </tr>
+               <tr>
+   					<td>Distance metric:</td>
+                  <td class="DIBASIS"></td>
+               </tr>
+               <tr>
+                  <td>Version</td>
+                  <td class="VERSION"></td>
+               </tr>
+            </table>
+         </div>
+		   <div id="footer">
 			</div>
 		</div> <!-- closes container -->
 	</body>

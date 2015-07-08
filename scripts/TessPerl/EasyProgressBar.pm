@@ -1,9 +1,11 @@
 require Exporter;
 use POSIX ();
+use File::Spec::Functions;
+use JSON;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT = qw(ProgressBar HTMLProgress);
+our @EXPORT = qw(ProgressBar AJAXProgress);
 
 # how to draw a simple progress bar
 
@@ -119,11 +121,12 @@ sub terminus {
 	return $self->{END};
 }
 
+
 #
-# something equivalent for the web interface
+# AJAX progress bar
 # 
 
-package HTMLProgress;
+package AJAXProgress;
 
 sub new {
 	my $self = {};
@@ -134,281 +137,121 @@ sub new {
 	
 	$self->{END} = $terminus;
 	
-	my $quiet = shift || 0;
+	my $session = shift;
 	
-	$self->{COUNT}    = 0;
+	$self->{COUNT} = 0;
 	$self->{PROGRESS} = 0;
-	$self->{QUIET}    = $quiet;
-	$self->{DONE}     = 0;
+	$self->{FILE} = File::Spec::Functions::catfile($session, ".progress");
+	$self->{DONE} = 0;
+   $self->{T0} = time;
+	$self->{MESSAGE} = "Please wait...";
+   $self->{STATUS} = "WORKING";
 	
 	bless($self);
 	
-	$self->init();
-	
-	$self->draw();
-	
+	if ($terminus > 0) {
+      $self->draw();
+   } else {
+		$self->finish();
+	}
+
 	return $self;
 }
 
-sub init {
-
-	$|++;
-
-	print "<div class=\"pr_container\">\n";
-	print "<table class=\"pr_bar\">\n";
-	print "<tr>";
-	print "<td class=\"pr_spacer\">0%</td>";
-	print "<td class=\"pr_spacer\"></td>" x 38;
-	print "<td class=\"pr_spacer\">100%</td>";
-	print "</tr>\n";
-	print "<tr>";
-}
-
 sub advance {
+	my ($self, $incr) = @_;
 
-	my $self = shift;
-	
-	my $incr = shift;
-	
-	$self->{COUNT} += ($incr || 1);
-	
-	$self->draw();
+	$self->{COUNT} += ($incr || 1);	
+	$self->check_incr;
 }
 
 sub set {
+	my ($self, $new) = @_;
+	
+   if (defined $new) {
+      $self->{COUNT} = $new;
+      $self->check_incr;
+   }
+}
 
-	my $self = shift;
-	
-	my $new = shift || 0;
-	
-	$self->{COUNT} = $new;
-	
-	$self->draw();
+sub check_incr {
+   my $self = shift;
+   
+   return if $self->{DONE};
+
+   if ($self->{COUNT}/$self->{END} > $self->{PROGRESS} + .005) {
+      $self->draw;
+   } elsif ($self->{COUNT} >= $self->{END}) {
+      $self->finish;
+   }
 }
 
 sub draw {
-
 	my $self = shift;
-
-	return if $self->{DONE};
-		
-	if ($self->{COUNT}/$self->{END} > $self->{PROGRESS} + .025) {
-	
-		my $oldbars = POSIX::floor($self->{PROGRESS} * 40);
-	
-		$self->{PROGRESS} = $self->{COUNT} / $self->{END};
-	
-		my $bars = POSIX::floor($self->{PROGRESS} * 40);
-									
-		my $add = "<td class=\"pr_unit\">.</td>" x ($bars - $oldbars);
-	
-		print $add;
-	}
-	
-	if ($self->{COUNT} >= $self->{END}) {
-				
-		$self->finish();
-	}	
-}
-
-sub finish {
-
-	my $self = shift;
-
-	return if $self->{DONE};
-
-	my $oldbars = POSIX::floor($self->{PROGRESS} * 40);
 
 	$self->{PROGRESS} = $self->{COUNT} / $self->{END};
 
-	my $bars = POSIX::floor($self->{PROGRESS} * 40);
-								
-	my $add = "<td class=\"pr_unit\">.</td>" x ($bars - $oldbars);
-
-	print $add;
-
-	print "</tr></table>\n";
-	print "</div>\n";
-	
-	$self->{DONE} = 1;
-}
-
-sub progress {
-	
-	my $self = shift;
-	
-	return $self->{PROGRESS};
-}
-
-sub count {
-
-	my $self = shift;
-	
-	return $self->{COUNT};
-}
-
-sub terminus {
-
-	my $self = shift;
-	
-	my $new = shift;
-	
-	if (defined $new) {
-	
-		$self->{END} = $new;
-		
-		$self->draw();
-	}
-	
-	return $self->{END};
-}
-
-# A modification of ProgressBar for very long running jobs
-
-package VerySlowProgressBar;
-	
-sub new {
-	my $self = {};
-	
-	shift;
-	
-	my $terminus = shift || die "VerySlowProgressBar->new() called with no final value";
-	
-	$self->{END} = $terminus;
-	
-	my $quiet = shift || 0;
-	
-	$self->{COUNT}    = 0;
-	$self->{PROGRESS} = 0;
-	$self->{DONE}     = 0;
-	$self->{T0}       = time;
-	$self->{REFRESH}  = .005;
-	$self->{QUIET}    = $quiet;
-	
-	bless($self);
-	
-	$self->draw();
-		
-	return $self;
-}
-
-sub advance {
-
-	my $self = shift;
-	
-	my $incr = shift;
-	
-	$self->{COUNT} += ($incr || 1);
-	
-	if ($self->{COUNT}/$self->{END} > $self->{PROGRESS} + $self->{REFRESH}) {
-		
-		$self->{PROGRESS} = $self->{COUNT} / $self->{END};
-
-		$self->draw();
-	}
-	
-	if ($self->{COUNT} >= $self->{END}) {
-	
-		$self->finish();
-	}
-}
-
-sub set {
-
-	my $self = shift;
-	
-	my $new = shift || 0;
-	
-	$self->{COUNT} = $new;
-	
-	$self->draw();
-}
-
-sub t0 {
-
-	my $self = shift;
-
-	my $new = shift;
-
-	if (defined $new) {
-
-		$self->{T0} = $new;
-
-		$self->draw();
-	}
-
-	return $self->{T0};	
-}
-
-sub draw {
-
-	my $self = shift;
-		
-	unless ($self->{QUIET} or $self->{DONE}) {
-
-		my $dur  = time - $self->{T0};
-		my $eta;
-		
-		if ($dur > 0) {
-
-			my $rate = $self->{COUNT} / $dur;
-		
-			$eta = $self->{T0} + $self->{END} / $rate;
-
-			$eta = localtime($eta);
-		}
-		else {
-
-			my $len = length(localtime(time));
-
-			$eta = sprintf("%-${len}s", 'NA');
-		}
-		
-		print STDERR sprintf("% 5.1f%% done; ETA %s", 100*$self->{PROGRESS}, $eta) . "\r";
-	}
+	my $file=$self->{FILE};
+   eval {
+      open (my $fh, ">", $file);
+      print $fh JSON::encode_json({
+         msg => $self->{MESSAGE},
+         progress => sprintf("%.0f", 100 * $self->{PROGRESS}),
+         runtime => time - $self->{T0},
+         status => $self->{STATUS}
+      });
+      close ($fh);
+   };
+   if ($@) {
+      warn "Can't write progress to $file: $@";
+   }
 }
 
 sub finish {
-
 	my $self = shift;
 
-	unless ($self->{QUIET} or $self->{DONE}) {
+	$self->{COUNT} = $self->{END};
+   $self->{MESSAGE} = "Finished!";
+   $self->{DONE} = 1;
 
-		print STDERR "\nyour very-long-running task is done!\n";
-	}
-	
-	$self->{DONE} = 1;	
+   $self->draw;
 }
 
 sub progress {
-	
 	my $self = shift;
 	
 	return $self->{PROGRESS};
 }
 
 sub count {
-
 	my $self = shift;
 	
 	return $self->{COUNT};
 }
 
 sub terminus {
-
-	my $self = shift;
+	my ($self, $new) = @_;
 	
-	my $new = shift;
-	
-	if (defined $new) {
-	
+	if (defined $new) {	
 		$self->{END} = $new;
-		
-		$self->draw();
+		$self->check_incr;
 	}
 	
 	return $self->{END};
 }
 
+sub message {
+	my ($self, $message) = @_;
+
+	$self->{MESSAGE} = $message;
+   $self->draw;
+}
+
+sub set_status {
+   my ($self, $status) = @_;
+   
+   $self->{STATUS} = $status;
+   $self->draw;
+}
 
 1;

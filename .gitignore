@@ -6,6 +6,7 @@ html/defs.php
 html/help_scripts.php
 xsl/defs.xsl
 pod2htm*
+data/common/corpus.db
 
 # compiled python modules
 *.pyc
