@@ -3,7 +3,10 @@ ammianus\.
 anonymous\.laudes_domini
 apuleius\.
 augustine\.
+aurelius_victor\.
 ausonius\.commemoratio_professorum_burdigalensium
+ausonius\.de_bissula
+ausonius\.de_xii_caesaribus
 ausonius\.gratiarum_actio
 bede\.
 boethius\.
@@ -13,6 +16,7 @@ cicero\.
 celsus\.
 columella\.
 curtius_rufus\.
+eutropius\.
 florus\.
 gellius\.
 glass\.
@@ -46,7 +50,6 @@ antiphon\.
 apollodorus\.
 appian\.
 aretaeus\.
-aristides\.
 aristotle\.
 athenaeus\.
 barnabas\.
@@ -84,7 +87,3 @@ strabo\.
 theophrastus\.
 thucydides\.
 xenophon\.
-# english
-carrol\.
-swift\.
-world_english_bible\.
