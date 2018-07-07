@@ -1,9 +1,0 @@
-=encoding utf8
-
-=head1 How to Cite Tesserae
-
-Search results can be cited as follows:
-
-I<Tesserae>. Neil Coffee and J.-P. Koenig, eds. University at Buffalo, SUNY.  http://tesserae.caset.buffalo.edu. Accessed [date].
-
-=cut
