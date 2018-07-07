@@ -1,100 +1,13 @@
 #!/usr/bin/env perl
 
-=head1 NAME
+# check-recall.pl
+#
+# this checks Tesserae output against a benchmark set
+# previously saved as a binary using build-rec.pl
+#
+# its purpose is to tell you what portion of the benchmark
+# allusions are present in your tesserae results.
 
-check-recall.pl - compare search results against a benchmark
-
-=head1 SYNOPSIS
-
-check-recall.pl [options] <--session ID | TESRESULTS>
-
-=head1 DESCRIPTION
-
-Compare the results of a tesserae search with a benchmark of predefined
-allusions. The benchmark set must previously have been installed using
-F<scripts/benchmark/build-rec.pl>. To analyse a session created through
-the web interface, use B<-s> with the session id; to analyse local results
-created by a command line search, give the name of the directory (e.g.
-'tesresults') without any flag.
-
-=head1 OPTIONS AND ARGUMENTS
-
-=over
-
-=item I<TESRESULTS>
-
-The name of a local search session, the output of read_table.pl (i.e. a
-directory containing F<match.source>, F<match.target>, F<match.meta>, and
-F<match.score>).
-
-=item --session I<ID>
-
-The session id for results created through the web interface.
-
-=item --bench I<NAME>
-
-The name of the pre-defined benchmark to use. Should correspond to a file
-F<data/bench/NAME.cache>.
-
-=item --export I<MODE>
-
-The type of results to produce. Choices are
-
-=over
-
-=item summary
-
-A simple table showing tallies of benchmark allusions found, by type. The
-default output.
-
-=item tab
-
-A table of all benchmark results caught, tab-delimited
-
-=item missed
-
-A table of all the results missed, tab-delimited
-
-=item html
-
-An html document showing all benchmark results caught; what you get when you
-run check-recall from the web interface.
-
-=back
-
-
-=item --quiet
-
-Don't print debugging info to stderr.
-
-=item --help
-
-Print usage and exit.
-
-=back
-
-=head1 KNOWN BUGS
-
-=head1 SEE ALSO
-
-=head1 COPYRIGHT
-
-University at Buffalo Public License Version 1.0.
-The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
-
-Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
-
-The Original Code is check-recall.pl.
-
-The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
-
-Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
-
-Contributor(s): Chris Forstall <cforstall@gmail.com>
-
-Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
-
-=cut
 
 use strict;
 use warnings;
@@ -148,9 +61,9 @@ BEGIN {
 		}
 		
 		die "can't find .tesserae.conf!\n";
-	}
+	}	
 	
-	$lib = catdir($lib, 'TessPerl');
+	$lib = catdir($lib, 'TessPerl');	
 }
 
 # load Tesserae-specific modules
@@ -158,7 +71,6 @@ BEGIN {
 use lib $lib;
 use Tesserae;
 use EasyProgressBar;
-use Parallel;
 
 # modules to read cmd-line options and print usage
 
@@ -171,12 +83,13 @@ use CGI qw(:standard);
 
 use Storable;
 use File::Basename;
+use Parallel;
 
 # optional modules
 
-# initialize some variables
+my $stemmer;
 
-my $help = 0;
+my $usage = "usage: perl check-recall [--cache CACHE] TESRESULTS\n";
 
 my $session;
 
@@ -184,15 +97,15 @@ my $process_multi = 0;
 my $use_lingua_stem = 0;
 my $export = 'summary';
 my $sort = 'score';
-my $bench = 'default';
 my $rev = 1;
-my $dec = 2;
 
 my @w = (7);
 my $quiet = 1;
 
 my %file;
 my %name;
+
+$file{cache} = catfile($fs{data}, 'bench', 'rec.cache');
 
 # is the program being run from the web or
 # from the command line?
@@ -201,24 +114,39 @@ my $query = CGI->new() || die "$!";
 
 my $no_cgi = defined($query->request_method()) ? 0 : 1;
 
-if ($no_cgi) {
-    # commandline options
+#
+# commandline options
+#
 
-    GetOptions(
-    	"bench=s"    => \$bench,
-    	"session=s"  => \$session,
-    	"sort=s"     => \$sort,
-        "multi=i"    => \$process_multi,
-    	"export=s"   => \$export
-    );    
-} else {
-    # CGI options
-	$session = $query->param('session');
-	$sort = $query->param('sort') || $sort;
-	$export = $query->param('export') || 'html';
-	$bench = $query->param('bench') || $bench;
+GetOptions(
+	"cache=s"    => \$file{cache},
+	"session=s"  => \$session,
+	"sort=s"     => \$sort,
+	"reverse"    => \$rev,
+	"multi=i"    => \$process_multi,
+	"export=s"   => \$export
+	);
+
+#
+# CGI options
+#
+
+unless ($no_cgi) {
+		
+	# form data
+		
+	$session      = $query->param('session');
+	$sort         = $query->param('sort')   || $sort;
+	$export       = $query->param('export') || 'html';
+	$rev          = $query->param('rev')    if defined $query->param('rev');
+	
+	my $cache = $query->param('cache');
+	if ($cache) { $file{cache} = catfile($fs{data}, 'bench', $cache . ".cache")};
+	
 	$quiet = 1;
-    
+	
+	# header
+	
 	my %h = ('-charset'=>'utf-8', '-type'=>'text/html');
 	
 	if ($export eq "xml") { $h{'-type'} = "text/xml"; $h{'-attachment'} = "tesresults-$session.xml" }
@@ -226,29 +154,33 @@ if ($no_cgi) {
 	if ($export eq "tab") { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.txt" }
 	if ($export =~ /^miss/) { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.missed.txt" }
 
-	print header(%h);    
-}
+	print header(%h);
+} 
 
+#
+# the file to read
+#
 
-# cache file
-$file{cache} = catfile($fs{data}, 'bench', $bench . ".cache");
-	
-# sort order
-$rev = $sort eq "target" ? 0 : 1;
-
-# session file
 if (defined $session) {
+
 	$file{tess} = catfile($fs{tmp}, "tesresults-" . $session);
 }
 else {
+	
 	$file{tess} = shift @ARGV;
 }
 
 unless (defined $file{tess}) {
+	
 	if ($no_cgi) {
+		
 		pod2usage(2);
 	}
-	else {		
+	else {
+		
+		$session = "NA";
+		$name{source} = ($query->param('source') || 'vergil.aeneid');
+		$name{target} = ($query->param('target') || 'lucan.bellum_civile.part.1');
 		html_no_table();
 	}
 	exit;
@@ -278,6 +210,7 @@ for (qw/target source/) {
 	$name{$_} = $meta{uc($_)};
 	$file{"token_$_"} = catfile($fs{data}, 'v3', Tesserae::lang($name{$_}), $name{$_}, $name{$_} . ".token");
 	$file{"unit_$_"}  = catfile($fs{data}, 'v3', Tesserae::lang($name{$_}), $name{$_}, $name{$_} . ".phrase");
+	$file{"freq_$_"}  = catfile($fs{data}, 'common', Tesserae::lang($meta{uc $_}) . '.stem.freq');
 }
 
 # now load the texts
@@ -285,10 +218,94 @@ for (qw/target source/) {
 my %unit;
 my %token;
 
+
+
 for (qw/target source/) {
  	
 	@{$token{$_}}   = @{ retrieve($file{"token_$_"})};
 	@{$unit{$_}}    = @{ retrieve($file{"unit_$_"}) };
+	
+}
+
+
+
+# open target/source dictionaries for corpus-based stem frequencies.
+
+# resolve the path to the stem dictionaries
+
+my $target_dict_file = catfile($fs{data}, 'common', Tesserae::lang($meta{TARGET}) . '.stem.cache');
+
+my $source_dict_file = catfile($fs{data}, 'common', Tesserae::lang($meta{SOURCE}) . '.stem.cache');	
+
+# load the storable binaries
+	
+my %target_dictionary = %{retrieve($target_dict_file)};
+
+my %source_dictionary = %{retrieve($source_dict_file)};	
+
+
+# open frequency file
+
+
+
+open (TARG, "$file{freq_target}") or die $!;
+	
+# build hash of feature, frequency in the text
+my %freq_target;	
+my %freq_source;
+
+while (<TARG>) {
+
+	if ($_ =~ /^#/) {
+		next;
+	}
+	$_ =~ /^(\w+)\t(\d+)/;
+
+
+	$freq_target{$1} = $2;
+	
+	
+}
+
+open (SOUR, "$file{freq_source}") or die $!;
+
+# build hash of feature, frequency in the text
+
+while (<SOUR>) {
+	if ($_ =~ /^#/) {
+		next;
+	}
+	
+	#Original '\w' could not read greek letters; changed to '\S' 11/30/2015 -James Gawley
+	$_ =~ /^(\S+)\t(\d+)/;
+	$freq_source{$1} = $2;
+	
+}
+
+	# Decide what the max number of matchwords is
+
+my $max_match = 2;
+
+for my $unit_id_target (keys %score) {
+
+	for my $unit_id_source ( keys %{$score{$unit_id_target}} ) {
+		
+		my $current_match = scalar (keys %{$match_target{$unit_id_target}{$unit_id_source}});
+
+		if ($current_match > $max_match) {
+			
+			$max_match = $current_match;
+			
+		}
+
+		 $current_match = scalar (keys %{$match_source{$unit_id_target}{$unit_id_source}});
+
+		if ($current_match > $max_match) {
+			
+			$max_match = $current_match;
+			
+		}
+	}
 }
 
 #
@@ -302,9 +319,9 @@ my %abbr = %{ retrieve($file_abbr) };
 # compare 
 #
 
-my @count = (0) x 7;
-my @score = (0) x 7;
-my @total = (0) x 7;
+my @count = (0)x7;
+my @score = (0)x7;
+my @total = (0)x7;
 my @order = ();
 
 # this records benchmark records not found by tesserae
@@ -314,7 +331,8 @@ my @missed;
 # do the comparison
 
 print STDERR "comparing\n" unless $quiet;
-	
+
+
 for my $i (0..$#bench) {
 	
 	my $auth   = $bench[$i]->get('auth');
@@ -322,9 +340,11 @@ for my $i (0..$#bench) {
 	my $unit_t = $bench[$i]->get('target_unit');
 	my $unit_s = $bench[$i]->get('source_unit');
 	
-	if (defined $type) {
+	if ($type ne '') {
 
 		$total[$type]++;
+
+
 	}
 	
 	if (defined $auth) {
@@ -336,7 +356,7 @@ for my $i (0..$#bench) {
 		
 		# tally the match for stats
 
-		if (defined $type) {
+		if ($type ne '') {
 
 			$count[$type]++;
 			$score[$type] += $score{$unit_t}{$unit_s};
@@ -499,7 +519,7 @@ sub html_table {
 	
 	if ($rev) { @order = reverse @order }
 	
-	my $frame = load_frame(catfile($fs{html}, "check_recall.html"));
+	my $frame = `php -f $fs{html}/check_recall.php`;
 	
 	my $table_data ="";
 	
@@ -555,7 +575,7 @@ sub html_table {
 			$bench[$i]->get('source_loc'),
 			$phrase_source,
 			$bench[$i]->get('type'),
-			sprintf("%.${dec}f", $bench[$i]->get('score')),
+			$bench[$i]->get('score'),
 			(defined $bench[$i]->get('auth') ? join(",", @{$bench[$i]->get('auth')}) : "")
 		);
 	}
@@ -587,6 +607,12 @@ sub html_table {
 		$score
 		);
 	
+	$frame =~ s/<!--info-->/&info/e;
+	
+	$frame =~ s/<!--sort-->/&re_sort/e;
+
+	$frame =~ s/<!--all-results-->/$meta{TOTAL}/;
+	
 	$frame =~ s/<!--recall-stats-->/$recall_stats/;
 	
 	$frame =~ s/<!--parallels-->/$table_data/;
@@ -595,12 +621,199 @@ sub html_table {
 }
 
 sub html_no_table {
-    my $frame;
+				
+	my $frame = `php -f $fs{html}/check_recall.php`;
+	
+	$frame =~ s/<!--info-->/&info/e; 
 
-    my $frame = load_frame(catfile($fs{html}, "check_recall.html"));
-    
+	$frame =~ s/<!--sort-->/<p><br>Click &quot;Compare texts&quot; to get started<\/p>/;
+	
 	print $frame;
 }
+
+sub info {
+		
+	my %sel_feature = (word => "", stem => "", syn=>"", syn_lem=>, '3gr' => "", trans1 => "", trans2 => "", g_l => "");
+	my %sel_stbasis = (corpus => "", target => "", source => "", both => "");
+	my %sel_dibasis = (span => "", span_target => "", span_source => "", 
+                      freq => "", freq_target => "", freq_source => "");
+	my %sel_scbasis = (word => "", stem => "", feature=>"");
+
+	$sel_feature{($meta{FEATURE}||'stem')}   = 'selected="selected"';
+	$sel_stbasis{($meta{STBASIS}||'corpus')} = 'selected="selected"';
+	$sel_dibasis{($meta{DIBASIS}||'freq')}   = 'selected="selected"';
+
+	my $scbasis = $meta{SCORE};
+	if ($scbasis !~ /word|stem/ and $scbasis eq $meta{FEATURE}) { $scbasis = 'feature' }
+	$sel_scbasis{$scbasis} = 'selected="selected"';
+
+	my $cutoff = $meta{CUTOFF} || 0;
+	my $stop   = defined $meta{STOP} ? $meta{STOP} : 10;
+	my $dist   = defined $meta{DIST} ? $meta{DIST} : 999;
+	
+	my $cache = fileparse($file{cache}, qw/\.cache/);
+	
+	my @feature_choices;
+	
+	if (Tesserae::lang($name{target}) eq Tesserae::lang($name{source})) {
+	
+		@feature_choices = qw/word stem syn syn_lem 3gr/;
+	}
+	else {
+	
+		@feature_choices = qw/trans1 trans2 g_l/;
+	}
+	
+	my $html_feature = join("\n", map { "<option value=\"$_\" $sel_feature{$_}>$_</option>" } @feature_choices);
+
+	my $html = <<END;
+	
+	<form action="$url{cgi}/read_table.pl" method="post" ID="Form1">
+
+		<h1>Benchmark Recall Test</h1>
+
+		<table class="input">
+			<tr>
+				<th>Session:</th>
+				<th>$session</th>
+			</tr>
+			<tr>
+				<th>Source:</th>
+				<th>$name{source}</th>
+			</tr>
+			<tr>
+				<th>Target:</th>
+				<th>$name{target}</th>
+			</tr>
+			<tr>
+				<th>Unit:</th>
+				<th>phrase</th>
+			</tr>
+			<tr>
+				<th>Feature:</th>
+				<td>
+					<select name="feature">
+						$html_feature
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Number of stop words:</th>
+				<td>
+					<input type="text" name="stopwords" value="$stop">
+				</td>
+			</tr>
+			<tr>
+				<th>Stoplist basis:</th>
+				<td>
+					<select name="stbasis">
+						<option value="corpus" $sel_stbasis{corpus}>corpus</option>
+						<option value="target" $sel_stbasis{target}>target</option>
+						<option value="source" $sel_stbasis{source}>source</option>
+						<option value="both"   $sel_stbasis{both}>target + source</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Score basis:</th>
+				<td>
+					<select name="score">
+						<option value="word"    $sel_scbasis{word}>word</option>
+						<option value="stem"    $sel_scbasis{stem}>stem</option>
+						<option value="feature" $sel_scbasis{feature}>feature</option>								
+					</select>
+				</td>
+			</tr>	
+			<tr>
+				<th>Maximum distance:</th>
+				<td>
+					<input type="text" name="dist" maxlength="3" value="$dist">
+				</td>
+			</tr>
+			<tr>
+				<th>Distance metric:</th>
+				<td>
+					<select name="dibasis">
+						<option value="span"        $sel_dibasis{span}>span</option>
+						<option value="span_target" $sel_dibasis{span_target}>span-target</option>
+						<option value="span_source" $sel_dibasis{span_source}>span-source</option>
+						<option value="freq"        $sel_dibasis{freq}>frequency</option>
+						<option value="freq_target" $sel_dibasis{freq_target}>freq-target</option>
+						<option value="freq_source" $sel_dibasis{freq_source}>freq-source</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Drop scores below:</th>
+				<td>
+					<input type="text" name="cutoff" maxlen="3" value="$cutoff">
+				</td>
+			</tr>
+		</table>
+		
+		<input type="submit" value="Compare Texts" ID="btnSubmit" NAME="btnSubmit"/>
+		
+		<input type="hidden" name="source"       value="$name{source}" />
+		<input type="hidden" name="target"       value="$name{target}" />
+		<input type="hidden" name="recall_cache" value="$cache"        />
+		<input type="hidden" name="unit"         value="phrase"        />
+		<input type="hidden" name="frontend"     value="recall"        />
+		
+	</form>
+
+END
+
+	return $html;
+	
+}
+
+sub re_sort {
+	
+	my @sel_rev     = ("", "");
+	my %sel_sort    = (target => "", score => "", type=> "");
+	
+	$sel_rev[$rev]         = 'selected="selected"';
+	$sel_sort{$sort}       = 'selected="selected"';
+	
+	my $cache = fileparse($file{cache}, qw/\.cache/);
+	
+	my $html = <<END;
+	
+	<form action="$url{cgi}/check-recall.pl" method="post" id="Form2">
+		
+		<table>
+			<tr>
+				<td>
+
+			Sort results 
+
+			<select name="rev">
+				<option value="0" $sel_rev[0]>increasing</option>
+				<option value="1" $sel_rev[1]>decreasing</option>
+			</select>
+
+			by
+
+			<select name="sort">
+				<option value="target" $sel_sort{target}>target locus</option>
+				<option value="score"  $sel_sort{score}>tess score</option>
+				<option value="type"   $sel_sort{type}>parallel type</option>
+			</select>.
+			
+			</td>
+			<td>
+				<input type="hidden" name="session" value="$session" />
+				<input type="hidden" name="cache"   value="$cache"   />
+				<input type="submit" name="submit"  value="Change Display" />
+			</td>
+		</tr>
+	</table>
+	</form>
+END
+
+	return $html;
+}
+
 
 sub table_row {
 
@@ -660,7 +873,7 @@ sub print_delim {
 		print "# m_cutoff  = $meta{MCUTOFF}\n";
 	}
 	
-	my @header = qw(
+	my @header_begin = qw(
 		"RESULT"
 		"TARGET_PHRASE"
 		"TARGET_BOOK"
@@ -671,9 +884,29 @@ sub print_delim {
 		"SOURCE_LINE"
 		"SOURCE_TEXT"
 		"SHARED"
-		"SCORE"
+		"ORIGINAL_SCORE");
+		
+	my @header_end = qw(
 		"TYPE"
-		"AUTH");
+		"AUTH");		
+		
+	my @header_middle;
+	
+	for my $tok (1..$max_match) {
+
+		my $z = $tok - 1;
+		
+		$header_middle[$z] = "\"TARGET_TOKEN_$tok\"";
+		
+		$header_middle[$z+$max_match] = "\"TARGET_FREQUENCY_$tok\"";
+		
+		$header_middle[$z+$max_match+$max_match] = "\"SOURCE_TOKEN_$tok\"";
+		
+		$header_middle[$z+$max_match+$max_match+$max_match] = "\"SOURCE_FREQUENCY_$tok\"";
+		
+	}
+	
+	my @header = (@header_begin, @header_middle, @header_end);
 		
 	if ($process_multi) {
 	
@@ -686,6 +919,8 @@ sub print_delim {
 	}
 	
 	print join ($delim, @header) . "\n";
+
+
 
 	my $pr = ProgressBar->new(scalar(keys %score));
 		
@@ -726,7 +961,86 @@ sub print_delim {
 
 			# get the score
 		
-			my $score = sprintf("%.${dec}f", $score{$unit_id_target}{$unit_id_source});
+			my $score = sprintf("%.3f", $score{$unit_id_target}{$unit_id_source});
+			
+			# At this point, it's possible to generate a list of info instead of a single score. Start with token IDs and freq values.
+			# Start with an array of token IDs.
+			
+			my @target_tokens = keys %marked_target;
+			
+			my @source_tokens = keys %marked_source;
+
+			# build the array of frequencies
+
+			my @target_freqs;
+			my @source_freqs;
+						
+			# the following assumes that the feature is 'word' and the frequencies should be drawn from the texts.
+			
+			for my $z (0..$#target_tokens) {
+				
+				#access the .token data file for this work, which is an array whose addresses are equivalent to token ids and whose values are hashes 
+				
+				
+				if (${${$token{target}}[$target_tokens[$z]]}{FORM}) {
+			
+					$target_freqs[$z] = stem_frequency(${${$token{target}}[$target_tokens[$z]]}{FORM}, 'target');
+				
+				}
+				else {
+					
+					$target_freqs[$z] = 'NA';
+					
+				}
+			}
+			
+			for my $z (0..$#source_tokens) {
+				
+				if (${${$token{source}}[$source_tokens[$z]]}{FORM}) {
+			
+					$source_freqs[$z] = stem_frequency(${${$token{source}}[$source_tokens[$z]]}{FORM}, 'source');
+				
+				}
+				else {
+					
+					$source_freqs[$z] = 'NA';
+					
+				}			
+			}
+			
+			# the target and source frequencies and token IDs must be joined in an array whose length is great enough to accept the largest number of possible matchwords.
+			
+			if (scalar(@target_tokens) < $max_match) {
+				
+				my $start = $#target_tokens + 1;
+				
+				for my $z ($start..($max_match - 1)) {
+				
+					$target_tokens[$z] = 'NA';
+
+					$target_freqs[$z] = 'NA';
+
+				
+				}
+				
+			}
+			
+			
+			if (scalar(@source_tokens) < $max_match) {
+				
+				my $start = $#source_tokens + 1;
+				
+				for my $z ($start..($max_match - 1)) {
+				
+					$source_tokens[$z] = 'NA';
+
+					$source_freqs[$z] = 'NA';
+
+				
+				}
+				
+			}
+			my @score = ($score, @target_tokens, @target_freqs, @source_tokens, @source_freqs);
 
 			# get benchmark data
 
@@ -805,7 +1119,10 @@ sub print_delim {
 
 			# score
 
-			push @row, $score;
+			push @row, @score;
+			
+			# At this point, it's possible to interrupt the program with a list of info instead of a single score.
+			
 	
 			# benchmark data
 			
@@ -831,7 +1148,7 @@ sub print_delim {
 							
 							my $locus = $multi{$other}{$unit_id_target}{$unit_id_source}{$_}{LOCUS};
 							my $score = $multi{$other}{$unit_id_target}{$unit_id_source}{$_}{SCORE};
-							$score = sprintf("%.${dec}f", $score);
+							$score = sprintf("%.0f", $score);
 							
 							push @loci, "$locus ($score)";
 						}
@@ -1072,23 +1389,82 @@ sub minitess {
 }
 
 
-sub load_frame {
-    my ($file) = shift;
-    my $frame;
-    
-    open (my $fh, "<:utf8", $file) or die "Can't read $file: $!";
-    
-    while (my $line = <$fh>) {
-        $frame .= $line;
-    }
-    
-    close ($fh);
+# take an inflected form, and return the average corpus-wide frequency value of the associated stems
+sub stem_frequency {
+	
+	my ($form, $text) = @_;
+	
+	# this subroutine is agnostic of language but must be fed the appropriate text (target or source)
+	
+	my $average;
+		
+	if ($text eq 'target') {
+	
+		# load all possible stems
+	
+		my @stems;
 
-    $frame =~ s/\/\*bench\*\/.*\/\*bench\*\//"$bench"/g;
-    $frame =~ s/\/\*sort\*\/.*\/\*sort\*\//"$sort"/g;
-    if (defined $session) {
-        $frame =~ s/\/\*session\*\/.*\/\*session\*\//"$session"/g;        
-    }
+		if ($target_dictionary{$form}) {
+		
+		 	@stems = @{$target_dictionary{$form}};
+		 	
+		}
+		else {
+		
+			$stems[0] = $form;
+			
+		}
+	
+		# retrieve corpus-wide frequency values for each stem
+	
+		my $freq_values;
+	
+		for (0..$#stems) {
+		
+			$freq_values += $freq_target{$stems[$_]};
+		
+		}
+	
+		# average the frequencies
+	
+		$average = $freq_values / (scalar @stems);
+		
+	}
+	else {
+	
+		# load all possible stems
+	
+		my @stems;
 
-    return $frame;
+		if ($source_dictionary{$form}) {
+		
+		 	@stems = @{$source_dictionary{$form}};
+		 	
+		}
+		else {
+		
+			$stems[0] = $form;
+			
+		}
+	
+		# retrieve corpus-wide frequency values for each stem
+	
+		my $freq_values;
+	
+		for (0..$#stems) {
+		
+			$freq_values += $freq_source{$stems[$_]};
+		
+		}
+	
+		# average the frequencies
+	
+		$average = $freq_values / (scalar @stems);
+		
+	}
+	
+	
+	return $average;
+
 }
+

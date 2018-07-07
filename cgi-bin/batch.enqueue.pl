@@ -14,42 +14,25 @@ batch.enqueue.pl - CGI wrapper for batch.prepare.pl
 
 =head1 SEE ALSO
 
-batch.prepare.pl batch.run.pl
+batch.prepare.pl
+batch.run.pl
 
 =head1 COPYRIGHT
 
-University at Buffalo Public License Version 1.0. The contents of this file are
-subject to the University at Buffalo Public License Version 1.0 (the
-"License"); you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-http://tesserae.caset.buffalo.edu/license.txt.
+University at Buffalo Public License Version 1.0.
+The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
 
-Software distributed under the License is distributed on an "AS IS" basis,
-WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
-the specific language governing rights and limitations under the License.
+Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 
 The Original Code is batch.enqueue.pl.
 
-The Initial Developer of the Original Code is Research Foundation of State
-University of New York, on behalf of University at Buffalo.
+The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
 
-Portions created by the Initial Developer are Copyright (C) 2007 Research
-Foundation of State University of New York, on behalf of University at Buffalo.
-All Rights Reserved.
+Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
 
-Contributor(s): Chris Forstall <cforstall@gmail.com>
+Contributor(s): Chris Forstall
 
-Alternatively, the contents of this file may be used under the terms of either
-the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General
-Public License Version 2.1 (the "LGPL"), in which case the provisions of the
-GPL or the LGPL are applicable instead of those above. If you wish to allow use
-of your version of this file only under the terms of either the GPL or the
-LGPL, and not to allow others to use your version of this file under the terms
-of the UBPL, indicate your decision by deleting the provisions above and
-replace them with the notice and other provisions required by the GPL or the
-LGPL. If you do not delete the provisions above, a recipient may use your
-version of this file under the terms of any one of the UBPL, the GPL or the
-LGPL.
+Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
 
 =cut
 
@@ -214,7 +197,7 @@ sub init_db {
 	# check to make sure table exists
 	
 	my $sth = $dbh->prepare(
-		'select name from sqlite_master where type="table"'
+		'select name from sqlite_master where type="table";'
 	);
 	
 	$sth->execute;
@@ -237,7 +220,7 @@ sub init_db {
 			'create table queue (
 				SESSION char(4),
 				KILL int
-			)'
+			);'
 		);
 		
 		$sth->execute;
@@ -257,7 +240,7 @@ sub enqueue {
 	my ($dbh, $session) = @_;
 
 	my $sth = $dbh->prepare(
-		"insert into queue values ('$session', 0)"
+		"insert into queue values ('$session', 0);"
 	);
 	
 	$sth->execute;
@@ -311,7 +294,7 @@ sub html_redirect {
 
 	my $session = shift;
 
-	my $redirect = "/cgi-bin/batch.status.pl?session=$session";
+	my $redirect = "$url{cgi}/batch.status.pl?session=$session";
 	
 	my $html = <<END_HTML;
 <!DOCTYPE html
@@ -322,7 +305,7 @@ sub html_redirect {
 		<title>Tesserae Batch Run Summary</title>
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin" />
 		<!-- <meta http-equiv="Refresh" content="15: url='$redirect'"> -->
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="$url{css}/style.css" />
 		</style>
 	</head>
 	<body>

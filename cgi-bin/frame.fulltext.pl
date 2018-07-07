@@ -119,7 +119,7 @@ GetOptions(
 
 unless ($no_cgi) {
 	
-	print header(-type=>"text/html", -charset=>"utf-8");
+	print header();
 
 	my $query = new CGI || die "$!";
 
@@ -372,5 +372,18 @@ for my $line_id (0..$#{$line{$self}}) {
 
 $table .= "</table>\n";
 
-print $table;
+# load the template
+
+my $frame = `php -f $fs{html}/frame.fulltext.php`;
+
+# insert the table into the template
+
+$frame =~ s/<!--me-->/$name{$self}/g;
+$frame =~ s/<!--other-->/$name{$other}/g;
+
+$frame =~ s/<!--fulltext-->/$table/;
+
+# send to browser
+
+print $frame;
 

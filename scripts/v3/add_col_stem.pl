@@ -1,5 +1,15 @@
 #!/usr/bin/env perl
 
+#
+# This is a template for how Tesserae scripts should begin.
+#
+# Please fill in documentation notes in POD below.
+#
+# Don't forget to modify the COPYRIGHT section as follows:
+#  - name of the script where it says "The Original Code is"
+#  - your name(s) where it says "Contributors"
+#
+
 =head1 NAME
 
 add_col_stem.pl - index additional feature sets
@@ -10,9 +20,9 @@ add_col_stem.pl [options] FILES
 
 =head1 DESCRIPTION
 
-Indexes additional feature sets for texts in the Tesserae corpus. To be run
-after add_column.pl. By default, it adds the stem featureset for every text
-specified; alternate featuresets can be selected using the --feature option.
+Indexes additional feature sets for texts in the Tesserae corpus. To be run after
+add_column.pl. By default, it adds the stem featureset for every text specified;
+alternate featuresets can be selected using the --feature option.
 
 =head1 OPTIONS AND ARGUMENTS
 
@@ -24,10 +34,10 @@ The list of files to index.
 
 =item B<--feature> I<FEATURE>
 
-Index the I<FEATURE> feature set. Multiple feature sets can be selected by
-using the flag more than once. The default is 'stem'. If a feature set other
-than 'stem' is specified, then 'stem' must also be specified explicitly if you
-want to create a stem index too.
+Index the I<FEATURE> feature set. Multiple feature sets can be selected by using
+the flag more than once. The default is 'stem'. If a feature set other than 'stem'
+is specified, then 'stem' must also be specified explicitly if you want to create 
+a stem index too.
 
 =item B<--use-lingua-stem>
 
@@ -54,38 +64,20 @@ Print usage and exit.
 
 =head1 COPYRIGHT
 
-University at Buffalo Public License Version 1.0. The contents of this file are
-subject to the University at Buffalo Public License Version 1.0 (the
-"License"); you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-http://tesserae.caset.buffalo.edu/license.txt.
+University at Buffalo Public License Version 1.0.
+The contents of this file are subject to the University at Buffalo Public License Version 1.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://tesserae.caset.buffalo.edu/license.txt.
 
-Software distributed under the License is distributed on an "AS IS" basis,
-WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
-the specific language governing rights and limitations under the License.
+Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 
 The Original Code is add_col_stem.pl.
 
-The Initial Developer of the Original Code is Research Foundation of State
-University of New York, on behalf of University at Buffalo.
+The Initial Developer of the Original Code is Research Foundation of State University of New York, on behalf of University at Buffalo.
 
-Portions created by the Initial Developer are Copyright (C) 2007 Research
-Foundation of State University of New York, on behalf of University at Buffalo.
-All Rights Reserved.
+Portions created by the Initial Developer are Copyright (C) 2007 Research Foundation of State University of New York, on behalf of University at Buffalo. All Rights Reserved.
 
-Contributor(s): Chris Forstall <cforstall@gmail.com>
+Contributor(s): Chris Forstall
 
-Alternatively, the contents of this file may be used under the terms of either
-the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General
-Public License Version 2.1 (the "LGPL"), in which case the provisions of the
-GPL or the LGPL are applicable instead of those above. If you wish to allow use
-of your version of this file only under the terms of either the GPL or the
-LGPL, and not to allow others to use your version of this file under the terms
-of the UBPL, indicate your decision by deleting the provisions above and
-replace them with the notice and other provisions required by the GPL or the
-LGPL. If you do not delete the provisions above, a recipient may use your
-version of this file under the terms of any one of the UBPL, the GPL or the
-LGPL.
+Alternatively, the contents of this file may be used under the terms of either the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General Public License Version 2.1 (the "LGPL"), in which case the provisions of the GPL or the LGPL are applicable instead of those above. If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the UBPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL. If you do not delete the provisions above, a recipient may use your version of this file under the terms of any one of the UBPL, the GPL or the LGPL.
 
 =cut
 
@@ -174,7 +166,7 @@ my $override_parallel = Tesserae::check_mod("Parallel::ForkManager");
 my $help    = 0;
 my $quiet   = 0;
 my $use_lingua_stem = 0;
-my @features;
+my @feature;
 
 #
 # These are for parallel processing
@@ -188,7 +180,7 @@ my $pm;
 GetOptions(
 	'help'            => \$help,
 	'quiet'           => \$quiet,
-	'feature=s'       => \@features,
+	'feature=s'       => \@feature,
 	'use-lingua-stem' => \$use_lingua_stem,
 	'parallel=i'      => \$max_processes
 );
@@ -204,7 +196,7 @@ binmode STDOUT, ':utf8';
 
 # default feature set is stem
 
-@features = ('stem') unless @features;
+@feature = ('stem') unless @feature;
 
 #
 # initialize parallel processing
@@ -238,24 +230,13 @@ if ($use_lingua_stem) {
 
 my @files = map { glob } @ARGV;
 
-my @text_ids = @{check_feature_dep(Tesserae::process_file_list(\@files))};
-
-#
-# add feature column to metadata table
-#
-
-my $dbh = Tesserae::metadata_dbh;
-
-# check if specified feature columns exist in texts table,
-# create them if they don't
-update_features($dbh, \@features);
-
+@files = @{check_feature_dep(Tesserae::process_file_list(\@files))};
 
 #
 # process the files
 #
 
-for my $text_id (@text_ids) {
+for my $file (@files) {
 	
 	# fork
 	
@@ -264,13 +245,13 @@ for my $text_id (@text_ids) {
 		$pm->start and next;
 	}
 	
-	my $lang = Tesserae::metadata_get($text_id, "Lang");
+	my $lang = Tesserae::lang($file);
 		
-	my $file_index_word = catfile($fs{data}, 'v3', $lang, $text_id, "$text_id.index_word");
+	my $file_index_word = catfile($fs{data}, 'v3', $lang, $file, "$file.index_word");
 	
 	my %index_word = %{retrieve($file_index_word)};
 	
-	for my $feature (@features) {
+	for my $feature (@feature) {
 		
 		my %index_feat;
 	
@@ -287,15 +268,13 @@ for my $text_id (@text_ids) {
 			$index_feat{$feat} = Tesserae::uniq($index_feat{$feat});
 		}
 
-		my $file_index = catfile($fs{data}, 'v3', $lang, $text_id, "$text_id.index_$feature");
+		my $file_index = catfile($fs{data}, 'v3', $lang, $file, "$file.index_$feature");
 	
 		print STDERR "Writing index $file_index\n" unless $quiet;
 		nstore \%index_feat, $file_index;
 		
-		Tesserae::write_freq_stop($text_id, $feature, \%index_feat, $quiet);
-		Tesserae::write_freq_score($text_id, $feature, \%index_word, $quiet);
-
-		Tesserae::metadata_set($text_id, "feat_$feature", 1);
+		Tesserae::write_freq_stop($file, $feature, \%index_feat, $quiet);
+		Tesserae::write_freq_score($file, $feature, \%index_word, $quiet);
 	}
 	
 	$pm->finish if $max_processes;	
@@ -311,47 +290,24 @@ sub check_feature_dep {
 
 	my $ref = shift;
 
-	my @ids = @$ref;
-	my %id_ok = map {($_, 1)} @ids;
+	my @file = @$ref;	
+	my %file_ok = map {($_, 1)} @file;
 	
-	for my $feature (@features) {
+	for my $feature (@feature) {
 	
 		next unless defined $Tesserae::feature_dep{$feature};
 
-		for my $text_id (@ids) {
+		for my $file (@file) {
 
-			my $file_dep = catfile($fs{data}, 'v3', Tesserae::metadata_get($text_id, "Lang"), $text_id, "$text_id.index_$Tesserae::feature_dep{$feature}");
+			my $file_dep = catfile($fs{data}, 'v3', Tesserae::lang($file), $file, "$file.index_$Tesserae::feature_dep{$feature}");
 
 			unless (-e $file_dep) {
 		
-				$id_ok{$text_id} = 0
+				$file_ok{$file} = 0
 			}
 		}
 	}
 	
-	return [grep { $id_ok{$_} } @ids];
+	return [grep { $file_ok{$_} } @file];
 }
 
-sub update_features {
-	my ($dbh, $feat_ref) = @_;
-	my @features = @$feat_ref;
-	
-	my $table_ref = $dbh->selectall_arrayref("pragma table_info(texts)");
-
-	my %exists;
-	
-	for my $row(@$table_ref) {
-		my $col = $row->[1];
-		next unless $col =~ s/feat_//;
-		
-		$exists{$col} = 1;
-	}
-
-	for my $feature (@features) {
-	
-		unless ($exists{$feature}) {
-			my $sql = "alter table texts add column feat_$feature int default 0";
-			$dbh->do($sql);
-		}
-	}
-}

@@ -1,89 +1,8 @@
 #!/usr/bin/env perl
 
-=head1 NAME
-
-lsa.source.pl - display source text for lsa search interface
-
-=head1 SYNOPSIS
-
-lsa.source.pl [options] --source SOURCE --target TARGET
-
-=head1 DESCRIPTION
-
-Loads the source text as well as the similarity results for the given query
-from lsa.search.py. Displays the full text of SOURCE with matching phrases
-coloured red. Intended to be invoked from the web interface.
-
-=head1 OPTIONS AND ARGUMENTS
-
-=over
-
-=item --source I<NAME>
-
-The source, (or "corpus") text.
-
-=item --target I<NAME>
-
-The target, (or "query") text.
-
-=item --unit_id I<INT>
-
-The phrase id from the target text to use as our search query.
-
-=item --threshold I<FLOAT>
-
-The similarity threshold above which something counts as a "hit". Default is
-0.5.
-
-=item B<--quiet>
-
-Don't print debugging info to stderr.
-
-=item B<--help>
-
-Print usage and exit.
-
-=back
-
-=head1 KNOWN BUGS
-
-=head1 SEE ALSO
-
-=head1 COPYRIGHT
-
-University at Buffalo Public License Version 1.0. The contents of this file are
-subject to the University at Buffalo Public License Version 1.0 (the
-"License"); you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-http://tesserae.caset.buffalo.edu/license.txt.
-
-Software distributed under the License is distributed on an "AS IS" basis,
-WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
-the specific language governing rights and limitations under the License.
-
-The Original Code is lsa.source.pl.
-
-The Initial Developer of the Original Code is Research Foundation of State
-University of New York, on behalf of University at Buffalo.
-
-Portions created by the Initial Developer are Copyright (C) 2007 Research
-Foundation of State University of New York, on behalf of University at Buffalo.
-All Rights Reserved.
-
-Contributor(s): Chris Forstall <cforstall@gmail.com>
-
-Alternatively, the contents of this file may be used under the terms of either
-the GNU General Public License Version 2 (the "GPL"), or the GNU Lesser General
-Public License Version 2.1 (the "LGPL"), in which case the provisions of the
-GPL or the LGPL are applicable instead of those above. If you wish to allow use
-of your version of this file only under the terms of either the GPL or the
-LGPL, and not to allow others to use your version of this file under the terms
-of the UBPL, indicate your decision by deleting the provisions above and
-replace them with the notice and other provisions required by the GPL or the
-LGPL. If you do not delete the provisions above, a recipient may use your
-version of this file under the terms of any one of the UBPL, the GPL or the
-LGPL.
-=cut
+#
+#
+#
 
 use strict;
 use warnings;
@@ -139,7 +58,7 @@ BEGIN {
 		die "can't find .tesserae.conf!\n";
 	}
 	
-	$lib = catdir($lib, 'TessPerl');
+	$lib = catdir($lib, 'TessPerl');	
 }
 
 # load Tesserae-specific modules
@@ -161,16 +80,6 @@ use LWP::UserAgent;
 use POSIX;
 use Storable qw(nstore retrieve);
 
-# initialize some variables
-
-my $help = 0;
-my $quiet = 0;
-my $target = 'lucan.bellum_civile.part.1';
-my $source = 'vergil.aeneid.part.1';
-my $unit_id = 0;
-my $threshold = .5;
-my $topics = 10;
-
 # allow unicode output
 
 binmode STDOUT, ":utf8";
@@ -182,25 +91,40 @@ my $query = CGI->new() || die "$!";
 
 my $no_cgi = defined($query->request_method()) ? 0 : 1;
 
-if ($no_cgi) {
-    # command-line arguments
+#
+# command-line options
+#
 
-    GetOptions( 
-	    'target=s' => \$target,
-        'source=s' => \$source,
-        'unit_id|i=i' => \$unit_id,
-        'topics|n=i' => \$topics,
-        'threshold=f' => \$threshold,
-        'quiet' => \$quiet,
-        'help' => \$help
-    );
-    
-    # print help if user needs help
-    pod2usage(1) if ($help);
-    
-} else {
-    # cgi input
-    
+# print debugging messages to stderr?
+
+my $quiet = 0;
+
+# determine file from session id
+
+my $target = 'lucan.bellum_civile.part.1';
+my $source = 'vergil.aeneid.part.1';
+my $unit_id = 0;
+my $threshold = .5;
+my $topics = 10;
+
+#
+# command-line arguments
+#
+
+GetOptions( 
+	'target|t=s'   => \$target,
+	'source|s=s'   => \$source,
+	'unit_id|i=i'  => \$unit_id,
+	'topics|n=i'   => \$topics,
+	'threshold=f'  => \$threshold,
+	'quiet|q'      => \$quiet );
+
+#
+# cgi input
+#
+
+unless ($no_cgi) {
+	
 	my %h = ('-charset'=>'utf-8', '-type'=>'text/html');
 	
 	print header(%h);
@@ -241,8 +165,10 @@ my $lang = Tesserae::lang($source);
 # source and target data
 #
 
+if ($no_cgi) {
 
-print STDERR "loading $source\n" unless ($quiet);
+	print STDERR "loading $source\n" unless ($quiet);
+}
 
 my $file = catfile($fs{data}, 'v3', $lang, $source, $source);
 
@@ -291,9 +217,120 @@ for my $line_id (0..$#line) {
 
 $table .= "</table>\n";
 
+# load the template
+
+my $file_frame = catfile($fs{html}, 'frame.fullscreen.php');
+my $frame = `php -f $file_frame`;
+
+# add some stuff into the head
+
+my $head_insert = "
+		<style style=\"text/css\">
+			a {
+				text-decoration: none;
+			}
+			a:hover {
+				color: #888;
+			}
+		</style>
+		<script src=\"$url{html}/tesserae.js\"></script>\n";
+
+$frame =~ s/<!--head-->/$head_insert/;
+
+#
+# create navigation
+#
+
+# read drop down list
+
+open (FH, "<:utf8", catfile($fs{html}, "textlist.$lang.r.php"));
+my $menu_source;
+
+while (<FH>) { 
+
+	$menu_source .= "$_";
+}
+
+close FH;
+
+# topics menu
+
+my $menu_topics;
+
+for (my $n = 5; $n <= 50; $n += 5) {
+
+	my $selected = ($n == $topics ? ' selected="selected"' : '');
+	
+	$menu_topics .= "<option value=\"$n\"$selected>$n</option>\n";
+}
+
+# put together the form
+
+my $nav = "
+		<form action=\"$url{cgi}/lsa.pl\" method=\"POST\" target=\"_top\">
+		<table class=\"input\">
+			<tr>
+				<td><a href=\"$url{html}/experimental.php\" target=\"_top\">Back to Tesserae</a></td>
+			</tr>
+			<tr>
+				<td>
+					<input type=\"hidden\" name=\"target\" value=\"$target\" />
+				</td>
+			</tr>
+			<tr>
+				<th>Source:</th>
+				<td>
+					<select name=\"source_auth\" onchange=\"populate_work('$lang', 'source')\">
+					</select><br />
+					<select name=\"source_work\" onchange=\"populate_part('$lang', 'source')\">
+					</select><br />
+					<select name=\"source\">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Number of Topics:</th>
+				<td>
+					<select name=\"topics\">
+						$menu_topics
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>
+					<input type=\"submit\" value=\"Change\" ID=\"btnSubmit\" NAME=\"btnSubmit\" />
+				</td>
+			</tr>
+		</table>
+		</form>
+		<div style=\"visibility:hidden;\">
+			<select id=\"la_texts\">
+				$menu_source
+			</select>
+		</div>
+		
+		<script language=\"javascript\">
+			populate_author('$lang', 'source');
+			set_defaults({'source':'$lang'}, {'source':'$source'});
+		</script>
+		\n";
+
+$frame =~ s/<!--navigation-->/$nav/;
+
+# insert the table into the template
+
+my $title = <<END;
+	<h2>$source</h2>
+END
+
+$frame =~ s/<!--title-->/$title/;
+
+$frame =~ s/<!--content-->/$table/;
+
 # send to browser
 
-print $table . "\n";
+print $frame . "\n";
 
 
 #

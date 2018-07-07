@@ -7,7 +7,6 @@ use utf8;
 use Unicode::Normalize;
 use Encode;
 use Config;
-use DBI;
 
 require Exporter;
 
@@ -57,8 +56,8 @@ unless ($override_stemmer) {
 
 our %feature_dep = (
 	
-	'trans1' => 'stem',
-	'trans2' => 'stem',
+	'g_l' => 'stem',
+	'syn_lem' => 'stem',
 	'syn'    => 'stem'
 );
 
@@ -68,9 +67,9 @@ our %feature_score = (
 
 	'word'   => 'word',
 	'stem'   => 'stem',
-	'trans1' => 'stem',
-	'trans2' => 'stem',
-	'syn'    => 'syn',
+	'g_l' => 'stem',
+	'syn'    => 'stem',
+	'syn_lem'    => 'stem',	
 	'3gr'    => '3gr'
 );
 
@@ -82,20 +81,6 @@ my %feature_override = (
 	'porter' => \&porter
 );
 
-# metadata fields for texts
-
-our @metadata_fields_texts = qw/
-	Author
-	Display
-	Abbr
-	Lang
-	Prose
-	PrintSource
-	DigitalSourceDisplay
-	DigitalSourceURL
-	URI	
-	AddedBy
-/;
 
 # cache for feature lookup
 
@@ -121,21 +106,13 @@ our %non_word = (
 	'la'  => qr([^$wchar_latin]+), 
 	'grc' => qr([^$wchar_greek]+),
 	'en'  => qr([^$wchar_latin]+) 
-); 
+	); 
 	
 our %is_word = (
 	'la'  => qr([$wchar_latin]+), 
 	'grc' => qr([$wchar_greek]+),
 	'en'  => qr('?[$wchar_latin]+(?:['-][$wchar_latin]*)?) 
-);
-
-#
-# metadata database
-#	
-
-my $metadata_db_file = catfile($fs{data}, 'common', 'corpus.db');
-our $metadata_db_table = 'texts';
-metadata_init();
+	);
 
 ########################################
 # subroutines
@@ -601,16 +578,22 @@ sub text_sort {
 
 sub lang {
 	
-	my ($id, $lang) = @_;
+	my ($text, $lang) = @_;
 	
-	my $dbh = metadata_dbh();
-	
-	if ($lang) {
+	my $file_lang = catfile($fs{data}, 'common', 'lang');
+
+	if (! %lang and -s $file_lang) {
 		
-		metadata_set($id, 'Lang', $lang, $dbh);
+		%lang = %{retrieve($file_lang)};
 	}
 	
-	return metadata_get($id, 'Lang', $dbh);
+	if ($lang) {
+	
+		$lang{$text} = $lang;
+		nstore \%lang, $file_lang;
+	}
+	
+	return $lang{$text};
 }
 
 # check the feature dictionary
@@ -680,10 +663,10 @@ sub feat {
 				
 				push @indexable, @indexable_;
 			}
-		}
-        
-		if ($#indexable < 0) {
-			push @indexable, $form;
+			else {
+
+				push @indexable, $form;
+			}
 		}
 	}
 
@@ -809,7 +792,7 @@ sub write_freq_score {
 
 sub process_file_list {
 	
-	my ($listref, $optref) = @_;
+	my ($listref, $lang, $optref) = @_;
 	my @list_in = @$listref;
 	my %opt     = %$optref;
 	
@@ -817,9 +800,30 @@ sub process_file_list {
 
 	for my $file_in (@list_in) {
 	
+		# large files split into parts are kept in their
+		# own subdirectories; if an arg has no .tess extension
+		# it may be such a directory
+
+		if (-d $file_in) {
+
+			opendir (DH, $file_in);
+
+			my @parts = (grep {/\.part\./ && -f} map { catfile($file_in, $_) } readdir DH);
+
+			push @list_in, @parts;
+					
+			closedir (DH);
+		
+			# move on to the next full text
+
+			next;
+		}
+	
 		my ($name, $path, $suffix) = fileparse($file_in, qr/\.[^.]*/);
 	
-		next unless ($suffix eq ".xml");
+		next unless ($suffix eq ".tess");
+		
+		# get the language for this doc.
 		
 		if ( defined $lang and $lang ne "") {
 			
@@ -837,9 +841,8 @@ sub process_file_list {
 			next;
 		}
 
-		$list_out{$name} = Cwd::abs_path($file_in);
+		$list_out{$name} = $file_in;
 	}
-
     #Remove erroneously added blank file names.
 
     for my $key (keys %list_out) {
@@ -939,120 +942,4 @@ sub escape_path {
 	
 	return $path;
 }
-
-sub metadata_get {
-	my ($id, $field, $dbh_open) = @_;
-	
-	my $dbh = $dbh_open || metadata_dbh();
-
-	my $value;
-
-	my $res = $dbh->selectrow_arrayref("select $field from $metadata_db_table where id=\"$id\";");
-	
-	if ($res) {
-		$value = $res->[0];
-	}
-	
-	return $value;
-}
-
-sub metadata_set {
-	my ($id, $field, $value, $dbh_open) = @_;
-
-	my $dbh = $dbh_open || metadata_dbh();
-	
-	$dbh->do("update $metadata_db_table set $field=\"$value\" where id=\"$id\";");
-}
-
-sub metadata_textlist {
-	my ($ref_opt, $dbh_open) = @_;
-	
-	my $dbh = $dbh_open || metadata_dbh();
-
-	my $where_clause = "";
-
-	if (defined $ref_opt) {
-		my %opt = %$ref_opt;
-		
-		if (%opt) {
-			$where_clause = " where " . join(" and ", map {"$_ = '$opt{$_}'"} keys %opt);
-		}
-	}
-	
-	my $sql = "select id from texts" . $where_clause . ";";
-	
-	my $ref = $dbh->selectcol_arrayref($sql);
-	return $ref;
-}
-
-sub metadata_dbh {
-
-	my $dbh = DBI->connect("dbi:SQLite:dbname=$metadata_db_file", "", "", {RaiseError=>1});
-	return $dbh;
-}
-
-sub metadata_init {
-	
-	my $dbh = metadata_dbh();
-	
-	db_create_table($dbh, 'texts', [
-		'id varchar(128) unique',
-		'Display varchar(80)',
-		'Author varchar(40)',
-		'Lang char(3)',
-		'Abbr varchar(24)',
-		'Prose int',
-		'PrintSource varchar(256)',
-		'DigitalSourceDisplay varchar(24)',
-		'DigitalSourceURL varchar(128)',
-		'URI varchar(80)',
-		'AddedBy varchar(24)',
-		'feat_word int']
-	);
-	
-	# table for recording searchable sub-text units
-
-	db_create_table($dbh, 'parts', [
-		'TextId varchar(128)',
-		'id int',
-		'Display varchar(24)',
-		'MaskLower int',
-		'MaskUpper int']
-	);
-
-	# table for recording author data
-
-	db_create_table($dbh, "authors", [
-		'id varchar(40) unique',
-		'Display varchar(24)',
-		'Birth int',
-		'Death int']
-	);
-}
-
-sub db_create_table {
-	my ($dbh, $table, $cols_ref) = @_;
-	my @cols = @$cols_ref;
-
-	$dbh->do("create table if not exists $table (" . join(",", @cols) . ");");
-}
-
-# get token mask for part texts
-
-sub get_mask {
-	my ($text_id, $part_id) = @_;
-
-	my $dbh = metadata_dbh;
-
-	my $sql = "select MaskLower, MaskUpper from parts where TextId=\"$text_id\" and id=\"$part_id\"";
-
-	my $res = $dbh->selectrow_arrayref($sql);
-
-	my $mask_lower = $res->[0];
-	my $mask_upper = $res->[1];
-
-	return($mask_lower, $mask_upper);
-}
-
-
 1;

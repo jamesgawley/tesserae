@@ -93,25 +93,31 @@ print header();
 # cgi input
 #
 
-my $session = $query->param('session') || die "no session specified from web interface";
+my $session = $query->param('session')    || die "no session specified from web interface";
 
 #
-# load template
-#
+# create the frameset and redirect to content
+# 
 
-my $html;
-{
-	my $file_html = catfile($fs{html}, "fulltext.html");
-	open (my $fh, "<:utf8", $file_html) or die "Can't open $file_html: $!";
+print <<END;
 
-	while (<$fh>) {
-		$html .= $_;
-	}
-	close($fh);
-}
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="description" content="Intertext analyzer for Latin texts">
+		<link href="$url{css}/style.css" rel="stylesheet" type="text/css"/>
+		<link href="$url{image}/favicon.ico" rel="shortcut icon"/>
 
-if (defined $session) {
-    $html =~ s/\/\*session\*\/.*\/\*session\*\//"$session"/g;
-}
+		<title>Tesserae</title>
 
-print $html;
+	</head>
+
+	<frameset cols="50%,50%">
+		<frame name="left" src="$url{cgi}/frame.fulltext.pl?session=$session;side=left">
+		<frame name="right" src="$url{cgi}/frame.fulltext.pl?session=$session;side=right">
+	</frameset>
+</html>
+
+END
