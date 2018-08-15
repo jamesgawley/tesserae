@@ -239,7 +239,7 @@ my $no_cgi = defined($query->request_method()) ? 0 : 1;
 # print debugging messages to stderr?
 
 my $quiet = 0;
-
+=begin comment
 # maximum distance between matching tokens
 
 my $max_dist = 999;
@@ -259,7 +259,7 @@ my $multi_cutoff = 0;
 # text list to pass on to multitext.pl
 
 my @include;
-
+=cut
 # cache param to pass on to check-recall.pl
 
 my $recall_cache = 'rec';
@@ -271,7 +271,7 @@ my $help;
 # print benchmark times?
 
 my $bench = 0;
-
+=begin comment
 # what frequency table to use in scoring (distinguishes between word and lemma only)
 
 my $score_basis;
@@ -279,7 +279,7 @@ my $score_basis;
 # which data file to use for the frequency metric used in scoring (either the texts or the corpus)
 
 my $freq_basis = 'text';
-
+=cut
 # which script should mediate the display of results
 
 my $frontend = 'default';
@@ -291,13 +291,13 @@ GetOptions(
 			'unit=s'       => \$unit,
 			'feature=s'    => \$feature,
 			'stopwords=s'  => \$stopwords, 
-			'freq_basis=s'  => \$freq_basis, 			
-			'stbasis=s'    => \$stoplist_basis,
-			'binary=s'     => \$file_results,
-			'distance=i'   => \$max_dist,
-			'dibasis=s'    => \$distance_metric,
-			'cutoff=f'     => \$cutoff,
-			'score=s'      => \$score_basis,
+#			'freq_basis=s'  => \$freq_basis, 			
+#			'stbasis=s'    => \$stoplist_basis,
+#			'binary=s'     => \$file_results,
+#			'distance=i'   => \$max_dist,
+#			'dibasis=s'    => \$distance_metric,
+#			'cutoff=f'     => \$cutoff,
+#			'score=s'      => \$score_basis,
 			'benchmark'    => \$bench,
 			'no-cgi'       => \$no_cgi,
 			'quiet'        => \$quiet,
@@ -311,7 +311,7 @@ if ($help) {
 
 	pod2usage(-verbose => 2);
 }
-
+=begin commment
 # default score basis set by Tesserae.pm
 
 unless (defined $score_basis)  { 
@@ -327,7 +327,7 @@ if ($score_basis eq 'feature')  {
 	$score_basis = $Tesserae::feature_score{$feature} || 'word';
 	
 }
-
+=cut
 # html header
 #
 # put this stuff early on so the web browser doesn't
@@ -413,15 +413,15 @@ else {
 	$unit            = $query->param('unit')         || $unit;
 	$feature         = $query->param('feature')      || $feature;
 	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
-	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
-	$max_dist        = $query->param('dist')         || $max_dist;
-	$distance_metric = $query->param('dibasis')      || $distance_metric;
-	$cutoff          = $query->param('cutoff')       || $cutoff;
-	$score_basis     = $query->param('score')        || $score_basis;
-	$freq_basis     = $query->param('freq_basis')    || $freq_basis;
+#	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
+#	$max_dist        = $query->param('dist')         || $max_dist;
+#	$distance_metric = $query->param('dibasis')      || $distance_metric;
+#	$cutoff          = $query->param('cutoff')       || $cutoff;
+#	$score_basis     = $query->param('score')        || $score_basis;
+#	$freq_basis     = $query->param('freq_basis')    || $freq_basis;
 	$frontend        = $query->param('frontend')     || $frontend;
-	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
-	@include         = $query->param('include');
+#	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
+#	@include         = $query->param('include');
 	$recall_cache    = $query->param('recall_cache') || $recall_cache;
 	
 	unless (defined $source) {
@@ -441,7 +441,7 @@ else {
 		default  => "$url{cgi}/read_bin.pl?session=$session",
 		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
 		fulltext => "$url{cgi}/fulltext.pl?session=$session",
-		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
+#		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
 	);
 
 	
@@ -475,7 +475,7 @@ if (Tesserae::check_prose_list($target) or Tesserae::check_prose_list($source)) 
 
 # if user selected 'feature' as score basis,
 # set it to whatever the feature is
-
+=begin comment
 if ($score_basis =~ /^feat/) {
 
 	$score_basis = $feature;
@@ -491,7 +491,7 @@ my %target_dictionary;
 my %source_dictionary;
 
 my $corpus_wide = 0;
-
+=cut
 # Determine the language of the texts (NOTE: only cares if the language is English or other modern. 
 # When cross-language capabilities are developed for these languages, the system must be re-designed to consider each text's needs independently.
 
@@ -504,7 +504,7 @@ if ($lang eq 'en') {
 	$modern = 1;
 
 }
-
+=begin comment
 # If corpus-wide frequencies need to be counted, set the corpus-wide flag.
 
 if ($score_basis eq 'stem' && $freq_basis eq 'corpus' || $score_basis eq 'syn_lem' && $freq_basis eq 'corpus' || $score_basis eq 'g_l' && $freq_basis eq 'corpus' ) { 	
@@ -533,10 +533,10 @@ if ($corpus_wide == 1) {
 	}
 
 }
+=cut
 
 
-
-
+=begin comment
 #
 # calculate feature frequencies
 #
@@ -580,7 +580,7 @@ else {
 
 my %freq_source = %{Tesserae::stoplist_hash($file_freq_source)};
 
-
+=cut
 
 # print all params for debugging
 
@@ -594,14 +594,14 @@ unless ($quiet) {
 	print STDERR "unit=$unit\n";
 	print STDERR "stopwords=$stopwords\n";
 	print STDERR "stoplist basis=$stoplist_basis\n";
-	print STDERR "max_dist=$max_dist\n";
-	print STDERR "distance basis=$distance_metric\n";
-	print STDERR "score cutoff=$cutoff\n";
-	print STDERR "frequency basis=$freq_basis\n";
-	print STDERR "score basis=$score_basis\n";
-	print STDERR "corpus-wide flag=$corpus_wide\n";
-	print STDERR "File for source frequency=$file_freq_source\n";	
-	print STDERR "File for target frequency=$file_freq_target\n";		
+#	print STDERR "max_dist=$max_dist\n";
+#	print STDERR "distance basis=$distance_metric\n";
+#	print STDERR "score cutoff=$cutoff\n";
+#	print STDERR "frequency basis=$freq_basis\n";
+#	print STDERR "score basis=$score_basis\n";
+#	print STDERR "corpus-wide flag=$corpus_wide\n";
+#	print STDERR "File for source frequency=$file_freq_source\n";	
+#	print STDERR "File for target frequency=$file_freq_target\n";		
 }
 
 
@@ -643,7 +643,7 @@ my %index_target   = %{ retrieve("$file_target.index_$feature" ) };
 
 #
 #
-# this is where we calculated the matches
+# this is where we calculate the matches
 #
 #
 
@@ -653,7 +653,8 @@ my $t1 = time;
 
 my %match_target;
 my %match_source;
-my %match_score;
+#my %match_score;
+my %match_index;
 
 #
 # consider each key in the source doc
@@ -689,7 +690,7 @@ for my $key (keys %index_source) {
 
 	# skip key if it's in the stoplist
 
-	next if ( grep { $_ eq $key } @stoplist);
+	next if ( grep { $_ eq $key } @stoplist); # index is keyed by stem if it's a stem index, so the root is looked for in the stoplist.
 
 	# link every occurrence in one text to every one in the other text
 
@@ -703,12 +704,15 @@ for my $key (keys %index_source) {
 			
 			$match_target{$unit_id_target}{$unit_id_source}{$token_id_target}{$key} = 1;
 			$match_source{$unit_id_target}{$unit_id_source}{$token_id_source}{$key} = 1;
+#			$match_index{$key}{'target'}{$unit_id_target}{$unit_id_source} = $token_id_target;
+			push @{$match_index{$key}}, "$unit_id_target,$unit_id_source,$token_id_target,$token_id_source";
+#			$match_index{$key}{'source'}{$unit_id_source}{$unit_id_target} = $token_id_source;
 		}
 	}
 }
 
 print "search>>" . (time-$t1) . "\n" if $no_cgi and $bench;
-
+=begin comment
 #
 #
 # assign scores
@@ -716,11 +720,11 @@ print "search>>" . (time-$t1) . "\n" if $no_cgi and $bench;
 #
 
 $t1 = time;
-
+=cut
 # how many matches in all?
 
 my $total_matches = 0;
-
+=begin comment
 # draw a progress bar
 
 if ($no_cgi) {
@@ -847,7 +851,7 @@ for my $unit_id_target (keys %match_target) {
 		$total_matches++;
 	}
 }
-
+=cut
 my %feature_notes = (
 	
 	word => "Exact matching only.",
@@ -855,7 +859,7 @@ my %feature_notes = (
 	syn  => "Stem + synonym matching.  This search is still in development.  Note that stopwords may match on less-common synonyms."
 	);
 
-print "score>>" . (time-$t1) . "\n" if $no_cgi and $bench;
+#print "score>>" . (time-$t1) . "\n" if $no_cgi and $bench;
 
 #
 # write binary results
@@ -870,13 +874,13 @@ my %match_meta = (
 	UNIT      => $unit,
 	FEATURE   => $feature,
 	STOP      => $stopwords,
-	STOPLIST  => [@stoplist],
-	STBASIS   => $stoplist_basis,
-	DIST      => $max_dist,
-	DIBASIS   => $distance_metric,
+#	STOPLIST  => [@stoplist],
+#	STBASIS   => $stoplist_basis,
+#	DIST      => $max_dist,
+#	DIBASIS   => $distance_metric,
 	SESSION   => $session,
-	CUTOFF    => $cutoff,
-	SCBASIS   => $score_basis,
+#	CUTOFF    => $cutoff,
+#	SCBASIS   => $score_basis,
 	COMMENT   => $feature_notes{$feature},
 	VERSION   => $Tesserae::VERSION,
 	TOTAL     => $total_matches
@@ -897,14 +901,15 @@ mkpath($file_results);
 	
 nstore \%match_target, catfile($file_results, "match.target");
 nstore \%match_source, catfile($file_results, "match.source");
-nstore \%match_score,  catfile($file_results, "match.score" );
+#nstore \%match_score,  catfile($file_results, "match.score" );
 nstore \%match_meta,   catfile($file_results, "match.meta"  );
-
+nstore \%match_index,	catfile($file_results, "match.index");
+=begin comment
 if (@include) {
 
 	write_multi_list($file_results, \@include);
 }
-
+=cut
 print "store>>" . (time-$t1) . "\n" if $no_cgi and $bench;
 
 print <<END unless ($no_cgi);
@@ -931,7 +936,7 @@ print "total>>" . (time-$t0)  . "\n" if $no_cgi and $bench;
 #
 #   used in determining match scores
 #   and in filtering out bad results
-
+=begin comment
 sub dist {
 
 	my ($match_t_ref, $match_s_ref, $metric) = @_;
@@ -1074,7 +1079,7 @@ sub dist {
 		
 	return $dist;
 }
-
+=cut
 sub load_stoplist {
 
 	my ($stoplist_basis, $stopwords) = @_[0,1];
@@ -1172,7 +1177,7 @@ sub exact_match {
 	
 	return scalar(@exact_match);
 }
-
+=begin comment
 sub score_default {
 	
 	my ($match_t_ref, $match_s_ref, $distance) = @_;
@@ -1407,3 +1412,4 @@ sub stem_frequency {
 	return $average;
 
 }
+=cut
