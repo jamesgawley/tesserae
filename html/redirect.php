@@ -2,7 +2,7 @@
 <?php
 
 
-$path = "127.0.0.1/5000/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]];
+$path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]] . "/";
 
 header("Location: " . $path);
 
