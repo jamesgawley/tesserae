@@ -21,7 +21,7 @@ div#container
 div#header
 {
 	position: relative;
-	background: #e1e6c6;
+	background: #00ccff;
 	height: 12em;
 }
 
@@ -72,7 +72,7 @@ div#nav_sub
 	padding: auto;
 	height : 29px;
 	line-height : 29px;
-	background : 	#3366ff;
+	background : 	#3399ff;
 	text-transform : uppercase;
 	font-family : "times new roman", serif;
 	text-align: center;
@@ -172,7 +172,7 @@ div#pager span a
 div#footer
 {
 	position: relative;
-	background: #e1e6c6;
+	background: #00ccff;
 	height: 80px;
 	text-align: left;
 	border-top: 1px solid black;
@@ -461,7 +461,7 @@ table.output th.phrase {
 }
 
 table.output th {
-	background-color: #e1e6c6;
+	background-color: #00ccff;
 }
 
 table.pr_bar {
