@@ -1,10 +1,10 @@
 <html>
 <?php
 
-
+echo $_GET["target"];
 $path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]] . "/";
 
-header("Location: " . $path);
+//header("Location: " . $path);
 
 $name_to_cts = ["ambrose.apologia_david_altera" => "urn:cts:latinLit:stoa0022.stoa014",
 "ambrose.de_apologia_david" => "urn:cts:latinLit:stoa0022.stoa015",
