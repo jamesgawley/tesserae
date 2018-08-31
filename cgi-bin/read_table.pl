@@ -298,7 +298,7 @@ GetOptions(
 			'stopwords=s'  => \$stopwords, 
 #			'freq_basis=s'  => \$freq_basis, 			
 #			'stbasis=s'    => \$stoplist_basis,
-#			'binary=s'     => \$file_results,
+			'binary=s'     => \$file_results,
 #			'distance=i'   => \$max_dist,
 #			'dibasis=s'    => \$distance_metric,
 #			'cutoff=f'     => \$cutoff,
