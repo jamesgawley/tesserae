@@ -462,10 +462,9 @@ $name_to_cts = ["ambrose.apologia_david_altera" => "urn:cts:latinLit:stoa0022.st
 "vitruvius.de_architectura" => "urn:cts:latinLit:phi1056.phi001"];
 
 
-echo $name_to_cts[$_GET["target"]];
 $path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]] . "/";
 
-//header("Location: " . $path);
+header("Location: " . $path);
 
 ?>
 </html>
