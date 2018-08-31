@@ -102,6 +102,7 @@ $name_to_cts = ["ambrose.apologia_david_altera" => "urn:cts:latinLit:stoa0022.st
 "ausonius.epigrammata_ausonii_de_diversis_rebus" => "urn:cts:latinLit:stoa0045.stoa010",
 "ausonius.epistularum" => "urn:cts:latinLit:stoa0045.stoa011",
 "ausonius.epitaphia_heroum_qui_bello_troico_interfuerunt" => "urn:cts:latinLit:stoa0045.stoa012",
+"ausonius.filius_ad_patrem.tess" => "urn:cts:latinLit:mqdq032.mqdq01",
 "ausonius.gratiarum_actio" => "urn:cts:latinLit:stoa0045.stoa014",
 "ausonius.griphus_ternarii_numeri" => "urn:cts:latinLit:stoa0045.stoa015",
 "ausonius.libri_de_fastis_conclusio" => "urn:cts:latinLit:stoa0045.stoa017",
