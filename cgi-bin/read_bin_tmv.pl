@@ -146,8 +146,6 @@ BEGIN {
 use lib $lib;
 use Tesserae;
 use EasyProgressBar;
-use JSON;
-
 
 # modules to read cmd-line options and print usage
 
@@ -337,8 +335,7 @@ unless ($no_cgi) {
 	if ($export eq "xml") { $h{'-type'} = "text/xml"; $h{'-attachment'} = "tesresults-$session.xml" }
 	if ($export eq "csv") { $h{'-type'} = "text/csv"; $h{'-attachment'} = "tesresults-$session.csv" }
 	if ($export eq "tab") { $h{'-type'} = "text/plain"; $h{'-attachment'} = "tesresults-$session.txt" }
-	if ($export eq "json") { $h{'-type'} = "application/json"; $h{'-attachment'} = "tesresults-$session.txt" }	
-
+	
 	print header(%h);
 	
 	$quiet = 1;
@@ -1214,10 +1211,6 @@ elsif  ($export eq "xml") {
 	
 	print_xml();
 }
-elsif  ($export eq "json") {
-	
-	print_json();
-}
 
 
 #
@@ -1674,6 +1667,7 @@ sub stem_frequency {
 		$average = $freq_values / (scalar @stems);
 		
 	}
+	
 	
 	return $average;
 
@@ -2175,109 +2169,6 @@ END
 	}
 }
 
-sub print_json {
-
-	
-#	my $stoplist = join(" ", @stoplist);
-#	my $filtertoggle = $filter ? 'on' : 'off';
-	
-
-	for my $i (0..$#rec) {
-
-		my $unit_id_target = $rec[$i]{target};
-		my $unit_id_source = $rec[$i]{source};
-		
-		# get the score
-		
-		my $score = sprintf("%.0f", $score{$unit_id_target}{$unit_id_source});
-
-		# a guide to which tokens are marked in each text
-	
-		my %marked_target;
-		my %marked_source;
-		
-		# THIS MUST BE CHANGED TO CREATE AN ARRAY OF KEYS
-		
-		my %seen_keys;
-
-		for (keys %{$match_target{$unit_id_target}{$unit_id_source}}) { 
-		
-			$marked_target{$_} = 1;
-		
-			$seen_keys{join("-", sort keys %{$match_target{$unit_id_target}{$unit_id_source}{$_}})} = 1;
-		}
-		
-		for (keys %{$match_source{$unit_id_target}{$unit_id_source}}) {
-		
-			$marked_source{$_} = 1;
-
-			$seen_keys{join("-", sort keys %{$match_source{$unit_id_target}{$unit_id_source}{$_}})} = 1;
-		}
-		
-		# format the list of all unique shared words
-	
-		my $keys = join("; ", keys %seen_keys);
-		
-		#
-		# print one row of the table
-		#
-
-		my %record;
-		
-		
-		# target locus
-		
-		$record{'target'} = $unit_target[$unit_id_target]{LOCUS};
-		
-		# target phrase
-		
-		my $phrase = "";
-				
-		for my $token_id_target (@{$unit_target[$unit_id_target]{TOKEN_ID}}) {
-		
-			if ($marked_target{$token_id_target}) { $phrase .= "**" }
-		
-			$phrase .= $token_target[$token_id_target]{DISPLAY};
-
-			if ($marked_target{$token_id_target}) { $phrase .= "**" }
-		}
-		
-		$record{'target_phrase'} = $phrase;
-				
-		# source locus
-		
-		$record{'source'} = $unit_source[$unit_id_source]{LOCUS};
-		
-		# source phrase
-		
-		$phrase = "";
-		
-		for my $token_id_source (@{$unit_source[$unit_id_source]{TOKEN_ID}}) {
-		
-			if ($marked_source{$token_id_source}) { $phrase .= "**" }
-		
-			$phrase .= $token_source[$token_id_source]{DISPLAY};
-			
-			if ($marked_source{$token_id_source}) { $phrase .= "**" }
-		}
-
-		$record{'source_phrase'} = $phrase;
-	
-		# keywords
-		
-		$record{'match'} = $keys;
-
-		# score
-
-		$record{'score'} = $score;
-		
-		# print row
-		
-		my $json = encode_json \%record;
-		
-		print "$json\n";
-	}
-}
 
 sub print_xml {
 
@@ -2411,10 +2302,6 @@ END
 
 	print "</results>\n";	
 }
-
-
-
-
 
 sub sort_results {
 	
