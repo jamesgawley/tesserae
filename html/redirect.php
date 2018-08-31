@@ -1,7 +1,7 @@
 <html>
 <?php
 
-echo $_GET["target"];
+echo $name_to_cts[$_GET["target"]];
 $path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]] . "/";
 
 //header("Location: " . $path);
