@@ -1,11 +1,6 @@
 <html>
 <?php
 
-echo $name_to_cts[$_GET["target"]];
-$path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]] . "/";
-
-//header("Location: " . $path);
-
 $name_to_cts = ["ambrose.apologia_david_altera" => "urn:cts:latinLit:stoa0022.stoa014",
 "ambrose.de_apologia_david" => "urn:cts:latinLit:stoa0022.stoa015",
 "ambrose.de_cain" => "urn:cts:latinLit:stoa0022.stoa021",
@@ -465,6 +460,12 @@ $name_to_cts = ["ambrose.apologia_david_altera" => "urn:cts:latinLit:stoa0022.st
 "victorinus.de_machabeis" => "urn:cts:latinLit:stoa0292a.stoa004",
 "vitensis.historia_persecutionic_africanae_proviniae" => "urn:cts:latinLit:stoa0292d.stoa001",
 "vitruvius.de_architectura" => "urn:cts:latinLit:phi1056.phi001"];
+
+
+echo $name_to_cts[$_GET["target"]];
+$path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET["target"]] . "/" . $name_to_cts[$_GET["source"]] . "/";
+
+//header("Location: " . $path);
 
 ?>
 </html>
