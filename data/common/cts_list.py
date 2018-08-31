@@ -1,4 +1,5 @@
-{'urn:cts:latinLit:stoa0022.stoa014':'ambrose.apologia_david_altera',
+{'urn:cts:latinLit:mqdq032.mqdq01':'ausonius.filius_ad_patrem',
+'urn:cts:latinLit:stoa0022.stoa014':'ambrose.apologia_david_altera',
     'urn:cts:latinLit:stoa0022.stoa015':'ambrose.de_apologia_david',
     'urn:cts:latinLit:stoa0022.stoa021':'ambrose.de_cain',
     'urn:cts:latinLit:stoa0022.stoa029':'ambrose.de_fuga_saeculi',
