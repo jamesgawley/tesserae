@@ -15,6 +15,6 @@
 					<li><a href="<?php echo $url_html.'/help.php'; ?>">
 							<?php if ($page == 'help') {?><b><?php }?>Help<?php if ($page == 'help') {?></b><?php }?>
 					</a></li>					
-					<li><a href="http://tesserae.caset.buffalo.edu/blog" target="_blank">Blog</a></li>					
+					<li><a href="http://tmv.westeurope.cloudapp.azure.com/blog" target="_blank">Blog</a></li>					
 				</ul>
 			</div>

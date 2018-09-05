@@ -25,7 +25,7 @@
 	
 	<p>
 		To learn more about the Latin-Greek search method, visit the 
-		<a href="http://tesserae.caset.buffalo.edu/blog/latin-greek-search-competing-methods/" target="_blank">blog</a>.<br>
+		<a href="http://tmv.westeurope.cloudapp.azure.com/blog/latin-greek-search-competing-methods/" target="_blank">blog</a>.<br>
 				For explanations of advanced features, see the 
 		<a href="<?php echo $url_html . '/help_advanced.php' ?>">Instructions</a> page.
 

@@ -1,4 +1,3 @@
-<html>
 <?php
 
 $name_to_cts = ["ambrose.apologia_david_altera" => "urn:cts:latinLit:stoa0022.stoa014",
@@ -468,4 +467,3 @@ $path = "http://tmv.westeurope.cloudapp.azure.com/search/" . $name_to_cts[$_GET[
 header("Location: " . $path);
 
 ?>
-</html>

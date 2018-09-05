@@ -31,7 +31,7 @@
 		Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes).
 	</p>
 		<p>
-<font color='red'>Semantic search</font> that identifies parallels with related meaning is now available under show <i>advanced/ feature / lemma + semantic.</i>  For an explanation see <a href="http://tesserae.caset.buffalo.edu/blog/version-3-1-capturing-more-parallels-and-sorting-them-better/" target="_blank">here</a>.
+<font color='red'>Semantic search</font> that identifies parallels with related meaning is now available under show <i>advanced/ feature / lemma + semantic.</i>  For an explanation see <a href="http://tmv.westeurope.cloudapp.azure.com/blog/version-3-1-capturing-more-parallels-and-sorting-them-better/" target="_blank">here</a>.
 	</p>
 	<p>
 		For an overview of all advanced features, see the 

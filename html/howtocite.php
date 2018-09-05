@@ -13,7 +13,7 @@
 					Search results can be cited as follows:
 				</p>
 				<p>
-					Coffee, Neil, ed. <em>Tesserae Project</em>. University at Buffalo, SUNY.  http://tesserae.caset.buffalo.edu. <br />
+					Coffee, Neil, ed. <em>Tesserae Project</em>. University at Buffalo, SUNY.  http://tmv.westeurope.cloudapp.azure.com. <br />
 					Accessed [date].
 				</p>
 			</div>
