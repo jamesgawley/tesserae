@@ -21,7 +21,7 @@ div#container
 div#header
 {
 	position: relative;
-	background: #00ccff;
+	background: #D2D6D9; /*light*/
 	height: 12em;
 }
 
@@ -72,7 +72,7 @@ div#nav_sub
 	padding: auto;
 	height : 29px;
 	line-height : 29px;
-	background : 	#3399ff;
+	background : 	#C3C8CD; /*medium*/
 	text-transform : uppercase;
 	font-family : "times new roman", serif;
 	text-align: center;
@@ -86,7 +86,7 @@ div#nav_sub2
 	padding: auto;
 	height : 29px;
 	line-height : 29px;
-	background : 	#a7b85d;
+	background : 	#C3C8CD; /* Medium green, lang nav bar */
 	text-transform : uppercase;
 	font-family : "times new roman", serif;
 	text-align: center;
@@ -120,7 +120,7 @@ div#nav_sub ul li
 div#nav_sub span
 {
 	padding: 8px 12px;
-	background : 	#a7b85d;	
+	background : 	#C3C8CD;	
 }
 
 div#nav_sub li a
@@ -172,7 +172,7 @@ div#pager span a
 div#footer
 {
 	position: relative;
-	background: #00ccff;
+	background: #D2D6D9;
 	height: 80px;
 	text-align: left;
 	border-top: 1px solid black;
@@ -288,7 +288,7 @@ h2
 	font-weight : bold;
 	text-transform : uppercase;
 	font-size : 12px;
-	color : #3366ff;
+	color : #a8adb4;
 }
 
 span.h2
@@ -296,7 +296,7 @@ span.h2
 	font-weight : bold;
 	text-transform : uppercase;
 	font-size : 12px;
-	color : #3366ff;	
+	color : #a8adb4;	
 }
 
 h3
@@ -352,7 +352,7 @@ p.tables
 {
 	text-indent : 0px;
 	font-style : italic;
-	color : #3366ff;	
+	color : #a8adb4;	
 }
 
 p.tess
@@ -451,7 +451,7 @@ table.output td {
 	background-color: #F0F0F0;
 	font-weight : bold;
 	font-size : 11px;
-	color : #3366ff;
+	color : #a8adb4;
 	padding: 5px;
 	text-align: left;
 }
@@ -461,7 +461,7 @@ table.output th.phrase {
 }
 
 table.output th {
-	background-color: #00ccff;
+	background-color: #D2D6D9;
 }
 
 table.pr_bar {
