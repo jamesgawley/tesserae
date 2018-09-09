@@ -239,7 +239,7 @@ my $page = 1;
 
 # how many results on a page?
 
-my $batch = 100;
+my $batch = 1000;
 
 # reverse order ?
 

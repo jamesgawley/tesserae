@@ -335,9 +335,9 @@ if ($score_basis eq 'feature')  {
 }
 =cut
 # html header
-#
 # put this stuff early on so the web browser doesn't
 # give up
+my $path
 
 unless ($no_cgi) { 
 		
@@ -347,7 +347,7 @@ unless ($no_cgi) {
 
 	# open the temp directory
 	# and get the list of existing session files
-
+=begin
 	opendir(my $dh, $fs{tmp}) || die "can't opendir $fs{tmp}: $!";
 
 	my @tes_sessions = grep { /^tesresults-[0-9a-f]{8}/ && -d catfile($fs{tmp}, $_) } readdir($dh);
@@ -370,22 +370,22 @@ unless ($no_cgi) {
 	}
 	else {
 
-	   $session = "0"
-	}
+	   $session = "0"}
+=cut
 
-	# put the id into hex notation to save space and make it look confusing
-
-	$session = sprintf("%08x", hex($session)+1);
+	# create path for results files
+	
+	$path = build_cts_path();
 
 	# open the new session file for output
 
-	$file_results = catfile($fs{tmp}, "tesresults-$session");
+	$file_results = catfile($fs{tmp}, "$path");
 
 	# send redirect first if the request is coming from a server instead of a browser
 
 	if ($export =~ /json/) {
 	
-		print $query->redirect(-url => '$url{cgi}/read_bin.pl?session=$session;export=$export');
+		print $query->redirect(-url => '$url{cgi}/read_bin_tmv.pl?path=$path;export=$export');
 	
 	}
 	else{
@@ -456,9 +456,9 @@ else {
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin.pl?session=$session;export=$export",
-		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
-		fulltext => "$url{cgi}/fulltext.pl?session=$session",
+		default  => "$url{cgi}/read_bin_tmv.pl?path=$path;export=$export",
+#		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
+#		fulltext => "$url{cgi}/fulltext.pl?session=$session",
 #		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
 	);
 
@@ -897,7 +897,7 @@ my %match_meta = (
 #	STBASIS   => $stoplist_basis,
 #	DIST      => $max_dist,
 #	DIBASIS   => $distance_metric,
-	SESSION   => $session,
+	PATH   => $path,
 #	CUTOFF    => $cutoff,
 #	SCBASIS   => $score_basis,
 	COMMENT   => $feature_notes{$feature},
@@ -912,7 +912,7 @@ if ($no_cgi) {
 }
 else {
 
-		print "<p>Writing session data.</p>";
+		print "<p>Writing similarity data.</p>";
 	
 }
 
@@ -1199,6 +1199,40 @@ sub exact_match {
 	
 	return scalar(@exact_match);
 }
+
+sub build_cts_path {
+	
+	# translate the filenames into cts urns
+	
+	# load the cts_list file
+	
+	#convert from a python dictionary to a perl hash
+	
+	$cts_dict =~ s/\{/\(/g;
+
+	$cts_dict =~ s/\)/\}/g;
+	
+	$cts_dict =~ s/:)/\t=>\t}/g;
+	
+	my %name_hash = eval($cts_dict);
+	
+	my %cts_hash;
+	
+	while (my ($key, $value) = each %name_hash) {
+	
+		%cts_hash{$value} = $key;
+	
+	}
+	
+	#lookup the appropriate urns
+	
+	my $path = catfile($cts_hash{$target}, $cts_hash{$source});
+	
+	return $path;
+
+}
+
+
 =begin comment
 sub score_default {
 	
