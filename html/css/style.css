@@ -21,7 +21,7 @@ div#container
 div#header
 {
 	position: relative;
-	background: #00ccff;
+	background: ##668aa5;
 	height: 12em;
 }
 
@@ -72,7 +72,7 @@ div#nav_sub
 	padding: auto;
 	height : 29px;
 	line-height : 29px;
-	background : 	#3399ff;
+	background : 	#8fb0c9;
 	text-transform : uppercase;
 	font-family : "times new roman", serif;
 	text-align: center;
@@ -86,7 +86,7 @@ div#nav_sub2
 	padding: auto;
 	height : 29px;
 	line-height : 29px;
-	background : 	#a7b85d;
+	background : 	#a4c3db;
 	text-transform : uppercase;
 	font-family : "times new roman", serif;
 	text-align: center;
@@ -120,7 +120,7 @@ div#nav_sub ul li
 div#nav_sub span
 {
 	padding: 8px 12px;
-	background : 	#a7b85d;	
+	background : 	#a4c3db;	
 }
 
 div#nav_sub li a
@@ -172,7 +172,7 @@ div#pager span a
 div#footer
 {
 	position: relative;
-	background: #00ccff;
+	background: #b2d2ea;
 	height: 80px;
 	text-align: left;
 	border-top: 1px solid black;
@@ -461,7 +461,7 @@ table.output th.phrase {
 }
 
 table.output th {
-	background-color: #00ccff;
+	background-color: #b2d2ea;
 }
 
 table.pr_bar {
