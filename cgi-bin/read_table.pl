@@ -337,7 +337,7 @@ if ($score_basis eq 'feature')  {
 # html header
 # put this stuff early on so the web browser doesn't
 # give up
-my $path
+my $path;
 
 unless ($no_cgi) { 
 		
