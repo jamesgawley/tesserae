@@ -183,6 +183,7 @@ use Storable qw(nstore retrieve);
 use File::Path qw(mkpath rmtree);
 use Encode;
 use Lingua::Stem qw(stem);
+use File::Slurp;
 
 binmode STDERR, 'utf8';
 
@@ -1206,21 +1207,25 @@ sub build_cts_path {
 	
 	# load the cts_list file
 	
+	my $dict_file = catfile($fs{data}, 'common', 'cts_list.py');
+	
+	my $cts_dict =  read_file( $dict_file );
+	
 	#convert from a python dictionary to a perl hash
 	
 	$cts_dict =~ s/\{/\(/g;
 
 	$cts_dict =~ s/\)/\}/g;
 	
-	$cts_dict =~ s/:)/\t=>\t}/g;
+	$cts_dict =~ s/\:/\t=>\t}/g;
 	
 	my %name_hash = eval($cts_dict);
 	
 	my %cts_hash;
 	
-	while (my ($key, $value) = each %name_hash) {
+	foreach my $key (keys %name_hash) {
 	
-		%cts_hash{$value} = $key;
+		$cts_hash{$name_hash{$key}} = $key;
 	
 	}
 	
