@@ -376,11 +376,11 @@ unless ($no_cgi) {
 
 	# create path for results files
 	
-	$path = build_cts_path();
+	$path = build_cts_path($target, $source);
 
 	# open the new session file for output
 
-	$file_results = catfile($fs{tmp}, "$path");
+	$file_results = catfile($fs{tmp}, $path);
 
 	# send redirect first if the request is coming from a server instead of a browser
 
@@ -1204,6 +1204,8 @@ sub exact_match {
 sub build_cts_path {
 	
 	# translate the filenames into cts urns
+	
+	my ($target, $source) = @_;
 	
 	# load the cts_list file
 	
