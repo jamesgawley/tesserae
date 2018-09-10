@@ -625,7 +625,7 @@ my $total_matches = 0;
 
 # draw a progress bar
 
-my $pr;
+#my $pr;
 
 
 
@@ -639,18 +639,18 @@ if ($no_cgi) {
 
 	print STDERR "removing stopwords\n" unless $quiet;
 
-	$pr = ProgressBar->new(scalar(keys %match_target), $quiet);
+#	$pr = ProgressBar->new(scalar(keys %match_target), $quiet);
 }
 else {
 
-	print "<p>Removing Stopwords...</p>\n";
+#	print "<p>Removing Stopwords...</p>\n";
 
-	$pr = HTMLProgress->new(scalar(keys %match_target));
+#	$pr = HTMLProgress->new(scalar(keys %match_target));
 }
 
 foreach my $stopword (@stoplist) {
 
-	$pr->advance();
+#	$pr->advance();
 
 	foreach my $address (@{$match_index{$stopword}}) {
 	
@@ -675,13 +675,13 @@ if ($no_cgi) {
 
 	print STDERR "calculating scores\n" unless $quiet;
 
-	$pr = ProgressBar->new(scalar(keys %match_target), $quiet);
+	#$pr = ProgressBar->new(scalar(keys %match_target), $quiet);
 }
 else {
 
-	print "<p>Scoring...</p>\n";
+	#print "<p>Scoring...</p>\n";
 
-	$pr = HTMLProgress->new(scalar(keys %match_target));
+	#$pr = HTMLProgress->new(scalar(keys %match_target));
 }
 
 #
@@ -699,7 +699,7 @@ for my $unit_id_target (keys %match_target) {
 
 	# advance the progress bar
 
-	$pr->advance();
+	#$pr->advance();
 
 
 	# look at all the source units where the feature occurs
@@ -2316,7 +2316,7 @@ sub print_xml {
 
 	# draw a progress bar
 
-	my $pr = ProgressBar->new(scalar(@rec), $quiet);
+#	my $pr = ProgressBar->new(scalar(@rec), $quiet);
 
 	# print the xml doc header
 
@@ -2339,7 +2339,7 @@ END
 
 		# advance the progress bar
 
-		$pr->advance();
+		#$pr->advance();
 			
 		# get the score
 	
