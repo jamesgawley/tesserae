@@ -33,15 +33,6 @@
 		<div id="advanced" style="display:none; background-color:white;">
 			<table class="input">
 				<tr>
-					<th>Unit:</th>
-					<td>
-						<select name="unit">
-							<option value="line">line</option>
-							<option value="phrase">phrase</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
 					<th>Feature:</th>
 					<td>
 						<select name="feature">
@@ -58,33 +49,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Number of stop words:</th>
-					<td>
-						<select name="stopwords">
-							<option value="0">0</option>
-							<option value="10" selected="selected">10</option>
-							<option value="20">20</option>
-							<option value="30">30</option>
-							<option value="40">40</option>
-							<option value="50">50</option>
-							<option value="100">100</option>
-							<option value="150">150</option>
-							<option value="200">200</option>
-						</select>							
-					</td>
-				</tr>
-				<tr>
-					<th>Stoplist basis:</th>
-					<td>
-						<select name="stbasis">
-							<option value="corpus" selected="selected">corpus</option>
-							<option value="target">target</option>
-							<option value="source">source</option>
-							<option value="both">target + source</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
 					<th>Score basis:</th>
 					<td>
 						<select name="score">
@@ -94,38 +58,17 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Frequency basis:</th>
-					<td>
-						<select name="freq_basis">
-							<option value="text">texts</option>
-							<option value="corpus" selected="selected">texts</option>
-						</select>
-					</td>
-				</tr>				<tr>
 					<th>Maximum distance:</th>
 					<td>
 						<select name="dist">
 							<option value="999">no max</option>
 							<option value="5">5 words</option>
-							<option value="10" selected="selected">10 words</option>
-							<option value="20">20 words</option>
-							<option value="30">30 words</option>
-							<option value="40">40 words</option>
-							<option value="50">50 words</option>
+							<option value="1">1 word</option>
+							<option value="2">2 words</option>
+							<option value="3">3 words</option>
+							<option value="4">4 words</option>
+							<option value="5" selected="selected">5 words</option>
 						</select>							
-					</td>
-				</tr>
-				<tr>
-					<th>Distance metric:</th>
-					<td>
-						<select name="dibasis">
-							<option value="span">span</option>
-							<option value="span-target">span-target</option>
-							<option value="span-source">span-source</option>
-							<option value="freq" selected="selected">frequency</option>
-							<option value="freq-target">freq-target</option>
-							<option value="freq-source">freq-source</option>
-						</select>
 					</td>
 				</tr>
 				<tr>
