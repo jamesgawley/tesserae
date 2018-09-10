@@ -457,6 +457,13 @@ else {
 	}
 		
 	$quiet = 1;
+
+$path = build_cts_path($target, $source);
+
+# open the new session file for output
+
+$file_results = catfile($fs{tmp}, $path);
+
 	
 	# how to redirect browser to results
 
