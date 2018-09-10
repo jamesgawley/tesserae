@@ -390,7 +390,7 @@ unless ($no_cgi) {
 
 	if ($export =~ /json/) {
 	
-		print $query->redirect(-url => '$url{cgi}/read_bin_tmv.pl?path=$path;export=$export');
+		print $query->redirect(-url => '$url{cgi}/read_bin_tmv.pl?path=$file_results;export=$export');
 	
 	}
 	else{
@@ -461,7 +461,7 @@ else {
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin_tmv.pl?path=$path;export=$export",
+		default  => "$url{cgi}/read_bin_tmv.pl?path=$file_results;export=$export",
 #		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
 #		fulltext => "$url{cgi}/fulltext.pl?session=$session",
 #		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
