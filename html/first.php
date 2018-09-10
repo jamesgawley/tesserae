@@ -14,7 +14,7 @@
 		
 		<!--head_insert-->
 
-		<title>Tesserae</title>
+		<title>Tesserae Musivae</title>
  	</head>
 	<body>
 
