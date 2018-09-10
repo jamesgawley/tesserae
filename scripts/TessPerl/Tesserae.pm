@@ -950,6 +950,49 @@ sub find_cts {
 
 }
 
+sub build_cts_path {
+	
+	# translate the filenames into cts urns
+	
+	my ($target, $source) = @_;
+	
+	
+	# load the cts_list file
+	
+	my $dict_file = catfile($fs{data}, 'common', 'cts_list.py');
+	
+	my $cts_dict =  read_file( $dict_file );
+	
+	
+	#convert from a python dictionary to a perl hash
+
+	$cts_dict =~ s/\{/\(/g;
+
+	$cts_dict =~ s/\}/\)/g;
+	
+	$cts_dict =~ s/'\:'/'\t=>\t'/g;
+	my %name_hash = eval($cts_dict);
+	
+	my %cts_hash;
+	
+	foreach my $key (keys %name_hash) {
+	
+		$cts_hash{$name_hash{$key}} = $key;
+	
+		
+		
+
+	}
+	
+	#lookup the appropriate urns
+	
+	my $path = catfile($cts_hash{$target}, $cts_hash{$source});
+	
+	return $path;
+
+}
+
+
 sub escape_path {
 	
 	my $path = shift;
