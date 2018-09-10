@@ -326,8 +326,8 @@ unless ($no_cgi) {
 	@include         = $query->param('include');
 	$recall_cache    = $query->param('recall_cache') || $recall_cache;
 	$path			=	$query->param('path') || $path;
-	$source          = $query->param('source');
-	$target          = $query->param('target');
+	my $source          = $query->param('source');
+	my $target          = $query->param('target');
 
 
 	$path = Tesserae::build_cts_path($target, $source);
