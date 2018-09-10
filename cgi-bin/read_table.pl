@@ -347,6 +347,9 @@ $path = build_cts_path($target, $source);
 $file_results = catfile($fs{tmp}, $path);
 
 
+
+
+
 unless ($no_cgi) { 
 		
 	#
@@ -699,6 +702,8 @@ else {
 
 # start with each key in the source
 
+unless (-e $path and -d $path){
+
 for my $key (keys %index_source) {
 
 	# advance the progress bar
@@ -731,7 +736,7 @@ for my $key (keys %index_source) {
 		}
 	}
 }
-
+}
 print "search>>" . (time-$t1) . "\n" if $no_cgi and $bench;
 =begin comment
 #
@@ -907,7 +912,7 @@ my %match_meta = (
 	TOTAL     => $total_matches
 );
 
-
+unless (-e $path and -d $path){
 if ($no_cgi) {
 	
 	print STDERR "writing $file_results\n" unless $quiet;
@@ -926,6 +931,7 @@ nstore \%match_source, catfile($file_results, "match.source");
 #nstore \%match_score,  catfile($file_results, "match.score" );
 nstore \%match_meta,   catfile($file_results, "match.meta"  );
 nstore \%match_index,	catfile($file_results, "match.index");
+}
 =begin comment
 if (@include) {
 
