@@ -187,7 +187,7 @@ my $stoplist_basis = "corpus";
 
 # maximum distance between matching tokens
 
-my $max_dist = 999;
+my $max_dist = 5;
 
 # metric for measuring distance
 
@@ -317,7 +317,7 @@ unless ($no_cgi) {
 	$export     = $query->param('export')  || $export;
 	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
 	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
-	$max_dist        = $query->param('dist')         || $max_dist;
+	$window        = $query->param('dist')         || $window;
 	$distance_metric = $query->param('dibasis')      || $distance_metric;
 	$cutoff          = $query->param('cutoff')       || $cutoff;
 	$score_basis     = $query->param('score')        || $score_basis;
