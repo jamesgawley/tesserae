@@ -7,6 +7,7 @@ use utf8;
 use Unicode::Normalize;
 use Encode;
 use Config;
+use File::Slurp;
 
 require Exporter;
 

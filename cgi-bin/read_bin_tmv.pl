@@ -332,7 +332,7 @@ unless ($no_cgi) {
 
 	$path = Tesserae::build_cts_path($target, $source);
 	
-	$path = catfile($fs{tmp}, $path);
+	#$path = catfile($fs{tmp}, $path);
 	
 	unless (defined $path) {
 	
