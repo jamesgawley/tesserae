@@ -340,6 +340,13 @@ if ($score_basis eq 'feature')  {
 # give up
 my $path;
 
+$path = build_cts_path($target, $source);
+
+# open the new session file for output
+
+$file_results = catfile($fs{tmp}, $path);
+
+
 unless ($no_cgi) { 
 		
 	#
@@ -376,12 +383,6 @@ unless ($no_cgi) {
 
 	# create path for results files
 	
-	$path = build_cts_path($target, $source);
-
-	# open the new session file for output
-
-	$file_results = catfile($fs{tmp}, $path);
-
 	# send redirect first if the request is coming from a server instead of a browser
 
 	if ($export =~ /json/) {
@@ -1207,20 +1208,21 @@ sub build_cts_path {
 	
 	my ($target, $source) = @_;
 	
+	
 	# load the cts_list file
 	
 	my $dict_file = catfile($fs{data}, 'common', 'cts_list.py');
 	
 	my $cts_dict =  read_file( $dict_file );
 	
-	#convert from a python dictionary to a perl hash
 	
+	#convert from a python dictionary to a perl hash
+
 	$cts_dict =~ s/\{/\(/g;
 
-	$cts_dict =~ s/\)/\}/g;
+	$cts_dict =~ s/\}/\)/g;
 	
-	$cts_dict =~ s/\:/\t=>\t}/g;
-	
+	$cts_dict =~ s/'\:'/'\t=>\t'/g;
 	my %name_hash = eval($cts_dict);
 	
 	my %cts_hash;
@@ -1229,6 +1231,9 @@ sub build_cts_path {
 	
 		$cts_hash{$name_hash{$key}} = $key;
 	
+		
+		
+
 	}
 	
 	#lookup the appropriate urns
