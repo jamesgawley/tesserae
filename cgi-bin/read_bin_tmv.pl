@@ -325,6 +325,7 @@ unless ($no_cgi) {
 	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
 	@include         = $query->param('include');
 	$recall_cache    = $query->param('recall_cache') || $recall_cache;
+	$path			=	$query->param('path') || $path;
 	
 	unless (defined $path) {
 	
