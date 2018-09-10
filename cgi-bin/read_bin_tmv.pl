@@ -317,7 +317,7 @@ unless ($no_cgi) {
 	$export     = $query->param('export')  || $export;
 	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
 	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
-	$window        = $query->param('dist')         || $window;
+	$window_size        = $query->param('dist')         || $window_size;
 	$distance_metric = $query->param('dibasis')      || $distance_metric;
 	$cutoff          = $query->param('cutoff')       || $cutoff;
 	$score_basis     = $query->param('score')        || $score_basis;
