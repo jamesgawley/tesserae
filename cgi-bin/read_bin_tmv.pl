@@ -2132,7 +2132,7 @@ sub print_html {
 
 	my $stoplist = join(", ", @stoplist);
 	my $filtertoggle = $filter ? 'on' : 'off';
-	my $ordertoggle = $order ? 'on' : 'off';
+	my $ordertoggle = $word_order ? 'on' : 'off';
 	
 	$bottom =~ s/<!--session_id-->/$session/;
 	$bottom =~ s/<!--source-->/$source/;
