@@ -230,6 +230,12 @@ my $file_results = "tesresults";
 
 my $session = "NA";
 
+# word order
+my $word_order;
+
+# window size
+my $window_size;
+
 # is the program being run from the web or
 # from the command line?
 
@@ -300,7 +306,8 @@ GetOptions(
 #			'freq_basis=s'  => \$freq_basis, 			
 #			'stbasis=s'    => \$stoplist_basis,
 			'binary=s'     => \$file_results,
-#			'distance=i'   => \$max_dist,
+			'window=i'   => \$window_size,
+			'order'		=> \$word_order,
 #			'dibasis=s'    => \$distance_metric,
 #			'cutoff=f'     => \$cutoff,
 #			'score=s'      => \$score_basis,
@@ -434,6 +441,8 @@ else {
 	$target          = $query->param('target');
 	$unit            = $query->param('unit')         || $unit;
 	$feature         = $query->param('feature')      || $feature;
+	$window_size         = $query->param('dist')      || $window_size;	
+	$word_order         = $query->param('order')      || $word_order;		
 	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
 #	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
 #	$max_dist        = $query->param('dist')         || $max_dist;
@@ -468,7 +477,7 @@ $file_results = catfile($fs{tmp}, $path);
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export",
+		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export;order=$word_order;dist=$window_size",
 #		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
 #		fulltext => "$url{cgi}/fulltext.pl?session=$session",
 #		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
