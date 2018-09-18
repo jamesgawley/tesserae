@@ -2142,7 +2142,7 @@ sub print_html {
 	$bottom =~ s/<!--stoplistsize-->/$stop/;
 	$bottom =~ s/<!--stbasis-->/$stoplist_basis/;
 	$bottom =~ s/<!--stoplist-->/$stoplist/;
-	$bottom =~ s/<!--maxdist-->/$max_dist/;
+	$bottom =~ s/<!--maxdist-->/$window_size/;
 	$bottom =~ s/<!--dibasis-->/$distance_metric/;
 	$bottom =~ s/<!--cutoff-->/$cutoff/;
 	$bottom =~ s/<!--order-->/$ordertoggle/;
