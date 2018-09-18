@@ -313,6 +313,7 @@ unless ($no_cgi) {
 	$sort       = $query->param('sort')    || $sort;
 	$rev        = $query->param('rev')     if defined ($query->param("rev"));
 	$page       = $query->param('page')    || $page;
+	$word_order       = $query->param('order')    || $word_order;
 	$batch      = $query->param('batch')   || $batch;
 	$export     = $query->param('export')  || $export;
 	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
