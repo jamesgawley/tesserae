@@ -72,6 +72,9 @@
 					<b>Score cutoff:</b>
 					<!--cutoff-->
 					<br>
+					<b>Force word order:</b>
+					<!--order-->
+					<br>
 					<b>Filter:</b>
 					<!--filter-->
 				</p>
