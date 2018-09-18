@@ -2132,6 +2132,7 @@ sub print_html {
 
 	my $stoplist = join(", ", @stoplist);
 	my $filtertoggle = $filter ? 'on' : 'off';
+	my $ordertoggle = $order ? 'on' : 'off';
 	
 	$bottom =~ s/<!--session_id-->/$session/;
 	$bottom =~ s/<!--source-->/$source/;
@@ -2144,6 +2145,7 @@ sub print_html {
 	$bottom =~ s/<!--maxdist-->/$max_dist/;
 	$bottom =~ s/<!--dibasis-->/$distance_metric/;
 	$bottom =~ s/<!--cutoff-->/$cutoff/;
+	$bottom =~ s/<!--order-->/$ordertoggle/;
 	$bottom =~ s/<!--filter-->/$filtertoggle/;
 		
 	print $bottom;
