@@ -86,6 +86,15 @@
 						</select>
 					</td>
 				</tr>
+				<tr>
+					<th>Require identical word order:</td>
+					<td>
+						<select name="order">
+							<option value="0" selected="selected">no</option>
+							<option value="1">yes</option>
+						</select>
+					</td>
+				</tr>				
 			</table>
 		</div>
 		<div style="text-align:center; padding:20px;">
