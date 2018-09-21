@@ -62,7 +62,7 @@ div#nav_main li a
 {
 	text-transform : uppercase;
 	text-decoration : none;
-	font-family : "times new roman", serif;
+
 }
 
 div#nav_main a:hover
@@ -81,7 +81,7 @@ div#nav_sub
 	line-height : 29px;
 	background : 	#8fb0c9;
 	text-transform : uppercase;
-	font-family : "times new roman", serif;
+
 	text-align: center;
 }
 
@@ -95,7 +95,7 @@ div#nav_sub2
 	line-height : 29px;
 	background : 	#a4c3db;
 	text-transform : uppercase;
-	font-family : "times new roman", serif;
+
 	text-align: center;
 }
 
