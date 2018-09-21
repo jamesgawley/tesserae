@@ -24,7 +24,7 @@
 		
 			<div id="header_image">
 				<a href="<?php echo $url_html ?>">
-					<h2><font color="c20000">Tesserae Musivae</font></h2></div>
+					<h2><font color="c20000" size="24">Tesserae</font> <font color="808080" size="24">Musivae</font></h2></div>
 				</a>
 			</div>		
 			<div id="nav_main">

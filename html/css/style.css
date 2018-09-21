@@ -25,10 +25,6 @@ div#header
 	height: 12em;
 }
 
-div#second_header
-{
-	color: 8080;
-}
 
 div#header_image
 {
@@ -36,7 +32,9 @@ div#header_image
 	margin: 1.5em 2em;
 	font-family:'Open sans';
     font-size:24px;
+	a {
     text-decoration: none;
+    }
 	color: c20000;
 }
 
