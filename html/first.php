@@ -11,7 +11,7 @@
 		<meta name="description" content="Intertext analyzer for Latin texts">
 		<link href="<?php echo $url_css . "/style.css" ?>" rel="stylesheet" type="text/css"/>
 		<link href="<?php echo $url_image . "/favicon.ico" ?>" rel="shortcut icon"/>
-		
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 		<!--head_insert-->
 
 		<title>Tesserae Musivae</title>
