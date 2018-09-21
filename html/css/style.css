@@ -22,11 +22,7 @@ div#header
 {
 	position: relative;
 	background: ##668aa5;
-	color: c20000;
 	height: 12em;
-	font-family:'Open sans';
-    font-size:24px;
-    text-decoration: none;
 }
 
 div#second_header
@@ -38,6 +34,10 @@ div#header_image
 {
 	position: absolute;
 	margin: 1.5em 2em;
+	font-family:'Open sans';
+    font-size:24px;
+    text-decoration: none;
+	color: c20000;
 }
 
 div#nav_main
