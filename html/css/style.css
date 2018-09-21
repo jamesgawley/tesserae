@@ -22,7 +22,16 @@ div#header
 {
 	position: relative;
 	background: ##668aa5;
+	color: c20000;
 	height: 12em;
+	font-family:'Open sans';
+    font-size:16px;
+    text-decoration: none;
+}
+
+div#second_header
+{
+	color: 8080;
 }
 
 div#header_image

@@ -49,11 +49,11 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Score basis:</th>
+					<th>Unit:</th>
 					<td>
-						<select name="score">
-							<option value="stem">stem</option>
-							<option value="word" selected="selected">word</option>							
+						<select name="unit">
+							<option value="line">line</option>
+							<option value="phrase">phrase</option>
 						</select>
 					</td>
 				</tr>
@@ -61,8 +61,6 @@
 					<th>Maximum distance:</th>
 					<td>
 						<select name="dist">
-							<option value="999">no max</option>
-							<option value="5">5 words</option>
 							<option value="1">1 word</option>
 							<option value="2">2 words</option>
 							<option value="3">3 words</option>
