@@ -24,7 +24,7 @@
 </div>
 
 
-<?php include "nav_lang.php"; ?>	
+	
 <div id="main">
 
 	<h1>Latin Search</h1>
