@@ -9,7 +9,7 @@
 		<meta name="author" content="James Gawley">
 		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin, allusion, literature">
 		<meta name="description" content="Intertext analyzer for Latin texts">
-		<link href="<?php echo $url_css . "/style.css" ?>" rel="stylesheet" type="text/css"/>
+		<link href="<?php echo $url_css . "/style.css" ?v=<?=time();?>" rel="stylesheet" type="text/css"/>
 		<link href="<?php echo $url_image . "/favicon.ico" ?>" rel="shortcut icon"/>
 		
 		<!--head_insert-->
@@ -24,7 +24,7 @@
 		
 			<div id="header_image">
 				<a href="<?php echo $url_html ?>">
-					<h2>Tesserae Musivae</h2>
+					<h2>Tesserae </h2> <div id=second_header><h2>Musivae</h2></div>
 				</a>
 			</div>		
 			<div id="nav_main">
