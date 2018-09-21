@@ -180,7 +180,7 @@ div#footer
 {
 	position: relative;
 	background: #b2d2ea;
-	height: 200px;
+	height: 100px;
 	text-align: left;
 	border-top: 1px solid black;
 }
@@ -202,7 +202,7 @@ div#footer ul li{
 
 div#footer img
 {
-	max-height: 80px;
+	max-height: 50px;
   margin: auto;
 }
 
