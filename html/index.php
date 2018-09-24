@@ -30,7 +30,8 @@
 	<h1>Latin Search</h1>
 	
 	<p>
-		The Tesserae project aims to provide a flexible and robust web interface for exploring intertextual parallels. 
+		The Tesserae Musivae project aims to combine the search techniques of the Tesserae Project and Musisque Deoque to
+		 provide new resources for exploring intertextual parallels in Latin poetry. 
 		Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes).
 	</p>
 	
