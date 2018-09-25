@@ -345,11 +345,6 @@ if ($score_basis eq 'feature')  {
 # html header
 # put this stuff early on so the web browser doesn't
 # give up
-my $cts_ref = Tesserae::load_cts_map();
-
-my %cts_hash = %{$cts_ref};
-
-$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
 
 
 
@@ -470,11 +465,11 @@ else {
 		
 	$quiet = 1;
 
-$path = Tesserae::build_cts_path($target, $source);
+my $cts_ref = Tesserae::load_cts_map();
 
-# open the new session file for output
+my %cts_hash = %{$cts_ref};
 
-$file_results = catfile($fs{tmp}, $path);
+$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
 
 	
 	# how to redirect browser to results
