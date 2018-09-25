@@ -972,24 +972,38 @@ sub build_cts_path {
 	$cts_dict =~ s/\}/\)/g;
 	
 	$cts_dict =~ s/'\:'/'\t=>\t'/g;
-	my %name_hash = eval($cts_dict);
-	
-	my %cts_hash;
-	
-	foreach my $key (keys %name_hash) {
-	
-		$cts_hash{$name_hash{$key}} = $key;
-	
-		
-		
 
-	}
+	my $cts_ref = load_cts_map();
+
+	my %cts_hash = %{$cts_hash};
 	
 	#lookup the appropriate urns
 	
 	my $path = catfile($cts_hash{$target}, $cts_hash{$source});
 	
 	return $path;
+
+}
+
+sub load_cts_map {
+
+	# load the cts_list file
+	
+	my $dict_file = catfile($fs{data}, 'common', 'cts_list.py');
+	
+	my $cts_dict =  read_file( $dict_file );
+	
+	
+	#convert from a python dictionary to a perl hash
+
+	$cts_dict =~ s/\{/\(/g;
+
+	$cts_dict =~ s/\}/\)/g;
+	
+	$cts_dict =~ s/'\:'/'\t=>\t'/g;
+	my %cts_hash = eval($cts_dict);
+
+	return \%cts_hash;
 
 }
 

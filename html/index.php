@@ -32,8 +32,8 @@
 	<p>
 		The Tesserae Musivae project aims to combine the search techniques of the <a href="http://tesserae.caset.buffalo.edu/">
 		Tesserae Project</a> and <a href="http://mqdq.it/">Musisque Deoque</a> to
-		 provide new resources for exploring intertextual parallels in Latin poetry. 
-		Select two poems below to see a list of lines sharing two or more words (regardless of inflectional changes).
+		 provide new resources for exploring intertextual parallels in Latin literature. 
+		Select two texts below to see a list of lines sharing two or more words (regardless of inflectional changes).
 	</p>
 	
 
