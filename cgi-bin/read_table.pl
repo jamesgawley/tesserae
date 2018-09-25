@@ -345,14 +345,11 @@ if ($score_basis eq 'feature')  {
 # html header
 # put this stuff early on so the web browser doesn't
 # give up
-my $path;
+my $cts_ref = Tesserae::load_cts_map();
 
-$path = Tesserae::build_cts_path($target, $source);
+my %cts_hash = %{$cts_ref};
 
-# open the new session file for output
-
-$file_results = catfile($fs{tmp}, $path);
-
+$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
 
 
 

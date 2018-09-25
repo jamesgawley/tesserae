@@ -283,7 +283,8 @@ for (0..$#sorted_titles) {
 
 print $ctsfile "}";
 
-
+my $search_path = build_cts_path('lucan.bellum_civile', 'vergil.aeneid');
+print $search_path;
 
 
 
