@@ -345,9 +345,15 @@ if ($score_basis eq 'feature')  {
 # html header
 # put this stuff early on so the web browser doesn't
 # give up
+if ($no_cgi){
+	my $cts_ref = Tesserae::load_cts_map();
 
+	my %cts_hash = %{$cts_ref};
 
+	# open the new session file for output
 
+	$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
+}
 
 unless ($no_cgi) { 
 		
@@ -465,17 +471,19 @@ else {
 		
 	$quiet = 1;
 
-my $cts_ref = Tesserae::load_cts_map();
+	my $cts_ref = Tesserae::load_cts_map();
 
-my %cts_hash = %{$cts_ref};
+	my %cts_hash = %{$cts_ref};
 
-$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
+	# open the new session file for output
 
-	
+	$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
+
+	$path = catfile($cts_hash{$target}, $cts_hash{$source})
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export;order=$word_order;dist=$window_size",
+		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export;order=$word_order;dist=$window_size;path=$path",
 #		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
 #		fulltext => "$url{cgi}/fulltext.pl?session=$session",
 #		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
@@ -716,7 +724,7 @@ else {
 
 # start with each key in the source
 
-unless (-e $path and -d $path){
+unless (-e $file_results and -d $file_results){
 
 for my $key (keys %index_source) {
 
@@ -926,7 +934,7 @@ my %match_meta = (
 	TOTAL     => $total_matches
 );
 
-unless (-e $path and -d $path){
+unless (-e $file_results and -d $file_results){
 if ($no_cgi) {
 	
 	print STDERR "writing $file_results\n" unless $quiet;

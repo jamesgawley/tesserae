@@ -330,14 +330,17 @@ unless ($no_cgi) {
 	my $source          = $query->param('source');
 	my $target          = $query->param('target');
 
-
-	$path = Tesserae::build_cts_path($target, $source);
-	
-	#$path = catfile($fs{tmp}, $path);
 	
 	unless (defined $path) {
 	
-		die "read_bin.pl called from web interface with no existing comparison file.";
+		die "read_bin_tmv.pl called from web interface with no DEFINED comparison file.";
+	}
+	
+	my $file_results = catfile($fs{tmp}, $path);
+	unless(-e $file_results and -d $file_results) {
+		
+		die "read_bin_tmv.pl called from web interface with no EXISTING comparison file.";
+	
 	}
 
 	my %h = ('-charset'=>'utf-8', '-type'=>'text/html');
