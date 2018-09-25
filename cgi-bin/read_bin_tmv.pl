@@ -326,10 +326,16 @@ unless ($no_cgi) {
 	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
 	@include         = $query->param('include');
 	$recall_cache    = $query->param('recall_cache') || $recall_cache;
-	$path			=	$query->param('path') || $path;
 	my $source          = $query->param('source');
 	my $target          = $query->param('target');
 
+	my $cts_ref = Tesserae::load_cts_map();
+
+	my %cts_hash = %{$cts_ref};
+
+	# open the new session file for output
+
+	$path = catfile($cts_hash{$target}, $cts_hash{$source});
 	
 	unless (defined $path) {
 	
