@@ -1,0 +1,398 @@
+<avson. ecl. 1.1> Nomina, quae septem uertentibus apta diebus 
+<avson. ecl. 1.2> Annus habet, totidem errantes fecere planetae, 
+<avson. ecl. 1.3> Quos indefessa uoluens uertigine mundus 
+<avson. ecl. 1.4> Signorum obliqua iubet in statione uagari. 
+<avson. ecl. 1.5> Primum supremumque diem radiatus habet sol. 
+<avson. ecl. 1.6> Proxima fraternae succedit luna coronae. 
+<avson. ecl. 1.7> Tertius assequitur Titania lumina Mauors. 
+<avson. ecl. 1.8> Mercurius quarti sibi uindicat astra diei. 
+<avson. ecl. 1.9> Illustrant quintam Iouis aurea sidera zonam. 
+<avson. ecl. 1.10> Sexta salutigerum sequitur Venus alma parentem. 
+<avson. ecl. 1.11> Cuncta supergrediens Saturni septima lux est. 
+<avson. ecl. 1.12> Octauam instaurat reuolubilis orbita solem. 
+<avson. ecl. 2.1> Primus Romanas ordiris, Iane, kalendas. 
+<avson. ecl. 2.2> Februa uicino mense Numa instituit. 
+<avson. ecl. 2.3> Martius antiqui primordia protulit anni. 
+<avson. ecl. 2.4> Fetiferum Aprilem uindicat alma Venus. 
+<avson. ecl. 2.5>+maiorum+ dictus patrum de nomine Maius. 
+<avson. ecl. 2.6> Iunius aetatis proximus est titulo. 
+<avson. ecl. 2.7> Nomine Caesareo Quintilem Iulius auget. 
+<avson. ecl. 2.8> Augustus nomen Caesareum sequitur. 
+<avson. ecl. 2.9> Autumnum, Pomona, tuum September opimat. 
+<avson. ecl. 2.10> Triticeo October faenore ditat agros. 
+<avson. ecl. 2.11> Sidera praecipitas pelago, intempeste Nouember. 
+<avson. ecl. 2.12> Tu genialem hiemem, feste December, agis. 
+<avson. ecl. 3.1> Iane nouus, primo qui das tua nomina mensi, 
+<avson. ecl. 3.2> Iane bifrons, spectas tempora bina simul. 
+<avson. ecl. 3.3> Post superum cultus uicino Februa mense 
+<avson. ecl. 3.4> Dat Numa cognatis manibus inferias. 
+<avson. ecl. 3.5> Martius et generis Romani praesul et anni 
+<avson. ecl. 3.6> Prima dabas Latiis tempora consulibus. 
+<avson. ecl. 3.7> Aeneadum genetrix uicino nomen Aprili 
+<avson. ecl. 3.8> Dat Venus; est Marti namque Aphrodita comes. 
+<avson. ecl. 3.9> Maia dea an maior Maium te fecerit aetas 
+<avson. ecl. 3.10> Ambigo: sed mensi est auctor uterque bonus. 
+<avson. ecl. 3.11> Iunius hunc sequitur duplici celebrandus honore, 
+<avson. ecl. 3.12> Seu nomen Iuno siue Iuuenta dedit. 
+<avson. ecl. 3.13> Inde Dionaeo praefulgens Iulius astro 
+<avson. ecl. 3.14> Aestatis mediae tempora certa tenet. 
+<avson. ecl. 3.15> Augustus sequitur, cognatum a Caesare nomen, 
+<avson. ecl. 3.16> Ordine sic anni proximus, ut generis. 
+<avson. ecl. 3.17> Nectuntur post hos numerumque ex ordine signant 
+<avson. ecl. 3.18> September, Bacchi munere praela rigans, 
+<avson. ecl. 3.19> Et qui sementis per tempora faenore laetus 
+<avson. ecl. 3.20> October cupidi spem fouet agricolae, 
+<avson. ecl. 3.21> Quique salo mergens sollemnia signa Nouember 
+<avson. ecl. 3.22> Praecipitat, caelo mox reditura suo. 
+<avson. ecl. 3.23> Concludens numerum genialia festa December 
+<avson. ecl. 3.24> Promit, ut a bruma mox nouus annus eat. 
+<avson. ecl. 4.1> Bis senas anno reparat Lucina kalendas, 
+<avson. ecl. 4.2> Et totidem medias dat currere Iuppiter idus, 
+<avson. ecl. 4.3> Nonarumque diem faciunt +infra octo secundi+. 
+<avson. ecl. 4.4> Haec sunt Romano tantum tria nomina mensi, 
+<avson. ecl. 4.5> Cetera per numeros sunt cognomenta dierum. 
+<avson. ecl. 5.1> Implent tricenas per singula menstrua luces 
+<avson. ecl. 5.2> Iunius Aprilisque et cum Septembre Nouember. 
+<avson. ecl. 5.3> Vnum ter denis cumulatius adde diebus 
+<avson. ecl. 5.4> Per septem menses, Iani Martisque kalendis 
+<avson. ecl. 5.5> Et quas Maius agit, quas Iulius Augustusque 
+<avson. ecl. 5.6> Et quas October positusque in fine December. 
+<avson. ecl. 5.7> Vnus erit tantum duodetriginta dierum, 
+<avson. ecl. 5.8> Quem Numa praeposito uoluit(==VOLUIT) succedere Iano. 
+<avson. ecl. 5.9> Sic ter centenis decies accedere senos 
+<avson. ecl. 5.10> Quadrantemque et quinque dies sibi computat annus. 
+<avson. ecl. 6.1> At nonas modo quarta aperit, modo sexta refert lux. 
+<avson. ecl. 6.2> Sexta refert Mai Octobris Martisque recursu 
+<avson. ecl. 6.3> Et qui solstitio sua tempora Iulius infert. 
+<avson. ecl. 6.4> Cetera pars mensum quartis est praedita nonis: 
+<avson. ecl. 6.5> Omnes uero idus octaua luce recurrunt. 
+<avson. ecl. 7.1> Post idus, quas quisque suas habet ordine mensis, 
+<avson. ecl. 7.2> Diuersae numero redeunt uariante kalendae, 
+<avson. ecl. 7.3> Dum * * rursumque iterumque uocantur, 
+<avson. ecl. 7.4> Vt tandem optati procedant temporis ortu. 
+<avson. ecl. 7.5> Ter senis unoque die genialia festa 
+<avson. ecl. 7.6> Porrigit ut Ianum arcessat noua bruma morantem. 
+<avson. ecl. 7.7> Hoc numero mensisque Numae redit autumnique 
+<avson. ecl. 7.8> Principium referens Bacchi September alumnus. 
+<avson. ecl. 7.9> Iulius et Maius positusque in fine December 
+<avson. ecl. 7.10> Octoberque die reuocantur tardius uno. 
+<avson. ecl. 7.11> Inde die redeunt minus uno quattuor ultra, 
+<avson. ecl. 7.12> Quos numero adiciam, Sextilis, Iunius atque 
+<avson. ecl. 7.13> Aprilis, post quos paenultima meta Nouember. 
+<avson. ecl. 7.14> Ter quinis unoque die, Iunonie Mauors, 
+<avson. ecl. 7.15> Vt redeas referasque exordia prima cieris. 
+<avson. ecl. 7.16>[Hoc numero ad plenum uertens reparabitur annus.] 
+<avson. ecl. 8.1> Nonaginta dies et quattuor ac medium sol 
+<avson. ecl. 8.2> Conficit, a tropico in tropicum dum permeat astrum, 
+<avson. ecl. 8.3> Octipedem in Cancrum Phrixeo ab Ariete pergens. 
+<avson. ecl. 8.4> Hoc spatio aestiui pulsusque et meta diei. 
+<avson. ecl. 8.5> Semidiemque duosque dies deciesque nouenos 
+<avson. ecl. 8.6> A Cancro in Chelas aequatae tempora noctis 
+<avson. ecl. 8.7> Atque dii cursu peragit sol aureus alto, 
+<avson. ecl. 8.8> Autumni aestatisque simul confinia miscens. 
+<avson. ecl. 8.9> Vnde autumnales transcurrens ordine menses 
+<avson. ecl. 8.10> Ad tropicum pergit signum gelidi Capricorni, 
+<avson. ecl. 8.11> Octo dies decies octonis insuper addens 
+<avson. ecl. 8.12> Quadrantemque diei(==DIE.I), quinto qui protinus anno 
+<avson. ecl. 8.13> Mense Numae extremo nomen capit embolimaei. 
+<avson. ecl. 8.14> Inde ad Agenorei festinans cornua Tauri, 
+<avson. ecl. 8.15> Scandit Lanigeri tropicum sol aureus astrum, 
+<avson. ecl. 8.16> Nonaginta dies decreto fine coercens. 
+<avson. ecl. 8.17> Hic tibi circus erit semper uertentibus annis 
+<avson. ecl. 8.18> Ter centum ac senis decies et quinque diebus. 
+<avson. ecl. 9.1> Principium Iani sancit tropicus Capricornus. 
+<avson. ecl. 9.2> Mense Numae medio solidi stat sidus Aquari. 
+<avson. ecl. 9.3> Procedunt duplices in Martia tempora Pisces. 
+<avson. ecl. 9.4> Respicis Apriles, Aries Phrixee, kalendas. 
+<avson. ecl. 9.5> Maius Agenorei miratur cornua Tauri. 
+<avson. ecl. 9.6> Iunius aequatos caelo uidet ire Laconas. 
+<avson. ecl. 9.7> Solstitio ardentis Cancri fert Iulius astrum. 
+<avson. ecl. 9.8> Augustum mensem Leo feruidus igne perurit. 
+<avson. ecl. 9.9> Sidere, Virgo, tuo Bacchum September opimat, 
+<avson. ecl. 9.10> Aequat et October sementis tempore Libram. 
+<avson. ecl. 9.11> Scorpios hibernum praeceps iubet ire Nouembrem. 
+<avson. ecl. 9.12> Terminat Arquitenens medio sua signa Decembri. 
+<avson. ecl. 10.1> Sol profectus a teporo ueris aequinoctio 
+<avson. ecl. 10.2> Post semidiem postque totos nonaginta et quattuor 
+<avson. ecl. 10.3> Feruidis flagrans habenis pulsum aestiuum conficit. 
+<avson. ecl. 10.4> Inde autumnus noctis horas librans aequo lumine 
+<avson. ecl. 10.5> Octo et octoginta goeris et super trihorio 
+<avson. ecl. 10.6> Inde floridum reflexis uer reuisit oreis 
+<avson. ecl. 10.7> Additis ad hos priores goeros geminis orbibus. 
+<avson. ecl. 11.1> Et ternos menses et tempora quattuor anni 
+<avson. ecl. 11.2> Quattuor ista tibi subiecta monosticha dicent. 
+<avson. ecl. 11.3> Martius, Aprilis, Maius sunt tempora ueris. 
+<avson. ecl. 11.4> Iulius, Augustus nec non et Iunius aestas. 
+<avson. ecl. 11.5> Septembri Octobri autumnat totoque Nouembri. 
+<avson. ecl. 11.6> Brumales Ianus, Februarius atque December. 
+<avson. ecl. 12.1> Quattuor antiquos celebrauit Achaia ludos. 
+<avson. ecl. 12.2> Caelicolum duo sunt et duo festa hominum: 
+<avson. ecl. 12.3> Sacra Iouis Phoebique Palaemonis Archemorique, 
+<avson. ecl. 12.4> Serta quibus pinus malus oliua apium. 
+<avson. ecl. 13.1> Prima Ioui magno celebrantur Olympia Pisae, 
+<avson. ecl. 13.2> Parnasus Clario sacrauit Pythia Phoebo. 
+<avson. ecl. 13.3> Isthmia Portuno bimarisque dicata Corinthos. 
+<avson. ecl. 13.4> Archemori Nemeaea colunt funebria Thebae. 
+<avson. ecl. 14.1> Primus Olympiacae sacrauit festa coronae 
+<avson. ecl. 14.2> Iuppiter Argiui stadia ad longissima circi. 
+<avson. ecl. 14.3> Proximus Alcides Nemeae sacrauit honorem. 
+<avson. ecl. 14.4>[Haec quoque temporibus quinquennia sacra notandis.] 
+<avson. ecl. 14.5> Isthmia Neptuno data sunt et Pythia Phoebo. 
+<avson. ecl. 14.6>[Ancipiti cultu diuorum hominumque sepultis.] 
+<avson. ecl. 15.1> Tantalidae Pelopi maestum dicat Elis honorem. 
+<avson. ecl. 15.2> Archemori Nemeaea colunt quinquennia Thebae. 
+<avson. ecl. 15.3> Isthmia defuncto celebrata Palaemone notum. 
+<avson. ecl. 15.4> Pythia placando Delphi statuere draconi. 
+<avson. ecl. 16.1> Nunc et Apollineos Tiberina per ostia ludos 
+<avson. ecl. 16.2> Et Megalesiacae matris operta loquar, 
+<avson. ecl. 16.3> Vulcanique dies, autumni exordia primi, 
+<avson. ecl. 16.4> Quinquatrusque deae Pallados expediam, 
+<avson. ecl. 16.5> Et medias idus Mai Augustique recursu, 
+<avson. ecl. 16.6> Quas sibi Mercurius quasque Diana dicat, 
+<avson. ecl. 16.7> Matronae et quae sacra colant pro laude uirorum, 
+<avson. ecl. 16.8> Mauortis primi cum rediere dies. 
+<avson. ecl. 16.9> Festa Caprotinis memorabo celebria nonis, 
+<avson. ecl. 16.10> Cum stola matronis dempta tegit famulas. 
+<avson. ecl. 16.11>[Quattuor illa etiam discretis partibus anni 
+<avson. ecl. 16.12> Solstitia et luces nocte dieque pares.] 
+<avson. ecl. 16.13> Nec Regifugium pulsis ex urbe tyrannis 
+<avson. ecl. 16.14> Laetum Romanis fas reticere diem. 
+<avson. ecl. 16.15> Visne Opis ante sacrum uel Saturnalia dicam 
+<avson. ecl. 16.16> Festaque seruorum, cum famulantur eri, 
+<avson. ecl. 16.17> Et numquam certis redeuntia festa diebus, 
+<avson. ecl. 16.18> Compita per uicos cum sua quisque colit, 
+<avson. ecl. 16.19> Aut duplicem cultum, quem Neptunalia dicunt 
+<avson. ecl. 16.20> Et quem de Conso consiliisque uocant, 
+<avson. ecl. 16.21> Festa aut nauigiis aut quae celebrata quadrigis 
+<avson. ecl. 16.22> Iungunt Romanos finitimosque duces? 
+<avson. ecl. 16.23> Adiciam cultus peregrinaque sacra deorum, 
+<avson. ecl. 16.24> Natalem Herculeum uel ratis Isiacae, 
+<avson. ecl. 16.25> Nec non lasciui Floralia laeta theatri, 
+<avson. ecl. 16.26> Quae spectare uolunt qui uoluisse(==VOLUISSE) negant. 
+<avson. ecl. 16.27> Nunc etiam ueteres celebrantur Equirria ludi: 
+<avson. ecl. 16.28> Prima haec Romanus nomina circus habet. 
+<avson. ecl. 16.29> Et Dionysiacos Latio cognomine ludos 
+<avson. ecl. 16.30> Roma colit, Liber, cum tibi uota dicat. 
+<avson. ecl. 16.31> Aediles etiam plebi aedilesque curules 
+<avson. ecl. 16.32> Sacra sigillorum nomine dicta colunt. 
+<avson. ecl. 16.33> Et gladiatores funebria proelia notum 
+<avson. ecl. 16.34> Decertasse foro; nunc sibi harena suos 
+<avson. ecl. 16.35> Vindicat, extremo qui iam sub fine Decembris 
+<avson. ecl. 16.36> Falcigerum placant sanguine Caeligenam. 
+<avson. ecl. 17.1> Prima Cleonaei tolerata aerumna leonis. 
+<avson. ecl. 17.2> Proxima Lernaeam ferro et face contudit hydram. 
+<avson. ecl. 17.3> Mox Erymantheum uis tertia perculit aprum. 
+<avson. ecl. 17.4> Aeripedis quarto tulit aurea cornua cerui. 
+<avson. ecl. 17.5> Stymphalidas pepulit uolucres discrimine quinto. 
+<avson. ecl. 17.6> Threiciam sexto spoliauit Amazona balteo. 
+<avson. ecl. 17.7> Septima in Augei stabulis impensa laboris. 
+<avson. ecl. 17.8> Octaua expulso numeratur adorea tauro. 
+<avson. ecl. 17.9> In Diomedeis uictoria nona quadrigis. 
+<avson. ecl. 17.10> Geryone exstincto decimam dat Hiberia palmam. 
+<avson. ecl. 17.11> Vndecimo mala Hesperidum destricta triumpho. 
+<avson. ecl. 17.12> Cerberus extremi suprema est meta laboris. 
+<avson. ecl. 18a.1> Vngues Mercurio, barbam Ioue, Cypride crines. 
+<avson. ecl. 18.1> Mercurius furtis probat ungues semper acutos 
+<avson. ecl. 18.2> Articulisque aciem non sinit imminui. 
+<avson. ecl. 18.3> Barba Ioui, crinis Veneri decor; ergo necesse est 
+<avson. ecl. 18.4> Vt nolint demi, quo sibi uterque placent. 
+<avson. ecl. 18.5> Mauors imberbes et caluos, Luna, adamasti; 
+<avson. ecl. 18.6> Non prohibent comi tum caput atque genas. 
+<avson. ecl. 18.7> Sol et Saturnus nil obstant unguibus. ergo 
+<avson. ecl. 18.8> Non placitum diuis tolle monostichium. 
+<avson. ecl. 19.1> Quod uitae sectabor iter, si plena tumultu 
+<avson. ecl. 19.2> Sunt fora, si curis domus anxia, si peregrinos 
+<avson. ecl. 19.3> Cura domus sequitur, mercantem si noua semper 
+<avson. ecl. 19.4> Damna manent, cessare uetat si turpis egestas, 
+<avson. ecl. 19.5> Si uexat labor agricolam, mare naufragus horror 
+<avson. ecl. 19.6> Infamat, poenaeque graues in caelibe uita 
+<avson. ecl. 19.7> Et grauior cautis custodia uana maritis, 
+<avson. ecl. 19.8> Sanguineam si Martis opus, si turpia lucra 
+<avson. ecl. 19.9> Faenoris et uelox inopes usura trucidat? 
+<avson. ecl. 19.10> Omne aeuum curae, cunctis sua displicet aetas. 
+<avson. ecl. 19.11> Sensus abest paruis lactantibus et puerorum 
+<avson. ecl. 19.12> Dura rudimenta et iuuenum temeraria pubes. 
+<avson. ecl. 19.13> Afflictat fortuna uiros per bella, per aequor, 
+<avson. ecl. 19.14> Irasque insidiasque catenatosque labores 
+<avson. ecl. 19.15> Mutandos semper grauioribus. ipsa senectus 
+<avson. ecl. 19.16> Exspectata diu uotisque optata malignis 
+<avson. ecl. 19.17> Obicit innumeris corpus lacerabile morbis. 
+<avson. ecl. 19.18> Spernimus in commune omnes praesentia; quosdam 
+<avson. ecl. 19.19> Constat nolle deos fieri. Iuturna reclamat: 
+<avson. ecl. 19.20>"Quo uitam dedit aeternam? cur mortis adempta est 
+<avson. ecl. 19.21> Condicio?" sic Caucasea sub rupe Prometheus 
+<avson. ecl. 19.22> Testatur Saturnigenam nec nomine cessat 
+<avson. ecl. 19.23> Incusare Iouem, data sit quod uita perennis. 
+<avson. ecl. 19.24> Respice et ad cultus animi. sic nempe pudicum 
+<avson. ecl. 19.25> Perdidit Hippolytum non felix cura pudoris. 
+<avson. ecl. 19.26> At contra illecebris maculosam degere uitam 
+<avson. ecl. 19.27> Quem iuuat, aspiciat poenas et crimina regum, 
+<avson. ecl. 19.28> Tereos incesti uel mollis Sardanapalli. 
+<avson. ecl. 19.29> Perfidiam uitare monent tria Punica bella, 
+<avson. ecl. 19.30> Sed prohibet seruare fidem deleta Saguntos. 
+<avson. ecl. 19.31> Viue et amicitias semper cole; crimen ob istud 
+<avson. ecl. 19.32> Pythagoreorum periit schola docta sophorum. 
+<avson. ecl. 19.33> Hoc metuens igitur nullas cole; crimen ob istud 
+<avson. ecl. 19.34> Timon Palladiis olim lapidatus Athenis. 
+<avson. ecl. 19.35> Dissidet ambiguis semper mens obuia uotis, 
+<avson. ecl. 19.36> Nec uoluisse(==VOLUISSE) homini satis est; optata recusat. 
+<avson. ecl. 19.37> Esse in honore placet; mox paenitet et dominari 
+<avson. ecl. 19.38> Vt possint, seruire uolunt. idem auctus honore 
+<avson. ecl. 19.39> Inuidiae obicitur. pernox est cura disertis; 
+<avson. ecl. 19.40> Sed rudis ornatu uitae caret. esto patronus 
+<avson. ecl. 19.41> Et defende reos; sed gratia rara clientis. 
+<avson. ecl. 19.42> Esto cliens; grauis imperiis persona patroni. 
+<avson. ecl. 19.43> Exercent hunc uota patrum; mox aspera curis 
+<avson. ecl. 19.44> Sollicitudo subit. * * 
+<avson. ecl. 19.44_>* * contemnitur orba senectus
+<avson. ecl. 19.45_45> Et captatoris praeda est heredis egenus.
+<avson. ecl. 19.46> Vitam parcus agas; auidi lacerabere fama. 
+<avson. ecl. 19.47> Et largitorem grauius censura notabit. 
+<avson. ecl. 19.48> Cuncta tibi aduersis contraria casibus. ergo 
+<avson. ecl. 19.49> Optima Graiorum sententia: quippe homini aiunt 
+<avson. ecl. 19.50> Non nasci esse bonum aut natum cito morte potiri. 
+<avson. ecl. 20.1> Vir bonus et sapiens, qualem uix repperit unum 
+<avson. ecl. 20.2> Milibus e cunctis hominum consultus Apollo, 
+<avson. ecl. 20.3> Iudex ipse sui totum se explorat ad unguem. 
+<avson. ecl. 20.4> Quid proceres uanique leuis quid opinio uulgi 
+<avson. ecl. 20.4_>* * * * *
+<avson. ecl. 20.5_5> Securus, mundi instar habens, teres atque rotundus,
+<avson. ecl. 20.6> Externae ne quid labis per leuia sidat. 
+<avson. ecl. 20.7> Ille, dies quam longus erit sub sidere Cancri 
+<avson. ecl. 20.8> Quantaque nox tropico se porrigit in Capricorno, 
+<avson. ecl. 20.9> Cogitat et iusto trutinae se examine pendit, 
+<avson. ecl. 20.10> Ne quid hiet, ne quid protuberet, angulus aequis 
+<avson. ecl. 20.11> Partibus ut coeat, nil ut deliret amussis, 
+<avson. ecl. 20.12> Sit solidum quodcumque subest, nec inania subter 
+<avson. ecl. 20.13> Indicet admotus digitis pellentibus ictus, 
+<avson. ecl. 20.14> Non prius in dulcem declinans lumina somnum 
+<avson. ecl. 20.15> Omnia quam longi reputauerit acta diei. 
+<avson. ecl. 20.16> Quae praetergressus, quid gestum in tempore, quid non? 
+<avson. ecl. 20.17> Cur isti facto decus afuit aut ratio illi? 
+<avson. ecl. 20.18> Quid mihi praeteritum? cur haec sententia sedit, 
+<avson. ecl. 20.19> Quam melius mutare fuit? miseratus egentem 
+<avson. ecl. 20.20> Cur aliquem fracta persensi mente dolorem? 
+<avson. ecl. 20.21> Quid uolui(==VOLUI), quod nolle bonum foret? utile honesto 
+<avson. ecl. 20.22> Cur malus antetuli? num dicto aut denique uultu 
+<avson. ecl. 20.23> Perstrictus quisquam? cur me natura magis quam 
+<avson. ecl. 20.24> Disciplina trahit? sic dicta et facta per omnia(==OMNJA)
+<avson. ecl. 20.25> Ingrediens ortoque a uespere cuncta reuoluens 
+<avson. ecl. 20.26> Offensus prauis dat palmam et praemia rectis. 
+<avson. ecl. 21.1> Est et non cuncti monosyllaba nota frequentant. 
+<avson. ecl. 21.2> His demptis nil est hominum quod sermo uolutet. 
+<avson. ecl. 21.3> Omnia in his et ab his sunt omnia, siue negoti 
+<avson. ecl. 21.4> Siue oti quicquam est, seu turbida siue quieta. 
+<avson. ecl. 21.5> Alterutro pariter nonnumquam, saepe seorsis 
+<avson. ecl. 21.6> Obsistunt studiis, ut mores ingeniumque 
+<avson. ecl. 21.7> Et facilis uel difficilis contentio nata est. 
+<avson. ecl. 21.8> Si consentitur, mora nulla, interuenit "est est", 
+<avson. ecl. 21.9> Sin controuersum, dissensio subiciet "non". 
+<avson. ecl. 21.10> Hinc fora dissultant clamoribus, hinc furiosi 
+<avson. ecl. 21.11> Iurgia sunt circi, cuneati hinc lata theatri 
+<avson. ecl. 21.12> Seditio, et tales agitat quoque curia lites; 
+<avson. ecl. 21.13> Coniugia et nati cum patribus ista quietis 
+<avson. ecl. 21.14> Verba serunt studiis salua pietate loquentes. 
+<avson. ecl. 21.15> Hinc etiam placidis schola consona disciplinis, 
+<avson. ecl. 21.16>[Dogmaticas agitat placido certamine lites.] 
+<avson. ecl. 21.17> Hinc omnis certat dialectica turba sophorum. 
+<avson. ecl. 21.18>"Est lux?" "est". "est ergo dies." non conuenit istuc; 
+<avson. ecl. 21.19> Nam facibus multis aut fulgoribus(==FULGO-RIBUS) quotiens lux 
+<avson. ecl. 21.20> Est nocturna homini, non est lux ista diei. 
+<avson. ecl. 21.21> Est et non igitur, quotiens lucem esse fatendum est, 
+<avson. ecl. 21.22> Sed non esse diem. mille hinc certamina surgunt, 
+<avson. ecl. 21.23> Hinc pauci * * * *
+<avson. ecl. 21.23_>* multi quoque talia commeditantes
+<avson. ecl. 21.24_> Murmure concluso rabiosa silentia rodunt.
+<avson. ecl. 21.25> Qualis uita hominum, duo quam monosyllaba uersant! 
+<avson. ecl. 22.1> Ter binos deciesque nouem super exit in annos 
+<avson. ecl. 22.2> Iusta senescentum quos implet uita uirorum. 
+<avson. ecl. 22.3> Hos nouies superat uiuendo garrula cornix 
+<avson. ecl. 22.4> Et quater egreditur cornicis saecula ceruus. 
+<avson. ecl. 22.5> Alipedem ceruum ter uincit coruus et illum 
+<avson. ecl. 22.6> Multiplicat nouies Phoenix, reparabilis ales. 
+<avson. ecl. 22.7> Quem nos perpetuo decies praeuertimus aeuo, 
+<avson. ecl. 22.8> Nymphae Hamadryades(==HA+MA+DRY-A-DES), quarum longissima uita est. 
+<avson. ecl. 22.9> Haec cohibet finis uiuacia fata animantum. 
+<avson. ecl. 22.10> Cetera secreti nouit deus arbiter aeui. 
+<avson. ecl. 23.1> Tempora quae Stilbon uoluat, quae saecula Phaenon, 
+<avson. ecl. 23.2> Quos Pyrois habeat, quos Iuppiter igne benigno 
+<avson. ecl. 23.3> Circuitus, quali properet Venus alma recursu, 
+<avson. ecl. 23.4> Qui Phoeben, quanti maneant Titana labores, 
+<avson. ecl. 23.5> Donec consumpto, magnus qui dicitur, anno 
+<avson. ecl. 23.6> Rursus in antiquum ueniant uaga sidera cursum, 
+<avson. ecl. 23.7> Qualia dispositi steterunt ab origine mundi. 
+<avson. ecl. 24.1> Miraris quicumque manere ingentia mundi 
+<avson. ecl. 24.2> Corpora, sublimi caeli circumdata gyro, 
+<avson. ecl. 24.3> Et tantae nullam moli intercedere labem, 
+<avson. ecl. 24.4> Accipe quod mirere magis. tenuissima tantis 
+<avson. ecl. 24.5> Principia et nostros non admittentia uisus 
+<avson. ecl. 24.6> Paruarum serie constant conexa atomorum; 
+<avson. ecl. 24.7> Sed solidum in paruis nullique secabile segmen. 
+<avson. ecl. 24.8> Vnde uigor uiresque manent aeternaque rerum 
+<avson. ecl. 24.9> Mobilitas nulloque umquam superabilis aeuo. 
+<avson. ecl. 24.10> Diuinis humana licet componere. sic est 
+<avson. ecl. 24.11> As solidus, quoniam bis sex de partibus aequis 
+<avson. ecl. 24.12> Constat et in minimis paribus tamen una manet uis. 
+<avson. ecl. 24.13> Nam si quid numero minuatur, summa uacillet 
+<avson. ecl. 24.14> Conuulsaeque ruant labefacto corpore partes, 
+<avson. ecl. 24.15> Vt medium si quis uellat de fornice saxum 
+<avson. ecl. 24.16> Incumbunt cui cuncta, simul deuexa sequentur 
+<avson. ecl. 24.17> Cetera communemque trahent a uertice lapsum. 
+<avson. ecl. 24.18> Non aliter libra est. si deficit uncia, totus 
+<avson. ecl. 24.19> Non erit as nomenque deunx iam cassus habebit. 
+<avson. ecl. 24.20> Nec dextans retinet nomen sextante remoto, 
+<avson. ecl. 24.21> Et dodrans quadrante +satus auctore carebit+ 
+<avson. ecl. 24.22> Diuulsusque triens prohibet persistere bessem. 
+<avson. ecl. 24.23> Iam quincunx tibi nullus erit, +si prama reuellas+. 
+<avson. ecl. 24.24> Et semis qui semis erit pereuntibus assis 
+<avson. ecl. 24.25> Partibus? et qui, cuius abest pars septima, septunx? 
+<avson. ecl. 24.26> Libra igitur, totum si nulla in parte uacillet. 
+<avson. ecl. 24.27> Ponderis et numeri morumque operumque et aquarum 
+<avson. ecl. 24.28> Libra; nec est modulus, quem non hoc nomine signes. 
+<avson. ecl. 24.29> Telluris, medio quae pendet in aere, libra est 
+<avson. ecl. 24.30> Et solis lunaeque uias sua libra cohercet. 
+<avson. ecl. 24.31> Libra dii somnique pares determinat horas, 
+<avson. ecl. 24.32> Libra Caledonios sine litore continet aestus. 
+<avson. ecl. 24.33> Tu quoque certa mane morum mihi libra meorum. 
+<avson. ecl. 25.1> Omnia quae uario rerum metimur in actu 
+<avson. ecl. 25.2> Astrorum dominatus agit terrenaque tantum 
+<avson. ecl. 25.3> Membra homini. e superis fortuna et spiritus auris 
+<avson. ecl. 25.4> Septeno moderanda choro, sed praesidet ollis 
+<avson. ecl. 25.5> Sortitus regimen nitidae sol aureus aethrae. 
+<avson. ecl. 25.6> Nec sola in nobis moderatur tempora uitae 
+<avson. ecl. 25.7> Dum breue solliciti spatium producimus aeui; 
+<avson. ecl. 25.8> Creditur occultosque satus et tempora uitae 
+<avson. ecl. 25.9> Materno ducenda utero formare uidendo 
+<avson. ecl. 25.10> Et nondum exortae leges componere uitae. 
+<avson. ecl. 25.11> Namque ubi conceptus genitali insederit aruo, 
+<avson. ecl. 25.12> Haud dubium solem cuicumque insistere signo. 
+<avson. ecl. 25.13> Qui cum uicini stationem ceperit astri, 
+<avson. ecl. 25.14> Contiguos nullum transfundit lumen in ortus. 
+<avson. ecl. 25.15> Ast ubi conuersis post menstrua tempora habenis 
+<avson. ecl. 25.16> Scandit purpureo iam tertia sidera curru, 
+<avson. ecl. 25.17> Obliqua exilem demittit linea lucem, 
+<avson. ecl. 25.18> Aspirans tenues per inertia pondera motus. 
+<avson. ecl. 25.19> Quarta in sede uiget primi indulgentia solis, 
+<avson. ecl. 25.20> Suadet et infusus teneros coalescere fetus. 
+<avson. ecl. 25.21> Fulgor tetragono aspectu uitale coruscat, 
+<avson. ecl. 25.22> Clarum et lene micans, quintique <e> cardine signi 
+<avson. ecl. 25.23> Incutit attonitam uegetato infante parentem. 
+<avson. ecl. 25.24> Nam sexto uis nulla loco, quia nulla tuendi 
+<avson. ecl. 25.25> Aequati lateris signatur regula Phoebo. 
+<avson. ecl. 25.26> Ast ubi signiferae media in regione cohortis 
+<avson. ecl. 25.27> Septimus accepit limes rutilantia flammis 
+<avson. ecl. 25.28> Recto castra situ, turgentis foedera partus 
+<avson. ecl. 25.29> Iam plena sub luce uidet, nec fulgura parci 
+<avson. ecl. 25.30> Luminis intendens toto fouet igne coronae. 
+<avson. ecl. 25.31> Hinc illud, quod legitimos Lucina labores 
+<avson. ecl. 25.32> Praeuenit et grauidos sentit subrepere nixus 
+<avson. ecl. 25.33> Ante exspectatum festina puerpera uotum. 
+<avson. ecl. 25.34> Quod nisi septeno cum lumina fudit ab astro 
+<avson. ecl. 25.35> Impulerit tardi claustra obluctantia partus, 
+<avson. ecl. 25.36> Posterior nequeat, possit prior. an quia sexto 
+<avson. ecl. 25.37> Aemulus octaui conspectus inutilis astri 
+<avson. ecl. 25.38> Nescit compariles laterum formare figuras? 
+<avson. ecl. 25.39> Sed nono incumbens signo cunctantia matrum 
+<avson. ecl. 25.40> Vota leuat, trigono(==TRI-GO-NO) uiris sociante sequenti. 
+<avson. ecl. 25.41> At si difficilis trahit Ilithyia retrorsum, 
+<avson. ecl. 25.42> Tetragono absoluet dubiarum uincla morarum. 
