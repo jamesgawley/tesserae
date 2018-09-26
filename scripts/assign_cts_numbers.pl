@@ -103,7 +103,9 @@ foreach my $file (@files) {
 		
 		$author =~ s/^(.+)\..+$/$1/;
 	
-		my @same_author = grep {$_ =~ $author} keys %cts_hash; #this gives a list of works with the right author urn
+		# make a list of all the hashes that exactly match this author name
+	
+		my @same_author = grep {$_ =~ /^$author\./} keys %cts_hash; 
 		
 		# convert those text names to cts text urns
 		
@@ -137,9 +139,9 @@ foreach my $file (@files) {
 			
 				print "\nAuthor urn string: $author_urn\n";
 			
-				foreach my $auth (@same_author_urns) {
+				for (0..$#same_author_urns) {
 				
-					print "$auth\n";
+					print "$same_author_urns[$_] \t $same_author[$_]\n";
 				
 				}
 				
