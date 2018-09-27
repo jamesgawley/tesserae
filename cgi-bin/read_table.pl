@@ -463,11 +463,6 @@ else {
 		die "read_table.pl called from web interface with no target";
 	}
 	
-	unless (defined $word_order) {
-	
-		die "THE CGI VALUE PARSER RAN, BUT THE WORD_ORDER VALUE FAILED. Target: $target; Source: $source";
-	
-	}
 		
 	$quiet = 1;
 
