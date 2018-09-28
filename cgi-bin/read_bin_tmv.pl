@@ -267,6 +267,10 @@ my $nearby;
 # limit to sliding word window
 my $window_size;
 
+# unit (from the cgi interface)
+
+my $unit;
+
 #
 # command-line arguments
 #
@@ -334,6 +338,7 @@ unless ($no_cgi) {
 	$recall_cache    = $query->param('recall_cache') || $recall_cache;
 	my $source          = $query->param('source');
 	my $target          = $query->param('target');
+	$unit     		 = $query->param('unit');
 
 	my $cts_ref = Tesserae::load_cts_map();
 
@@ -341,7 +346,7 @@ unless ($no_cgi) {
 
 	# open the new session file for output
 
-	$path = catfile($cts_hash{$target}, $cts_hash{$source});
+	$path = catfile($cts_hash{$target}, $cts_hash{$source}, $unit);
 	
 	unless (defined $path) {
 	
@@ -444,7 +449,10 @@ my $target = $meta{TARGET};
 # unit means the level at which results are returned: 
 # - choice right now is 'phrase' or 'line'
 
-my $unit = $meta{UNIT};
+if ($no_cgi) {
+
+	$unit = $meta{UNIT};
+}
 
 # feature means the feature set compared: 
 # - choice is 'word' or 'stem'

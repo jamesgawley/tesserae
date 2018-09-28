@@ -357,7 +357,7 @@ if ($no_cgi){
 
 	# open the new session file for output
 
-	$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
+	$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source}, $unit);
 }
 
 unless ($no_cgi) { 
@@ -483,7 +483,7 @@ else {
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export;order=$word_order;dist=$window_size;nearby=$nearby",
+		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;unit=$unit;export=$export;order=$word_order;dist=$window_size;nearby=$nearby",
 #		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
 #		fulltext => "$url{cgi}/fulltext.pl?session=$session",
 #		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"
