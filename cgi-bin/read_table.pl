@@ -478,7 +478,7 @@ else {
 
 	# open the new session file for output
 
-	$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source});
+	$file_results = catfile($fs{tmp}, $cts_hash{$target}, $cts_hash{$source}, $unit);
 
 	# how to redirect browser to results
 
