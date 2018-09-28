@@ -3,9 +3,9 @@
 <?php include "nav_search.php"; ?>
 	</div>
 	<div id="main">
-	<h1>
-		Sources from the <a href="http://tesserae.caset.buffalo.edu/">Tesserae collection:</a>
-	</h1>
+	<h2>
+		Sources from the <a href="http://tesserae.caset.buffalo.edu/">Tesserae</a> collection:
+	</h2>
 	<table class="sources_page" style="font-size:0.8em">
 <tr>
 	<th>Author</th>
@@ -5734,9 +5734,9 @@ Recognovit brevique adnotatione critica instruxit
 
 </tr></table>
 
-	<h1>
-		Sources from the <a href="http://mqdq.it">Musisque Deoque collection:</a>
-	</h1>
+	<h2>
+		Sources from the <a href="http://mqdq.it">Musisque Deoque</a> collection:
+	</h2>
 
 <table class="sources_page" style="font-size:0.8em">
 <tr>
