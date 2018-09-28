@@ -236,6 +236,10 @@ my $word_order;
 # window size
 my $window_size;
 
+# search nearby units?
+
+my $nearby;
+
 # is the program being run from the web or
 # from the command line?
 
@@ -308,6 +312,7 @@ GetOptions(
 			'binary=s'     => \$file_results,
 			'window=i'   => \$window_size,
 			'order'		=> \$word_order,
+			'nearby'		=> \$nearby,
 #			'dibasis=s'    => \$distance_metric,
 #			'cutoff=f'     => \$cutoff,
 #			'score=s'      => \$score_basis,
@@ -442,6 +447,7 @@ else {
 	$window_size         = $query->param('dist')      || $window_size;	
 	$word_order         = $query->param('order')      || $word_order;		
 	$stopwords       = defined($query->param('stopwords')) ? $query->param('stopwords') : $stopwords;
+	$nearby			= $query->param('nearby')	 	|| $nearby;
 #	$stoplist_basis  = $query->param('stbasis')      || $stoplist_basis;
 #	$max_dist        = $query->param('dist')         || $max_dist;
 #	$distance_metric = $query->param('dibasis')      || $distance_metric;
@@ -477,7 +483,7 @@ else {
 	# how to redirect browser to results
 
 	%redirect = ( 
-		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export;order=$word_order;dist=$window_size",
+		default  => "$url{cgi}/read_bin_tmv.pl?source=$source;target=$target;export=$export;order=$word_order;dist=$window_size;nearby=$nearby",
 #		recall   => "$url{cgi}/check-recall.pl?session=$session;cache=$recall_cache",
 #		fulltext => "$url{cgi}/fulltext.pl?session=$session",
 #		multi    => "$url{cgi}/multitext.pl?session=$session;mcutoff=$multi_cutoff;list=1"

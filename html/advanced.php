@@ -58,7 +58,16 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Maximum distance:</th>
+					<th>Search neighboring units:</td>
+					<td>
+						<select name="nearby">
+							<option value="0">no</option>
+							<option value="1" selected="selected">yes</option>
+						</select>
+					</td>
+				</tr>								
+				<tr>
+					<th>Maximum distance between matchwords:</th>
 					<td>
 						<select name="dist">
 							<option value="1">1 word</option>

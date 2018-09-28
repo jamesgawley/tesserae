@@ -260,6 +260,10 @@ my $help;
 # force word order flag
 my $word_order;
 
+# search nearby phrases/lines?
+
+my $nearby;
+
 # limit to sliding word window
 my $window_size;
 
@@ -274,6 +278,7 @@ GetOptions(
 		'stbasis=s'    => \$stoplist_basis,
 #		'binary=s'     => \$file_results,
 		'order'			=> \$word_order,
+		'nearby'		=> \$nearby,
 		'window=i'		=> \$window_size,
 		'distance=i'   => \$max_dist,
 		'dibasis=s'    => \$distance_metric,
@@ -312,6 +317,7 @@ unless ($no_cgi) {
 #	$session = $query->param('session')    || die "no session specified from web interface"; #this needs to change for the REST API
 	$sort       = $query->param('sort')    || $sort;
 	$rev        = $query->param('rev')     if defined ($query->param("rev"));
+	$nearby		= $query->param('nearby') 	|| $nearby;
 	$page       = $query->param('page')    || $page;
 	$word_order       = $query->param('order')    || $word_order;
 	$batch      = $query->param('batch')   || $batch;
@@ -733,60 +739,64 @@ for my $unit_id_target (keys %match_target) {
 		# one could potentially replace the list of words matched (keys %{$match_target{$unit_id_target}{$unit_id_source}})
 		# with an array composed of all the shared language.
 		
+		#check the 'nearby flag'. define variables to avoid bugs in other code blocks.
+		
 		my $prev_unit_id_target;
 
-		if ($match_target{$unit_id_target - 1}){
-		
-			$prev_unit_id_target = $unit_id_target - 1;
-		 
-		}
-		else {
-		
-			$prev_unit_id_target = $unit_id_target;
-			
-		}
-		
 		my $next_unit_id_target;
-
-		if ($match_target{$unit_id_target + 1}){
-		
-			$next_unit_id_target = $unit_id_target + 1;
-		 
-		}
-		else {
-		
-			$next_unit_id_target = $unit_id_target;
 			
-		}
-		
-		# same for the source units
-		
 		my $prev_unit_id_source;
 
-		if ($match_source{$unit_id_source - 1}){
+		my $next_unit_id_source;		
 		
-			$prev_unit_id_source = $unit_id_source - 1;
-		 
-		}
-		else {
-		
-			$prev_unit_id_source = $unit_id_source;
+		if ($nearby) {
 			
-		}
-		
-		my $next_unit_id_source;
+			if ($match_target{$unit_id_target - 1}){
+			
+				$prev_unit_id_target = $unit_id_target - 1;
+			 
+			}
+			else {
+			
+				$prev_unit_id_target = $unit_id_target;
+				
+			}
+			
+			if ($match_target{$unit_id_target + 1}){
+			
+				$next_unit_id_target = $unit_id_target + 1;
+			 
+			}
+			else {
+			
+				$next_unit_id_target = $unit_id_target;
+				
+			}
+			
+			# same for the source units
 
-		if ($match_source{$unit_id_source + 1}){
-		
-			$next_unit_id_source = $unit_id_source + 1;
-		 
-		}
-		else {
-		
-			$next_unit_id_source = $unit_id_source;
+			if ($match_source{$unit_id_source - 1}){
 			
-		}
-		
+				$prev_unit_id_source = $unit_id_source - 1;
+			 
+			}
+			else {
+			
+				$prev_unit_id_source = $unit_id_source;
+				
+			}
+			
+			if ($match_source{$unit_id_source + 1}){
+			
+				$next_unit_id_source = $unit_id_source + 1;
+			 
+			}
+			else {
+			
+				$next_unit_id_source = $unit_id_source;
+				
+			}
+		}		
 		# put all the matchwords together
 		
 		%{$all_match_target{$unit_id_target}{$unit_id_source}} = %{$match_target{$unit_id_target}{$unit_id_source}};
