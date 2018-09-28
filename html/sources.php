@@ -4,11 +4,8 @@
 	</div>
 	<div id="main">
 	<h1>
-		Sources
+		Sources from the <a href="http://tesserae.caset.buffalo.edu/">Tesserae collection:</a>
 	</h1>
-	<p>
-		The texts used in this project were gathered from many electronic text databases, including <a href="http://thelatinlibrary.com">The Latin Library</a>, <a href="http://www.perseus.tufts.edu">The Perseus Project</a>, <a href="http://digiliblt.lett.unipmn.it">DigilibLT</a>, <a href="http://www.dh.uni-leipzig.de/wo/projects/open-greek-and-latin-project/">Open Greek and Latin Project</a>, <a href="http://www.mqdq.it/public/">Musisque Deoque</a>, and <a href="http://www.forumromanum.org/literature/index.html">Corpus Scriptorum Latinorum</a>. We have modified the texts by changing the markup, and may have made superficial changes to orthography. During our searches, all punctuation and capitalization are removed. Below we provide the electronic sources for each of our texts. To the best of our ability, we have looked for indications of the original provenance of these texts, and reproduce citation where possible. This is a work in progress.
-	</p>
 	<table class="sources_page" style="font-size:0.8em">
 <tr>
 	<th>Author</th>
@@ -5736,5 +5733,4516 @@ Recognovit brevique adnotatione critica instruxit
 	<td>Bridget Murray</td>
 
 </tr></table>
+
+	<h1>
+		Sources from the <a href="http://mqdq.it">Musisque Deoque collection:</a>
+	</h1>
+
+<table class="sources_page" style="font-size:0.8em">
+<tr>
+	<th>Author</th>
+	<th>Work</th>
+	<th>e-Source</th>
+	<th>Print Source</th>
+	<th>Added by</th>
+</tr>
+<tr>
+	<td>Ablabius</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/ABLAB|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Accius</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ACC|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Accius</td>
+	<td>Praetextarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ACC|prae|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Accius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ACC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Achilleus Spoletanus</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/ACHILL|epig|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Acilius Glabrio</td>
+	<td>Tabula</td>
+	<td><a href="http://www.mqdq.it/texts/GLABR|tabu|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Aedituus</td>
+	<td>Epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/AEDIT|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>aegritudo Perdicae</td>
+	<td><a href="http://www.mqdq.it/texts/AEGR_PER|aegr|001">Musisque Deoque</a></td>
+	<td>L. Zurli (1987)</td>
+	<td>V. Russo (2009)</td>
+</tr>
+<tr>
+	<td>Afranius</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/AFRAN|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Agrestius</td>
+	<td>Uersus de fide</td>
+	<td><a href="http://www.mqdq.it/texts/AGREST|carm|001">Musisque Deoque</a></td>
+	<td>K. Smolak (1973)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Albinouanus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/ALBINOV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Albinus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ALBINVS|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>Alcestis Barcinonensis</td>
+	<td><a href="http://www.mqdq.it/texts/ALCEST|alba|001">Musisque Deoque</a></td>
+	<td>M. Marcovich (1988)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Alcimus Auitus</td>
+	<td>Poematum libri</td>
+	<td><a href="http://www.mqdq.it/texts/ALC_AVIT|carm|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1883)</td>
+	<td>A. Agnesini (2009)</td>
+</tr>
+<tr>
+	<td>Alcimus Auitus</td>
+	<td>Carminum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/ALC_AVIT|caap|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1883)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Alfius Auitus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ALF_AVIT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Ambrosius Mediolanensis</td>
+	<td>E Graecis conuersa</td>
+	<td><a href="http://www.mqdq.it/texts/AMBR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Ambrosius Mediolanensis</td>
+	<td>Hymni</td>
+	<td><a href="http://www.mqdq.it/texts/AMBR|hymn|001">Musisque Deoque</a></td>
+	<td>A. S. Walpole (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ambrosius Mediolanensis</td>
+	<td>*uersus de naturis rerum</td>
+	<td><a href="http://www.mqdq.it/texts/AMBR|nare|001">Musisque Deoque</a></td>
+	<td>J. B. Pitra (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ambrosius Mediolanensis</td>
+	<td>*carmen de ternarii numeri excellentia</td>
+	<td><a href="http://www.mqdq.it/texts/AMBR|tern|001">Musisque Deoque</a></td>
+	<td>C. Weyman (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ambrosius Mediolanensis</td>
+	<td>Disticha de uetere nouoque Testamento</td>
+	<td><a href="http://www.mqdq.it/texts/AMBR|dist|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Annianus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ANNIAN|carm|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>anthologia Latina</td>
+	<td><a href="http://www.mqdq.it/texts/ANTH|anth|001">Musisque Deoque</a></td>
+	<td>A. Riese (1894-1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Aetna</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|aetn|001">Musisque Deoque</a></td>
+	<td>A. De Vivo (1997)</td>
+	<td>C. Laudani (2009)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Catalepta</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|cata|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2010)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Ciris</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|ciri|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2009)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Copa</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|copa|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2009)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Culex</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|cule|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2009)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Dirae</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|dira|001">Musisque Deoque</a></td>
+	<td>A. Salvatore et alii (1997)</td>
+	<td>C. Laudani (2010)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Maecenas</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|maec|001">Musisque Deoque</a></td>
+	<td>L. Nicastri (1997)</td>
+	<td>C. Laudani (2010)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Moretum</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|more|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2009)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Priapeia</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|pria|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2010)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>Quid hoc noui est</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|quid|001">Musisque Deoque</a></td>
+	<td>A. Salvatore (1997)</td>
+	<td>C. Laudani (2009)</td>
+</tr>
+<tr>
+	<td>appendix Vergiliana</td>
+	<td>De rosis nascentibus</td>
+	<td><a href="http://www.mqdq.it/texts/VERG_APP|rosi|001">Musisque Deoque</a></td>
+	<td>I. Polara (1997)</td>
+	<td>C. Laudani (2010)</td>
+</tr>
+<tr>
+	<td>Appius Claudius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/APP_CLAV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Aprissius</td>
+	<td>Atellanae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/APRISS|frag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Apuleius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/APVL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Apuleius</td>
+	<td>*fragmentum poeticum flor. c. 7 insertum</td>
+	<td><a href="http://www.mqdq.it/texts/APVL|flor|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Arator</td>
+	<td>Epistula ad Florianum</td>
+	<td><a href="http://www.mqdq.it/texts/ARATOR|flor|001">Musisque Deoque</a></td>
+	<td>A. P. McKinlay (1951)</td>
+	<td>L. Calzavara (2010)</td>
+</tr>
+<tr>
+	<td>Arator</td>
+	<td>Epistula ad Vigilium</td>
+	<td><a href="http://www.mqdq.it/texts/ARATOR|vigi|001">Musisque Deoque</a></td>
+	<td>A. P. McKinlay (1951)</td>
+	<td>L. Calzavara (2010)</td>
+</tr>
+<tr>
+	<td>Arator</td>
+	<td>De actibus apostolorum</td>
+	<td><a href="http://www.mqdq.it/texts/ARATOR|acti|001">Musisque Deoque</a></td>
+	<td>A. P. McKinlay (1951)</td>
+	<td>L. Calzavara (2010)</td>
+</tr>
+<tr>
+	<td>Arator</td>
+	<td>Epistula ad Parthenium</td>
+	<td><a href="http://www.mqdq.it/texts/ARATOR|part|001">Musisque Deoque</a></td>
+	<td>A. P. McKinlay (1951)</td>
+	<td>L. Calzavara (2010)</td>
+</tr>
+<tr>
+	<td>Arator</td>
+	<td>In historiam praefatio</td>
+	<td><a href="http://www.mqdq.it/texts/ARATOR|prae|001">Musisque Deoque</a></td>
+	<td>A. P. McKinlay (1951)</td>
+	<td>L. Calzavara (2010)</td>
+</tr>
+<tr>
+	<td>Arbonius</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/ARBON|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Amphitruo</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|amph|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Asinaria</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|asin|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Aulularia</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|aulu|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Captiui</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|capt|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Casina</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|casi|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Cistellaria</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|cist|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Curculio</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|curc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Epidicus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|epid|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Menaechmi</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|mena|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Mercator</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|merc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Miles gloriosus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|mile|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Mostellaria</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|most|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Persa</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|pers|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Poenulus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|poen|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Pseudolus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|pseu|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Rudens</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|rude|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Stichus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|stic|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Trinummus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|trin|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>argumenta Plautina</td>
+	<td>Truculentus</td>
+	<td><a href="http://www.mqdq.it/texts/ARGVM_PL|truc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Arnobius Afer</td>
+	<td>Uersus Orphici</td>
+	<td><a href="http://www.mqdq.it/texts/ARNOB|nati|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Asinius Gallus</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/ASIN_GAL|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Atilius</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ATIL|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Atilius Calatinus</td>
+	<td>Elogium</td>
+	<td><a href="http://www.mqdq.it/texts/CALAT|elog|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Atta</td>
+	<td>Togatarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ATTA|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Atta</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/ATTA|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Attius Labeo</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/ATT_LABE|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Augurinus</td>
+	<td>Carmen</td>
+	<td><a href="http://www.mqdq.it/texts/AVGVRIN|carm|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Augustinus Hipponensis</td>
+	<td>Psalmus contra partem Donati</td>
+	<td><a href="http://www.mqdq.it/texts/AVG|psal|001">Musisque Deoque</a></td>
+	<td>R. Anastasi (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Augustinus Hipponensis</td>
+	<td>*carmina (anth. Riese)</td>
+	<td><a href="http://www.mqdq.it/texts/AVG|anth|001">Musisque Deoque</a></td>
+	<td>anth. 484a, 487d, 489 (870 Riese)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Augustinus Hipponensis</td>
+	<td>*ignoti uersus ap. Aug. mus. 5, 13, 27</td>
+	<td><a href="http://www.mqdq.it/texts/AVG|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Augustinus Hipponensis</td>
+	<td>*precatio ad Christum</td>
+	<td><a href="http://www.mqdq.it/texts/AVG|prec|001">Musisque Deoque</a></td>
+	<td>PL 40 Migne</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Augustinus Hipponensis</td>
+	<td>Uersus Sibyllae</td>
+	<td><a href="http://www.mqdq.it/texts/AVG|siby|001">Musisque Deoque</a></td>
+	<td>B. Dombart - A. Kalb (1955)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Auianus</td>
+	<td>Fabulae</td>
+	<td><a href="http://www.mqdq.it/texts/AVIAN|fabu|001">Musisque Deoque</a></td>
+	<td>A. Guaglianone (1958)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Auienus</td>
+	<td>Aratea</td>
+	<td><a href="http://www.mqdq.it/texts/AVIEN|arat|001">Musisque Deoque</a></td>
+	<td>J. Soubiran (2003)</td>
+	<td>A. A. Raschieri (2009)</td>
+</tr>
+<tr>
+	<td>Auienus</td>
+	<td>Carmen ad Flauianum</td>
+	<td><a href="http://www.mqdq.it/texts/AVIEN|flau|001">Musisque Deoque</a></td>
+	<td>A. Riese (1906)</td>
+	<td>A. A. Raschieri (2009)</td>
+</tr>
+<tr>
+	<td>Auienus</td>
+	<td>Carmen ad Nortiam</td>
+	<td><a href="http://www.mqdq.it/texts/AVIEN|nort|001">Musisque Deoque</a></td>
+	<td>J. Soubiran (2003)</td>
+	<td>A. A. Raschieri (2009)</td>
+</tr>
+<tr>
+	<td>Auienus</td>
+	<td>Orbis terrae</td>
+	<td><a href="http://www.mqdq.it/texts/AVIEN|orbi|001">Musisque Deoque</a></td>
+	<td>P. van de Woestijne (1961)</td>
+	<td>A. A. Raschieri (2009)</td>
+</tr>
+<tr>
+	<td>Auienus</td>
+	<td>Ora maritima</td>
+	<td><a href="http://www.mqdq.it/texts/AVIEN|oram|001">Musisque Deoque</a></td>
+	<td>A. Schulten (1955)</td>
+	<td>A. A. Raschieri (2009)</td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Praefationes</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|prae|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Ephemeris</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|ephe|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Filius ad patrem</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|adpa|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Uersus Paschales</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|pasc|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Epicedion in patrem</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|epic|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>De herediolo</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|here|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Pater ad filium</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|adfi|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Protrepticus</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|prot|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Genethliacos</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|gene|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Parentalia</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|pare|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Commemoratio professorum</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|comm|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Epitaphia heroum</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|epit|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|epig|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Eclogae</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|eclo|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Griphus ternarii numeri</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|grip|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Mosella</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|mose|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Bissula</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|biss|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Cento nuptialis</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|cent|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Cupido cruciatus</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|cupi|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Precationes variae</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|prec|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Fasti</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|fast|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Caesares</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|caes|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Ordo urbium nobilium</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|ordo|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Technopaegnion</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|tech|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Ludus septem sapientium</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|ludu|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>Epistulae</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|epis|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>*fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|frag|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>*oratio consulis</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|orat|001">Musisque Deoque</a></td>
+	<td>R. P. H. Green (1999)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>*periocha Iliados</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|ilia|001">Musisque Deoque</a></td>
+	<td>S. Prete (1978)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ausonius</td>
+	<td>*periocha Odyssiae</td>
+	<td><a href="http://www.mqdq.it/texts/AVSON|odys|001">Musisque Deoque</a></td>
+	<td>S. Prete (1978)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Auspicius</td>
+	<td>Epistula ad Arbogastem</td>
+	<td><a href="http://www.mqdq.it/texts/AVSP|epis|001">Musisque Deoque</a></td>
+	<td>K. Strecker (1914)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Bassus iunior</td>
+	<td>Uersus in tumulo Monicae</td>
+	<td><a href="http://www.mqdq.it/texts/BASS_IVN|uers|001">Musisque Deoque</a></td>
+	<td>A. Riese (1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Bibaculus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/BIBAC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Boethius</td>
+	<td>Consolatio Philosophiae</td>
+	<td><a href="http://www.mqdq.it/texts/BOETH|cons|001">Musisque Deoque</a></td>
+	<td>L. Bieler (1984)</td>
+	<td>A. Agnesini (2009)</td>
+</tr>
+<tr>
+	<td>Boethius</td>
+	<td>Elogia</td>
+	<td><a href="http://www.mqdq.it/texts/BOETH|elog|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1871)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Caecilius</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CAECIL|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Caelius Aurelianus</td>
+	<td>E Parmenide conuersa</td>
+	<td><a href="http://www.mqdq.it/texts/CAEL_AVR|parm|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Caesius Bassus</td>
+	<td>Uersus metrici</td>
+	<td><a href="http://www.mqdq.it/texts/BASS|metr|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Calpurnius Siculus</td>
+	<td>Eclogae</td>
+	<td><a href="http://www.mqdq.it/texts/CALP_SIC|eclo|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Caluus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CALV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Caper</td>
+	<td>*de orthographia, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/CAPER|orth|001">Musisque Deoque</a></td>
+	<td>H. Keil (1878)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>carmen Aruale</td>
+	<td><a href="http://www.mqdq.it/texts/CARM_ARV|carm|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>carmen de nominibus litterarum</td>
+	<td><a href="http://www.mqdq.it/texts/NOM_LITT|uers|001">Musisque Deoque</a></td>
+	<td>F. Glorie (1968)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>carmen navale</td>
+	<td><a href="http://www.mqdq.it/texts/CARM_NAV|cele|001">Musisque Deoque</a></td>
+	<td>PLM 3, E. Baehrens (1879)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>carmen Sibyllinum</td>
+	<td><a href="http://www.mqdq.it/texts/CARM_SYB|sybi|001">Musisque Deoque</a></td>
+	<td>B. Bischoff (1966)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>carmina epigraphica</td>
+	<td>Bücheler - Lommatzsch</td>
+	<td><a href="http://www.mqdq.it/texts/CE|ce__|001">Musisque Deoque</a></td>
+	<td>CLE 01542; CLE 01875; CLE 01877; CLE 01879; CLE 01887; CLE 01890; CLE 01902; CLE 01915; CLE 01951; CLE 01994; CLE 02012; CLE 02031; CLE 101; CLE 102; CLE 103; CLE 103b; CLE 103c; CLE 104; CLE 105; CLE 106; CLE 107; CLE 108; CLE 109; CLE 11; CLE 110; CLE 111; CLE 112; CLE 115; CLE 117; CLE 118; CLE 119; CLE 12; CLE 120; CLE 121; CLE 122; CLE 123; CLE 124; CLE 125; CLE 126; CLE 127; CLE 128; CLE 129; CLE 13; CLE 130; CLE 131; CLE 132; CLE 133; CLE 134; CLE 135; CLE 136; CLE 137; CLE 138; CLE 139; CLE 140; CLE 141; CLE 142; CLE 143; CLE 144; CLE 145; CLE 146; CLE 148; CLE 149; CLE 150; CLE 151; CLE 152; CLE 153; CLE 154; CLE 155; CLE 158; CLE 159; CLE 160; CLE 161; CLE 162; CLE 163; CLE 164; CLE 165; CLE 166; CLE 167; CLE 168; CLE 169; CLE 170; CLE 171; CLE 172; CLE 173; CLE 174; CLE 176; CLE 179; CLE 18; CLE 180; CLE 181; CLE 182; CLE 183; CLE 184; CLE 185; CLE 1869; CLE 187; CLE 188; CLE 189; CLE 19; CLE 190; CLE 191; CLE 192; CLE 193; CLE 194; CLE 195; CLE 196; CLE 197; CLE 198; CLE 199; CLE 20; CLE 202; CLE 21; CLE 22; CLE 23; CLE 24; CLE 26; CLE 27; CLE 28; CLE 29; CLE 3; CLE 30; CLE 31; CLE 33; CLE 34; CLE 35; CLE 36; CLE 37; CLE 38; CLE 39; CLE 4; CLE 40; CLE 42; CLE 44; CLE 45; CLE 46; CLE 47; CLE 48; CLE 49; CLE 51; CLE 52; CLE 53; CLE 54; CLE 55; CLE 56; CLE 57; CLE 58; CLE 59; CLE 6; CLE 60; CLE 61; CLE 62; CLE 63; CLE 64; CLE 67; CLE 68; CLE 69; CLE 7; CLE 70; CLE 71a; CLE 71b; CLE 72; CLE 73; CLE 74; CLE 75; CLE 76; CLE 77; CLE 78; CLE 79; CLE 8; CLE 80; CLE 81; CLE 82; CLE 83; CLE 84; CLE 85; CLE 86; CLE 87; CLE 88; CLE 89; CLE 90; CLE 91; CLE 92; CLE 93; CLE 94; CLE 95; CLE 96; CLE 97; CLE 98; CLE 99; F. Bücheler, E. Lommatzsch (1895 - 1897 - 1926)</td>
+	<td>E. Saltelli (2011); L. Sansone di Campobianco (2009); L. Sansone di Campobianco 2009</td>
+</tr>
+<tr>
+	<td>carmina epigraphica</td>
+	<td>Supplementa</td>
+	<td><a href="http://www.mqdq.it/texts/CE|appe|001">Musisque Deoque</a></td>
+	<td>AE 1903, 00177; AE 1906, 00037; AE 1909, 00066; AE 1914, 00006; AE 1914, 00047; AE 1914, 00063; AE 1914, 00108; AE 1916, 00007; AE 1916, 00122; AE 1919, 00035; AE 1922, 00048; AE 1923, 00081; AE 1924, 00058; AE 1925, 00025; AE 1925, 00041; AE 1925, 00090; AE 1926, 00029; AE 1927, 00010a-b; AE 1927, 000121; AE 1927, 00015; AE 1927, 00048; AE 1927, 00120; AE 1928, 00005; AE 1928, 00037; AE 1928, 00038; AE 1928, 00071; AE 1928, 00073; AE 1928, 00108; AE 1929, 00007b; AE 1929, 00139; AE 1930, 00059; AE 1931, 00078; AE 1931, 00112; AE 1931,00039; AE 1932, 00016; AE 1932, 00044; AE 1933, 000153; AE 1933, 00024; AE 1933, 00074; AE 1935, 00158; AE 1936, 00067; AE 1937, 00098; AE 1938, 00008; AE 1938, 000165; AE 1938, 00120; AE 1939, 00162a; AE 1939, 00162b; AE 1940, 00022; AE 1940, 00023; AE 1940, 00024; AE 1941, 00006; AE 1941, 00043; AE 1941, 00044; AE 1941, 00076; AE 1942/43, 00002; AE 1945, 00024; AE 1946, 00031; AE 1946, 00048; AE 1946, 00062; AE 1946, 00115; AE 1946, 00116; AE 1946, 00117a; AE 1946, 00117b; AE 1946, 00208; AE 1947, 00031; AE 1947, 00068; AE 1947, 00191; AE 1948, 00107; AE 1948, 00129; AE 1948, 00167; AE 1949, 00060; AE 1949, 00077; AE 1950, 00025; AE 1950, 00088; AE 1950, 00127; AE 1950, 00199; AE 1951, 00045; AE 1951, 00131; AE 1951, 00155; AE 1952, 00001; AE 1952, 00016; AE 1952, 00108; AE 1952, 00181; AE 1953, 00022; AE 1953, 00049; AE 1953, 00098; AE 1953, 00200; AE 1953, 00239; AE 1953, 00243; AE 1953, 00265; AE 1954, 00142; AE 1954, 00169d; AE 1954, 00201d; AE 1954, 00263; AE 1955, 00053; AE 1956, 00009; AE 1956, 00122; AE 1956, 00253; AE 1956, 00259; AE 1957, 00003a; AE 1957, 00037; AE 1957, 00137; AE 1957, 00334; AE 1960, 00097; AE 1962, 00151; AE 1964, 00048; AE 1964, 00237; AE 1965, 00051; AE 1965, 00054; AE 1966, 00022; AE 1966, 00059; AE 1966, 00106; AE 1966, 00266; AE 1966, 00404; AE 1966, 00527; AE 1966, 00558; AE 1966, 00563; AE 1966, 00587; AE 1967, 00048; AE 1967, 00054; AE 1967, 00065; AE 1967, 00083; AE 1967, 00085; AE 1967, 00113; AE 1967, 00146; AE 1967, 00191; AE 1967, 00587; AE 1968, 00029; AE 1968, 00074; AE 1968, 00075; AE 1968, 00142; AE 1968, 00164; AE 1968, 00236; AE 1968, 00448; AE 1968, 00610; AE 1969/70, 00121; AE 1969/70, 00229; AE 1969/70, 00658; AE 1969/70, 00691; AE 1971, 00044; AE 1971, 00062; AE 1971, 00069; AE 1971, 00128; AE 1971, 00317; AE 1971, 00493; AE 1972, 00036; AE 1972, 00037; AE 1972, 00038; AE 1972, 00039; AE 1972, 00040; AE 1972, 00041; AE 1973, 00078; AE 1973, 00326; AE 1974, 00026; AE 1974, 00168; AE 1974, 00195; AE 1974, 00221; AE 1974, 00260; AE 1974, 00393; AE 1974, 00503; AE 1975, 00061a; AE 1975, 00115; AE 1975, 00136; AE 1975, 00461; AE 1975, 00503; AE 1975, 00874; AE 1975, 00940; AE 1976, 000243; AE 1976, 00099; AE 1976, 00173; AE 1976, 00232; AE 1976, 00284a; AE 1976, 00284b; AE 1976, 00364; AE 1976, 00365; AE 1977, 00207; AE 1977, 00210b; AE 1977, 00216; AE 1977, 00217; AE 1977, 00218; AE 1977, 00762; AE 1977, 00791; AE 1978, 00044; AE 1978, 00094; AE 1978, 00424; AE 1978, 00494; AE 1978, 00503; AE 1979, 00370; AE 1980, 00138; AE 1980, 00231; AE 1980, 00826; AE 1981, 00028; AE 1981, 00190; AE 1981, 00256; AE 1981, 00282; AE 1981, 00673; AE 1982, 00254; AE 1982, 00257; AE 1982, 00313; AE 1982, 00355; AE 1982, 00370; AE 1982, 00405; AE 1982, 00430; AE 1982, 00661; AE 1983, 00066; AE 1983, 00067; AE 1983, 00258; AE 1983, 00295; AE 1983, 00324; AE 1984, 00524; AE 1984, 00525; AE 1984, 00752; AE 1984, 00753; AE 1984, 00786; AE 1985, 00156b; AE 1985, 00249; AE 1985, 00330; AE 1985, 00558; AE 1985, 00851; AE 1985, 00894; AE 1985, 00958; AE 1985, 00959; AE 1986, 00083; AE 1987, 00178; AE 1987, 00242; AE 1987, 00655e; AE 1987, 00655f; AE 1987, 00655i; AE 1987, 00655l; AE 1987, 00655s; AE 1987, 00655u; AE 1987, 00655v; AE 1987, 01006; AE 1988, 00167; AE 1988, 00656; AE 1989, 00231; AE 1989, 00480; AE 1990, 00638; AE 1990, 00797; AE 1990, 00821; AE 1991, 00408; AE 1991, 00724; AE 1991, 01076; AE 1991, 01113; AE 1991, 01115; AE 1992, 00942b; AE 1992, 01094; AE 1992, 01237; AE 1993, 00359; AE 1993, 01044a-c; AE 1993, 01051n; AE 1993, 01345; AE 1994, 00348; AE 1994, 00373b; AE 1994, 00641; AE 1994, 00699; AE 1994, 00796; AE 1994, 01919; AE 1995, 00350; AE 1995, 00393; AE 1995, 00490; AE 1995, 00965; AE 1995, 00975; AE 1995, 00976; AE 1995, 01232b; AE 1995, 01364; AE 1995, 01641; AE 1995, 01793; AE 1996, 000453; AE 1996, 00312; AE 1996, 00313; AE 1996, 00370; AE 1996, 00648; AE 1996, 00783; AE 1996, 00903; AE 1996, 00929; AE 1996, 01185; AE 1996, 01222; AE 1996, 01238; AE 1996, 01704; AE 1997, 00339; AE 1997, 00362; AE 1997, 00410; AE 1997, 00741; AE 1997, 00823; AE 1997, 00946; AE 1997, 00963; AE 1998, 00279; AE 1998, 00360; AE 1998, 00453; AE 1998, 00953a; AE 1998, 00953b; AE 1998, 01029; AE 1998, 01200; AE 1998, 01530; AE 1999, 00811; AE 1999, 00913; AE 1999, 01066; AE 1999, 01123; AE 1999, 01187; AE 1999, 01213; AE 1999, 01230; AE 1999, 01252; AE 1999, 01407; AE 2000, 00221; AE 2000, 00741; AE 2000, 00798; AE 2000, 00802; AE 2000, 01242; AE 2000, 01612b; AE 2000, 01773; AE 2001, 00552; AE 2001, 00964; AE 2001, 01084; AE 2001, 01691; AE 2001, 02087b; AE 2001, 02132; AE 2002, 00167h; AE 2002, 00167i; AE 2002, 00563; AE 2002, 00863; AE 2002, 00865; AE 2002, 01235; AE 2002, 01676; AE 2003, 00199; AE 2003, 00201; AE 2003, 00251; AE 2003, 00255; AE 2003, 00314; AE 2003, 00898; AE 2004, 00204; AE 2004, 00303; AE 2004, 00403; AE 2004, 00979; AE 2004, 01266; AE 2004, 01396a; AE 2005, 00498; AE 2005, 00516; AE 2005, 00632; AE 2005, 00633; AE 2005, 00770; AE 2005, 01508; AE 2005, 01667; AE 2005, 01668; AE 2005, 01669; AE 2005, 01670; AE 2005, 01671; AE 2005, 01672; AE 2005, 01673; AE 2005, 01676; AE 2005, 01677; AIJ 00016; Ae 1951, 00281; Ae 1975, 00926; Ae 1992, 01074; Aufidus-53/54, n° 136; Aufidus-53/54, n° 137; CIL 01, 02525; CIL 01, 03396; CIL 01, 03464a; CIL 01, 3449k; CIL 01,03449g; CIL 02, 03476; CIL 02, 04174; CIL 02, 05304; CIL 02, 06102; CIL 02-05, 00061a; CIL 02-05, 00330; CIL 02-05, 01074; CIL 02-05, 01210; CIL 02-07, 00199; CIL 02-07, 00287; CIL 02-07, 00389; CIL 02-07, 00402; CIL 02-07, 00498; CIL 02-07, 00540; CIL 02-07, 00567; CIL 02-07, 00569; CIL 02-07, 00737; CIL 02-14-01, 00090; CIL 03, 03980; CIL 03, 03989; CIL 03, 09451; CIL 03, 10716; CIL 04, 01684; CIL 04, 01837a; CIL 04, 01839; CIL 04, 01970; CIL 04, 02146; CIL 04, 05386; CIL 04, 08137; CIL 04, 08177; CIL 04, 08339; CIL 04, 08347; CIL 04, 08408a; CIL 04, 08482; CIL 04, 08562; CIL 04, 08711b; CIL 04, 08824; CIL 04, 08842; CIL 04, 08891; CIL 04, 08899; CIL 04, 08908; CIL 04, 09848; CIL 04, 10024; CIL 04, 10610; CIL 04, 10634; CIL 05, 01686; CIL 05, 05337; CIL 05, 08738; CIL 05, 08958; CIL 05, p 621, 10; CIL 05, p 621,09; CIL 05, p 623,14; CIL 05, p 623,15; CIL 05, p 623,16; CIL 06, 14098; CIL 06, 14099; CIL 06, 19716; CIL 06, 25075; CIL 06, 41336a; CIL 06, 41342; CIL 08, 00022; CIL 08, 00645; CIL 08, 00870; CIL 08, 02519; CIL 08, 09217; CIL 08, 23592; CIL 08,10927; CIL 11, 00330; CIL 11, 01483; CIL 11, 04765, 1; CIL 11, 04765,2; CIL 11, 04765,3; CIL 11, 04765,4; CIL 11, 07918; CIL 13, 01489; CIL 13, 02374; CIL 13, 02477; CIL 13, 02478; CIL 13, 02480; CIL 13, 08482; CIL 13,10018,003; CLEBetica H01; CLEMoes 00017; CLEMoes 00018; CLEMoes 00035; CLEMoes 00048; CLEPann 00007; CLEPann 00009; CLEPann 00019; CLEPann 00020; CLEPann 00028; CLEPann 00034; CLEPann 00044; CLEPann 00056; CLEPann 00067; CLEPann 00070; CartNova 00167; EChrAfr-03, 00153; ERTeruel 00027m; Elisabetta Saltelli (2008); HEp-01, 00648; HEp-04, 00516; HEp-05,00949; HEp-07, 00455; HEp-07, 00590a; HEp-11, 00332; ICERV 00537; ICMactar-10, 00026; ICMactar-10, 00067; ICMactar-10, 00071; ICUR-01, 00357; ICUR-01, 00767; ICUR-01, 01483; ICUR-01, 01485; ICUR-01, 01496; ICUR-01, 01673; ICUR-01, 01984; ICUR-01, 02491; ICUR-01, 03898; ICUR-01, 03900; ICUR-01, 03901; ICUR-01, 03904; ICUR-01, 03906; ICUR-02, 04100; ICUR-02, 04103; ICUR-02, 04104; ICUR-02, 04105; ICUR-02, 04107a; ICUR-02, 04107b; ICUR-02, 04107c; ICUR-02, 04108; ICUR-02, 04109; ICUR-02, 04110; ICUR-02, 04113; ICUR-02, 04115; ICUR-02, 04116; ICUR-02, 04117; ICUR-02, 04119; ICUR-02, 04120; ICUR-02, 04124; ICUR-02, 04129; ICUR-02, 04131; ICUR-02, 04132; ICUR-02, 04133; ICUR-02, 04134; ICUR-02, 04135; ICUR-02, 04140; ICUR-02, 04141; ICUR-02, 04144; ICUR-02, 04147; ICUR-02, 04148; ICUR-02, 04149; ICUR-02, 04151; ICUR-02, 04152; ICUR-02, 04155; ICUR-02, 04157; ICUR-02, 04159; ICUR-02, 04159a; ICUR-02, 04160; ICUR-02, 04161; ICUR-02, 04201; ICUR-02, 04210; ICUR-02, 04220; ICUR-02, 04226; ICUR-02, 04252; ICUR-02, 04289; ICUR-02, 04783; ICUR-02, 04786a; ICUR-02, 04786b; ICUR-02, 04796; ICUR-02, 05333; ICUR-02, 05478; ICUR-02, 05569; ICUR-02, 05745; ICUR-02, 06464; ICUR-03, 07697; ICUR-03, 08453; ICUR-03, 08574; ICUR-03, 08621; ICUR-03, 09269; ICUR-04, 11028; ICUR-04, 11225; ICUR-04, 11328; ICUR-04, 11444; ICUR-04, 12257; ICUR-04, 12601; ICUR-05, 13312; ICUR-05, 13529; ICUR-05, 13627; ICUR-05, 13802; ICUR-05, 13819; ICUR-05, 13825; ICUR-05, 13954; ICUR-05, 14036; ICUR-05, 14472; ICUR-05, 14759; ICUR-06, 15935; ICUR-06, 17106; ICUR-07, 17605; ICUR-07, 17671; ICUR-07, 18370; ICUR-07, 18371; ICUR-07, 18944; ICUR-07, 19220; ICUR-08, 20756; ICUR-08, 20757; ICUR-08, 20919; ICUR-08, 21306; ICUR-08, 22965; ICUR-08, 23035; ICUR-08, 23221; ICUR-08, 23303; ICUR-08, 23396; ICUR-08, 23397; ICUR-09, 24310; ICUR-09, 24312; ICUR-09, 25102; IGLNovae 00107; IHC 00362; IHC 00385; ILAlg-01, 02769; ILAlg-01, 02775; ILAlg-01, 02781; ILAlg-02-02, 04730; ILCV 00976; ILCV 01513; ILCV 01766a-b; ILCV 01767; ILCV 01781; ILCV 01783; ILCV 01784; ILCV 01786a; ILCV 01788; ILCV 01839; ILCV 01891; ILCV 01892; ILCV 01954; ILCV 01955; ILCV 01956; ILGN 00659; ILJug-02, 00705; ILJug-03, 01596; ILJug-03, 01735; ILJug-03, 02217; ILSard-01, 00119; ILSard-01, 00172; ILSard-01, 00183; ILTun 00193; ILTun 01133; ILTun 01610; IPOstie-A, 00031; IPOstie-A, 00282; IPOstie-A, 00348; IRG-02, 00087; InscrAqu-01, 00931; InscrAqu-02, 01761; InscrAqu-03, 03381; InscrAqu-03, 03386; InscrAqu-03, 03444; InscrAqu-03, 03503; InscrIt-04-01, 00484; MD-53, n 141-42; NSA-1931-321; PELCatalans-B, 00002; PELCatalans-GI, 00001; PELCatalans-PM, 00001; PELCatalans-T, 00004; PELCatalans-T, 00014; PELCatalans-T, 00015; PELCatalans-T, 00026; Pikhaus Repertoire A 40; RAAN-96, n 11; RAAN-96, n 38; RAAN-96, n 45; RAAN-96, n 46; RIB 01954; RIT 00668; SupIt-03-Co, 00031; SupIt-04-S, 00036; Zarker 00011; Zarker 00059; Zarker 00062; Zarker 00064; Zarker 00066; Zarker 00069; Zarker 00093; Zarker 00106; Zarker 00114; Zarker 00119</td>
+	<td>E. Saltelli (2010); E. Saltelli (2011)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>carmina Priapea</td>
+	<td><a href="http://www.mqdq.it/texts/PRIAP|carm|001">Musisque Deoque</a></td>
+	<td>I. Cazzaniga (1959)</td>
+	<td>A. Agnesini (2009)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>carmina Saliaria</td>
+	<td><a href="http://www.mqdq.it/texts/CARM_SAL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Cassiodorus</td>
+	<td>Variae</td>
+	<td><a href="http://www.mqdq.it/texts/CASSIOD|vari|001">Musisque Deoque</a></td>
+	<td>Th. Mommsen (1894)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Catullus</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/CATVLL|carm|001">Musisque Deoque</a></td>
+	<td>G. Lafaye (1922); W. Eisenhut (1983)</td>
+	<td>G. Maggiali, I. Turrini (2009)</td>
+</tr>
+<tr>
+	<td>Catullus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CATVLL|frag|001">Musisque Deoque</a></td>
+	<td>G. Lafaye (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Chalcidius</td>
+	<td>E Graecis conuersa</td>
+	<td><a href="http://www.mqdq.it/texts/CHALC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Chintila</td>
+	<td>Disticha</td>
+	<td><a href="http://www.mqdq.it/texts/CHINT|dist|001">Musisque Deoque</a></td>
+	<td>anth. 494 Riese</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Cicero</td>
+	<td>Fragmenta poetica</td>
+	<td><a href="http://www.mqdq.it/texts/CIC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995); J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014); T. Brolli (2007)</td>
+</tr>
+<tr>
+	<td>Cicero</td>
+	<td>Aratea, phaenomenon fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CIC|phae|001">Musisque Deoque</a></td>
+	<td>J. Soubiran (2002)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Cicero</td>
+	<td>Aratea, prognosticorum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CIC|prog|001">Musisque Deoque</a></td>
+	<td>J. Soubiran (2002)</td>
+	<td>P. Mastandrea, S. Arrigoni (2002)</td>
+</tr>
+<tr>
+	<td>Cinna</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CINNA|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Panegyricus dictus Probino et Olybrio consulibus</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|prob|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>In Rufinum</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|rufi|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Panegyricus dictus Honorio tertium consuli</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|hon3|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Panegyricus dictus Honorio quartum consuli</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|hon4|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Epithalamium de nuptiis Honorii</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|nupt|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Fescennini de nuptiis Honorii</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|fesc|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>De bello Gildonico</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|gild|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Panegyricus dictus Mallio Theodoro consuli</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|mall|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>In Eutropium</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|eutr|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>De consulatu Stilichonis</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|stil|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>De bello Gothico</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|goth|001">Musisque Deoque</a></td>
+	<td>J. B. Hall (1985)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Panegyricus dictus Honorio sextum consuli</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|hon6|001">Musisque Deoque</a></td>
+	<td>M. Platnauer (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Carmina minora</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|cami|001">Musisque Deoque</a></td>
+	<td>J. B. Hall (1985)</td>
+	<td>O. Fuoco (2009)</td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>De raptu Proserpinae</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|pros|001">Musisque Deoque</a></td>
+	<td>J. B. Hall (1985)</td>
+	<td>O. Fuoco (2010)</td>
+</tr>
+<tr>
+	<td>Claudianus</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/CLAVD|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columba</td>
+	<td>Hymni</td>
+	<td><a href="http://www.mqdq.it/texts/COLV_HIE|hymn|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columbanus</td>
+	<td>Epistula metrica</td>
+	<td><a href="http://www.mqdq.it/texts/COLVMB|epis|001">Musisque Deoque</a></td>
+	<td>W. Gundlach (1892)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columbanus</td>
+	<td>Versus ad Hunaldum</td>
+	<td><a href="http://www.mqdq.it/texts/COLVMB|huna|001">Musisque Deoque</a></td>
+	<td>G. S. M. Walker (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columbanus</td>
+	<td>Versus ad Sethum</td>
+	<td><a href="http://www.mqdq.it/texts/COLVMB|seth|001">Musisque Deoque</a></td>
+	<td>G. S. M. Walker (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columbanus</td>
+	<td>Carmen navale</td>
+	<td><a href="http://www.mqdq.it/texts/COLVMB|nava|001">Musisque Deoque</a></td>
+	<td>G. S. M. Walker (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columbanus</td>
+	<td>Versus ad Fidolium</td>
+	<td><a href="http://www.mqdq.it/texts/COLVMB|fido|001">Musisque Deoque</a></td>
+	<td>G. S. M. Walker (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columbanus</td>
+	<td>Versus in mulieres</td>
+	<td><a href="http://www.mqdq.it/texts/COLVMB|muli|001">Musisque Deoque</a></td>
+	<td>G. S. M. Walker (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Columella</td>
+	<td>De re rustica, liber X</td>
+	<td><a href="http://www.mqdq.it/texts/COLVM|reru|001">Musisque Deoque</a></td>
+	<td>E. de Saint-Denis (1969)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Commodianus</td>
+	<td>Instructiones 1</td>
+	<td><a href="http://www.mqdq.it/texts/COMM|ins1|001">Musisque Deoque</a></td>
+	<td>J. Martin (1960)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Commodianus</td>
+	<td>Instructiones 2</td>
+	<td><a href="http://www.mqdq.it/texts/COMM|ins2|001">Musisque Deoque</a></td>
+	<td>J. Martin (1960) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>Commodianus</td>
+	<td>Carmen de duobus populis</td>
+	<td><a href="http://www.mqdq.it/texts/COMM|carm|001">Musisque Deoque</a></td>
+	<td>J. Martin (1960)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>comoediae incertorum</td>
+	<td>Palliatae fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/COM_INC|pall|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>comoediae incertorum</td>
+	<td>Togatae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/COM_INC|toga|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>comoediae incertorum</td>
+	<td>Atellanae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/COM_INC|atel|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Corippus</td>
+	<td>Iohannis</td>
+	<td><a href="http://www.mqdq.it/texts/CORIPP|ioha|001">Musisque Deoque</a></td>
+	<td>J. Diggle, F. R. D. Goodyear (1970)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Corippus</td>
+	<td>Panegyricus in laudem Anastasii</td>
+	<td><a href="http://www.mqdq.it/texts/CORIPP|anas|001">Musisque Deoque</a></td>
+	<td>J. Partsch (1879)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Corippus</td>
+	<td>Panegyricus in laudem Iustini Augusti</td>
+	<td><a href="http://www.mqdq.it/texts/CORIPP|iust|001">Musisque Deoque</a></td>
+	<td>J. Partsch (1879)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Cornelius Gallus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CORN_GAL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Cornelius Seuerus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CORN_SEV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Cornificius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CORNIF|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Liber geneseos</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|gene|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1881)</td>
+	<td>A. A. Raschieri (2010)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Exodus</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|exod|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1881)</td>
+	<td>A. A. Raschieri (2010)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Leuiticus</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|leui|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td>A. A. Raschieri (2010)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Numeri</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|nume|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td>A. A. Raschieri (2011)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Deuteronomium</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|deut|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td>A. A. Raschieri (2011)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Iesu Naue</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|iesu|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td>A. A. Raschieri (2012)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Iudicum</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|iudi|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td>A. A. Raschieri (2012)</td>
+</tr>
+<tr>
+	<td>Cyprianus Gallus</td>
+	<td>Deperditorum carminum reliquiae</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_GAL|frag|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td>A. A. Raschieri (2012)</td>
+</tr>
+<tr>
+	<td>Cyprianus Tolonensis</td>
+	<td>Uersus in subscritione codicis Hegesippi</td>
+	<td><a href="http://www.mqdq.it/texts/CYPR_TOL|cypr|001">Musisque Deoque</a></td>
+	<td>V. Ussani (1932)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Cytherius</td>
+	<td>Epitaphium Hilarini</td>
+	<td><a href="http://www.mqdq.it/texts/CYTHER|hila|001">Musisque Deoque</a></td>
+	<td>A. Riese (1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Damasus</td>
+	<td>Epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/DAMAS|epig|001">Musisque Deoque</a></td>
+	<td>M. Ihm (1895)</td>
+	<td>P. Tomasi (2010)</td>
+</tr>
+<tr>
+	<td>Domitius Marsus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/DOM_MARS|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Dorcatius</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/DORCAT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Dracontius</td>
+	<td>De laudibus dei</td>
+	<td><a href="http://www.mqdq.it/texts/DRAC|laud|001">Musisque Deoque</a></td>
+	<td>C. Camus, C. Moussy (1985-88)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Dracontius</td>
+	<td>Satisfactio</td>
+	<td><a href="http://www.mqdq.it/texts/DRAC|sati|001">Musisque Deoque</a></td>
+	<td>C. Moussy (1988)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Dracontius</td>
+	<td>Romulea</td>
+	<td><a href="http://www.mqdq.it/texts/DRAC|romu|001">Musisque Deoque</a></td>
+	<td>A. Luceri (2007); J. Bouquet - É. Wolff (1995); É. Wolff (1996)</td>
+	<td>A. Luceri (2009); A. Luceri - O. Portuese (2009); A. Luceri - O. Portuese (2010)</td>
+</tr>
+<tr>
+	<td>Dracontius</td>
+	<td>Romulea, fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/DRAC|frag|001">Musisque Deoque</a></td>
+	<td>Mirella Ferrari (1973)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Dracontius</td>
+	<td>Orestes</td>
+	<td><a href="http://www.mqdq.it/texts/DRAC|ores|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Egnatius</td>
+	<td>De rerum natura fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/EGNAT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>elogium Asbadi</td>
+	<td><a href="http://www.mqdq.it/texts/ELOG_ASB|asba|001">Musisque Deoque</a></td>
+	<td>Th. Mommsen (1892)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Endelechius</td>
+	<td>De mortibus boum</td>
+	<td><a href="http://www.mqdq.it/texts/ENDEL|mort|001">Musisque Deoque</a></td>
+	<td>A. Riese (1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Annalium fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|anna|001">Musisque Deoque</a></td>
+	<td>O. Skutsch (1985)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Annalium fragmenta dubia</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|dubi|001">Musisque Deoque</a></td>
+	<td>O. Skutsch (1985)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Annalium fragmenta spuria</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|spur|001">Musisque Deoque</a></td>
+	<td>O. Skutsch (1985)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Saturarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|satu|001">Musisque Deoque</a></td>
+	<td>J. Vahlen (1903)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Fragmenta uaria</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|uari|001">Musisque Deoque</a></td>
+	<td>J. Vahlen (1903)</td>
+	<td>P. Mastandrea, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Praetextarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|prae|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennius</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/ENN|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Carmina 1</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|car1|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Carmina 2</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|car2|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Dictiones, 12, 24, 28, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|dict|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Epistulae, 5,7-8, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|epi5|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Epistulae, 7,21-29, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|epi7|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Opuscula, 6, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|opus|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Laus uersuum, opusc. 6</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|laus|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Verecundia, opusc. 6</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|vere|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Castitas, opusc. 6</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|cast|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Fides, opusc. 6</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|fide|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Grammatica, opusc. 6</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|gram|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ennodius</td>
+	<td>Rhetorica, opusc. 6</td>
+	<td><a href="http://www.mqdq.it/texts/ENNOD|rhet|001">Musisque Deoque</a></td>
+	<td>F. Vogel (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>epigramma de Crassitio</td>
+	<td><a href="http://www.mqdq.it/texts/EPIGR_CR|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>epigrammata Bobiensia</td>
+	<td><a href="http://www.mqdq.it/texts/EPIGR|epbo|001">Musisque Deoque</a></td>
+	<td>W. Speyer (1963)</td>
+	<td>A. Luceri  (2008); A. Luceri (2008); A. Luceri, O. Portuese (2008); F. Nolfo, O. Portuese (2007)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>epitaphium Sabiniani papae</td>
+	<td><a href="http://www.mqdq.it/texts/EPTPH_SA|epit|001">Musisque Deoque</a></td>
+	<td>apud Iotsald, vita Odilonis Abbatis, PL 142 (903)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Eugenius Toletanus</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/EVG_TOLE|carm|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Eugenius Toletanus</td>
+	<td>Carminum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/EVG_TOLE|caap|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Eugenius Toletanus</td>
+	<td>Hexaemeron</td>
+	<td><a href="http://www.mqdq.it/texts/EVG_TOLE|hexa|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Eugenius Toletanus</td>
+	<td>Monosticha recapitulationis septem dierum</td>
+	<td><a href="http://www.mqdq.it/texts/EVG_TOLE|mono|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Eugenius Toletanus</td>
+	<td>Satisfactio</td>
+	<td><a href="http://www.mqdq.it/texts/EVG_TOLE|sati|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Eugippius</td>
+	<td>Hymnus in laudem Seuerini</td>
+	<td><a href="http://www.mqdq.it/texts/EVGIPP|hymn|001">Musisque Deoque</a></td>
+	<td>P. Knoell (1886)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Felix</td>
+	<td>Carmina (anth. Riese)</td>
+	<td><a href="http://www.mqdq.it/texts/FELIX|anth|001">Musisque Deoque</a></td>
+	<td>A. Riese (1894); D. R. Shackleton Bailey (1982)</td>
+	<td>P. Tempone (2009); V. Russo (2009)</td>
+</tr>
+<tr>
+	<td>Flauius</td>
+	<td>Hymnus</td>
+	<td><a href="http://www.mqdq.it/texts/FLAV|hymn|001">Musisque Deoque</a></td>
+	<td>A. S. Walpole (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Flauius Theodorus</td>
+	<td>Prologus ad Institutiones Prisciani</td>
+	<td><a href="http://www.mqdq.it/texts/THEOD|prol|001">Musisque Deoque</a></td>
+	<td>G. Silagi - B. Bischoff (1979)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Florentinus</td>
+	<td>Carmen (anth. Riese)</td>
+	<td><a href="http://www.mqdq.it/texts/FLORENT|anth|001">Musisque Deoque</a></td>
+	<td>A. Riese (1894)</td>
+	<td>V. Russo (2009)</td>
+</tr>
+<tr>
+	<td>Florus</td>
+	<td>Carmina (anth. Riese)</td>
+	<td><a href="http://www.mqdq.it/texts/FLOR|anth|001">Musisque Deoque</a></td>
+	<td>D. R. Shackleton Bailey (1982)</td>
+	<td>M. N. Iulietto (2009)</td>
+</tr>
+<tr>
+	<td>Florus</td>
+	<td>Ad Hadrianum</td>
+	<td><a href="http://www.mqdq.it/texts/FLOR|hadr|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (1995)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Fronto</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/FRONTO|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Fulgentius</td>
+	<td>Mythologiae, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/FVLG|myth|001">Musisque Deoque</a></td>
+	<td>R. Helm (1898)</td>
+	<td>M. Manca (2009)</td>
+</tr>
+<tr>
+	<td>Fulgentius</td>
+	<td>Virgiliana continentia 740, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/FVLG|virg|001">Musisque Deoque</a></td>
+	<td>R. Helm (1898)</td>
+	<td>M. Manca (2009)</td>
+</tr>
+<tr>
+	<td>Furius Antias</td>
+	<td>Fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/FVR_ANT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Gaetulicus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/GAETVL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Gannius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/GANN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Germanicus Caesar</td>
+	<td>Aratea</td>
+	<td><a href="http://www.mqdq.it/texts/GERM|arat|001">Musisque Deoque</a></td>
+	<td>A. Le Boeuffle (1975)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Germanicus Caesar</td>
+	<td>Arateorum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/GERM|frag|001">Musisque Deoque</a></td>
+	<td>A. Le Boeuffle (1975)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Gildas sapiens</td>
+	<td>Pro itineris et nauigii prosperitate</td>
+	<td><a href="http://www.mqdq.it/texts/GILDAS|naui|001">Musisque Deoque</a></td>
+	<td>B. Bischoff (1984)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Gildas sapiens</td>
+	<td>Oratio</td>
+	<td><a href="http://www.mqdq.it/texts/GILDAS|orat|001">Musisque Deoque</a></td>
+	<td>B. Bischoff (1984)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Gracchus</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/GRACCH|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Grattius</td>
+	<td>Cynegeticon</td>
+	<td><a href="http://www.mqdq.it/texts/GRATT|cyne|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Hadrianus imperator</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/HADR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Hieronymus Stridonensis</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/HIER|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Hilarius Arelatensis</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/HIL_AREL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Hilarius Pictauiensis</td>
+	<td>*hymnus de Christo</td>
+	<td><a href="http://www.mqdq.it/texts/HIL_PICT|hymn|001">Musisque Deoque</a></td>
+	<td>A. S. Walpole (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Hilarius Pictauiensis</td>
+	<td>*in genesin</td>
+	<td><a href="http://www.mqdq.it/texts/HIL_PICT|gene|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1916)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Hilarius Pictauiensis</td>
+	<td>*de martyrio Maccabaeorum</td>
+	<td><a href="http://www.mqdq.it/texts/HIL_PICT|macc|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1916)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Hilarius Pictauiensis</td>
+	<td>*de euangelio</td>
+	<td><a href="http://www.mqdq.it/texts/HIL_PICT|euan|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1916)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>historia Apollonii, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/HIST_APO|hiap|001">Musisque Deoque</a></td>
+	<td>O. Schmeling (1988)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Honoratus Massiliensis</td>
+	<td>Uita Hilarii Arelatensis, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/HONORAT|hila|001">Musisque Deoque</a></td>
+	<td>P.-A. Jacob (1995)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Epodi</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|epod|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>G. C. Musa (2008); G. C. Musa (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Carmina 1</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|car1|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>G. C. Musa (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Carmina 2</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|car2|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>G. C. Musa (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Carmina 3</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|car3|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>G. C. Musa (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Carmina 4</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|car4|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>G. C. Musa (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Carmen saeculare</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|case|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>G. C. Musa (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Saturae 1</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|sat1|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1970)</td>
+	<td>A. Fassina (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Saturae 2</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|sat2|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1970)</td>
+	<td>A. Fassina (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Epistulae 1</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|epi1|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>A. Fassina (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Epistulae 2</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|epi2|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>A. Fassina (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>Ars poetica</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|arpo|001">Musisque Deoque</a></td>
+	<td>F. Klingner (1959)</td>
+	<td>A. Fassina (2009)</td>
+</tr>
+<tr>
+	<td>Horatius</td>
+	<td>*ignoti uersus Hor. sat. 1, 10 praemissi</td>
+	<td><a href="http://www.mqdq.it/texts/HOR|prae|001">Musisque Deoque</a></td>
+	<td>D. R. Shackleton Bailey (1985)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Hostius</td>
+	<td>Belli Histrici fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/HOST|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>hymni Christiani anonymi</td>
+	<td><a href="http://www.mqdq.it/texts/HYMN_CHR|hymn|001">Musisque Deoque</a></td>
+	<td>A. S. Walpole (1922)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>Ilias Latina</td>
+	<td><a href="http://www.mqdq.it/texts/HOMER|ilia|001">Musisque Deoque</a></td>
+	<td>M. Scaffai (1982)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>incerti odarium</td>
+	<td><a href="http://www.mqdq.it/texts/ODAR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>incertorum uersus</td>
+	<td><a href="http://www.mqdq.it/texts/INC_VERS|uers|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ionas Bobiensis</td>
+	<td>Vita Columbani 1,2</td>
+	<td><a href="http://www.mqdq.it/texts/IONAS|vers|001">Musisque Deoque</a></td>
+	<td>B. Krusch (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ionas Bobiensis</td>
+	<td>Versus in festivitate</td>
+	<td><a href="http://www.mqdq.it/texts/IONAS|fest|001">Musisque Deoque</a></td>
+	<td>B. Krusch (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ionas Bobiensis</td>
+	<td>Hymnus</td>
+	<td><a href="http://www.mqdq.it/texts/IONAS|hymn|001">Musisque Deoque</a></td>
+	<td>B. Krusch (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Isidorus Hispalensis</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/ISID|carm|001">Musisque Deoque</a></td>
+	<td>C. Beeson (1913)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Iulianus Toletanus</td>
+	<td>Carmina apologetica</td>
+	<td><a href="http://www.mqdq.it/texts/IVL_TOLE|carm|001">Musisque Deoque</a></td>
+	<td>PL 96 (812-14)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Iulianus Toletanus</td>
+	<td>Epitaphia</td>
+	<td><a href="http://www.mqdq.it/texts/IVL_TOLE|epit|001">Musisque Deoque</a></td>
+	<td>PL 96 (813-16)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Iulius Caesar</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/CAES|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Iulius Valerius</td>
+	<td>E Graecis conuersa</td>
+	<td><a href="http://www.mqdq.it/texts/IVL_VAL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Iuuenalis</td>
+	<td>Saturae</td>
+	<td><a href="http://www.mqdq.it/texts/IVV|satu|001">Musisque Deoque</a></td>
+	<td>W. V. Clausen (1966); W. V. Clausen (1992²)</td>
+	<td>F. Ficca (2010)</td>
+</tr>
+<tr>
+	<td>Iuuencus</td>
+	<td>Euangeliorum libri</td>
+	<td><a href="http://www.mqdq.it/texts/IVVENC|euan|001">Musisque Deoque</a></td>
+	<td>J. Huemer (1891)</td>
+	<td>L. Calzavara (2010); P. Santorelli (2009)</td>
+</tr>
+<tr>
+	<td>Iuuentius</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/IVVENT|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Laberius</td>
+	<td>Mimorum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LABER|mimi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lactantius</td>
+	<td>De aue Phoenice</td>
+	<td><a href="http://www.mqdq.it/texts/LACT|phoe|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lactantius</td>
+	<td>E Graecis conuersa</td>
+	<td><a href="http://www.mqdq.it/texts/LACT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Lactantius</td>
+	<td>*de passione domini</td>
+	<td><a href="http://www.mqdq.it/texts/LACT|pado|001">Musisque Deoque</a></td>
+	<td>S. Brandt (1893)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Laeuius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LAEV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lathcen</td>
+	<td>Lorica</td>
+	<td><a href="http://www.mqdq.it/texts/LATHCEN|lori|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>laudes Domini</td>
+	<td><a href="http://www.mqdq.it/texts/LAVD_DOM|laud|001">Musisque Deoque</a></td>
+	<td>P. van der Weijden (1967)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Laurea</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/LAVREA|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>laus Pisonis</td>
+	<td><a href="http://www.mqdq.it/texts/LAVS_PIS|laus|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Licentius</td>
+	<td>Carmen ad Augustinum</td>
+	<td><a href="http://www.mqdq.it/texts/LICENT|carm|001">Musisque Deoque</a></td>
+	<td>E. Baehrens (1886)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Licinius Imbrex</td>
+	<td>Comoediae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/LIC_IMBR|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Liuius Andronicus</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LIV_ANDR|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Liuius Andronicus</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LIV_ANDR|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Liuius Andronicus</td>
+	<td>*carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LIV_ANDR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lucanus</td>
+	<td>Pharsalia</td>
+	<td><a href="http://www.mqdq.it/texts/LVCAN|phar|001">Musisque Deoque</a></td>
+	<td>A. Bourgery (M. Ponchont 1927-30); A. Bourgery - M. Ponchont (1967)</td>
+	<td>A. Cozzolino (2010)</td>
+</tr>
+<tr>
+	<td>Lucanus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LVCAN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lucilius</td>
+	<td>Saturarum reliquiae</td>
+	<td><a href="http://www.mqdq.it/texts/LVCIL|satu|001">Musisque Deoque</a></td>
+	<td>F. Marx (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lucilius iunior</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/LVCIL_IV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Lucius Manilius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/L_MANIL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Lucius Pomponius</td>
+	<td>Atellanarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/POMPON_C|frag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lucretius</td>
+	<td>De rerum natura</td>
+	<td><a href="http://www.mqdq.it/texts/LVCR|rena|001">Musisque Deoque</a></td>
+	<td>C. Bailey (1922); F. Mambrini (2010)</td>
+	<td>F. Feraco (2009); F. Mambrini (2010); M. Berti (2010)</td>
+</tr>
+<tr>
+	<td>Luscius Lanuuinus</td>
+	<td>Palliatae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/LVSC_LAN|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Lutatius</td>
+	<td>Epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/LVTAT|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Luxurius</td>
+	<td>Carmina (anth. Riese)</td>
+	<td><a href="http://www.mqdq.it/texts/LVX|anth|001">Musisque Deoque</a></td>
+	<td>H. Happ (1986)</td>
+	<td>M. N. Iulietto (2009)</td>
+</tr>
+<tr>
+	<td>Lygdamus</td>
+	<td>Corpus Tibullianum 3, 1-6</td>
+	<td><a href="http://www.mqdq.it/texts/LYGD|eleg|001">Musisque Deoque</a></td>
+	<td>G. Luck (1988)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Macer</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MACER|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Macrobius Theodosius</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/MACR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Maecenas</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MAECEN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Manilius</td>
+	<td>Astronomica</td>
+	<td><a href="http://www.mqdq.it/texts/MANIL|astr|001">Musisque Deoque</a></td>
+	<td>E. Flores (1996)</td>
+	<td>A. Fioravanti (2009); A. Fioravanti (2010)</td>
+</tr>
+<tr>
+	<td>Marcellus</td>
+	<td>De medicamentis</td>
+	<td><a href="http://www.mqdq.it/texts/MARCELL|medi|001">Musisque Deoque</a></td>
+	<td>E. Lichtenahn (1968)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Marcius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MARC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Marcus Aemilius</td>
+	<td>Fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/AEMIL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Marcus Aurelius</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/MARC_AVR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Marcus Casinensis</td>
+	<td>Uersus in Benedicti laudem</td>
+	<td><a href="http://www.mqdq.it/texts/MARC_CAS|uebe|001">Musisque Deoque</a></td>
+	<td>S. Rocca (1978)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Marianus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/MARIAN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Marius Auenticensis</td>
+	<td>Epitaphium</td>
+	<td><a href="http://www.mqdq.it/texts/MAR_AVEN|epit|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Marius Victor</td>
+	<td>Alethia</td>
+	<td><a href="http://www.mqdq.it/texts/VICTOR|alet|001">Musisque Deoque</a></td>
+	<td>P. F. Hovingh (1960)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Marius Victorinus</td>
+	<td>Hymni</td>
+	<td><a href="http://www.mqdq.it/texts/MAR_VICT|hymn|001">Musisque Deoque</a></td>
+	<td>P. Henry, P. Hadot (1971)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>De spectaculis</td>
+	<td><a href="http://www.mqdq.it/texts/MART|spec|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>M. Manca (2009)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 1</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep01|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2009)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 2</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep02|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2009)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 3</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep03|001">Musisque Deoque</a></td>
+	<td>A. Fusi (2006)</td>
+	<td>A. Fusi (2007)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 4</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep04|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2009)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 5</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep05|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2009)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 6</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep06|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2009); A. Fusi (2010)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 7</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep07|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2010)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 8</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep08|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2010)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 9</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep09|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td>A. Fusi (2010)</td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 10</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep10|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 11</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep11|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 12</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep12|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 13</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep13|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martialis</td>
+	<td>Epigrammata 14</td>
+	<td><a href="http://www.mqdq.it/texts/MART|ep14|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1929)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martianus Capella</td>
+	<td>De nuptiis Philologiae et Mercurii</td>
+	<td><a href="http://www.mqdq.it/texts/MART_CAP|nupt|001">Musisque Deoque</a></td>
+	<td>A. Dick (1925)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martinus Bracariensis</td>
+	<td>Uersus in basilica</td>
+	<td><a href="http://www.mqdq.it/texts/MART_BRA|basi|001">Musisque Deoque</a></td>
+	<td>C. W. Barlow (1950)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martinus Bracariensis</td>
+	<td>Uersus in refectorio</td>
+	<td><a href="http://www.mqdq.it/texts/MART_BRA|refe|001">Musisque Deoque</a></td>
+	<td>C. W. Barlow (1950)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Martinus Bracariensis</td>
+	<td>Epitaphium</td>
+	<td><a href="http://www.mqdq.it/texts/MART_BRA|epit|001">Musisque Deoque</a></td>
+	<td>C. W. Barlow (1950)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Marullus</td>
+	<td>Fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/MARVLL|mimi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Matius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MAT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Maximianus</td>
+	<td>Elegiae</td>
+	<td><a href="http://www.mqdq.it/texts/MAXIM|eleg|001">Musisque Deoque</a></td>
+	<td>L. Spinazzè</td>
+	<td>L. Spinazzè (2012)</td>
+</tr>
+<tr>
+	<td>Maximianus</td>
+	<td>Elegiarum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/MAXIM|appe|001">Musisque Deoque</a></td>
+	<td>A. Fo (1985)</td>
+	<td>L. Spinazzè (2009)</td>
+</tr>
+<tr>
+	<td>Memmius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MEMM|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Merobaudes</td>
+	<td>Carmen de Christo</td>
+	<td><a href="http://www.mqdq.it/texts/MEROB|chri|001">Musisque Deoque</a></td>
+	<td>J. B. Hall (1985)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Merobaudes</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/MEROB|carm|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Merobaudes</td>
+	<td>Panegyricus poeticus</td>
+	<td><a href="http://www.mqdq.it/texts/MEROB|poet|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Metelli</td>
+	<td>Uersus in Naeuium</td>
+	<td><a href="http://www.mqdq.it/texts/MET|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>mimographi incerti</td>
+	<td><a href="http://www.mqdq.it/texts/MIMOGR|ince|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Montanus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MONTAN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Mummius</td>
+	<td>Atellanarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/MVMM|frag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Naeuius</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NAEV|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Naeuius</td>
+	<td>Praetextarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NAEV|prae|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Naeuius</td>
+	<td>Comoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NAEV|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Naeuius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NAEV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Naeuius</td>
+	<td>Epitaphium</td>
+	<td><a href="http://www.mqdq.it/texts/NAEV|epit|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Naeuius iunior</td>
+	<td>Cypriae Iliadis fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NAEV_IVN|cypr|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Nemesianus</td>
+	<td>Eclogae</td>
+	<td><a href="http://www.mqdq.it/texts/NEMES|eclo|001">Musisque Deoque</a></td>
+	<td>H. J. Williams (1986)</td>
+	<td>A. Agnesini (2010)</td>
+</tr>
+<tr>
+	<td>Nemesianus</td>
+	<td>Cynegetica</td>
+	<td><a href="http://www.mqdq.it/texts/NEMES|cyne|001">Musisque Deoque</a></td>
+	<td>H. J. Williams (1986)</td>
+	<td>A. Agnesini (2010)</td>
+</tr>
+<tr>
+	<td>Nemesianus</td>
+	<td>De aucupio</td>
+	<td><a href="http://www.mqdq.it/texts/NEMES|aucu|001">Musisque Deoque</a></td>
+	<td>P. Volpilhac (1975)</td>
+	<td>A. Agnesini (2010)</td>
+</tr>
+<tr>
+	<td>Nero Imperator</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NERO|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Ninnius</td>
+	<td>Iliadis fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NINN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Nouius</td>
+	<td>Atellanarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/NOVIVS|frag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>obtrectatores Vergilii</td>
+	<td><a href="http://www.mqdq.it/texts/OBTR_VER|obve|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Optatianus Porfyrius</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/OPT_PORF|carm|001">Musisque Deoque</a></td>
+	<td>G. Polara (1973)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Orientius</td>
+	<td>Commonitorium</td>
+	<td><a href="http://www.mqdq.it/texts/ORIENT|comm|001">Musisque Deoque</a></td>
+	<td>R. Ellis (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Orientius</td>
+	<td>Carmina minora</td>
+	<td><a href="http://www.mqdq.it/texts/ORIENT|cami|001">Musisque Deoque</a></td>
+	<td>R. Ellis (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/OV|amo0|001">Musisque Deoque</a></td>
+	<td>E. J. Kenney (1961)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Amores 1</td>
+	<td><a href="http://www.mqdq.it/texts/OV|amo1|001">Musisque Deoque</a></td>
+	<td>E. J. Kenney (1961)</td>
+	<td>A. Romeo (2009)</td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Amores 2</td>
+	<td><a href="http://www.mqdq.it/texts/OV|amo2|001">Musisque Deoque</a></td>
+	<td>E. J. Kenney (1961)</td>
+	<td>A. Romeo (2009)</td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Amores 3</td>
+	<td><a href="http://www.mqdq.it/texts/OV|amo3|001">Musisque Deoque</a></td>
+	<td>E. J. Kenney (1961)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Medicamina faciei</td>
+	<td><a href="http://www.mqdq.it/texts/OV|medi|001">Musisque Deoque</a></td>
+	<td>E. J. Kenney (1961)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Ars</td>
+	<td><a href="http://www.mqdq.it/texts/OV|aram|001">Musisque Deoque</a></td>
+	<td>A. Ramirez de Verger (2003); E. J. Kenney (1961)</td>
+	<td>A. Tedeschi (2010); T. Ragno (2010)</td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Remedia amoris</td>
+	<td><a href="http://www.mqdq.it/texts/OV|reme|001">Musisque Deoque</a></td>
+	<td>E. J. Kenney (1961)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Epistulae heroides</td>
+	<td><a href="http://www.mqdq.it/texts/OV|epis|001">Musisque Deoque</a></td>
+	<td>H. Bornecque (1928)</td>
+	<td>A. Borgo (2010)</td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Metamorphoses</td>
+	<td><a href="http://www.mqdq.it/texts/OV|meta|001">Musisque Deoque</a></td>
+	<td>G. Lafaye (1928-30); W. S. Anderson (1998²); W. S. Anderson (2001)</td>
+	<td>A. Borgo (2009); A. Borgo, F. Ficca, C. Formicola, P. Marzano, C.
+            Renda, R. Valenti, V. Viparelli (2007); A. Iacono (2009); A. Tedeschi  (2009); C. Formicola (2009); Ch. Renda (2009); G. M. Masselli (2009); M. Panico (2009); T. Ragno (2010)</td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Fasti</td>
+	<td><a href="http://www.mqdq.it/texts/OV|fast|001">Musisque Deoque</a></td>
+	<td>E. H. Alton, D. E. W. Wormell, E. Courtney (1978)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Tristia 1</td>
+	<td><a href="http://www.mqdq.it/texts/OV|tri1|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Tristia 2</td>
+	<td><a href="http://www.mqdq.it/texts/OV|tri2|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Tristia 3</td>
+	<td><a href="http://www.mqdq.it/texts/OV|tri3|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Tristia 4</td>
+	<td><a href="http://www.mqdq.it/texts/OV|tri4|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Tristia 5</td>
+	<td><a href="http://www.mqdq.it/texts/OV|tri5|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Ex Ponto 1</td>
+	<td><a href="http://www.mqdq.it/texts/OV|pon1|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Ex Ponto 2</td>
+	<td><a href="http://www.mqdq.it/texts/OV|pon2|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Ex Ponto 3</td>
+	<td><a href="http://www.mqdq.it/texts/OV|pon3|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Ex Ponto 4</td>
+	<td><a href="http://www.mqdq.it/texts/OV|pon4|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Ibis</td>
+	<td><a href="http://www.mqdq.it/texts/OV|ibis|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1959)</td>
+	<td>G. M. Masselli (2010)</td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Halieutica</td>
+	<td><a href="http://www.mqdq.it/texts/OV|hali|001">Musisque Deoque</a></td>
+	<td>S. G. Owen (1915)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Phaenomenon fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/OV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>Medea, fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/OV|mede|001">Musisque Deoque</a></td>
+	<td>F. W. Lenz (1956)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>*nux</td>
+	<td><a href="http://www.mqdq.it/texts/OV|nux_|001">Musisque Deoque</a></td>
+	<td>F. W. Lenz (1956)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>*consolatio ad Liuiam</td>
+	<td><a href="http://www.mqdq.it/texts/OV|cons|001">Musisque Deoque</a></td>
+	<td>F. W. Lenz (1956)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ouidius</td>
+	<td>*argumenta Aeneidos</td>
+	<td><a href="http://www.mqdq.it/texts/OV|argu|001">Musisque Deoque</a></td>
+	<td>D. R. Shackleton Bailey (1982)</td>
+	<td>V. Russo (2009)</td>
+</tr>
+<tr>
+	<td>Paconianus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/PACON|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Pacuuius</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PACVV|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Pacuuius</td>
+	<td>Praetextarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PACVV|prae|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Pacuuius</td>
+	<td>*epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/PACVV|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Palladius</td>
+	<td>De insitione</td>
+	<td><a href="http://www.mqdq.it/texts/PALLAD|insi|001">Musisque Deoque</a></td>
+	<td>R. H. Rodgers (1975)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>panegyricus in Messallam</td>
+	<td>Corpus Tibullianum 3, 7</td>
+	<td><a href="http://www.mqdq.it/texts/PANEG_IN|pame|001">Musisque Deoque</a></td>
+	<td>J. P. Postgate (1905)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Papinius</td>
+	<td>Epigrammation apud Varronem</td>
+	<td><a href="http://www.mqdq.it/texts/PAPIN|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Parthenius Presbyter</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PARTHEN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Paulinus Baeterrensis</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_BAE|epig|001">Musisque Deoque</a></td>
+	<td>K. Schenkl (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Nolanus</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_NOL|carm|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1894)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Nolanus</td>
+	<td>Carminum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_NOL|appe|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1894)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Nolanus</td>
+	<td>Carmen epist. 8 insertum</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_NOL|ep08|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1894)</td>
+	<td>F. Bordone (2010)</td>
+</tr>
+<tr>
+	<td>Paulinus Nolanus</td>
+	<td>Carmina epist. 32 inserta</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_NOL|ep32|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1894)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Pellaeus</td>
+	<td>Eucharisticos</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_PEL|euch|001">Musisque Deoque</a></td>
+	<td>W. Brandes (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Pellaeus</td>
+	<td>Oratio</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_PEL|orat|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1894)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Petricordiae</td>
+	<td>De uita Martini</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_PET|mart|001">Musisque Deoque</a></td>
+	<td>M. Petschenig (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Petricordiae</td>
+	<td>De uisitatione nepotuli sui</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_PET|visi|001">Musisque Deoque</a></td>
+	<td>M. Petschenig (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulinus Petricordiae</td>
+	<td>Uersus de orantibus</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_PET|oran|001">Musisque Deoque</a></td>
+	<td>M. Petschenig (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Paulus Quaestor</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PAVL_QVA|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Pentadius</td>
+	<td>Carmina (anth. Riese)</td>
+	<td><a href="http://www.mqdq.it/texts/PENTAD|anth|001">Musisque Deoque</a></td>
+	<td>anth. 234-235 (265-268 Riese)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Persius</td>
+	<td>Choliambi</td>
+	<td><a href="http://www.mqdq.it/texts/PERS|prol|001">Musisque Deoque</a></td>
+	<td>W. Kissel (2007)</td>
+	<td>P. Paolucci (2009)</td>
+</tr>
+<tr>
+	<td>Persius</td>
+	<td>Saturae</td>
+	<td><a href="http://www.mqdq.it/texts/PERS|satu|001">Musisque Deoque</a></td>
+	<td>W. Kissel (2007); W. V. Clausen (1966)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>peruigilium Veneris</td>
+	<td><a href="http://www.mqdq.it/texts/PERVIG|peru|001">Musisque Deoque</a></td>
+	<td>anth. 200 Riese</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Petronius</td>
+	<td>Satyricon</td>
+	<td><a href="http://www.mqdq.it/texts/PETRON|saty|001">Musisque Deoque</a></td>
+	<td>A. Ernout (1962)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Petronius</td>
+	<td>Bellum ciuile</td>
+	<td><a href="http://www.mqdq.it/texts/PETRON|bell|001">Musisque Deoque</a></td>
+	<td>A. Ernout (1962)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Petronius</td>
+	<td>Fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PETRON|frag|001">Musisque Deoque</a></td>
+	<td>A. Ernout (1962); D. R. Shackleton Bailey (1982); D. R. Shackleton Bailey(1982); L. Zurli (2001)</td>
+	<td>P. Tempone (2009)</td>
+</tr>
+<tr>
+	<td>Phaedrus</td>
+	<td>Fabulae 1</td>
+	<td><a href="http://www.mqdq.it/texts/PHAEDR|fab1|001">Musisque Deoque</a></td>
+	<td>B. E. Perry (1965)</td>
+	<td>C. Renda (2010)</td>
+</tr>
+<tr>
+	<td>Phaedrus</td>
+	<td>Fabulae 2</td>
+	<td><a href="http://www.mqdq.it/texts/PHAEDR|fab2|001">Musisque Deoque</a></td>
+	<td>B. E. Perry (1965) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>Phaedrus</td>
+	<td>Fabulae 3</td>
+	<td><a href="http://www.mqdq.it/texts/PHAEDR|fab3|001">Musisque Deoque</a></td>
+	<td>B. E. Perry (1965) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>Phaedrus</td>
+	<td>Fabulae 4</td>
+	<td><a href="http://www.mqdq.it/texts/PHAEDR|fab4|001">Musisque Deoque</a></td>
+	<td>B. E. Perry (1965)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Phaedrus</td>
+	<td>Fabulae 5</td>
+	<td><a href="http://www.mqdq.it/texts/PHAEDR|fab5|001">Musisque Deoque</a></td>
+	<td>B. E. Perry (1965)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Phaedrus</td>
+	<td>Fabulae, appendix</td>
+	<td><a href="http://www.mqdq.it/texts/PHAEDR|appe|001">Musisque Deoque</a></td>
+	<td>B. E. Perry (1965)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Phocas</td>
+	<td>Carmen de uita Vergilii</td>
+	<td><a href="http://www.mqdq.it/texts/PHOC|verg|001">Musisque Deoque</a></td>
+	<td>anth. 671 Riese</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Phocas</td>
+	<td>Ars, praefatio</td>
+	<td><a href="http://www.mqdq.it/texts/PHOC|ars_|001">Musisque Deoque</a></td>
+	<td>H. Keil (1868)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautius</td>
+	<td>Ardeatis templi inscriptio</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVTIVS|insc|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Amphitruo</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|amph|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Asinaria</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|asin|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Aulularia</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|aulu|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Bacchides</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|bacc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Captiui</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|capt|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Casina</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|casi|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Cistellaria</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|cist|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Curculio</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|curc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Epidicus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|epid|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Menaechmi</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|mena|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Mercator</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|merc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Miles gloriosus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|mile|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Mostellaria</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|most|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Persa</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|pers|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Poenulus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|poen|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Pseudolus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|pseu|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Rudens</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|rude|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Stichus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|stic|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Trinummus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|trin|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Truculentus</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|truc|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Vidularia</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|uidu|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|frag|001">Musisque Deoque</a></td>
+	<td>W. M. Lindsay (1904)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plautus</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/PLAVT|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Plinius</td>
+	<td>Carmina epistulis inserta</td>
+	<td><a href="http://www.mqdq.it/texts/PLIN|carm|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Pollio</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/POLLIO|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Pompilius</td>
+	<td>Tragoediae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/POMPIL|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Pompilius</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/POMPIL|epig|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Pomponius Secundus</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/POMPON_S|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Pomponius Secundus</td>
+	<td>Praetextae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/POMPON_S|prae|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Porcius Licinus</td>
+	<td>Epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/PORC_LIC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>precatio omnium herbarum</td>
+	<td><a href="http://www.mqdq.it/texts/PREC_HER|herb|001">Musisque Deoque</a></td>
+	<td>D. R. Shackleton Bailey (1982)</td>
+	<td>M. N. Iulietto (2009)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>precatio Terrae matris</td>
+	<td><a href="http://www.mqdq.it/texts/PREC_TER|terr|001">Musisque Deoque</a></td>
+	<td>D. R. Shackleton Bailey (1982)</td>
+	<td>M. N. Iulietto (2009)</td>
+</tr>
+<tr>
+	<td>Priscianus</td>
+	<td>Perihegesis</td>
+	<td><a href="http://www.mqdq.it/texts/PRISC|peri|001">Musisque Deoque</a></td>
+	<td>P. van der Woestijne (1953)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Priscianus</td>
+	<td>Carmen in laudem Anastasii imperatoris</td>
+	<td><a href="http://www.mqdq.it/texts/PRISC|anas|001">Musisque Deoque</a></td>
+	<td>A. Chauvot (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Priscianus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/PRISC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Priscillianista quidam</td>
+	<td>Praeceptum</td>
+	<td><a href="http://www.mqdq.it/texts/PRISCILL|prae|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Proba</td>
+	<td>Cento Vergilianus</td>
+	<td><a href="http://www.mqdq.it/texts/PROBA|cent|001">Musisque Deoque</a></td>
+	<td>K. Schenkl (1888)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Propertius</td>
+	<td>Elegiae 1</td>
+	<td><a href="http://www.mqdq.it/texts/PROP|ele1|001">Musisque Deoque</a></td>
+	<td>P. Fedeli (1984)</td>
+	<td>C. Formicola (2009)</td>
+</tr>
+<tr>
+	<td>Propertius</td>
+	<td>Elegiae 2</td>
+	<td><a href="http://www.mqdq.it/texts/PROP|ele2|001">Musisque Deoque</a></td>
+	<td>P. Fedeli (2005)</td>
+	<td>C. Formicola (2010)</td>
+</tr>
+<tr>
+	<td>Propertius</td>
+	<td>Elegiae 3</td>
+	<td><a href="http://www.mqdq.it/texts/PROP|ele3|001">Musisque Deoque</a></td>
+	<td>P. Fedeli (1984) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>Propertius</td>
+	<td>Elegiae 4</td>
+	<td><a href="http://www.mqdq.it/texts/PROP|ele4|001">Musisque Deoque</a></td>
+	<td>P. Fedeli (1984) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>Carmen de ingratis, argumentum</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|dear|001">Musisque Deoque</a></td>
+	<td>Ch. T. Huegelmeyer (1962)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>Carmen de ingratis</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|ingr|001">Musisque Deoque</a></td>
+	<td>Ch. T. Huegelmeyer (1962)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>In obtrectatorem Augustini</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|obtr|001">Musisque Deoque</a></td>
+	<td>PL 51 (149-52)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>Epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|epig|001">Musisque Deoque</a></td>
+	<td>PL 51 (497-532)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>Epitaphium haereseon</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|epit|001">Musisque Deoque</a></td>
+	<td>PL 51 (497-532)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>Ad coniugem suam</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|coni|001">Musisque Deoque</a></td>
+	<td>Stefania Santelia (2009)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prosper Aquitanus</td>
+	<td>*carmen de prouidentia</td>
+	<td><a href="http://www.mqdq.it/texts/PROSP|prou|001">Musisque Deoque</a></td>
+	<td>M. P. C. Hugh (1964)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Praefationes</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|prae|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2010)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Cathemerinon</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|cath|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2009)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Apotheosis</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|apot|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2010)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Hamartigenia</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|hama|001">Musisque Deoque</a></td>
+	<td>R. Palla (1981)</td>
+	<td>G. Dalla Pietà (2009)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Psychomachia</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|psyc|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2010)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Contra Symmachum, praefationes</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|cspr|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2010)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Contra Symmachum</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|symm|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2010)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Peristephanon</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|peri|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2010)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Dittochaeon</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|ditt|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2009)</td>
+</tr>
+<tr>
+	<td>Prudentius</td>
+	<td>Epilogus</td>
+	<td><a href="http://www.mqdq.it/texts/PRVD|epil|001">Musisque Deoque</a></td>
+	<td>J. Bergman (1926)</td>
+	<td>G. Dalla Pietà (2009)</td>
+</tr>
+<tr>
+	<td>pseudo Cato</td>
+	<td>Disticha</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CATO|dist|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cato</td>
+	<td>Distichorum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CATO|appe|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cato</td>
+	<td>Uersus ex Columbano</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CATO|uers|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cyprianus</td>
+	<td>Carmen ad quendam senatorem</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CYPR|carm|001">Musisque Deoque</a></td>
+	<td>anth. 689b Riese</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cyprianus</td>
+	<td>De Sodoma</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CYPR|sodo|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cyprianus</td>
+	<td>De Iona</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CYPR|iona|001">Musisque Deoque</a></td>
+	<td>R. Peiper (1891)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cyprianus</td>
+	<td>De pascha</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CYPR|pasc|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1871)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Cyprianus</td>
+	<td>De resurrectione mortuorum</td>
+	<td><a href="http://www.mqdq.it/texts/PS_CYPR|resu|001">Musisque Deoque</a></td>
+	<td>W. Hartel (1871)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Isidorus</td>
+	<td>De fabrica mundi</td>
+	<td><a href="http://www.mqdq.it/texts/PS_ISID|fabr|001">Musisque Deoque</a></td>
+	<td>M. C. Díaz y Díaz (1970)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pseudo Probus</td>
+	<td>De ultimis syllabis, praefatio</td>
+	<td><a href="http://www.mqdq.it/texts/PS_PROB|syll|001">Musisque Deoque</a></td>
+	<td>H. Keil (1864)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Publilius Syrus</td>
+	<td>Mimorum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/PVBLIL|mimi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Publilius Syrus</td>
+	<td>Sententiae</td>
+	<td><a href="http://www.mqdq.it/texts/PVBLIL|sent|001">Musisque Deoque</a></td>
+	<td>H. Beckby (1969)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Publilius Syrus</td>
+	<td>*sententiae, appendix</td>
+	<td><a href="http://www.mqdq.it/texts/PVBLIL|appe|001">Musisque Deoque</a></td>
+	<td>O. Friedrich (1880)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Publilius Syrus</td>
+	<td>*sententiae Balbi</td>
+	<td><a href="http://www.mqdq.it/texts/PVBLIL|balb|001">Musisque Deoque</a></td>
+	<td>O. Friedrich (1880)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Pupius</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/PVP|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Quintus Cicero</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/CIC_Q|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Rabirius</td>
+	<td>De bello Aegiptiaco</td>
+	<td><a href="http://www.mqdq.it/texts/RABIR|beac|001">Musisque Deoque</a></td>
+	<td>G. Zecchini (1987)</td>
+	<td>L. Sansone di Campobianco (2009)</td>
+</tr>
+<tr>
+	<td>Rabirius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/RABIR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Remigius Remensis</td>
+	<td>Uersus de calice</td>
+	<td><a href="http://www.mqdq.it/texts/REMIG|cali|001">Musisque Deoque</a></td>
+	<td>B. Krusch (1896)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Reposianus</td>
+	<td>De concubitu Martis et Veneris</td>
+	<td><a href="http://www.mqdq.it/texts/REPOS|conc|001">Musisque Deoque</a></td>
+	<td>L. Cristante (1999)</td>
+	<td>V. Russo (2009)</td>
+</tr>
+<tr>
+	<td>Rufinus</td>
+	<td>In metra Terentiana</td>
+	<td><a href="http://www.mqdq.it/texts/RVFIN|tere|001">Musisque Deoque</a></td>
+	<td>H. Keil (1874)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Rufinus</td>
+	<td>De numeris oratorum</td>
+	<td><a href="http://www.mqdq.it/texts/RVFIN|orat|001">Musisque Deoque</a></td>
+	<td>H. Keil (1874)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Ruricius</td>
+	<td>Carmen epist. 2, 19 insertum</td>
+	<td><a href="http://www.mqdq.it/texts/RVRIC|carm|001">Musisque Deoque</a></td>
+	<td>R. Demeulenaere (1985)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Rusticius Helpidius</td>
+	<td>De Christi beneficiis</td>
+	<td><a href="http://www.mqdq.it/texts/RVST_HEL|bene|001">Musisque Deoque</a></td>
+	<td>D. H. Groen (1942)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Rusticius Helpidius</td>
+	<td>Tristicha</td>
+	<td><a href="http://www.mqdq.it/texts/RVST_HEL|tris|001">Musisque Deoque</a></td>
+	<td>D. H. Groen (1942)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Rutilius Namatianus</td>
+	<td>De reditu suo</td>
+	<td><a href="http://www.mqdq.it/texts/RVT_NAM|redi|001">Musisque Deoque</a></td>
+	<td>J. Vessereau (1961)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Rutilius Namatianus</td>
+	<td>Fragmenta duo</td>
+	<td><a href="http://www.mqdq.it/texts/RVT_NAM|frag|001">Musisque Deoque</a></td>
+	<td>V. Tandoi (1975)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Santra</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/SANTRA|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Scaeuola</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/SCAEV|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Scaeuus Memor</td>
+	<td>Tragoediae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/SCAEV_ME|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sedulius</td>
+	<td>Carmen paschale</td>
+	<td><a href="http://www.mqdq.it/texts/SEDVL|pasc|001">Musisque Deoque</a></td>
+	<td>J. Huemer (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sedulius</td>
+	<td>Hymni</td>
+	<td><a href="http://www.mqdq.it/texts/SEDVL|hymn|001">Musisque Deoque</a></td>
+	<td>J. Huemer (1885)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Apocolocyntosis</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|apoc|001">Musisque Deoque</a></td>
+	<td>R. Roncali (1990)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Hercules furens</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|hefu|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td>G. C. Musa (2008)</td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Troades</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|troa|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td>G. C. Musa (2008)</td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Phoenissae</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|phoe|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Medea</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|mede|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Phaedra</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|phae|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Oedipus</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|oedi|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td>G. C. Musa (2008)</td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Agamemnon</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|agam|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td>G. C. Musa (2008)</td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Thyestes</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|thye|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Hercules Oetaeus</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|heoe|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td>G. C. Musa (2008)</td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>*Octauia</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|octa|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>*epigrammata</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|epig|001">Musisque Deoque</a></td>
+	<td>L. Zurli (2001)</td>
+	<td>M. N. Iulietto (2009)</td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>*liber de moribus</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|mori|001">Musisque Deoque</a></td>
+	<td>O. Friedrich (1880)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seneca</td>
+	<td>*proverbia</td>
+	<td><a href="http://www.mqdq.it/texts/SEN|prov|001">Musisque Deoque</a></td>
+	<td>O. Friedrich (1880)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Septimius Serenus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/SEPT_SER|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Serenus</td>
+	<td>Liber medicinalis</td>
+	<td><a href="http://www.mqdq.it/texts/SER|medi|001">Musisque Deoque</a></td>
+	<td>F. Vollmer (1916)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seuerus Malacitanus</td>
+	<td>In Euangelia</td>
+	<td><a href="http://www.mqdq.it/texts/SEV_MALA|euan|001">Musisque Deoque</a></td>
+	<td>O. Zwierlein (1994)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Seuius Nicanor</td>
+	<td>Saturae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/SEV_NICA|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Sextilius</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/SEXTIL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Sidonius Apollinaris</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/SIDON|carm|001">Musisque Deoque</a></td>
+	<td>A. Loyen (1960)</td>
+	<td>S. Condorelli (2009); T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Sidonius Apollinaris</td>
+	<td>Epistulae, uersus inserti</td>
+	<td><a href="http://www.mqdq.it/texts/SIDON|epis|001">Musisque Deoque</a></td>
+	<td>A. Loyen (1970)</td>
+	<td>S. Condorelli (2009)</td>
+</tr>
+<tr>
+	<td>Silius Italicus</td>
+	<td>Punica</td>
+	<td><a href="http://www.mqdq.it/texts/SIL|puni|001">Musisque Deoque</a></td>
+	<td>J. Delz (1987)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Sisbertus Toletanus</td>
+	<td>Lamentum paenitentiae</td>
+	<td><a href="http://www.mqdq.it/texts/SISB_TOL|lame|001">Musisque Deoque</a></td>
+	<td>K. Strecker (1914)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sisebutus</td>
+	<td>Carmen de eclipsibus</td>
+	<td><a href="http://www.mqdq.it/texts/SISEB|carm|001">Musisque Deoque</a></td>
+	<td>A. Riese (1906)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sisebutus</td>
+	<td>Hymnus de ratione temporum</td>
+	<td><a href="http://www.mqdq.it/texts/SISEB|hymn|001">Musisque Deoque</a></td>
+	<td>K. Strecker (1914)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Thebais</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|theb|001">Musisque Deoque</a></td>
+	<td>D. E. Hill (1983)</td>
+	<td>G. C. Musa (2009); G. C. Musa (2010)</td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>*argumenta Thebaidos</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|argu|001">Musisque Deoque</a></td>
+	<td>A. Klotz (1973)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Belli Germanici fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|bege|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Achilleis</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|achi|001">Musisque Deoque</a></td>
+	<td>A. Marastoni (1974); H.W. Garrod (1906)</td>
+	<td>N. Brocca (2009)</td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Siluae 1</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|sil1|001">Musisque Deoque</a></td>
+	<td>E. Courtney (1990)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Siluae 2</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|sil2|001">Musisque Deoque</a></td>
+	<td>E. Courtney (1990)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Siluae 3</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|sil3|001">Musisque Deoque</a></td>
+	<td>E. Courtney (1990)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Siluae 4</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|sil4|001">Musisque Deoque</a></td>
+	<td>E. Courtney (1990)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Statius</td>
+	<td>Siluae 5</td>
+	<td><a href="http://www.mqdq.it/texts/STAT|sil5|001">Musisque Deoque</a></td>
+	<td>E. Courtney (1990)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Strabo</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/STRABO|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sueius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/SVEIVS|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Sulpicia</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/SVLPICIA|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Andria, periocha</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|andr|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Hautontimorumenos, periocha</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|haut|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Eunuchus, periocha</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|eunu|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Phormio, periocha</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|phor|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Hecyra, periocha</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|hecy|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Adelphoe, periocha</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|adel|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>*epigramma ap. Don. u. Verg.</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|epig|001">Musisque Deoque</a></td>
+	<td>C. Hardie (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Sulpicius Apollinaris</td>
+	<td>Hexasticha in Aeneidos libris</td>
+	<td><a href="http://www.mqdq.it/texts/SVLP_APO|hexa|001">Musisque Deoque</a></td>
+	<td>anth. 653 Riese</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>sylloge cod. Elnonensis</td>
+	<td><a href="http://www.mqdq.it/texts/SYLL_ELN|carm|001">Musisque Deoque</a></td>
+	<td>R. Jakobi (1986)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Symmachus</td>
+	<td>Carmina epistulis inserta</td>
+	<td><a href="http://www.mqdq.it/texts/SYMM|carm|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Symmachus pater</td>
+	<td>Aradius Rufinus</td>
+	<td><a href="http://www.mqdq.it/texts/SYMM_PAT|arad|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Symmachus pater</td>
+	<td>Valerius Proculus</td>
+	<td><a href="http://www.mqdq.it/texts/SYMM_PAT|proc|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Symmachus pater</td>
+	<td>Anicius Iulianus</td>
+	<td><a href="http://www.mqdq.it/texts/SYMM_PAT|iuli|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Symmachus pater</td>
+	<td>Petronius Probianus</td>
+	<td><a href="http://www.mqdq.it/texts/SYMM_PAT|prob|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Symmachus pater</td>
+	<td>Verinus</td>
+	<td><a href="http://www.mqdq.it/texts/SYMM_PAT|veri|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Symphosius</td>
+	<td>Aenigmata</td>
+	<td><a href="http://www.mqdq.it/texts/SYMPH|aeni|001">Musisque Deoque</a></td>
+	<td>F. Glorie (1968)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentianus Maurus</td>
+	<td>De litteris, de syllabis, de metris</td>
+	<td><a href="http://www.mqdq.it/texts/TER_MAVR|carm|001">Musisque Deoque</a></td>
+	<td>H. Keil (1874)</td>
+	<td>M. Elice (2009)</td>
+</tr>
+<tr>
+	<td>Terentianus Maurus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/TER_MAVR|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Adelphoe</td>
+	<td><a href="http://www.mqdq.it/texts/TER|adel|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Andria</td>
+	<td><a href="http://www.mqdq.it/texts/TER|andr|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Andria, alter exitus</td>
+	<td><a href="http://www.mqdq.it/texts/TER|anex|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Eunuchus</td>
+	<td><a href="http://www.mqdq.it/texts/TER|eunu|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Hautontimorumenos</td>
+	<td><a href="http://www.mqdq.it/texts/TER|haut|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Hecyra</td>
+	<td><a href="http://www.mqdq.it/texts/TER|hecy|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Terentius</td>
+	<td>Phormio</td>
+	<td><a href="http://www.mqdq.it/texts/TER|phor|001">Musisque Deoque</a></td>
+	<td>R. Kauer, W. M. Lindsay (1926)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Tertullianus</td>
+	<td>*ignoti uersus ap. Tert. apol. 25, 8</td>
+	<td><a href="http://www.mqdq.it/texts/TERT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Tertullianus</td>
+	<td>*carmen aduersus Marcionem</td>
+	<td><a href="http://www.mqdq.it/texts/TERT|marc|001">Musisque Deoque</a></td>
+	<td>J. Willems (1954)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Tiberianus</td>
+	<td>Carmina</td>
+	<td><a href="http://www.mqdq.it/texts/TIBERIAN|carm|001">Musisque Deoque</a></td>
+	<td>A. M. Duff, J. W. Duff (1934); S. Mattiacci (1990)</td>
+	<td>B. Ranieri (2014)</td>
+</tr>
+<tr>
+	<td>Tiberianus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/TIBERIAN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Tibullus</td>
+	<td>Elegiae 1</td>
+	<td><a href="http://www.mqdq.it/texts/TIB|ele1|001">Musisque Deoque</a></td>
+	<td>G. Luck (1988)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Tibullus</td>
+	<td>Elegiae 2</td>
+	<td><a href="http://www.mqdq.it/texts/TIB|ele2|001">Musisque Deoque</a></td>
+	<td>G. Luck (1988) </td>
+	<td></td>
+</tr>
+<tr>
+	<td>Tibullus</td>
+	<td>*elegiae 3</td>
+	<td><a href="http://www.mqdq.it/texts/TIB|ele3|001">Musisque Deoque</a></td>
+	<td>G. Luck (1988)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Tibullus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/TIB|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Ticidas</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/TICID|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Titinius</td>
+	<td>Togatarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/TITIN|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Trabea</td>
+	<td>Palliatarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/TRABEA|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>tragici incerti</td>
+	<td>Fabulae</td>
+	<td><a href="http://www.mqdq.it/texts/TRAG_INC|ipfa|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>tragici incerti</td>
+	<td>Fabulae incertae</td>
+	<td><a href="http://www.mqdq.it/texts/TRAG_INC|iifa|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Turnus</td>
+	<td>Saturarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/TVRN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Turpilius</td>
+	<td>Palliatarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/TVRPIL|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uersus e Suetonio</td>
+	<td>In Caesarem</td>
+	<td><a href="http://www.mqdq.it/texts/SVET|ucae|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uersus e Suetonio</td>
+	<td>In Augustum</td>
+	<td><a href="http://www.mqdq.it/texts/SVET|uaug|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uersus e Suetonio</td>
+	<td>In Tiberium et Germanicum</td>
+	<td><a href="http://www.mqdq.it/texts/SVET|utib|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>uersus e Suetonio</td>
+	<td>In Caligulam</td>
+	<td><a href="http://www.mqdq.it/texts/SVET|ucal|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>uersus e Suetonio</td>
+	<td>In Neronem</td>
+	<td><a href="http://www.mqdq.it/texts/SVET|uner|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf, FPL (2011)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>uersus ex Historia Augusta</td>
+	<td>In Caesares</td>
+	<td><a href="http://www.mqdq.it/texts/HIST_AVG|uers|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>uersus populares antiqui</td>
+	<td><a href="http://www.mqdq.it/texts/VERS_POP|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Vagellius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VAGELL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Valerius</td>
+	<td>Comoediae fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/VAL|comi|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, CRF (1898)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Valerius Flaccus</td>
+	<td>Argonautica</td>
+	<td><a href="http://www.mqdq.it/texts/VAL_FL|argo|001">Musisque Deoque</a></td>
+	<td>E. Courtney (1970)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Valerius Soranus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VAL_SORA|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Valgius Rufus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VALG|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Varius</td>
+	<td>Tragoediarum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VARIVS|trag|001">Musisque Deoque</a></td>
+	<td>O. Ribbeck, TRF (1897)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Varius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VARIVS|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Varro Atacinus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VARR_AT|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Varro Reatinus</td>
+	<td>Saturae Menippeae, fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VARRO|satu|001">Musisque Deoque</a></td>
+	<td>R. Astbury (1985)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Varro Reatinus</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VARRO|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Uita Martini</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|mart|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  1</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca01|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  2</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca02|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  3</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca03|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  4</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca04|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  5</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca05|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  6</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca06|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  7</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca07|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  8</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca08|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri  9</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca09|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri 10</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca10|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum libri 11</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|ca11|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Carminum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|caap|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Venantius Fortunatus</td>
+	<td>Spuriorum appendix</td>
+	<td><a href="http://www.mqdq.it/texts/VEN_FORT|spur|001">Musisque Deoque</a></td>
+	<td>F. Leo (1881)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Verecundus</td>
+	<td>De satisfactione paenitentiae</td>
+	<td><a href="http://www.mqdq.it/texts/VEREC|sati|001">Musisque Deoque</a></td>
+	<td>R. Demeulenaere (1976)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Vergilius</td>
+	<td>Eclogae</td>
+	<td><a href="http://www.mqdq.it/texts/VERG|eclo|001">Musisque Deoque</a></td>
+	<td>M. Geymonat (2008)</td>
+	<td>M. Gioseffi, M. Venuti (2009)</td>
+</tr>
+<tr>
+	<td>Vergilius</td>
+	<td>Georgicon</td>
+	<td><a href="http://www.mqdq.it/texts/VERG|geor|001">Musisque Deoque</a></td>
+	<td>M. Geymonat (1973)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Vergilius</td>
+	<td>*uersus Aeneidos libro primo praemissi</td>
+	<td><a href="http://www.mqdq.it/texts/VERG|proe|001">Musisque Deoque</a></td>
+	<td>M. Geymonat (1973)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Vergilius</td>
+	<td>Aeneis</td>
+	<td><a href="http://www.mqdq.it/texts/VERG|aene|001">Musisque Deoque</a></td>
+	<td>M. Geymonat (2008)</td>
+	<td>M. Gioseffi, I. Canetta (2009); M. Gioseffi, S. Arrigoni (2013); M. Gioseffi, S. Arrigoni (2014)</td>
+</tr>
+<tr>
+	<td>Vergilius</td>
+	<td>*epitaphium</td>
+	<td><a href="http://www.mqdq.it/texts/VERG|epit|001">Musisque Deoque</a></td>
+	<td>C. Hardie (1957)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Verginius Rufus</td>
+	<td>Epigramma</td>
+	<td><a href="http://www.mqdq.it/texts/VERGIN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Verrius Flaccus</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/VERR_FL|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td></td>
+	<td>versus ad Deum</td>
+	<td><a href="http://www.mqdq.it/texts/VERS_ADD|vers|001">Musisque Deoque</a></td>
+	<td>P. Dronke (1995)</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td>versus de Bobuleno</td>
+	<td><a href="http://www.mqdq.it/texts/VERS_BOB|vers|001">Musisque Deoque</a></td>
+	<td>E. Dümmler (1886)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Vespa</td>
+	<td>Iudicium coci et pistoris</td>
+	<td><a href="http://www.mqdq.it/texts/VESPA|iudi|001">Musisque Deoque</a></td>
+	<td>D. R. Shackleton Bailey (1982)</td>
+	<td>V. Russo (2009)</td>
+</tr>
+<tr>
+	<td>Victorinus</td>
+	<td>De Iesu Christo</td>
+	<td><a href="http://www.mqdq.it/texts/VICTORIN|chri|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 3 (1135-39)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Victorinus</td>
+	<td>De lege domini</td>
+	<td><a href="http://www.mqdq.it/texts/VICTORIN|lege|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 3 (1135-39)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Victorinus</td>
+	<td>De natiuitate</td>
+	<td><a href="http://www.mqdq.it/texts/VICTORIN|vita|001">Musisque Deoque</a></td>
+	<td>PL Suppl. 3 (1135-39)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>Volcacius</td>
+	<td>Carminum fragmenta</td>
+	<td><a href="http://www.mqdq.it/texts/VOLCAC|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (2011)</td>
+	<td>P. Mastandrea, S. Arrigoni (2015)</td>
+</tr>
+<tr>
+	<td>Volumnius</td>
+	<td>Carminis fragmentum</td>
+	<td><a href="http://www.mqdq.it/texts/VOLVMN|frag|001">Musisque Deoque</a></td>
+	<td>J. Blänsdorf (1995)</td>
+	<td>T. Brolli (2009)</td>
+</tr>
+<tr>
+	<td>Wamba</td>
+	<td>Inscriptio Toletana</td>
+	<td><a href="http://www.mqdq.it/texts/WAMBA|insc|001">Musisque Deoque</a></td>
+	<td>J. Vives (1942)</td>
+	<td></td>
+</tr>
+</table>
+
+
 	</div>
 	<?php include "last.php"; ?>
