@@ -75,6 +75,11 @@
 							<option value="3">3 words</option>
 							<option value="4">4 words</option>
 							<option value="5" selected="selected">5 words</option>
+							<option value="10">10 word</option>
+							<option value="20">20 words</option>
+							<option value="30">30 words</option>
+							<option value="40">40 words</option>
+							<option value="50">50 words</option>
 						</select>							
 					</td>
 				</tr>
