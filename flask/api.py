@@ -31,7 +31,7 @@ def read_bin(target, source, format):
         subprocess.Popen(cmd, shell=True)
     cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", format, "--window", "5"])
     result = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-        .read()
+    return result.stdout.read()
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
