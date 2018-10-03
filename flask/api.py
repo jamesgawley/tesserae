@@ -8,7 +8,8 @@ from flask import render_template
 app = Flask(__name__)
 
 with open('/var/www/tesserae/data/common/cts_list.py','r') as inf:
-    cts_list = eval(inf.read())
+    cts_backward = eval(inf.read())
+cts_list = {v:k for k, v in cts_backward.items()}
 
 @app.route('/')
 def hello_world():
