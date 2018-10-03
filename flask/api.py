@@ -5,6 +5,25 @@ import os
 from flask import Flask
 from flask import render_template
 
+def run(*popenargs, input=None, check=False, **kwargs):
+    if input is not None:
+        if 'stdin' in kwargs:
+            raise ValueError('stdin and input arguments may not both be used.')
+        kwargs['stdin'] = subprocess.PIPE
+
+    process = subprocess.Popen(*popenargs, **kwargs):
+    try:
+        stdout, stderr = process.communicate(input)
+    except:
+        process.kill()
+        process.wait()
+        raise
+    retcode = process.poll()
+    if check and retcode:
+        raise subprocess.CalledProcessError(
+            retcode, process.args, output=stdout, stderr=stderr)
+    return retcode, stdout, stderr
+
 app = Flask(__name__)
 
 with open('/var/www/tesserae/data/common/cts_list.py','r') as inf:
@@ -26,8 +45,8 @@ def read_bin(target, source, format):
     target_name = cts_list[target]
     source_name = cts_list[source]
     if not os.path.exists(path):
-        subprocess.call(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path])
-    result = subprocess.call(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", format, "--window", "5"], stdout=subprocess.PIPE)
+        run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path])
+    result = run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", format, "--window", "5"], stdout=subprocess.PIPE)
     return result.stdout
 
 @app.route('/hello/')
