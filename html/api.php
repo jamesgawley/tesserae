@@ -9,7 +9,11 @@
 		</p>
 		<h2>Basic search</h2>
 		<p>
-		Machine queries can be directed to http://tmv.westeurope.cloudapp.azure.com/search/&lt;target&gt;/&lt;source&gt;/&lt;unit&gt;/, where the three 'subdirectories' in <> brackets must be replaced with CTS URNs (in the case of 'target' and 'source') and either 'line' or 'phrase' (in the case of 'unit'). Additional variables can be fed in as parameters. These settings reflect the options on the search page:
+		Machine queries can be directed to:</p>
+		<p>
+		<code>http://tmv.westeurope.cloudapp.azure.com/search/&lt;target&gt;/&lt;source&gt;/&lt;unit&gt;/</code>
+		</p>
+		<p>where the three 'subdirectories' in <> brackets must be replaced with CTS URNs (in the case of 'target' and 'source') and either 'line' or 'phrase' (in the case of 'unit'). Additional variables can be fed in as parameters. These settings reflect the options on the search page:
 <table>
 <tr><td>Parameter</td><td>	Front-page equivalent</td></tr>
 <tr><td>'feature'</td><td>	Feature</td></tr>
