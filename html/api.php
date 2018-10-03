@@ -22,7 +22,8 @@
 <tr><td>'order'</td><td>	Require identical word order</td></tr>
 <tr><td>'cutoff'</td><td>	Drop scores below</td></tr>
 </table>
-
+</p>
+<p>
 
 Only the three endpoint subdivisions are mandatory. So the minimal query for a line-based search of Lucan 1 versus all of the Aeneid would look like this:
 
@@ -30,7 +31,8 @@ Only the three endpoint subdivisions are mandatory. So the minimal query for a l
 
 This can be expanded with additional parameters to include neighboring phrases and require strict word order:
 
-<pre><code>HTTP GET: tmv.westeurope.cloudapp.azure.com/search/urn:cts:latinLit:phi0917.phi001:1/urn:cts:latinLit:phi0690.phi003/line/?nearby=1;order=1</pre></code>
+<pre><code>HTTP GET: tmv.westeurope.cloudapp.azure.com/search/urn:cts:latinLit:phi0917.phi001:1/
+urn:cts:latinLit:phi0690.phi003/line/?nearby=1;order=1</pre></code>
 
 		</p>
 		<h2>Response</h2>
@@ -54,6 +56,23 @@ This can be expanded with additional parameters to include neighboring phrases a
 </code></pre>
 		
 		</p>
+<p>
+An explanation of the values:
+
+</p>
+<p>
+<table>
+<tr><td>Key</td><td>	Description</tr></td>
+<tr><td>"source"</td><td>	A string representing the CTS URN for the text span used as the source in this parallel.</tr></td>
+<tr><td>"target"</td><td>	A string representing the CTS URN for the text span used as the target in this parallel.</tr></td>
+<tr><td>"entity"</td><td>	A string representing the search engine or text from which the parallel is drawn</tr></td>
+<tr><td>"match_tokens"</td><td>	A list of strings, where each string is a token found in both the source span and the target span.</tr></td>
+<tr><td>"score"</td><td>	A number representing the score assigned to the pair of text spans.</tr></td>
+<tr><td>"source_raw"</td><td>	The string making up the text span specified by the value of "source".</tr></td>
+<tr><td>"target_raw"</td><td>	The string making up the text span specified by the value of "target".</tr></td>
+<tr><td>"highlight"</td><td>	A of list strings representing CTS URNs that define which parts in the source and target spans were used to determine the score.</tr></td>
+</table>
+
 		</p>
         <p>
             Inquiries or comments about the API should be directed to
