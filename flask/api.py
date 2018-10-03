@@ -5,24 +5,6 @@ import os
 from flask import Flask
 from flask import render_template
 
-def run(*popenargs, input=None, check=False, **kwargs):
-    if input is not None:
-        if 'stdin' in kwargs:
-            raise ValueError('stdin and input arguments may not both be used.')
-        kwargs['stdin'] = subprocess.PIPE
-
-    process = subprocess.Popen(*popenargs, **kwargs):
-    try:
-        stdout, stderr = process.communicate(input)
-    except:
-        process.kill()
-        process.wait()
-        raise
-    retcode = process.poll()
-    if check and retcode:
-        raise subprocess.CalledProcessError(
-            retcode, process.args, output=stdout, stderr=stderr)
-    return retcode, stdout, stderr
 
 app = Flask(__name__)
 
@@ -36,7 +18,7 @@ def hello_world():
 
 @app.route('/oldsearch/')
 def old_read_bin():
-    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", "tesresults", "--export", "html"], stdout=subprocess.PIPE)
+    result = subprocess.Popen(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", "tesresults", "--export", "html"], stdout=subprocess.PIPE)
     return result.stdout
 
 @app.route('/search/<target>/<source>/<format>')
@@ -45,9 +27,9 @@ def read_bin(target, source, format):
     target_name = cts_list[target]
     source_name = cts_list[source]
     if not os.path.exists(path):
-        run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path])
-    result = run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", format, "--window", "5"], stdout=subprocess.PIPE)
-    return result.stdout
+        subprocess.Popen(" ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path]), shell=True)
+    result = subprocess.Popen(" ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", format, "--window", "5"]), shell=True, stdout=subprocess.PIPE)
+    return result.stdout.read()
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
