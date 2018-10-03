@@ -22,7 +22,7 @@ def old_read_bin():
     return result.stdout
 
 @app.route('/search/<target>/<source>/<unit>/<form>')
-def read_bin(target, source, form, unit):
+def read_bin(target, source, unit, form):
     path = os.path.join('tmp', target, source, unit)
     target_name = cts_list[target]
     source_name = cts_list[source]
