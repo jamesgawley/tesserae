@@ -2,7 +2,6 @@
 <?php 	$page = 'about'; ?>
 <?php include "nav_search.php"; ?>
 		</div>
-			<div id="nav_sub2_spacer"></div>
 		<div id="main">
         <h1>About</h1>
         <p>
