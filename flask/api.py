@@ -27,7 +27,7 @@ def read_bin(target, source, format):
     target_name = cts_list[target]
     source_name = cts_list[source]
     if not os.path.exists(path):
-        cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path])
+        cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
         subprocess.Popen(cmd, shell=True)
     cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", format, "--window", "5"])
     result = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
