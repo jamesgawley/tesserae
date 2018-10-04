@@ -19,7 +19,7 @@ def hello_world():
 @app.route('/oldsearch/')
 def old_read_bin():
     result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", "tmp/urn:cts:latinLit:tmv0130.tmv002/urn:cts:latinLit:phi1014.phi004/phrase/", "--export", "json", "--window", "5"], capture_output=True)
-    return result.stdout
+    return result
 
 @app.route('/search/<target>/<source>/<unit>/')
 def read_bin(target, source, unit):
@@ -30,7 +30,7 @@ def read_bin(target, source, unit):
         #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
         subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
     #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"])
-    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], capture_output=True)
+    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
     return result.stdout
 
 @app.route('/hello/')
