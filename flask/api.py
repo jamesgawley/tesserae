@@ -18,7 +18,7 @@ def hello_world():
 
 @app.route('/oldsearch/')
 def old_read_bin():
-    result = subprocess.Popen(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", "tesresults", "--export", "html"], stdout=subprocess.PIPE)
+    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], capture_output=True)
     return result.stdout
 
 @app.route('/search/<target>/<source>/<unit>/')
