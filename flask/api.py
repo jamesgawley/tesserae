@@ -29,8 +29,8 @@ def read_bin(target, source, unit):
     if not os.path.exists(path):
         cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
         subprocess.call(cmd, shell=True)
-    cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"])
-    result = subprocess.call(cmd, shell=True, stdout=subprocess.PIPE)
+    #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"])
+    result = subprocess.popen2(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
     return result.stdout.read()
 
 @app.route('/hello/')
