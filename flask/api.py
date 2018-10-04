@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import subprocess
+import subprocess32 as subprocess
 import csv
 import os
 from flask import Flask
@@ -27,10 +27,10 @@ def read_bin(target, source, unit):
     target_name = cts_list[target]
     source_name = cts_list[source]
     if not os.path.exists(path):
-        cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
-        subprocess.call(cmd, shell=True)
+        #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
+        subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
     #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"])
-    result = subprocess.popen2(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
+    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
     return result.stdout.read()
 
 @app.route('/hello/')
