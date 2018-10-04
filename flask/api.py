@@ -31,7 +31,7 @@ def read_bin(target, source, unit):
         subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
     #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"])
     result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
-    return result.stdout.read()
+    return result.stdout
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
