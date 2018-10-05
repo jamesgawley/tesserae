@@ -29,7 +29,7 @@ def read_bin(target, source, unit):
     if not os.path.exists(path):
         subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
     filepath = path + "results.json"
-    result = subprocess.popen(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
+    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
     #result.wait()   
     #f = open(filepath, 'r')
     #contents = f.read()
