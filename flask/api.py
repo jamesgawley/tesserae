@@ -27,11 +27,13 @@ def read_bin(target, source, unit):
     target_name = cts_list[target]
     source_name = cts_list[source]
     if not os.path.exists(path):
-        #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
         subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_table.pl", "--target", target_name, "--source", source_name, "--binary", path, "--unit", unit])
-    #cmd = " ".join(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"])
-    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5"], stdout=subprocess.PIPE)
-    return result.stdout
+    filepath = path + "results.json"
+    result = subprocess.run(["perl", "/var/www/tesserae/cgi-bin/read_bin_tmv.pl", "--path", path, "--export", "json", "--window", "5", ">", filepath], stdout=subprocess.PIPE)
+    f = open(filepath, 'r')
+    contents = f.read()
+    f.close()
+    return contents
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
