@@ -26,8 +26,6 @@
 
 	
 <div id="main">
-
-	<h1>Latin Search</h1>
 	
 	<p>
 		The Tesserae Musivae project aims to combine the search techniques of the <a href="http://tesserae.caset.buffalo.edu/">
