@@ -23,7 +23,7 @@ def old_read_bin():
 
 @app.route('/search/<target>/<source>/<unit>/')
 def read_bin(target, source, unit):
-    path = os.path.join('tmp', target, source, unit)
+    path = os.path.join(os.sep, 'var', 'www', 'tesserae', 'tmp', target, source, unit)
     target_name = cts_list[target]
     source_name = cts_list[source]
     if not os.path.exists(path):
