@@ -24,8 +24,10 @@
 				</td>
 			</tr>
 		</table>
-
-		<div onclick="hideshow()" style="color:grey; text-align:center;">
+	<p>	
+		For an overview of all advanced features, see the <a href="<?php echo $url_html . '/help_advanced.php' ?>">Instructions</a> page.
+	</p>
+		<div onclick="hideshow()" style="color:black; text-align:center;">
 			<p id="moremsg">show advanced</p>
 		</div>
 		<div id="advanced" style="display:none; background-color:white;">
@@ -75,7 +77,7 @@
 					<th>Stoplist basis:</th>
 					<td>
 						<select name="stbasis">
-							<option value="corpus">corpus</option>
+							<option value="corpus" selected="selected">corpus</option>
 							<option value="target">target</option>
 							<option value="source">source</option>
 							<option value="both">target + source</option>
@@ -86,19 +88,26 @@
 					<th>Score basis:</th>
 					<td>
 						<select name="score">
-							<option value="word">word</option>
 							<option value="stem">stem</option>
-							<option value="feature">feature</option>								
+							<option value="word" selected="selected">word</option>							
 						</select>
 					</td>
 				</tr>
 				<tr>
+					<th>Frequency basis:</th>
+					<td>
+						<select name="freq_basis">
+							<option value="text">texts</option>
+							<option value="corpus" selected="selected">texts</option>
+						</select>
+					</td>
+				</tr>				<tr>
 					<th>Maximum distance:</th>
 					<td>
 						<select name="dist">
-							<option value="999" selected="selected">no max</option>
+							<option value="999">no max</option>
 							<option value="5">5 words</option>
-							<option value="10">10 words</option>
+							<option value="10" selected="selected">10 words</option>
 							<option value="20">20 words</option>
 							<option value="30">30 words</option>
 							<option value="40">40 words</option>
@@ -123,11 +132,11 @@
 					<th>Drop scores below:</td>
 					<td>
 						<select name="cutoff">
-							<option value="0" selected="selected">no cutoff</option>
+							<option value="0">no cutoff</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
 							<option value="5">5</option>
-							<option value="6">6</option>
+							<option value="6" selected="selected">6</option>
 							<option value="7">7</option>
 							<option value="8">8</option>
 							<option value="9">9</option>

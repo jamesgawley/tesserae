@@ -10,15 +10,18 @@
 	$features = array(
 		'word' => 'exact word',
 		'stem' => 'lemma',
-		'3gr'  => 'character 3-gram'
+		'3gr'  => 'sound'
 	);
 	$selected_feature = 'stem';
+	$page = 'search';	
 ?>
 
 <?php include "first.php"; ?>
 <?php include "nav_search.php"; ?>
 
 </div>
+<?php include "nav_lang.php"; ?>
+
 <div id="main">
 	
 	<h1>English Search</h1>

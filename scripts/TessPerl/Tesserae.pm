@@ -6,6 +6,7 @@ use Storable qw(nstore retrieve);
 use utf8;
 use Unicode::Normalize;
 use Encode;
+use Config;
 
 require Exporter;
 
@@ -28,6 +29,12 @@ my ($fs_ref, $url_ref) = read_config(catfile($lib, '..', 'tesserae.conf'));
 our %fs  = %$fs_ref;
 our %url = %$url_ref;
 
+# get perl path (copied from example at `perldoc perlvar`)
+our $perl_path = $Config{perlpath};
+if ($^O ne 'VMS') {
+	$perl_path .= $Config{_exe} unless $perl_path =~ m/$Config{_exe}$/i;
+}
+
 # optional modules
 
 my $override_stemmer  = check_mod("Lingua::Stem");
@@ -49,8 +56,7 @@ unless ($override_stemmer) {
 
 our %feature_dep = (
 	
-	'trans1' => 'stem',
-	'trans2' => 'stem',
+	'g_l' => 'stem',
 	'syn_lem' => 'stem',
 	'syn'    => 'stem'
 );
@@ -61,9 +67,9 @@ our %feature_score = (
 
 	'word'   => 'word',
 	'stem'   => 'stem',
-	'trans1' => 'stem',
-	'trans2' => 'stem',
-	'syn'    => 'syn',
+	'g_l' => 'stem',
+	'syn'    => 'stem',
+	'syn_lem'    => 'stem',	
 	'3gr'    => '3gr'
 );
 
@@ -837,14 +843,13 @@ sub process_file_list {
 
 		$list_out{$name} = $file_in;
 	}
-	
-	#Remove erroneously added blank file names.
+    #Remove erroneously added blank file names.
 
-	for my $key (keys %list_out) {
-		unless ($key) {
-			delete $list_out{$key};
-		}
-	}
+    for my $key (keys %list_out) {
+        unless ($key) {
+            delete $list_out{$key};
+        }
+    }
 
 	if ($opt{filenames}) {
 		
@@ -928,5 +933,13 @@ sub get_base {
 	}
 	
 	return $base;
+}
+
+sub escape_path {
+	
+	my $path = shift;
+	$path =~ s/(\s)/\\$1/g;
+	
+	return $path;
 }
 1;

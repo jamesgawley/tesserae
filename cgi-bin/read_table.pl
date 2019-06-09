@@ -35,6 +35,14 @@ I<unit> specifies the textual units to be compared.  Choices currently are B<lin
 
 This specifies the features set to match against.  B<word> only allows matches on forms that are identical. B<stem> (the default), allows matches on any inflected form of the same stem. B<syn> matches not only forms of the same headword but also other headwords taken to be related in meaning.  B<stem> and B<syn> only work if the appropriate dictionaries are installed; B<syn> won't work on Greek or English.
 
+=item B<--freq_basis> texts|corpus
+
+This specifies the basis of the frequency metric used by the scoring algorithm.  B<text> (the default), retrieves the frequency of a given stem in the target and source text B<corpus> forces the system to use corpus-wide frequency statistics.
+
+=item B<--score> word|stem|feature 
+
+Also affects which frequency statistics are used by the scoring algorithm.  B<word> uses frequency stats for the appearance of the exact string of characters (in either the corpus or the individual text, as determined by --freqbasis). B<stem> uses stats which are based on the number of times any inflected form of a word appeared in the text (or corpus; see --freqbasis). B<feature> (the default), invokes a lookup table which coordinates feature types with their ideal score bases. NB: it is critical to use this setting when scoring cross-language matches.
+
 =item B<--stop> I<stoplist_size>
 
 I<stoplist_size> is the number of stop words (stems, etc.) to use.  Matches on any of these are excluded from results.  The stop list is calculated by ordering all the features (see above) in the stoplist basis (see below) by frequency and taking the top I<N>, where I<N>=I<stoplist_size>.  The default is 10.
@@ -174,6 +182,7 @@ use CGI qw/:standard/;
 use Storable qw(nstore retrieve);
 use File::Path qw(mkpath rmtree);
 use Encode;
+use Lingua::Stem qw(stem);
 
 binmode STDERR, 'utf8';
 
@@ -263,9 +272,13 @@ my $help;
 
 my $bench = 0;
 
-# what frequency table to use in scoring
+# what frequency table to use in scoring (distinguishes between word and lemma only)
 
 my $score_basis;
+
+# which data file to use for the frequency metric used in scoring (either the texts or the corpus)
+
+my $freq_basis = 'text';
 
 # which script should mediate the display of results
 
@@ -277,7 +290,8 @@ GetOptions(
 			'target=s'     => \$target,
 			'unit=s'       => \$unit,
 			'feature=s'    => \$feature,
-			'stopwords=i'  => \$stopwords, 
+			'stopwords=s'  => \$stopwords, 
+			'freq_basis=s'  => \$freq_basis, 			
 			'stbasis=s'    => \$stoplist_basis,
 			'binary=s'     => \$file_results,
 			'distance=i'   => \$max_dist,
@@ -303,6 +317,15 @@ if ($help) {
 unless (defined $score_basis)  { 
 	
 	$score_basis = $Tesserae::feature_score{$feature} || 'word';
+	
+}
+
+# the Tesserae.pm hash needs to be called if the score basis is set to 'feature'
+
+if ($score_basis eq 'feature')  { 
+	
+	$score_basis = $Tesserae::feature_score{$feature} || 'word';
+	
 }
 
 # html header
@@ -395,6 +418,7 @@ else {
 	$distance_metric = $query->param('dibasis')      || $distance_metric;
 	$cutoff          = $query->param('cutoff')       || $cutoff;
 	$score_basis     = $query->param('score')        || $score_basis;
+	$freq_basis     = $query->param('freq_basis')    || $freq_basis;
 	$frontend        = $query->param('frontend')     || $frontend;
 	$multi_cutoff    = $query->param('mcutoff')      || $multi_cutoff;
 	@include         = $query->param('include');
@@ -455,7 +479,108 @@ if (Tesserae::check_prose_list($target) or Tesserae::check_prose_list($source)) 
 if ($score_basis =~ /^feat/) {
 
 	$score_basis = $feature;
+	
 }
+
+
+# if the score basis is 'stem' and the frequency basis is 'corpus', then load the dictionaries
+# this is necessary because the corpus-wide frequency stats don't currently include inflected forms.
+
+my %target_dictionary;
+
+my %source_dictionary;
+
+my $corpus_wide = 0;
+
+# Determine the language of the texts (NOTE: only cares if the language is English or other modern. 
+# When cross-language capabilities are developed for these languages, the system must be re-designed to consider each text's needs independently.
+
+my $lang = Tesserae::lang($target);
+
+my $modern = 0;
+
+if ($lang eq 'en') {
+
+	$modern = 1;
+
+}
+
+# If corpus-wide frequencies need to be counted, set the corpus-wide flag.
+
+if ($score_basis eq 'stem' && $freq_basis eq 'corpus' || $score_basis eq 'syn_lem' && $freq_basis eq 'corpus' || $score_basis eq 'g_l' && $freq_basis eq 'corpus' ) { 	
+	
+	$corpus_wide = 1;
+	
+}
+
+if ($corpus_wide == 1) {
+
+	# if the texts are in English (or another modern language), there is no .stem.cache file to load.
+
+	unless ($modern == 1) {
+	
+		# resolve the path to the stem dictionaries
+
+		my $target_dict_file = catfile($fs{data}, 'common', Tesserae::lang($target) . '.stem.cache');
+
+		my $source_dict_file = catfile($fs{data}, 'common', Tesserae::lang($source) . '.stem.cache');	
+
+		# load the storable binaries
+	
+		%target_dictionary = %{retrieve($target_dict_file)};
+
+		%source_dictionary = %{retrieve($source_dict_file)};	
+	}
+
+}
+
+
+
+
+#
+# calculate feature frequencies
+#
+
+# token frequencies from the target text
+
+my $file_freq_target;
+unless ($freq_basis =~ /^corp/) {
+
+	# by default, the frequency of the words or lemmas is drawn from the text in question
+	
+	$file_freq_target = select_file_freq($target) . ".freq_score_" . $score_basis;
+	
+}
+else {
+
+	# if the $freq_basis is set to corpus, the files which provide frequency stats are replaced with the corpus-wide versions.
+
+	$file_freq_target = catfile($fs{data}, 'common', Tesserae::lang($target) . '.' . $score_basis . '.freq');
+
+}
+
+my %freq_target = %{Tesserae::stoplist_hash($file_freq_target)};
+
+# token frequencies from the source text
+
+my $file_freq_source;
+
+unless ($freq_basis =~ /^corp/) {
+
+	$file_freq_source = select_file_freq($source) . ".freq_score_" . $score_basis;
+	
+}
+else {
+
+	# this should allow target and source to use different corpus-frequency hashes based on respective language.
+
+	$file_freq_source = catfile($fs{data}, 'common', Tesserae::lang($source) . '.' . $score_basis . '.freq')
+	
+}
+
+my %freq_source = %{Tesserae::stoplist_hash($file_freq_source)};
+
+
 
 # print all params for debugging
 
@@ -472,23 +597,13 @@ unless ($quiet) {
 	print STDERR "max_dist=$max_dist\n";
 	print STDERR "distance basis=$distance_metric\n";
 	print STDERR "score cutoff=$cutoff\n";
+	print STDERR "frequency basis=$freq_basis\n";
 	print STDERR "score basis=$score_basis\n";
+	print STDERR "corpus-wide flag=$corpus_wide\n";
+	print STDERR "File for source frequency=$file_freq_source\n";	
+	print STDERR "File for target frequency=$file_freq_target\n";		
 }
 
-
-#
-# calculate feature frequencies
-#
-
-# token frequencies from the target text
-
-my $file_freq_target = select_file_freq($target) . ".freq_score_" . $score_basis;
-my %freq_target = %{Tesserae::stoplist_hash($file_freq_target)};
-
-# token frequencies from the source text
-
-my $file_freq_source = select_file_freq($source) . ".freq_score_" . $score_basis;
-my %freq_source = %{Tesserae::stoplist_hash($file_freq_source)};
 
 #
 # basis for stoplist is feature frequency from one or both texts
@@ -821,10 +936,10 @@ sub dist {
 
 	my ($match_t_ref, $match_s_ref, $metric) = @_;
 	
-	my %match_target = %$match_t_ref;
+	my %match_target = %$match_t_ref; # The list of matchwords come to this subroutine in the form of a hash. The keys are token ID #s.
 	my %match_source = %$match_s_ref;
 	
-	my @target_id = sort {$a <=> $b} keys %match_target;
+	my @target_id = sort {$a <=> $b} keys %match_target; # To perform the calculation of distance, the token IDs have to be put in ascending order.
 	my @source_id = sort {$a <=> $b} keys %match_source;
 	
 	my $dist = 0;
@@ -840,7 +955,20 @@ sub dist {
 	
 		# sort target token ids by frequency of the forms
 		
-		my @t = sort {$freq_target{$token_target[$a]{FORM}} <=> $freq_target{$token_target[$b]{FORM}}} @target_id; 
+		my @t;
+		
+		unless ($corpus_wide == 1) {
+	
+			@t = sort {$freq_target{$token_target[$a]{FORM}} <=> $freq_target{$token_target[$b]{FORM}}} @target_id;
+	
+		}
+		else {
+		
+			# if frequency values are supposed to be stem-based and corpus-wide, invoke the stem-averaging subroutine
+		
+			@t = sort {stem_frequency($token_target[$a]{FORM}, 'target') <=> stem_frequency($token_target[$b]{FORM}, 'target')} @target_id;
+			
+		}
 			      
 		# consider the two lowest;
 		# put them in order from left to right
@@ -857,7 +985,18 @@ sub dist {
 			
 		# now do the same in the source phrase
 			
-		my @s = sort {$freq_source{$token_source[$a]{FORM}} <=> $freq_source{$token_source[$b]{FORM}}} @source_id; 
+		my @s;
+		
+		unless ($corpus_wide == 1) {
+			
+			@s = sort {$freq_source{$token_source[$a]{FORM}} <=> $freq_source{$token_source[$b]{FORM}}} @source_id; 
+
+		} 
+		else {
+
+			@s = sort {stem_frequency($token_source[$a]{FORM}, 'source') <=> stem_frequency($token_source[$b]{FORM}, 'source')} @source_id; 
+			
+		}
 		
 		if ($s[0] > $s[1]) { @s[0,1] = @s[1,0] }
 			
@@ -942,6 +1081,18 @@ sub load_stoplist {
 	
 	my %basis;
 	my @stoplist;
+	
+	if ($stopwords eq "function") {
+	
+		my $file = catfile($fs{data}, 'common', Tesserae::lang($target) . '.' . 'function');
+	
+		my $list = Tesserae::stoplist_array($file);
+		
+
+		return $list;
+	
+	}
+	
 	
 	if ($stoplist_basis eq "target") {
 		
@@ -1035,7 +1186,21 @@ sub score_default {
 									
 		# add the frequency score for this term
 		
-		my $freq = 1/$freq_target{$token_target[$token_id_target]{FORM}}; 
+		# if $freq_basis is set to corpus and $score_basis is set to stem
+		# retrieve the stem array and take the average frequency value of all possibilities
+		
+		my $freq;
+		
+		unless ($corpus_wide == 1) {
+		
+			$freq = 1/$freq_target{$token_target[$token_id_target]{FORM}}; 
+		
+		} 
+		else {
+		
+			$freq = 1/stem_frequency($token_target[$token_id_target]{FORM}, 'target');
+		
+		}
 				
 		# for 3-grams only, consider how many features the word matches on
 				
@@ -1046,66 +1211,23 @@ sub score_default {
 		
 		$score += $freq;
 	}
-
-
-	#For cross-language matching, include Bamman's p-o-s and treebanking data
-#		my $source_flag = 0;
-#		my $target_flag = 0;
-			
-#		if ($feature =~ 'trans') {
-			
-#			my @syntax_source    = @{ retrieve("$file_source.syntax") };
-#			my @syntax_target    = @{ retrieve("$file_target.syntax") };
-#			my @target_ids = keys %match_target;
-#			my @source_ids = keys %match_source;
-#			my @source_heads;
-#			my @target_heads;
-			
-#			foreach my $token_id_target (@target_ids) {
-#				push (@target_heads, ${$syntax_target[$token_id_target]}{'HEAD'});
-#			}
-#			foreach my $token_id_source (@source_ids) {
-#				push (@source_heads, ${$syntax_target[$token_id_source]}{'HEAD'});
-#			}
-			
-
-#			foreach my $token_id_target (@target_ids) {
-#				foreach my $head_id_target (@target_heads) {
-#					print STDERR "Target matchword: $token_id_target\t";
-#					if (defined $head_id_target) {
-#						print STDERR "head: $head_id_target\n";
-#						if ($token_id_target == $head_id_target) {
-			#				$target_flag = 1;
-#						}
-#					
-#					}
-#				}
-#			}
-			
-#			foreach my $token_id_source (@source_ids) {
-#				foreach my $head_id_source (@source_heads) {
-#					print STDERR "Source matchword: $token_id_source\t";
-#					if (defined $head_id_source) {
-#						print STDERR "head: $head_id_source\n";
-#						if ($token_id_source == $head_id_source) {
-#							$source_flag = 1;
-#						}
-#					}
-#				}
-#			}
-
-			
-
-		#}
-
-
 	
 	for my $token_id_source ( keys %match_source ) {
 
 		# add the frequency score for this term
 
-		my $freq = 1/$freq_source{$token_source[$token_id_source]{FORM}};
+		my $freq;
 		
+		unless ($corpus_wide == 1) {
+		
+			$freq = 1/$freq_source{$token_source[$token_id_source]{FORM}};
+		
+		}
+		else {
+		
+			$freq = 1/stem_frequency($token_source[$token_id_source]{FORM}, 'source');
+		
+		}
 		# for 3-grams only, consider how many features the word matches on
 				
 		if ($feature eq '3gr') {
@@ -1117,15 +1239,8 @@ sub score_default {
 	}
 	
 	$score = sprintf("%.3f", log($score/$distance));
-
-#			if ($source_flag == 1 or $target_flag == 1) {
-			return $score;
-
-#			}
-#			else {
-#			$score = 0;
-#			return $score;
-#			}
+	
+	return $score;
 }
 
 
@@ -1176,4 +1291,119 @@ sub select_file_freq {
 	);
 	
 	return $file_freq;
+}
+
+# take an inflected form, and return the average corpus-wide frequency value of the associated stems
+
+sub stem_frequency {
+	
+	my ($form, $text) = @_;
+	
+	# this subroutine is agnostic of language but must be fed the appropriate text (target or source)
+	
+	my $average;
+		
+	if ($text eq 'target') {
+		
+
+		my @stems = ();
+		
+		# load all possible stems
+		# if the stem array doesn't exist, use the form
+
+		
+		unless ($modern == 1) {		
+
+			if ($target_dictionary{$form}) {
+
+				@stems = @{$target_dictionary{$form}};
+
+			}
+
+			else {
+
+				$stems[0] = $form;
+
+			}
+
+		}
+
+		else { 
+		
+		# if the language is modern, it's necessary to use Lingua::Stem
+		
+			my $stem_ref = stem($form);
+		
+			@stems = @{$stem_ref};
+		
+		}
+				
+
+		# retrieve corpus-wide frequency values for each stem
+	
+		my $freq_values;
+	
+		for (0..$#stems) {
+
+			$freq_values += $freq_target{$stems[$_]};
+
+		}
+	
+		# average the frequencies
+	
+		$average = $freq_values / (scalar @stems);
+		
+	}
+	else {
+	
+		# load all possible stems
+		
+		my @stems = ();
+	
+		unless ($modern == 1) {
+		
+			if ($source_dictionary{$form}) {	
+
+				@stems = @{$source_dictionary{$form}};
+
+			}
+
+			else {
+
+				$stems[0] = $form;
+
+			}
+	
+		}
+		
+		else { 
+		
+		# if the language is modern, it's necessary to use Lingua::Stem
+		
+			my $stem_ref = stem($form);
+		
+			@stems = @{$stem_ref};
+		
+
+		}
+	
+		# retrieve corpus-wide frequency values for each stem
+	
+		my $freq_values;
+	
+		for (0..$#stems) {
+
+			$freq_values += $freq_source{$stems[$_]};
+		
+		}
+	
+		# average the frequencies
+	
+		$average = $freq_values / (scalar @stems);
+		
+	}
+	
+	
+	return $average;
+
 }

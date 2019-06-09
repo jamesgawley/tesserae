@@ -6,8 +6,8 @@
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde">
-		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin">
+		<meta name="author" content="Neil Coffee, Jean-Pierre Koenig, Shakthi Poornima, Chris Forstall, Roelant Ossewaarde, James Gawley	">
+		<meta name="keywords" content="intertext, text analysis, classics, university at buffalo, latin, allusion, literature">
 		<meta name="description" content="Intertext analyzer for Latin texts">
 		<link href="<?php echo $url_css . "/style.css" ?>" rel="stylesheet" type="text/css"/>
 		<link href="<?php echo $url_image . "/favicon.ico" ?>" rel="shortcut icon"/>
@@ -15,12 +15,11 @@
 		<!--head_insert-->
 
 		<title>Tesserae</title>
-
-	</head>
+ 	</head>
 	<body>
 
 		<div id="container">
-		<div style="position:fixed; top:2px; right:2px; color:red; z-index:9">develop</div>
+
 		<div id="header"> 
 		
 			<div id="header_image">
@@ -29,10 +28,4 @@
 				</a>
 			</div>		
 			<div id="nav_main">
-				<ul>
-					<li><a href="<?php echo $url_html; ?>">Search</a></li>
-					<li><a href="<?php echo $url_html . "/help.php"; ?>">Help</a></li>
-					<li><a href="http://tesserae.caset.buffalo.edu/blog">Blog</a></li>
-
-				</ul>
 			</div>

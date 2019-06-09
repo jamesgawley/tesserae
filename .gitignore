@@ -5,6 +5,7 @@ tesserae.conf
 html/defs.php
 html/help_scripts.php
 xsl/defs.xsl
+pod2htm*
 
 # compiled python modules
 *.pyc
@@ -24,6 +25,7 @@ data/common/la.*.cache
 data/common/grc.*.cache
 data/common/la.syn.cache.param
 data/common/*.freq
+data/common/*.freq_score
 data/common/whit.cache
 data/common/lang
 data/common/abbr

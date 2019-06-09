@@ -243,14 +243,19 @@ sub print_table {
 		trans_1b
 		trans_2a
 		trans_2b
+<<<<<<< HEAD
+=======
 		trans_3a
 		trans_3b
 		trans_4a
 		trans_4b
+>>>>>>> origin/develop
 		valid_1a
 		valid_1b
 		valid_2a
 		valid_2b
+<<<<<<< HEAD
+=======
 		valid_3a
 		valid_3b
 		valid_4a
@@ -263,6 +268,7 @@ sub print_table {
 		pos_3b
 		pos_4a
 		pos_4b
+>>>>>>> origin/develop
 		auth/
 	);
 	

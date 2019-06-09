@@ -1,9 +1,10 @@
 <?php include "first.php"; ?>
+<?php 	$page = 'tools'; ?>
 <?php include "nav_search.php"; ?>
 
 			</div>
 
-
+			<div id="nav_sub2_spacer"></div>
 			<div id="main">
 				<h1>Other Search Tools</h1>
 
@@ -11,18 +12,18 @@
 					Here you can try out some searches we're still testing.  We would appreciate any feedback you have.  Caution: results may not be very stable.
 				</p>
 
-				<h2><a href="<?php echo $url_html.'/multi-text.php'; ?>">Multi-text search</a></h2>
+				<h2><a href="<?php echo $url_html.'/latin-multi-text.php'; ?>">Latin Multi-text search</a></h2>
 					
 				<p>
-					Cross-references discovered parallels against the rest of the corpus.
+					Cross-references discovered parallels against the rest of the Latin corpus.
 				</p>
 				
-				<h2><a href="<?php echo $url_html.'/cross.php'; ?>">Latin-Greek search</a></h2>
+				<h2><a href="<?php echo $url_html.'/greek-multi-text.php'; ?>">Greek Multi-text search</a></h2>
 					
 				<p>
-					This feature attempts to match Latin targets to Greek sources, using two different experimental methods.
+					Cross-references discovered parallels against the rest of the Greek corpus.
 				</p>
-				
+								
 				<h2><a href="<?php echo $url_cgi.'/lsa.pl'; ?>">LSA Search Tool</a></h2>
 				
 				<p>
@@ -47,13 +48,7 @@
 					Allows you to perform a search of Lucan's Pharsalia Book 1 against Vergil's Aeneid,
 					and compares the results against our 3000-parallel benchmark set.
 				</p>
-
-				<h2><a href="<?php echo $url_cgi.'/syn-diagnostic.pl'; ?>">Greek-Latin dictionary diagnostic tool</a></h2>
-
-				<p>
-					Compares the two translation feature sets against the lexicon for a given Greek text,
-					shows purported translations for those Greek stems that have them in either feature set.
-				</p>
+            
 			</div>
 		
 			<?php include "last.php"; ?>
